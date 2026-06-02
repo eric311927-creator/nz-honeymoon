@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>紐西蘭16天蜜月之旅</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--forest:#1a3a2a;--sage:#3d6b4f;--mint:#7ab892;--cream:#f5f0e8;--warm:#e8dcc8;--gold:#c9a84c;--text:#1a2420;--muted:#5a6b62;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+.hero{background:var(--forest);min-height:480px;display:flex;flex-direction:column;justify-content:flex-end;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(122,184,146,0.15) 0%,transparent 60%)}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.4);color:var(--gold);font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:20px;margin-bottom:1.5rem;width:fit-content}
+.hero h1{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:#fff;line-height:1.15;margin-bottom:1rem}
+.hero h1 span{color:var(--mint)}
+.hero-sub{color:rgba(255,255,255,0.6);font-size:14px;font-weight:300;letter-spacing:0.5px;margin-bottom:2rem}
+.hero-stats{display:flex;gap:2rem}
+.hero-stat{text-align:center}
+.hero-stat .num{font-family:'Playfair Display',serif;font-size:28px;color:var(--gold);font-weight:600}
+.hero-stat .label{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+.hero-divider{width:1px;background:rgba(255,255,255,0.15);align-self:stretch}
+.tabs{display:flex;background:#fff;border-bottom:1px solid var(--warm);position:sticky;top:0;z-index:100;overflow-x:auto}
+.tab{padding:14px 20px;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;border:none;background:none;white-space:nowrap;border-bottom:2px solid transparent;transition:all 0.2s}
+.tab.active{color:var(--sage);border-bottom-color:var(--sage)}
+.tab:hover{color:var(--sage)}
+.section{display:none;padding:2rem 1.5rem;max-width:800px;margin:0 auto}
+.section.active{display:block}
+.section-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:600;margin-bottom:0.4rem}
+.section-sub{font-size:13px;color:var(--muted);margin-bottom:1.5rem}
+.island-header{background:var(--sage);color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;display:inline-block}
+.day-block{background:#fff;border-radius:16px;border:1px solid var(--warm);margin-bottom:20px;overflow:hidden}
+.day-header{display:flex;gap:16px;align-items:flex-start;padding:1.25rem 1.25rem 1rem}
+.day-num{min-width:52px;height:52px;background:var(--forest);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:10px;font-weight:500;letter-spacing:1px;text-transform:uppercase;flex-shrink:0;color:var(--mint)}
+.day-num span{font-family:'Playfair Display',serif;font-size:20px;color:#fff;font-weight:600;line-height:1}
+.day-title-wrap{flex:1}
+.day-title{font-weight:500;font-size:16px;margin-bottom:4px}
+.day-subtitle{font-size:12px;color:var(--muted)}
+.badge{display:inline-block;background:rgba(201,168,76,0.15);color:#8a6a1a;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:500;margin-left:6px;border:1px solid rgba(201,168,76,0.3)}
+.day-body{padding:0 1.25rem 1.25rem;border-top:1px solid var(--warm)}
+.timeline{margin-top:1rem}
+.tl-item{display:flex;gap:12px;margin-bottom:14px}
+.tl-time{font-size:11px;font-weight:500;color:var(--sage);min-width:72px;padding-top:2px;letter-spacing:0.5px}
+.tl-content{flex:1}
+.tl-title{font-size:13px;font-weight:500;margin-bottom:3px}
+.tl-desc{font-size:12px;color:var(--muted);line-height:1.7}
+.tl-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+.tl-link{font-size:11px;color:var(--sage);text-decoration:none;background:rgba(61,107,79,0.08);padding:4px 10px;border-radius:12px;border:1px solid rgba(61,107,79,0.2);display:inline-flex;align-items:center;gap:4px}
+.day-hotel-row{display:flex;align-items:center;justify-content:space-between;background:rgba(122,184,146,0.08);border-radius:10px;padding:10px 14px;margin-top:14px;border:1px solid rgba(122,184,146,0.2)}
+.day-hotel-name{font-size:13px;font-weight:500;color:var(--forest)}
+.day-hotel-link{font-size:11px;color:var(--sage);text-decoration:none;border:1px solid var(--sage);padding:4px 10px;border-radius:12px}
+.tips-inline{background:#fef9ee;border-left:3px solid var(--gold);padding:10px 14px;border-radius:0 8px 8px 0;margin-top:12px}
+.tips-inline p{font-size:12px;color:#6b5000;line-height:1.7}
+.hotel-grid{display:grid;gap:16px}
+.hotel-card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--warm)}
+.hotel-body{padding:1rem 1.25rem}
+.hotel-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;margin-bottom:4px}
+.hotel-loc{font-size:12px;color:var(--muted);margin-bottom:8px}
+.hotel-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:10px}
+.hotel-meta{display:flex;align-items:center;justify-content:space-between}
+.stars{color:var(--gold);font-size:13px}
+.hotel-link{font-size:12px;color:var(--sage);font-weight:500;text-decoration:none;border:1px solid var(--sage);padding:5px 12px;border-radius:20px}
+.upgrade-tag{background:var(--gold);color:#fff;font-size:10px;padding:3px 8px;border-radius:10px;font-weight:500}
+.food-section{margin-bottom:2rem}
+.food-section-title{font-size:14px;font-weight:500;color:var(--sage);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--warm)}
+.food-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.food-item{background:#fff;border-radius:12px;padding:12px;border:1px solid var(--warm)}
+.food-name{font-weight:500;font-size:13px;margin-bottom:4px}
+.food-desc{font-size:12px;color:var(--muted);line-height:1.5}
+.restaurant-card{background:#fff;border-radius:14px;padding:1rem 1.25rem;border:1px solid var(--warm);margin-bottom:10px}
+.restaurant-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;margin-bottom:3px}
+.restaurant-loc{font-size:12px;color:var(--muted);margin-bottom:6px}
+.restaurant-desc{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:8px}
+.restaurant-must{font-size:12px;color:var(--sage);font-weight:500}
+.booking-item{background:#fff;border-radius:14px;padding:1rem 1.25rem;border:1px solid var(--warm);margin-bottom:10px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.booking-info{flex:1}
+.booking-name{font-weight:500;font-size:14px;margin-bottom:3px}
+.booking-when{font-size:12px;color:var(--muted);margin-bottom:4px}
+.booking-url{font-size:12px;color:var(--sage);font-weight:500;text-decoration:none}
+.booking-urgency{font-size:11px;background:#fef3e2;color:#8a5a00;padding:4px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;border:1px solid rgba(138,90,0,0.2)}
+.urgency-high{background:#fde8e8;color:#8a0000;border-color:rgba(138,0,0,0.2)}
+.budget-card{background:#fff;border-radius:16px;padding:1.5rem;border:1px solid var(--warm);margin-bottom:1rem}
+.budget-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--warm);font-size:14px}
+.budget-row:last-child{border-bottom:none;font-family:'Playfair Display',serif;font-size:18px;padding-top:14px}
+.budget-row .amount{color:var(--sage);font-weight:500}
+.budget-row.total .amount{color:var(--forest);font-size:22px}
+.tips-block{background:var(--forest);border-radius:16px;padding:1.5rem}
+.tips-title{color:var(--mint);font-size:13px;font-weight:500;letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem}
+.tip{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+.tip-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:6px}
+.tip p{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6}
+@media(max-width:600px){.hero h1{font-size:32px}.hero-stats{gap:1rem}.food-grid{grid-template-columns:1fr}.tl-time{min-width:50px}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">✦ 蜜月精選行程</div>
+  <h1>紐西蘭<br><span>16天南北島</span><br>蜜月之旅</h1>
+  <div class="hero-sub">奧克蘭 · 羅托魯阿 · 基督城 · 皇后鎮 · 但尼丁 · 蒂卡波湖</div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">16</div><div class="label">天數</div></div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat"><div class="num">6</div><div class="label">野生動物</div></div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat"><div class="num">9</div><div class="label">精品住宿</div></div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat"><div class="num">20萬</div><div class="label">預算/人</div></div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('itinerary',this)">行程總覽</button>
+  <button class="tab" onclick="showTab('hotels',this)">住宿推薦</button>
+  <button class="tab" onclick="showTab('food',this)">美食指南</button>
+  <button class="tab" onclick="showTab('booking',this)">預訂清單</button>
+  <button class="tab" onclick="showTab('budget',this)">預算規劃</button>
+</div>
+
+<div id="itinerary" class="section active">
+  <div class="section-title">完整行程</div>
+  <div class="section-sub">9月底出發 · 自駕為主 · 精品住宿 · 16天</div>
+  <div class="island-header">北島 · Day 1–4</div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>1</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">抵達奧克蘭</div>
+        <div class="day-subtitle">台北 → 奧克蘭 · 飛行約10小時</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">傍晚抵達</div>
+          <div class="tl-content">
+            <div class="tl-title">奧克蘭國際機場入境</div>
+            <div class="tl-desc">入境需填寫申報卡，水果、肉類嚴禁攜入。計程車或Uber前往市區約30分鐘，費用約NZD$50。check-in後稍作休息調整時差。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上</div>
+          <div class="tl-content">
+            <div class="tl-title">Sky Tower 旋轉餐廳晚餐</div>
+            <div class="tl-desc">328公尺高地標，Orbit旋轉餐廳俯瞰全奧克蘭夜景與海港，蜜月第一晚完美開場。強烈建議提前訂窗邊座位。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Sky+Tower+Auckland" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="https://www.skycityauckland.co.nz" target="_blank">🔗 訂位官網</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 SO/ Auckland — CBD精品設計酒店</div>
+        <a class="day-hotel-link" href="https://so-hotels.com/en/auckland/" target="_blank">官網訂房</a>
+      </div>
+      <div class="tips-inline"><p>💡 長途飛行後第一天輕鬆安排，early check-in可加購，晚餐後建議早睡調整時差，明天才開始精彩探索。</p></div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>2</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">奧克蘭市區探索</div>
+        <div class="day-subtitle">步行 · 計程車 · 輕鬆悠閒</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上 9:00</div>
+          <div class="tl-content">
+            <div class="tl-title">One Tree Hill 伊甸山</div>
+            <div class="tl-desc">奧克蘭最高點之一，火山錐地形，360度俯瞰城市與海灣全景，公園內有大片草地與綿羊，拍照絕佳。免費入場。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=One+Tree+Hill+Auckland" target="_blank">📍 Google地圖</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">中午</div>
+          <div class="tl-content">
+            <div class="tl-title">Ponsonby Road 美食街午餐</div>
+            <div class="tl-desc">奧克蘭最有氣質的美食街，獨立咖啡廳與精品餐廳林立，Flat White發源地之一，隨意找一家坐下，感受紐西蘭慢活文化。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Ponsonby+Road+Auckland" target="_blank">📍 Google地圖</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午</div>
+          <div class="tl-content">
+            <div class="tl-title">Viaduct Harbour 帆船港區散步</div>
+            <div class="tl-desc">奧克蘭帆船之都核心，遊艇林立，海港旁咖啡廳與酒吧，下午在此吹風喝咖啡最愜意。日落時分海面金光閃爍，是拍蜜月照的好地點。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Viaduct+Harbour+Auckland" target="_blank">📍 Google地圖</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上</div>
+          <div class="tl-content">
+            <div class="tl-title">Wynyard Grill 港口牛排館晚餐</div>
+            <div class="tl-desc">港口邊牛排館，評分4.6，牛排與肋排是招牌，松露薯條必點。港景加持，旅程第一頓豪華晚餐，訂位時說明是蜜月旅行。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?cid=7036389258008628021" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="https://wynyardgrill.co.nz/" target="_blank">🔗 訂位</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 SO/ Auckland</div>
+        <a class="day-hotel-link" href="https://so-hotels.com/en/auckland/" target="_blank">官網訂房</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>3</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">羅托魯阿地熱 + Mitai毛利文化晚宴</div>
+        <div class="day-subtitle">巴士約3小時 · 全日行程</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上 7:30</div>
+          <div class="tl-content">
+            <div class="tl-title">奧克蘭出發前往羅托魯阿</div>
+            <div class="tl-desc">可選InterCity巴士（約NZD$25/人）或自行開車，車程約3小時，沿途綠色丘陵風景優美。抵達後先check-in放行李。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">上午 10:15</div>
+          <div class="tl-content">
+            <div class="tl-title">Wai-O-Tapu 地熱奇境</div>
+            <div class="tl-desc">紐西蘭最繽紛的地熱景區。每天10:15am人工催噴Lady Knox間歇泉，建議趕上這個時間點。香檳池橙黃色礦物沉積全球唯一；魔鬼浴池螢光黃綠色令人咋舌；步道約4公里，約2小時走完。硫磺味濃，是正常現象！</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?cid=1104528458444386400" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="https://www.waiotapu.co.nz/" target="_blank">🔗 購票官網（約NZD$47）</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 1:00</div>
+          <div class="tl-content">
+            <div class="tl-title">羅托魯阿市區午餐休息</div>
+            <div class="tl-desc">推薦 Atticus Finch 或 Abracadabra Cafe，輕食補充體力，順便逛逛市區採購紀念品。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 2:30</div>
+          <div class="tl-content">
+            <div class="tl-title">Te Puia 地熱公園（可選）</div>
+            <div class="tl-desc">市區內地熱公園，有活躍間歇泉、奇異鳥保育中心、毛利工藝學校，若時間充裕可下午順訪，距Wai-O-Tapu約20分鐘車程。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?cid=5789273858317145247" target="_blank">📍 Google地圖</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">傍晚 5:30</div>
+          <div class="tl-content">
+            <div class="tl-title">🎭 Mitai Maori Village 毛利文化晚宴</div>
+            <div class="tl-desc">全行程最震撼的文化體驗，全程約3小時。夜幕降臨，手持火把的武士乘戰爭獨木舟（Waka）從黑暗中破水而出，哈卡戰舞（Haka）與傳統歌謠讓人起雞皮疙瘩。接著品嚐 Hangi 傳統炭火地坑料理——羊肉、雞肉、蔬菜埋入地坑以天然地熱蒸烤，煙燻香氣四溢。飯後走入叢林，在完全黑暗中仰頭看漫天螢火蟲發光，絕美如夢。評分4.6，已是羅托魯阿最推薦的夜間體驗。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?cid=11883888506521337768" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="http://mitai.co.nz/" target="_blank">🔗 官網購票（含飯店接送）</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 Black Swan Lakeside Boutique — 湖畔精品旅館 ★4.6</div>
+        <a class="day-hotel-link" href="https://www.blackswanhotel.co.nz/" target="_blank">官網訂房</a>
+      </div>
+      <div class="tips-inline"><p>💡 Mitai晚宴需提前1–2個月預訂，旺季常滿。可在官網同時預約飯店接送，避免夜間開車找路的麻煩。</p></div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>4</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">草泥馬農場 → 飛基督城取車</div>
+        <div class="day-subtitle">北島 → 南島 · 飛行約1小時</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上 9:00</div>
+          <div class="tl-content">
+            <div class="tl-title">Agrodome 農場體驗＋草泥馬</div>
+            <div class="tl-desc">羅托魯阿最著名的農場，餵草泥馬（羊駝）、觀看綿羊剪毛秀、牧羊犬表演、各種農場動物近距離互動。草泥馬性格溫馴，會用溫熱鼻頭蹭你的手，超級療癒，絕對是兩人的歡樂記憶。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Agrodome+Rotorua" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="https://www.agrodome.co.nz/" target="_blank">🔗 官網購票</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 1:00</div>
+          <div class="tl-content">
+            <div class="tl-title">前往機場飛基督城</div>
+            <div class="tl-desc">羅托魯阿機場飛基督城（CHC），飛行約1小時。抵達後前往租車公司取車，建議選Hertz或Budget，用信用卡刷押金。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">傍晚</div>
+          <div class="tl-content">
+            <div class="tl-title">基督城 check-in 熟悉左駕</div>
+            <div class="tl-desc">在旅館附近短程開車適應左駕，晚餐選市區輕鬆餐廳，明天正式開始南島自駕旅程。推薦 Fiddlesticks 餐廳，環境輕鬆適合放鬆一晚。</div>
+          </div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 The Observatory Hotel — 百年歷史建築 ★4.6</div>
+        <a class="day-hotel-link" href="https://observatoryhotel.co.nz/" target="_blank">官網訂房</a>
+      </div>
+      <div class="tips-inline"><p>💡 紐西蘭靠左行駛，第一天取車後務必先在市區練習，避免直接跑長途山路。租車時確認保險是否含碎石損傷（Windscreen & Tyre cover），南島碎石路很常見。</p></div>
+    </div>
+  </div>
+
+  <div class="island-header" style="margin-top:8px">南島 · Day 5–15</div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>5</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">基督城市區慢遊</div>
+        <div class="day-subtitle">步行為主 · 城市重生之旅</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上</div>
+          <div class="tl-content">
+            <div class="tl-title">基督城植物園晨遊</div>
+            <div class="tl-desc">75公頃城市之肺，玫瑰園、日式庭園，清晨光線柔和，鳥鳴聲不絕。免費入場，是基督城最美麗的免費體驗。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Christchurch+Botanic+Gardens" target="_blank">📍 Google地圖</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">中午</div>
+          <div class="tl-content">
+            <div class="tl-title">New Regent Street + Re:START Mall</div>
+            <div class="tl-desc">彩色西班牙式建築New Regent Street是全紐最上鏡街道；Re:START Mall是2011年地震後用彩色貨櫃搭建的臨時商圈，已成城市重生的地標，充滿創意小店。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=New+Regent+Street+Christchurch" target="_blank">📍 Google地圖</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午</div>
+          <div class="tl-content">
+            <div class="tl-title">Canterbury Museum 免費參觀</div>
+            <div class="tl-desc">免費入場，紐西蘭自然史與毛利文化展覽豐富，對認識南島歷史很有幫助，為後續旅程增添深度。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Canterbury+Museum+Christchurch" target="_blank">📍 Google地圖</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上</div>
+          <div class="tl-content">
+            <div class="tl-title">5th Street 晚餐</div>
+            <div class="tl-desc">評分4.8，主廚桌體驗是最棒的選擇，邊看廚師現場料理邊用餐，肉類與創意料理精彩。提前預訂主廚桌位。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?cid=2493671756304404404" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="https://www.5thstreet.co.nz/" target="_blank">🔗 訂位</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 The Observatory Hotel</div>
+        <a class="day-hotel-link" href="https://observatoryhotel.co.nz/" target="_blank">官網訂房</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>6</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">阿卡羅阿法式小鎮</div>
+        <div class="day-subtitle">自駕約1.5小時 · 當日來回</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上 9:00</div>
+          <div class="tl-content">
+            <div class="tl-title">出發沿山路前往阿卡羅阿</div>
+            <div class="tl-desc">沿Banks Peninsula山路自駕，途中有多個俯瞰港灣的觀景台，風景壯觀，建議多停車拍照。路況略彎，不宜急趕，全程享受公路風景。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">上午 10:30</div>
+          <div class="tl-content">
+            <div class="tl-title">阿卡羅阿小鎮漫步</div>
+            <div class="tl-desc">19世紀法國殖民留下的小鎮，街道名至今仍是法文，彩色木屋、藝廊、手工藝品店林立。Main Wharf碼頭風景如畫，是紐西蘭最有歐洲情調的小鎮，輕鬆地走走逛逛。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Akaroa+New+Zealand" target="_blank">📍 Google地圖</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">中午</div>
+          <div class="tl-content">
+            <div class="tl-title">海邊法式午餐</div>
+            <div class="tl-desc">推薦 Brasserie Akaroa，法式風格餐廳坐擁港景，海鮮與羊肉都很出色，感受一下法國遺風。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 1:30</div>
+          <div class="tl-content">
+            <div class="tl-title">海豚灣遊船（可選）</div>
+            <div class="tl-desc">阿卡羅阿灣有全球最小的赫克托海豚（Hector's Dolphin），可報名出海賞豚甚至下水共泳。9月底剛好是觀賞季，提前在Black Cat Cruises訂位。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.blackcat.co.nz/" target="_blank">🔗 Black Cat Cruises訂位</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">傍晚 4:00</div>
+          <div class="tl-content">
+            <div class="tl-title">返回基督城</div>
+            <div class="tl-desc">建議4點前出發，回程可走不同路線，夜間山路較危險不建議摸黑開。</div>
+          </div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 The Observatory Hotel</div>
+        <a class="day-hotel-link" href="https://observatoryhotel.co.nz/" target="_blank">官網訂房</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>7</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">凱庫拉賞鯨 🐋</div>
+        <div class="day-subtitle">自駕約2.5小時 · 全球最佳賞鯨地</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上 7:30</div>
+          <div class="tl-content">
+            <div class="tl-title">基督城出發沿海岸線北上</div>
+            <div class="tl-desc">沿SH1北上，全程沿海岸線行駛，右邊太平洋，左邊雪山，是紐西蘭最美的公路之一。途中可在Kaikoura Canyon Lookout停車拍照。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">上午 10:00</div>
+          <div class="tl-content">
+            <div class="tl-title">Whale Watch Kaikoura 賞鯨船</div>
+            <div class="tl-desc">全球少數可全年看到抹香鯨的地方，深海峽谷帶來豐富食物鏈。船程約3小時，95%機率可見到鯨魚。鯨魚潛水前搖尾巴出水的瞬間極為震撼，同時還可能看到海豚、信天翁。船上風大，請穿保暖外套。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Whale+Watch+Kaikoura" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="https://www.whalewatch.co.nz/" target="_blank">🔗 官網購票（2–3個月前訂）</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 1:00</div>
+          <div class="tl-content">
+            <div class="tl-title">🦞 路邊龍蝦攤 — 凱庫拉必吃！</div>
+            <div class="tl-desc">這是全行程最不能錯過的飲食體驗。路邊攤販現煮現賣岩龍蝦（Crayfish），價格比餐廳便宜約一半（NZD$30–50/隻），坐在太平洋旁邊就地而吃，海風吹來，是紐西蘭最有味道的一餐。記得帶現金！</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 2:00</div>
+          <div class="tl-content">
+            <div class="tl-title">Point Kean 海狗岩</div>
+            <div class="tl-desc">步行5分鐘可達，數十隻毛皮海狗懶洋洋曬太陽，可近距離觀看，保持2公尺距離，勿觸碰，牠們咬起來很痛。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Point+Kean+Seal+Colony+Kaikoura" target="_blank">📍 Google地圖</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上</div>
+          <div class="tl-content">
+            <div class="tl-title">海景旅館晚餐</div>
+            <div class="tl-desc">繼續享用凱庫拉海鮮，旅館餐廳或周邊餐廳用餐，明天就要出發皇后鎮，記得早點休息。</div>
+          </div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 Kaikoura Boutique Hotel — 海景 ★4.4</div>
+        <a class="day-hotel-link" href="http://www.kaikouraboutiquehotel.co.nz/" target="_blank">官網訂房</a>
+      </div>
+      <div class="tips-inline"><p>💡 賞鯨船遇惡劣天氣會取消，務必選可免費改期的票。若不幸取消，凱庫拉還有直升機賞鯨可作備案，費用較高但體驗極佳。</p></div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>8</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">抵達皇后鎮 · 蜜月核心三天 <span class="badge">升級住宿</span></div>
+        <div class="day-subtitle">自駕約5小時 · 湖畔別墅</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上 8:00</div>
+          <div class="tl-content">
+            <div class="tl-title">凱庫拉出發前往皇后鎮</div>
+            <div class="tl-desc">沿SH1南下轉SH8，途中可在Twizel或Lake Pukaki停車休息拍照。Lake Pukaki是前往庫克山的岔路口，藍綠色湖水＋遠方庫克山景，是南島最壯觀的景色之一，今天先預覽，Day 13再深入。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 2:00</div>
+          <div class="tl-content">
+            <div class="tl-title">抵達皇后鎮 · check-in Azur Lodge</div>
+            <div class="tl-desc">全行程最頂級住宿，9棟獨立別墅坐落山坡，每棟正對瓦卡蒂普湖與雪山。私人露台、含早餐與下午茶、設計奢華，是全紐西蘭評分最高的精品住宿之一（4.8）。已有多對蜜月情侶在此留下五星評價。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?cid=8713344800883755025" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="http://www.azur.co.nz/" target="_blank">🔗 官網</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 4:00</div>
+          <div class="tl-content">
+            <div class="tl-title">瓦卡蒂普湖畔黃昏散步</div>
+            <div class="tl-desc">皇后鎮湖畔步道，雪山倒影在湖面，黃昏時分色彩絕美。Queenstown Gardens 花園也在附近，是最有浪漫氛圍的漫步路線。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Queenstown+Bay+Waterfront" target="_blank">📍 Google地圖</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上 7:00</div>
+          <div class="tl-content">
+            <div class="tl-title">TOAST &amp; OAK 蜜月晚餐 🍷</div>
+            <div class="tl-desc">皇后鎮最浪漫餐廳之一，評分4.8。主廚套餐NZD$120/人，牛里脊入口即化，本地黑皮諾配酒絕配。多對蜜月情侶的五星最愛，訂位時備註蜜月，驚喜等著你。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?cid=13419514176333718355" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="https://www.toastandoak.nz/" target="_blank">🔗 訂位</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 Azur Lodge — 9棟私人別墅 ★4.8 升級</div>
+        <a class="day-hotel-link" href="http://www.azur.co.nz/" target="_blank">官網訂房</a>
+      </div>
+      <div class="tips-inline"><p>💡 Azur Lodge蜜月旺季極易客滿，務必2–3個月前預訂，並在備註說明是蜜月旅行，工作人員會準備香檳與玫瑰花瓣迎接。</p></div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>9</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">米佛峽灣一日遊 🏔️</div>
+        <div class="day-subtitle">自駕來回約5小時 · 峽灣遊船約2小時</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上 6:30</div>
+          <div class="tl-content">
+            <div class="tl-title">皇后鎮出發</div>
+            <div class="tl-desc">單程約2.5小時，途中穿越峽灣國家公園，道路本身就是絕景。必停：Mirror Lakes倒影湖（完美倒影）、The Chasm激流瀑布、Homer Tunnel古老山洞隧道。早出發才能趕上早班遊船。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">上午 10:00</div>
+          <div class="tl-content">
+            <div class="tl-title">米佛峽灣遊船（Real NZ）</div>
+            <div class="tl-desc">搭乘遊船深入峽灣，垂直峭壁高達1200公尺，完全壓制一切。Stirling瀑布船可開到近距離，感受水霧打在臉上的震撼。海豚、海狗、小企鵝都可能現身。2小時遊船是最經典選擇，這是自然紀錄片畫面真實出現在你眼前的時刻。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Milford+Sound+New+Zealand" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="https://www.realnz.com/" target="_blank">🔗 Real NZ購票</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">中午</div>
+          <div class="tl-content">
+            <div class="tl-title">峽灣旁野餐或旅館午餐</div>
+            <div class="tl-desc">自備午餐在峽灣旁野餐最有氣氛，或在Milford Sound Lodge餐廳用餐，周圍全是壯闊山景。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 2:00</div>
+          <div class="tl-content">
+            <div class="tl-title">返回皇后鎮</div>
+            <div class="tl-desc">回程可在Te Anau湖邊停歇，紐西蘭第二大湖，深藍色湖水寧靜如鏡。傍晚回到皇后鎮在Azur Lodge的私人露台放鬆，享用下午茶。</div>
+          </div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 Azur Lodge</div>
+        <a class="day-hotel-link" href="http://www.azur.co.nz/" target="_blank">官網訂房</a>
+      </div>
+      <div class="tips-inline"><p>💡 米佛峽灣雨天更美，峭壁上會多出數百條臨時瀑布，不必擔心下雨。但出發前請確認道路狀況（9月底偶有落石）。</p></div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>10</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">皇后鎮自由活動</div>
+        <div class="day-subtitle">酒莊 · 古鎮 · 纜車 · 隨心所欲</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上</div>
+          <div class="tl-content">
+            <div class="tl-title">Skyline Gondola 纜車上山</div>
+            <div class="tl-desc">搭纜車上鮑勃山（Bob's Peak），俯瞰整個皇后鎮、湖泊與遠山，是全紐最壯觀的城市景觀。山上有餐廳（早午餐可在此吃）、滑草道、星際觀景台。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Skyline+Queenstown" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="https://www.skyline.co.nz/queenstown/" target="_blank">🔗 購票</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 2:00</div>
+          <div class="tl-content">
+            <div class="tl-title">箭鎮 Arrowtown 古鎮</div>
+            <div class="tl-desc">20分鐘車程，19世紀淘金熱時期遺留的古鎮，石砌建築與歷史街道充滿故事，淘金歷史博物館值得一看。9月底秋色初現，楊樹開始轉黃，特別美麗。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Arrowtown+New+Zealand" target="_blank">📍 Google地圖</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 4:00</div>
+          <div class="tl-content">
+            <div class="tl-title">Gibbston Valley 酒莊品酒</div>
+            <div class="tl-desc">中奧塔哥是全球最南的黑皮諾（Pinot Noir）產區，Gibbston Valley酒窖建在岩洞中保持恆溫，品酒NZD$25起，可當場買一瓶最喜歡的帶走，旅途紀念。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Gibbston+Valley+Winery" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="https://www.gibbstonvalley.com/" target="_blank">🔗 官網</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上</div>
+          <div class="tl-content">
+            <div class="tl-title">Sunfire 湖畔晚餐</div>
+            <div class="tl-desc">Steamer Wharf碼頭旁，評分4.7，豬五花、牛排、羊肉串都是招牌，湖景加持，輕鬆告別皇后鎮最後一晚。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?cid=12681112196380612725" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="https://www.sunfire.co.nz/" target="_blank">🔗 訂位</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 Azur Lodge — 最後一晚</div>
+        <a class="day-hotel-link" href="http://www.azur.co.nz/" target="_blank">官網訂房</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>11</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">但尼丁黃眼企鵝 🐧</div>
+        <div class="day-subtitle">自駕約2小時 · 全球最稀有企鵝</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上 9:00</div>
+          <div class="tl-content">
+            <div class="tl-title">皇后鎮出發前往但尼丁</div>
+            <div class="tl-desc">途經克倫威爾（Cromwell），路邊有奧塔哥著名的桃子農場攤位，新鮮現摘，秋季甜度最佳，值得停車。沿途山谷景色開闊壯美。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 1:00</div>
+          <div class="tl-content">
+            <div class="tl-title">但尼丁市區午餐</div>
+            <div class="tl-desc">推薦 Moons Restaurant（評分4.9），招牌手工漢堡趁中午吃，也可選擇輕食快速用餐後前往半島。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?cid=12009734810467688675" target="_blank">📍 Google地圖</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 3:00</div>
+          <div class="tl-content">
+            <div class="tl-title">奧塔哥半島 黃眼企鵝導覽</div>
+            <div class="tl-desc">全球最稀有企鵝之一，野外僅存約3000隻，比大貓熊更珍貴。導覽以小組形式在隱蔽壕溝中靜靜觀察企鵝從海上回巢、餵食幼鳥，近到可以聽到企鵝呼吸聲。這種體驗在全球只有極少數地方能做到，是此生難忘的動物接觸。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Otago+Peninsula+Yellow-Eyed+Penguin" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="https://www.wildlife.co.nz/" target="_blank">🔗 訂位（1個月前）</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上</div>
+          <div class="tl-content">
+            <div class="tl-title">Moons Restaurant 晚餐</div>
+            <div class="tl-desc">全但尼丁評分最高4.9，招牌手工漢堡肉厚汁多，炸醃黃瓜是隱藏美食，精釀啤酒種類繁多，週末需提前預訂。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?cid=12009734810467688675" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="http://www.moons.nz/" target="_blank">🔗 官網</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 Dunedin House Boutique Hotel — 百年教堂改建 ★4.9</div>
+        <a class="day-hotel-link" href="https://www.dunedinhouse.co.nz/" target="_blank">官網訂房</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>12</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">奧瑪魯小藍企鵝 🐧</div>
+        <div class="day-subtitle">自駕約1小時 · 世界最小企鵝夜間上岸</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上</div>
+          <div class="tl-content">
+            <div class="tl-title">但尼丁 Larnach Castle（可選）</div>
+            <div class="tl-desc">奧塔哥半島上的維多利亞式古堡，紐西蘭唯一城堡，俯瞰半島全景，時間充裕可早上順訪後再出發。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Larnach+Castle+Dunedin" target="_blank">📍 Google地圖</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">中午</div>
+          <div class="tl-content">
+            <div class="tl-title">抵達奧瑪魯 蒸汽龐克小鎮</div>
+            <div class="tl-desc">這個小鎮充滿蒸汽龐克（Steampunk）主題，維多利亞白石建築與機械裝置遍布街道，走在其中像穿越時空。Harbour Street歷史街區有獨立書店、古董店、手工巧克力店值得慢慢逛。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">傍晚 5:30</div>
+          <div class="tl-content">
+            <div class="tl-title">🐧 小藍企鵝夜間上岸觀賞</div>
+            <div class="tl-desc">全球最小企鵝，身高僅30公分，每天傍晚準時從海上搖搖晃晃列隊走回巢穴，整個過程笨拙可愛到讓人想哭。保護區設有看台，黑暗中靜靜觀看，嚴禁閃光燈與手機燈。約1.5小時，是全行程最療癒的動物體驗，兩種企鵝都看到了！</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Oamaru+Blue+Penguin+Colony" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="https://www.penguins.co.nz/" target="_blank">🔗 官網購票</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上</div>
+          <div class="tl-content">
+            <div class="tl-title">市區晚餐</div>
+            <div class="tl-desc">推薦 Riverstone Kitchen（距市區10分鐘，全紐評分極高）或 Criterion Hotel 餐廳，輕鬆結束這個充滿驚喜的一天。</div>
+          </div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 Poshtel Oamaru — 蒸汽龐克主題 ★4.6</div>
+        <a class="day-hotel-link" href="https://poshtelnz.com/" target="_blank">官網訂房</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>13</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">庫克山冰河健行 <span class="badge">升級住宿</span></div>
+        <div class="day-subtitle">自駕約2.5小時 · 海拔3754公尺雪山</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上 8:00</div>
+          <div class="tl-content">
+            <div class="tl-title">奧瑪魯出發前往庫克山</div>
+            <div class="tl-desc">途經Twizel可補給食物飲水，Lake Pukaki藍綠色湖水配庫克山倒影是紐西蘭最具代表性的景觀之一，一定要在此停車拍照。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">上午 10:30</div>
+          <div class="tl-content">
+            <div class="tl-title">check-in The Hermitage 訂Mountain View房型</div>
+            <div class="tl-desc">庫克山腳唯一住宿，窗外就是冰河雪山，開門即是絕景。務必在訂房時要求 Mountain View 房型，清晨陽光打在庫克山上的橙紅色是此生難忘畫面。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?cid=3481648367106005080" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="https://www.hermitage.co.nz/" target="_blank">🔗 官網訂房</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">中午后</div>
+          <div class="tl-content">
+            <div class="tl-title">Hooker Valley Track 健行</div>
+            <div class="tl-desc">庫克山最著名步道，全程約5公里來回，難度低，適合一般體力。沿途跨越3座吊橋，終點是庫克山冰湖，冰山漂浮在湖面如夢似幻。約3小時，記得穿防風保暖衣物，防曬霜也要帶，高山紫外線極強。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Hooker+Valley+Track+Mount+Cook" target="_blank">📍 Google地圖</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 4:00</div>
+          <div class="tl-content">
+            <div class="tl-title">塔斯曼冰河觀景台</div>
+            <div class="tl-desc">紐西蘭最長冰河，長達27公里，從觀景台俯瞰全貌壯觀。亦可報名乘橡皮艇進入冰河湖，近距離看浮冰。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Tasman+Glacier+Viewpoint" target="_blank">📍 Google地圖</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上</div>
+          <div class="tl-content">
+            <div class="tl-title">The Hermitage Alpine Restaurant 晚餐</div>
+            <div class="tl-desc">旅館內自助餐廳，訂靠窗座位，夜晚雪山輪廓與滿天繁星可以同時欣賞，是高山餐廳裡最難得的用餐體驗。</div>
+          </div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 The Hermitage Hotel — 庫克山唯一住宿 ★4.2 升級</div>
+        <a class="day-hotel-link" href="https://www.hermitage.co.nz/" target="_blank">官網訂房</a>
+      </div>
+      <div class="tips-inline"><p>💡 庫克山天氣多變，雲霧可能遮蔽山頭，建議抵達後優先健行，靜態景觀留到傍晚碰運氣。清晨的雪山日出是最美時刻，記得設鬧鐘早起。</p></div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>14</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">蒂卡波湖星空 <span class="badge">升級住宿</span></div>
+        <div class="day-subtitle">自駕約1小時 · 全球頂級星空保護區</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">清晨 6:00</div>
+          <div class="tl-content">
+            <div class="tl-title">庫克山日出 — 一生必看</div>
+            <div class="tl-desc">清晨6點庫克山最美，陽光初升時雪山由橙轉金，在旅館餐廳吃早餐同時欣賞，是整個行程最令人難以忘懷的畫面之一。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">上午 10:00</div>
+          <div class="tl-content">
+            <div class="tl-title">出發蒂卡波湖 · 抵達check-in</div>
+            <div class="tl-desc">車程約1小時，途中藍綠色湖泊連綿，視覺享受不間斷。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">上午 11:00</div>
+          <div class="tl-content">
+            <div class="tl-title">善牧教堂 Church of the Good Shepherd</div>
+            <div class="tl-desc">1935年石砌小教堂正對碧藍湖水與雪山，被評為紐西蘭最上鏡地點之一。教堂窗戶框住湖景的構圖是必拍畫面，上午人少光線柔和最美，下午人潮較多。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Church+of+the+Good+Shepherd+Lake+Tekapo" target="_blank">📍 Google地圖</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">中午 &amp; 下午</div>
+          <div class="tl-content">
+            <div class="tl-title">湖畔漫步 · 羽扇豆花海</div>
+            <div class="tl-desc">蒂卡波湖步行道沿湖展開，9月底羽扇豆（Lupin）開始盛放，粉紫藍花海配上藍湖雪山是紐西蘭最具代表性的春季景觀。Tekapo Springs溫泉泡湯（可選），坐在熱水中仰望雪山，蜜月加分。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上 7:00</div>
+          <div class="tl-content">
+            <div class="tl-title">TLV Restaurant 晚餐</div>
+            <div class="tl-desc">蒂卡波最佳餐廳，評分4.6，慢燉羊肩肉三人份入口即化，搭配南島紅酒是絕配。一定要提前訂位，旺季排隊很長。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?cid=15118601408478266207" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="http://www.tlv.co.nz/" target="_blank">🔗 訂位</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">夜間 10:00</div>
+          <div class="tl-content">
+            <div class="tl-title">🌌 Earth &amp; Sky 專業星空觀測</div>
+            <div class="tl-desc">蒂卡波湖是全球最大的星空保護區之一，光污染極低，南半球銀河清晰可見。Earth &amp; Sky 提供專業天文望遠鏡導覽，土星環、木星衛星、星雲清晰可見，約2小時。無雲夜晚是此生最震撼的星空體驗。記得穿最厚的衣服，夜間極冷。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?q=Earth+and+Sky+Lake+Tekapo" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="https://www.earthandsky.co.nz/" target="_blank">🔗 官網購票（1個月前訂）</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 Grand Suites Lake Tekapo — 湖景套房 ★4.6 升級</div>
+        <a class="day-hotel-link" href="https://grandsuitestekapo.co.nz/" target="_blank">官網訂房</a>
+      </div>
+      <div class="tips-inline"><p>💡 星空觀測需無雲天氣，9月底偶有不穩定。若天氣不佳，Grand Suites部分房型有天窗，躺在床上看星星也是極浪漫的備案。</p></div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>15</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">回基督城 · 蜜月告別晚餐</div>
+        <div class="day-subtitle">自駕約3小時 · 還車 · 最後一晚</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上</div>
+          <div class="tl-content">
+            <div class="tl-title">蒂卡波湖最後早晨</div>
+            <div class="tl-desc">湖畔最後一次散步，清晨再拍一次善牧教堂，晨光人少是最美的時刻，好好告別這片讓人心醉的藍色湖泊。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">上午 10:00</div>
+          <div class="tl-content">
+            <div class="tl-title">出發前往基督城 · 途停Fairlie</div>
+            <div class="tl-desc">Fairlie Bakehouse 是南島公路旅行的傳奇補給站，蘋果派是全紐最著名的派，外皮酥脆內餡飽滿，一定要停下來買！</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 1:30</div>
+          <div class="tl-content">
+            <div class="tl-title">基督城還車</div>
+            <div class="tl-desc">前往租車公司還車，確認車況、加滿油（通常合約要求滿油還車）。還車後轉Uber回旅館。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午</div>
+          <div class="tl-content">
+            <div class="tl-title">購物帶伴手禮</div>
+            <div class="tl-desc">Ballantynes百貨或市區採購：麥奴卡蜂蜜（選MGO 300以上）、Untouched World頂級羊毛製品、紐西蘭南島紅酒。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上 7:00</div>
+          <div class="tl-content">
+            <div class="tl-title">Manu Restaurant 蜜月告別晚餐</div>
+            <div class="tl-desc">評分4.8，毛利融合料理，從食材到擺盤都充滿紐西蘭文化精髓。Manuka Me Crazy調酒是招牌，豬肉Adobo讓人難忘。用一頓精緻的晚餐為這16天蜜月畫上完美句點，訂位備註蜜月。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://maps.google.com/?cid=13583665139825435422" target="_blank">📍 Google地圖</a>
+              <a class="tl-link" href="http://www.manu.co.nz/" target="_blank">🔗 訂位</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 The Observatory Hotel — 最後一晚</div>
+        <a class="day-hotel-link" href="https://observatoryhotel.co.nz/" target="_blank">官網訂房</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>16</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">飛回台北 · 帶著滿滿回憶返家</div>
+        <div class="day-subtitle">基督城 → 台北 · 飛行約10小時</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上</div>
+          <div class="tl-content">
+            <div class="tl-title">早餐 · 前往基督城機場</div>
+            <div class="tl-desc">機場距市區約20分鐘，建議提前3小時抵達。離境記得在免稅店購買酒、蜂蜜、巧克力。蜂蜜需在行李申報，不申報被查罰款極重（NZD$400+）。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">飛行中</div>
+          <div class="tl-content">
+            <div class="tl-title">回顧這16天的旅程</div>
+            <div class="tl-desc">兩種企鵝、一座峽灣、一片冰河、一個世界頂級星空、一場震撼毛利文化、無數美食與美景——這是你們共同書寫的第一個故事。</div>
+          </div>
+        </div>
+      </div>
+      <div class="tips-inline"><p>💡 紐西蘭出境嚴禁攜帶未申報農產品，包括水果、肉類、奶製品，確認行李前先清空所有食物，避免被罰款或沒收。</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- 住宿 -->
+<div id="hotels" class="section">
+  <div class="section-title">住宿推薦</div>
+  <div class="section-sub">9間精品旅館，3晚特別升級，全部含官網訂房連結</div>
+  <div class="hotel-grid">
+    <div class="hotel-card"><div class="hotel-body"><div class="hotel-name">SO/ Auckland</div><div class="hotel-loc">📍 奧克蘭 · Day 1–2</div><div class="hotel-desc">CBD精品設計酒店，屋頂酒吧俯瞰港灣，距Sky Tower步行5分鐘，優雅現代風格</div><div class="hotel-meta"><div class="stars">★ 4.4</div><a class="hotel-link" href="https://so-hotels.com/en/auckland/" target="_blank">官網訂房</a></div></div></div>
+    <div class="hotel-card"><div class="hotel-body"><div class="hotel-name">Black Swan Lakeside</div><div class="hotel-loc">📍 羅托魯阿 · Day 3</div><div class="hotel-desc">湖畔精品旅館，含早餐湖景，服務細膩溫暖，距Mitai晚宴約10分鐘</div><div class="hotel-meta"><div class="stars">★ 4.6</div><a class="hotel-link" href="https://www.blackswanhotel.co.nz/" target="_blank">官網訂房</a></div></div></div>
+    <div class="hotel-card"><div class="hotel-body"><div class="hotel-name">The Observatory Hotel</div><div class="hotel-loc">📍 基督城 · Day 4–6, 15（共5晚）</div><div class="hotel-desc">百年歷史建築改建，植物園正對面，充滿人文氣息，基督城最具特色的住宿</div><div class="hotel-meta"><div class="stars">★ 4.6</div><a class="hotel-link" href="https://observatoryhotel.co.nz/" target="_blank">官網訂房</a></div></div></div>
+    <div class="hotel-card"><div class="hotel-body"><div class="hotel-name">Kaikoura Boutique Hotel</div><div class="hotel-loc">📍 凱庫拉 · Day 7</div><div class="hotel-desc">海景精品旅館，步行可達賞鯨碼頭，早餐含無敵海景，龍蝦攤就在附近</div><div class="hotel-meta"><div class="stars">★ 4.4</div><a class="hotel-link" href="http://www.kaikouraboutiquehotel.co.nz/" target="_blank">官網訂房</a></div></div></div>
+    <div class="hotel-card" style="border:2px solid var(--gold)"><div class="hotel-body"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px"><div class="hotel-name">Azur Lodge</div><div class="upgrade-tag">升級推薦</div></div><div class="hotel-loc">📍 皇后鎮 · Day 8–10（3晚）</div><div class="hotel-desc">9棟私人別墅坐落山坡正對湖山，含早餐與下午茶，蜜月客最愛，全紐頂級之一，訂位時備註蜜月</div><div class="hotel-meta"><div class="stars">★ 4.8</div><a class="hotel-link" href="http://www.azur.co.nz/" target="_blank">官網訂房</a></div></div></div>
+    <div class="hotel-card"><div class="hotel-body"><div class="hotel-name">Dunedin House Boutique</div><div class="hotel-loc">📍 但尼丁 · Day 11</div><div class="hotel-desc">百年教堂改建，古典氛圍，桌邊服務早餐，全但尼丁最高評分4.9，小而精緻</div><div class="hotel-meta"><div class="stars">★ 4.9</div><a class="hotel-link" href="https://www.dunedinhouse.co.nz/" target="_blank">官網訂房</a></div></div></div>
+    <div class="hotel-card"><div class="hotel-body"><div class="hotel-name">Poshtel Oamaru</div><div class="hotel-loc">📍 奧瑪魯 · Day 12</div><div class="hotel-desc">蒸汽龐克主題設計充滿創意，步行5分鐘至小藍企鵝保護區，獨一無二的體驗</div><div class="hotel-meta"><div class="stars">★ 4.6</div><a class="hotel-link" href="https://poshtelnz.com/" target="_blank">官網訂房</a></div></div></div>
+    <div class="hotel-card" style="border:2px solid var(--gold)"><div class="hotel-body"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px"><div class="hotel-name">The Hermitage Hotel</div><div class="upgrade-tag">升級推薦</div></div><div class="hotel-loc">📍 庫克山 · Day 13</div><div class="hotel-desc">庫克山腳唯一住宿，冰河雪山正對面，務必訂Mountain View房型，清晨日出無可取代</div><div class="hotel-meta"><div class="stars">★ 4.2</div><a class="hotel-link" href="https://www.hermitage.co.nz/" target="_blank">官網訂房</a></div></div></div>
+    <div class="hotel-card" style="border:2px solid var(--gold)"><div class="hotel-body"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px"><div class="hotel-name">Grand Suites Lake Tekapo</div><div class="upgrade-tag">升級推薦</div></div><div class="hotel-loc">📍 蒂卡波湖 · Day 14</div><div class="hotel-desc">湖景套房，步行至善牧教堂，星空觀測絕佳位置，部分房型有天窗可躺著看星星</div><div class="hotel-meta"><div class="stars">★ 4.6</div><a class="hotel-link" href="https://grandsuitestekapo.co.nz/" target="_blank">官網訂房</a></div></div></div>
+  </div>
+</div>
+
+<!-- 美食 -->
+<div id="food" class="section">
+  <div class="section-title">美食指南</div>
+  <div class="section-sub">肉食愛好者的紐西蘭完整攻略</div>
+  <div class="food-section">
+    <div class="food-section-title">🥩 必吃肉類</div>
+    <div class="food-grid">
+      <div class="food-item"><div class="food-name">草飼羊肉</div><div class="food-desc">紐西蘭招牌，牧草餵養肉質細嫩無腥味，全球頂級品質，比台灣進口版完全不同</div></div>
+      <div class="food-item"><div class="food-name">鹿肉 Venison</div><div class="food-desc">野生鹿肉，比牛肉更鮮嫩低脂，南島餐廳幾乎都有，一定要點一次</div></div>
+      <div class="food-item"><div class="food-name">草飼牛排</div><div class="food-desc">牧草餵養油花均勻，風味濃郁，Wynyard Grill與TOAST & OAK都是頂選</div></div>
+      <div class="food-item"><div class="food-name">Hangi 地坑料理</div><div class="food-desc">毛利傳統烹調，食物埋地坑以天然熱氣蒸烤，在Mitai晚宴品嚐最道地正宗</div></div>
+      <div class="food-item"><div class="food-name">慢燉羊肩肉</div><div class="food-desc">蒂卡波TLV招牌，三人份超值，入口即化，搭南島黑皮諾是絕配</div></div>
+      <div class="food-item"><div class="food-name">手工漢堡</div><div class="food-desc">Moons但尼丁全國聞名，手工麵包+手打牛肉排，是南島最值得吃的漢堡</div></div>
+    </div>
+  </div>
+  <div class="food-section">
+    <div class="food-section-title">🦞 海鮮特色</div>
+    <div class="food-grid">
+      <div class="food-item"><div class="food-name">凱庫拉岩龍蝦</div><div class="food-desc">路邊攤現煮NZD$30–50/隻，比餐廳便宜一半，太平洋旁席地而吃，帶現金！</div></div>
+      <div class="food-item"><div class="food-name">綠唇淡菜</div><div class="food-desc">紐西蘭特有種，個頭是普通淡菜3倍大，幾乎每家必有，超大顆超鮮甜</div></div>
+      <div class="food-item"><div class="food-name">帝王鮭 Chinook</div><div class="food-desc">南島河川養殖全球最佳，新鮮度遠勝台灣，皇后鎮各大餐廳必備</div></div>
+      <div class="food-item"><div class="food-name">Bluff生蠔</div><div class="food-desc">南島名產，9月底剛好產季，鮮甜無比，但尼丁與皇后鎮可找到</div></div>
+      <div class="food-item"><div class="food-name">藍鱈魚 Blue Cod</div><div class="food-desc">南島特有白肉魚，正宗Fish & Chips用這個才對，皮脆肉嫩</div></div>
+      <div class="food-item"><div class="food-name">鮭魚料理</div><div class="food-desc">各大餐廳必備，比台灣新鮮得多，Sunfire皇后鎮的鮭魚是招牌之一</div></div>
+    </div>
+  </div>
+  <div class="food-section">
+    <div class="food-section-title">☕ 甜點飲品與伴手禮</div>
+    <div class="food-grid">
+      <div class="food-item"><div class="food-name">帕芙洛娃 Pavlova</div><div class="food-desc">紐西蘭國民甜點，蛋白霜底+鮮奶油+奇異果，酥脆外皮軟心，必吃一次</div></div>
+      <div class="food-item"><div class="food-name">Flat White 咖啡</div><div class="food-desc">發源自紐西蘭，比拿鐵更濃郁奶香，每天必喝，Ponsonby街區隨便一家都好</div></div>
+      <div class="food-item"><div class="food-name">Fairlie蘋果派</div><div class="food-desc">Day 15南島公路旅行傳奇，Fairlie Bakehouse外皮酥脆內餡飽滿，必停！</div></div>
+      <div class="food-item"><div class="food-name">麥奴卡蜂蜜</div><div class="food-desc">伴手禮首選，選MGO 300以上才有抗菌效果，機場免稅店也有賣</div></div>
+      <div class="food-item"><div class="food-name">奧塔哥黑皮諾</div><div class="food-desc">全球最南葡萄酒，Gibbston Valley品酒後帶一瓶回家，旅途最好的紀念</div></div>
+      <div class="food-item"><div class="food-name">奇異果</div><div class="food-desc">產地直送甜度完全不同，路邊農場攤位現摘現吃，比任何地方都更甜</div></div>
+    </div>
+  </div>
+  <div class="food-section">
+    <div class="food-section-title">🍽️ 行程對應餐廳</div>
+    <div class="restaurant-card"><div class="restaurant-name">TOAST &amp; OAK</div><div class="restaurant-loc">📍 皇后鎮 · Day 8晚餐 · ★4.8</div><div class="restaurant-desc">蜜月最佳晚餐選擇，主廚套餐NZD$120/人，已有多對蜜月情侶五星好評，備註蜜月有驚喜</div><div class="restaurant-must">必點：牛里脊 · 主廚套餐 · 本地黑皮諾配酒</div></div>
+    <div class="restaurant-card"><div class="restaurant-name">Sunfire Queenstown</div><div class="restaurant-loc">📍 皇后鎮 Steamer Wharf · Day 10晚餐 · ★4.7</div><div class="restaurant-desc">湖畔碼頭旁輕鬆好餐廳，豬五花、牛排、羊肉串都是招牌，湖景加持</div><div class="restaurant-must">必點：豬五花 · 牛排 · 生蠔（產季）</div></div>
+    <div class="restaurant-card"><div class="restaurant-name">TLV Restaurant</div><div class="restaurant-loc">📍 蒂卡波湖 · Day 14晚餐 · ★4.6</div><div class="restaurant-desc">湖邊最佳餐廳，提前預訂，氣氛浪漫，食材新鮮</div><div class="restaurant-must">必點：慢燉羊肩肉（三人份最超值）· 創意調酒</div></div>
+    <div class="restaurant-card"><div class="restaurant-name">Moons Restaurant</div><div class="restaurant-loc">📍 但尼丁 · Day 11晚餐 · ★4.9</div><div class="restaurant-desc">全但尼丁評分最高，手工漢堡遠近馳名，精釀啤酒選擇豐富</div><div class="restaurant-must">必點：招牌手工漢堡 · 炸醃黃瓜 · 黑暗風暴起司蛋糕</div></div>
+    <div class="restaurant-card"><div class="restaurant-name">Manu Restaurant</div><div class="restaurant-loc">📍 基督城 · Day 15告別晚餐 · ★4.8</div><div class="restaurant-desc">毛利融合料理，是為這趟紐西蘭旅程畫上最完美句號的餐廳，備註蜜月</div><div class="restaurant-must">必點：豬肉Adobo · Manuka Me Crazy調酒</div></div>
+    <div class="restaurant-card"><div class="restaurant-name">5th Street</div><div class="restaurant-loc">📍 基督城 · Day 5晚餐 · ★4.8</div><div class="restaurant-desc">主廚桌體驗，看著廚師現場料理，肉類精彩，預訂主廚桌位最棒</div><div class="restaurant-must">必點：主廚推薦當季料理</div></div>
+    <div class="restaurant-card"><div class="restaurant-name">Wynyard Grill</div><div class="restaurant-loc">📍 奧克蘭 Viaduct Harbour · Day 2晚餐 · ★4.6</div><div class="restaurant-desc">港口邊牛排館，旅程第一頓豪華晚餐，牛排肋排都超水準</div><div class="restaurant-must">必點：肋排 · 牛排 · 松露薯條</div></div>
+  </div>
+</div>
+
+<!-- 預訂清單 -->
+<div id="booking" class="section">
+  <div class="section-title">預訂清單</div>
+  <div class="section-sub">紅色＝最容易客滿，務必優先處理</div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">Azur Lodge 皇后鎮</div><div class="booking-when">Day 8–10 · 3晚 · 備註蜜月</div><a class="booking-url" href="http://www.azur.co.nz/" target="_blank">azur.co.nz</a></div><div class="booking-urgency urgency-high">最優先！2–3個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">凱庫拉賞鯨</div><div class="booking-when">Day 7 · 上午約10:00 · 約3小時</div><a class="booking-url" href="https://www.whalewatch.co.nz" target="_blank">whalewatch.co.nz</a></div><div class="booking-urgency urgency-high">2–3個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">Mitai Maori Village 毛利晚宴</div><div class="booking-when">Day 3 · 傍晚5:30 · 約3小時（含飯店接送）</div><a class="booking-url" href="http://mitai.co.nz/" target="_blank">mitai.co.nz</a></div><div class="booking-urgency urgency-high">1–2個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">米佛峽灣遊船 Real NZ</div><div class="booking-when">Day 9 · 上午約10:00 · 約2小時</div><a class="booking-url" href="https://www.realnz.com" target="_blank">realnz.com</a></div><div class="booking-urgency urgency-high">1–2個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">TOAST &amp; OAK 蜜月晚餐</div><div class="booking-when">Day 8 · 晚上7:00 · 備註蜜月</div><a class="booking-url" href="https://www.toastandoak.nz/" target="_blank">toastandoak.nz</a></div><div class="booking-urgency">1個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">黃眼企鵝導覽</div><div class="booking-when">Day 11 · 下午約3:00 · 約2小時</div><a class="booking-url" href="https://www.wildlife.co.nz" target="_blank">wildlife.co.nz</a></div><div class="booking-urgency">1個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">小藍企鵝夜間觀賞</div><div class="booking-when">Day 12 · 傍晚約5:30 · 約1.5小時</div><a class="booking-url" href="https://www.penguins.co.nz" target="_blank">penguins.co.nz</a></div><div class="booking-urgency">1個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">Earth &amp; Sky 星空觀測</div><div class="booking-when">Day 14 · 夜間約10:00 · 約2小時</div><a class="booking-url" href="https://www.earthandsky.co.nz" target="_blank">earthandsky.co.nz</a></div><div class="booking-urgency">1個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">The Hermitage Hotel 庫克山</div><div class="booking-when">Day 13 · 1晚 · 指定Mountain View房型</div><a class="booking-url" href="https://www.hermitage.co.nz/" target="_blank">hermitage.co.nz</a></div><div class="booking-urgency">1個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">Manu Restaurant 告別晚餐</div><div class="booking-when">Day 15 · 晚上7:00 · 備註蜜月</div><a class="booking-url" href="http://www.manu.co.nz/" target="_blank">manu.co.nz</a></div><div class="booking-urgency">1個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">Agrodome 草泥馬農場</div><div class="booking-when">Day 4 · 早上9:00 · 約2小時</div><a class="booking-url" href="https://www.agrodome.co.nz/" target="_blank">agrodome.co.nz</a></div><div class="booking-urgency">2週前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">租車南島 11天</div><div class="booking-when">Day 4基督城取車 · Day 15還車 · 加購擋風玻璃保險</div><a class="booking-url" href="https://www.rentalcars.com" target="_blank">rentalcars.com 或 hertz.co.nz</a></div><div class="booking-urgency">1–2個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">國際駕照</div><div class="booking-when">出發前辦理，各地監理所</div><div class="booking-url">費用台幣200元，需攜帶護照與台灣駕照正本</div></div><div class="booking-urgency">出發前1個月</div></div>
+</div>
+
+<!-- 預算 -->
+<div id="budget" class="section">
+  <div class="section-title">預算規劃</div>
+  <div class="section-sub">兩人合計估算（台幣）</div>
+  <div class="budget-card">
+    <div class="budget-row"><span>國際機票（經濟艙，兩人來回）</span><span class="amount">6–8萬</span></div>
+    <div class="budget-row"><span>租車11天（含油費、保險）</span><span class="amount">2–3萬</span></div>
+    <div class="budget-row"><span>住宿15晚（含3晚升級）</span><span class="amount">8–11萬</span></div>
+    <div class="budget-row"><span>活動（賞鯨、企鵝×2、峽灣、星空、毛利晚宴）</span><span class="amount">5–7萬</span></div>
+    <div class="budget-row"><span>餐食（含推薦餐廳）</span><span class="amount">4–6萬</span></div>
+    <div class="budget-row"><span>伴手禮與購物</span><span class="amount">1–2萬</span></div>
+    <div class="budget-row total"><span>合計（一人）</span><span class="amount">約17–22萬</span></div>
+  </div>
+  <div class="tips-block">
+    <div class="tips-title">重要提醒</div>
+    <div class="tip"><div class="tip-dot"></div><p>紐西蘭靠左行駛，取車後先在基督城市區短程適應，切勿直接跑長途山路</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>賞鯨、企鵝、星空觀測都受天氣影響，務必選可免費改期的票種，並做好備案</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>9月底南島山區早晚偏冷（5–12°C），庫克山更冷，備齊防風保暖衣物與防曬霜</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>所有住宿與餐廳訂位時都備註蜜月，旅館通常準備香檳花瓣，餐廳也有小驚喜</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>Azur Lodge是全行程最重要的訂房，務必2–3個月前訂，指定湖景別墅</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>凱庫拉路邊龍蝦攤必帶現金（NZD），這是全行程CP值最高的一頓美食</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>租車時加購擋風玻璃與輪胎保險，南島碎石路很常見，不保很容易產生額外費用</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>出境紐西蘭所有農產品必須申報，蜂蜜、水果、肉類不申報被查罰款NZD$400以上</p></div>
+  </div>
+</div>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

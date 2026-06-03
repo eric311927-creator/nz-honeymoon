@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秘魯14天蜜月之旅</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1208;--earth:#5c3d1e;--terracotta:#c4622d;--gold:#d4a843;
+  --sand:#f0e6d3;--warm:#e8d9c0;--mist:#f7f2eb;--sage:#6b8f6b;
+  --text:#2a1a0a;--muted:#7a5c3a;
+}
+body{font-family:'Outfit',sans-serif;background:var(--mist);color:var(--text);overflow-x:hidden}
+
+/* HERO */
+.hero{background:var(--ink);min-height:500px;display:flex;flex-direction:column;justify-content:flex-end;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#1a1208 0%,#3d1f0a 40%,#5c2d0e 70%,#1a1208 100%);opacity:1}
+.hero-pattern{position:absolute;inset:0;background-image:radial-gradient(circle at 20% 50%,rgba(196,98,45,0.12) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(212,168,67,0.08) 0%,transparent 40%)}
+.hero-tag{position:relative;display:inline-flex;align-items:center;gap:8px;background:rgba(212,168,67,0.12);border:1px solid rgba(212,168,67,0.35);color:var(--gold);font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:6px 14px;border-radius:2px;margin-bottom:1.5rem;width:fit-content}
+.hero h1{position:relative;font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:700;color:#fff;line-height:1.1;margin-bottom:0.8rem}
+.hero h1 em{color:var(--terracotta);font-style:normal}
+.hero-sub{position:relative;color:rgba(255,255,255,0.5);font-size:13px;font-weight:300;letter-spacing:1px;margin-bottom:2rem}
+.hero-stats{position:relative;display:flex;gap:0}
+.hero-stat{text-align:center;padding:0 1.5rem;border-right:1px solid rgba(255,255,255,0.1)}
+.hero-stat:first-child{padding-left:0}
+.hero-stat:last-child{border-right:none}
+.hero-stat .num{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold);font-weight:600}
+.hero-stat .label{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+
+/* TABS */
+.tabs{display:flex;background:#fff;border-bottom:1px solid var(--warm);position:sticky;top:0;z-index:100;overflow-x:auto}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:14px 18px;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;border:none;background:none;white-space:nowrap;border-bottom:2px solid transparent;transition:all 0.2s;letter-spacing:0.5px}
+.tab.active{color:var(--terracotta);border-bottom-color:var(--terracotta)}
+.tab:hover{color:var(--terracotta)}
+
+/* SECTIONS */
+.section{display:none;padding:2rem 1.5rem;max-width:800px;margin:0 auto}
+.section.active{display:block}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;margin-bottom:0.4rem;color:var(--ink)}
+.section-sub{font-size:13px;color:var(--muted);margin-bottom:1.5rem}
+
+/* REGION HEADER */
+.region-header{display:inline-flex;align-items:center;gap:8px;background:var(--terracotta);color:#fff;padding:6px 14px;border-radius:2px;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+
+/* DAY BLOCKS */
+.day-block{background:#fff;border-radius:4px;border:1px solid var(--warm);border-left:3px solid var(--terracotta);margin-bottom:18px;overflow:hidden}
+.day-header{display:flex;gap:14px;align-items:flex-start;padding:1.2rem 1.2rem 0.9rem}
+.day-num{min-width:48px;height:48px;background:var(--ink);border-radius:3px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
+.day-num .dn{font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;font-weight:600;line-height:1}
+.day-num .dl{font-size:9px;color:var(--gold);letter-spacing:1px;text-transform:uppercase}
+.day-title-wrap{flex:1}
+.day-title{font-weight:500;font-size:15px;margin-bottom:3px;color:var(--ink)}
+.day-subtitle{font-size:11px;color:var(--muted)}
+.day-date{font-size:10px;color:var(--terracotta);font-weight:500;letter-spacing:0.5px;margin-bottom:3px}
+.badge{display:inline-block;background:rgba(196,98,45,0.1);color:var(--terracotta);font-size:10px;padding:2px 7px;border-radius:2px;font-weight:500;margin-left:5px;border:1px solid rgba(196,98,45,0.25)}
+.day-body{padding:0 1.2rem 1.2rem;border-top:1px solid var(--warm)}
+.day-cost{display:inline-flex;align-items:center;gap:5px;background:#fdf6e8;border:1px solid rgba(212,168,67,0.3);border-radius:3px;padding:5px 10px;margin-top:10px;font-size:11px;color:#7a5500;font-weight:500}
+
+/* TIMELINE */
+.timeline{margin-top:1rem}
+.tl-item{display:flex;gap:10px;margin-bottom:12px}
+.tl-dot{width:6px;height:6px;border-radius:50%;background:var(--terracotta);flex-shrink:0;margin-top:6px}
+.tl-content{flex:1}
+.tl-title{font-size:13px;font-weight:500;margin-bottom:3px;color:var(--ink)}
+.tl-desc{font-size:12px;color:var(--muted);line-height:1.6}
+.tl-links{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.tl-link{font-size:11px;color:var(--terracotta);text-decoration:none;background:rgba(196,98,45,0.06);padding:3px 9px;border-radius:2px;border:1px solid rgba(196,98,45,0.2);display:inline-flex;align-items:center;gap:3px}
+.tip-box{background:#fdf6e8;border-left:3px solid var(--gold);padding:9px 12px;border-radius:0 3px 3px 0;margin-top:10px}
+.tip-box p{font-size:12px;color:#6b4400;line-height:1.6}
+.hotel-row{display:flex;align-items:center;justify-content:space-between;background:rgba(107,143,107,0.06);border-radius:3px;padding:9px 12px;margin-top:12px;border:1px solid rgba(107,143,107,0.2)}
+.hotel-name{font-size:12px;font-weight:500;color:var(--ink)}
+.hotel-link{font-size:11px;color:var(--sage);text-decoration:none;border:1px solid var(--sage);padding:3px 9px;border-radius:2px}
+.meal-tag{display:inline-block;font-size:10px;background:rgba(107,143,107,0.1);color:var(--sage);padding:2px 7px;border-radius:2px;border:1px solid rgba(107,143,107,0.25);margin-right:4px;font-weight:500}
+
+/* HOTELS */
+.hotel-grid{display:grid;gap:14px}
+.hotel-card{background:#fff;border-radius:4px;border:1px solid var(--warm);padding:1.1rem 1.2rem}
+.hc-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;margin-bottom:3px;color:var(--ink)}
+.hc-loc{font-size:11px;color:var(--muted);margin-bottom:7px}
+.hc-desc{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:9px}
+.hc-bottom{display:flex;align-items:center;justify-content:space-between}
+.hc-nights{font-size:11px;color:var(--terracotta);font-weight:500}
+.hc-link{font-size:11px;color:var(--terracotta);text-decoration:none;border:1px solid var(--terracotta);padding:4px 10px;border-radius:2px}
+
+/* FOOD */
+.food-section{margin-bottom:1.8rem}
+.food-section-title{font-size:12px;font-weight:500;color:var(--terracotta);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid var(--warm)}
+.food-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.food-item{background:#fff;border-radius:3px;padding:10px 12px;border:1px solid var(--warm)}
+.food-name{font-weight:500;font-size:12px;margin-bottom:3px;color:var(--ink)}
+.food-desc{font-size:11px;color:var(--muted);line-height:1.5}
+
+/* BOOKING */
+.booking-item{background:#fff;border-radius:3px;padding:0.9rem 1.1rem;border:1px solid var(--warm);margin-bottom:8px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.booking-info{flex:1}
+.booking-name{font-weight:500;font-size:13px;margin-bottom:2px;color:var(--ink)}
+.booking-when{font-size:11px;color:var(--muted);margin-bottom:3px}
+.booking-url{font-size:11px;color:var(--terracotta);font-weight:500;text-decoration:none}
+.urg{font-size:10px;background:#fde8e8;color:#8a0000;padding:3px 9px;border-radius:2px;white-space:nowrap;flex-shrink:0;border:1px solid rgba(138,0,0,0.2);font-weight:500}
+.urg-med{background:#fef3e2;color:#8a5a00;border-color:rgba(138,90,0,0.2)}
+
+/* BUDGET */
+.budget-card{background:#fff;border-radius:4px;padding:1.3rem;border:1px solid var(--warm);margin-bottom:1rem}
+.budget-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--warm);font-size:13px;color:var(--text)}
+.budget-row:last-child{border-bottom:none;font-family:'Cormorant Garamond',serif;font-size:18px;padding-top:12px}
+.budget-row .amt{color:var(--terracotta);font-weight:500}
+.budget-row.total .amt{color:var(--ink);font-size:22px}
+.tips-block{background:var(--ink);border-radius:4px;padding:1.3rem}
+.tips-title{color:var(--gold);font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem}
+.tip{display:flex;gap:8px;margin-bottom:8px;align-items:flex-start}
+.tip-dot{width:5px;height:5px;border-radius:50%;background:var(--terracotta);flex-shrink:0;margin-top:6px}
+.tip p{font-size:12px;color:rgba(255,255,255,0.65);line-height:1.6}
+
+/* MAP */
+.mf{padding:5px 11px;border-radius:2px;border:1px solid rgba(255,255,255,0.4);background:rgba(26,18,8,0.82);color:rgba(255,255,255,0.7);font-size:11px;font-family:'Outfit',sans-serif;cursor:pointer;white-space:nowrap;backdrop-filter:blur(6px)}
+.mf.active{background:var(--terracotta);color:#fff;border-color:var(--terracotta)}
+#mapview.section.active{display:block;padding:0;max-width:100%}
+
+@media(max-width:600px){.hero h1{font-size:34px}.hero-stats{gap:0}.food-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-tag">✦ 蜜月精選行程</div>
+  <h1>秘魯<br><em>14天</em><br>古文明蜜月之旅</h1>
+  <div class="hero-sub">利馬 · 帕拉卡斯 · 阿雷基帕 · 科爾卡 · 普諾 · 庫斯科 · 聖谷 · 馬丘比丘</div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">14</div><div class="label">天數</div></div>
+    <div class="hero-stat"><div class="num">8</div><div class="label">城市</div></div>
+    <div class="hero-stat"><div class="num">9</div><div class="label">精品住宿</div></div>
+    <div class="hero-stat"><div class="num">Sep 5</div><div class="label">出發日</div></div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('itinerary',this)">行程總覽</button>
+  <button class="tab" onclick="showTab('hotels',this)">住宿推薦</button>
+  <button class="tab" onclick="showTab('food',this)">美食指南</button>
+  <button class="tab" onclick="showTab('booking',this)">預訂清單</button>
+  <button class="tab" onclick="showTab('budget',this)">預算規劃</button>
+  <button class="tab" onclick="showTab('mapview',this)">🗺️ 地圖</button>
+</div>
+
+<!-- 行程總覽 -->
+<div id="itinerary" class="section active">
+  <div class="section-title">完整行程</div>
+  <div class="section-sub">2026年9月5日–18日 · 14天 · 兩人蜜月</div>
+
+  <div class="region-header">🌊 海岸線 · Day 1–3</div>
+
+  <!-- Day 1 -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span class="dn">1</span><span class="dl">Day</span></div>
+      <div class="day-title-wrap">
+        <div class="day-date">Sep 5 · 週六</div>
+        <div class="day-title">抵達利馬</div>
+        <div class="day-subtitle">利馬機場 → Miraflores · 自由活動</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算：自由花費，餐廳$50–100 USD/人</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">私人接機 Lima Airport → Miraflores</div>
+          <div class="tl-desc">英西雙語接機司機在機場等候，車程約1.5小時送達 Miraflores 飯店。視抵達時間可能需等待check-in，可先寄存行李探索周邊。</div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">利馬自由探索</div>
+          <div class="tl-desc">Miraflores 海崖公園（Love Park）看太平洋日落，漫步 Larco Mar 海景購物中心。晚餐可選擇米其林級餐廳 Central 或 Maido（需提前訂位），或輕鬆的海鮮餐廳品嚐正宗 Ceviche。</div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://centralrestaurante.com.pe/" target="_blank">🔗 Central訂位</a>
+            <a class="tl-link" href="https://maido.pe/" target="_blank">🔗 Maido訂位</a>
+          </div>
+        </div></div>
+      </div>
+      <div class="hotel-row">
+        <div class="hotel-name">🏨 nhow Lima — Miraflores精品設計酒店</div>
+        <a class="hotel-link" href="https://www.nhow-hotels.com/lima/" target="_blank">官網</a>
+      </div>
+      <div class="tip-box"><p>💡 利馬是拉美美食之都，Ceviche（生醃海鮮）和Pisco Sour（秘魯調酒）是必嚐，第一晚安排輕鬆，調整長途飛行的疲勞。</p></div>
+    </div>
+  </div>
+
+  <!-- Day 2 -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span class="dn">2</span><span class="dl">Day</span></div>
+      <div class="day-title-wrap">
+        <div class="day-date">Sep 6 · 週日</div>
+        <div class="day-title">帕拉卡斯 + 瓦卡奇納沙漠冒險</div>
+        <div class="day-subtitle">利馬→帕拉卡斯巴士約4小時 · 沙漠越野車</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算：沙漠冒險約$50–70 USD/人</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">早上 巴士前往帕拉卡斯</div>
+          <div class="tl-desc">接送至巴士站，約4小時車程抵達帕拉卡斯。沿途經過秘魯海岸沙漠地帶，景色荒涼壯闊。</div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">下午 可選：納斯卡線飛行（自理）</div>
+          <div class="tl-desc">當地小飛機俯瞰神秘的納斯卡地面圖騰，機場稅USD$10 + 入場票USD$15另計。注意：9月天氣不穩定，可能有強烈氣流，暈機者謹慎考慮。</div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">下午/傍晚 🏜️ 瓦卡奇納沙漠越野車</div>
+          <div class="tl-desc">前往秘魯最著名的沙漠綠洲 Huacachina，搭乘越野沙丘車（Buggy）急速穿越沙丘，接著滑沙衝坡，腎上腺素飆升！注意：高衝擊活動，心臟病患者不適合。活動後接送回帕拉卡斯飯店。</div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://maps.google.com/?q=Huacachina+Ica+Peru" target="_blank">📍 瓦卡奇納</a>
+          </div>
+        </div></div>
+      </div>
+      <div class="hotel-row">
+        <div class="hotel-name">🏨 La Hacienda Bahía Paracas — 熱帶花園海灣旅館</div>
+        <a class="hotel-link" href="https://www.lahaciendabayhiaparacas.com/" target="_blank">官網</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 3 -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span class="dn">3</span><span class="dl">Day</span></div>
+      <div class="day-title-wrap">
+        <div class="day-date">Sep 7 · 週一</div>
+        <div class="day-title">巴勒斯塔斯島野生動物 → 返利馬</div>
+        <div class="day-subtitle">小加拉巴哥島 · 海獅企鵝 · 返利馬自由活動</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算：賞島船約$20 USD/人 · 利馬餐廳$60–120 USD/兩人</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">早起 🐧 巴勒斯塔斯群島快艇</div>
+          <div class="tl-desc">搭乘快艇出發前往「小加拉巴哥」——巴勒斯塔斯群島。途中見神秘的「三叉戟」海岸圖騰，島上有海獅、秘魯企鵝、各種海鳥密集棲息，景象壯觀震撼。</div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://maps.google.com/?q=Ballestas+Islands+Paracas+Peru" target="_blank">📍 群島地圖</a>
+          </div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">下午 巴士返回利馬（約4小時）</div>
+          <div class="tl-desc">抵達後check-in nhow Lima，休息後探索 Miraflores 區域。晚餐推薦 Astrid y Gastón（需提前訂位）或海崖邊的 Rafael 餐廳。</div>
+          <div class="tl-links">
+            <a class="tl-link" href="http://en.astridygaston.com/" target="_blank">🔗 Astrid y Gastón</a>
+          </div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">傍晚 Miraflores Love Park 日落</div>
+          <div class="tl-desc">懸崖上的戀人公園，巨型接吻雕塑，馬賽克磚牆，太平洋日落景色絕美，是利馬最浪漫的蜜月打卡點。</div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://maps.google.com/?q=Parque+del+Amor+Miraflores+Lima" target="_blank">📍 愛情公園</a>
+          </div>
+        </div></div>
+      </div>
+      <div class="hotel-row">
+        <div class="hotel-name">🏨 nhow Lima</div>
+        <a class="hotel-link" href="https://www.nhow-hotels.com/lima/" target="_blank">官網</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="region-header" style="margin-top:8px">🏔️ 安地斯高原 · Day 4–7</div>
+
+  <!-- Day 4 -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span class="dn">4</span><span class="dl">Day</span></div>
+      <div class="day-title-wrap">
+        <div class="day-date">Sep 8 · 週二</div>
+        <div class="day-title">飛阿雷基帕 · 白城市區導覽</div>
+        <div class="day-subtitle">含早餐 · 私人城市導覽 · Plaza de Armas</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算：含早餐 · 導覽費用包含在行程內</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">飛阿雷基帕 + 私人接機</div>
+          <div class="tl-desc">從利馬搭機飛阿雷基帕（約1.5小時），私人接機送往 Katari Hotel。阿雷基帕是秘魯第二大城，建築全用當地白色火山石（sillar）打造，UNESCO世界遺產城市。</div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">🏛️ 聖卡塔琳娜修道院</div>
+          <div class="tl-desc">城中城，面積兩萬平方公尺的獨立修道院社區，彩色街道與西班牙殖民建築交織，被稱為「城市中的城市」，是阿雷基帕最精彩的景點。</div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://maps.google.com/?q=Santa+Catalina+Monastery+Arequipa" target="_blank">📍 Google地圖</a>
+          </div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">Yanahuara 區觀景台</div>
+          <div class="tl-desc">傳統街區的觀景台俯瞰 Misti 火山、Chachani 火山和 Pichu Pichu 火山，配上白色城市建築，構圖完美。</div>
+        </div></div>
+      </div>
+      <div class="hotel-row">
+        <div class="hotel-name">🏨 Katari Hotel — 廣場正對面，殖民建築風格</div>
+        <a class="hotel-link" href="https://hotelkatari.com/" target="_blank">官網</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 5 -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span class="dn">5</span><span class="dl">Day</span></div>
+      <div class="day-title-wrap">
+        <div class="day-date">Sep 9 · 週三</div>
+        <div class="day-title">科爾卡大峽谷 Day 1 🦅</div>
+        <div class="day-subtitle">含午餐 · 群組行程 · 安地斯高原風光</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算：含午餐 · 行程費用已包含 · 溫泉另計$5–10 USD</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">早起出發 穿越安地斯高原</div>
+          <div class="tl-desc">3小時公路穿越壯麗山景，路上見野生vicuña（小型駱駝科動物）和viscacha（毛絨鼠），到達Patapampa Pass海拔4820公尺，可俯瞰多座火山。</div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">Chivay 鎮午餐</div>
+          <div class="tl-desc">抵達科爾卡峽谷入口小鎮，在主廣場享用含在行程內的午餐，感受安地斯小鎮風情。</div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">下午 天然溫泉浸泡（可選）</div>
+          <div class="tl-desc">科爾卡地區有多個天然溫泉，La Calera（近Chivay）最著名，入場費幾索爾，在雪山下泡湯是難得體驗。</div>
+        </div></div>
+      </div>
+      <div class="hotel-row">
+        <div class="hotel-name">🏨 Colca Lodge — 溫泉渡假村，花園景觀</div>
+        <a class="hotel-link" href="https://colca-lodge.com/" target="_blank">官網</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 6 -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span class="dn">6</span><span class="dl">Day</span></div>
+      <div class="day-title-wrap">
+        <div class="day-date">Sep 10 · 週四</div>
+        <div class="day-title">科爾卡大峽谷 Day 2 + 前往普諾</div>
+        <div class="day-subtitle">含午餐 · 禿鷹觀景台 · 普諾提提卡卡湖</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算：含午餐 · 行程費用已包含</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">清晨 🦅 Cruz del Cóndor 禿鷹觀景台</div>
+          <div class="tl-desc">世界最深峽谷之一（約3000公尺深），早晨熱氣流升起時，安地斯神鷹展翅翱翔近在眼前，翼展達3公尺，震撼無比。科爾卡此行的高潮時刻。</div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://maps.google.com/?q=Cruz+del+Condor+Colca+Canyon+Peru" target="_blank">📍 Google地圖</a>
+          </div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">返回Chivay · 午餐 · 出發普諾</div>
+          <div class="tl-desc">享用午餐後，驅車5–6小時前往普諾。沿途安地斯山景壯麗，抵達後海拔3860公尺，建議多休息讓身體適應高度。</div>
+        </div></div>
+      </div>
+      <div class="hotel-row">
+        <div class="hotel-name">🏨 Hotel Jose Antonio Puno — 提提卡卡湖畔，含早餐</div>
+        <a class="hotel-link" href="https://www.hotelesjoseantonio.com/" target="_blank">官網</a>
+      </div>
+      <div class="tip-box"><p>💡 普諾海拔3860公尺，比阿雷基帕更高，抵達後多休息、喝可可茶（當地傳統高山茶），避免劇烈運動。高山症藥物建議出發前與醫師討論。</p></div>
+    </div>
+  </div>
+
+  <!-- Day 7 -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span class="dn">7</span><span class="dl">Day</span></div>
+      <div class="day-title-wrap">
+        <div class="day-date">Sep 11 · 週五</div>
+        <div class="day-title">提提卡卡湖 · 烏羅斯浮島 + Llachón</div>
+        <div class="day-subtitle">含午餐 · 私人船遊 · 蘆葦浮島文化</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算：含午餐 · 行程費用已包含</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">早上 🚤 前往 Llachón 半島</div>
+          <div class="tl-desc">搭船前往提提卡卡湖上的 Llachón 半島，受當地社區熱情接待，欣賞傳統編織示範，乘坐蘆葦漁船體驗，40分鐘健行觀景，遠眺整個提提卡卡湖，天空之境般的藍色湖泊令人屏息。</div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://maps.google.com/?q=Lake+Titicaca+Puno+Peru" target="_blank">📍 提提卡卡湖</a>
+          </div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">午後 🏝️ 烏羅斯蘆葦浮島</div>
+          <div class="tl-desc">返途造訪世界著名的烏羅斯浮島群，島民用totora蘆葦建造出數十座人工浮島，世代居住其上。了解這支安地斯最古老民族的日常生活，可購買手工蘆葦紀念品。</div>
+        </div></div>
+      </div>
+      <div class="hotel-row">
+        <div class="hotel-name">🏨 Hotel Jose Antonio Puno</div>
+        <a class="hotel-link" href="https://www.hotelesjoseantonio.com/" target="_blank">官網</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="region-header" style="margin-top:8px">🏺 印加帝國 · Day 8–14</div>
+
+  <!-- Day 8 -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span class="dn">8</span><span class="dl">Day</span></div>
+      <div class="day-title-wrap">
+        <div class="day-date">Sep 12 · 週六</div>
+        <div class="day-title">提提卡卡豪華火車 → 庫斯科</div>
+        <div class="day-subtitle">含午餐 · PeruRail Titicaca豪華列車 · 約10.5小時</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算：含午餐 · 行程費用已包含</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">🚂 PeruRail Titicaca 豪華列車</div>
+          <div class="tl-desc">全世界最美火車路線之一！搭乘1920年代Pullman風格的豪華觀景列車，從普諾穿越整個秘魯安地斯高原前往庫斯科。露天觀景車廂供攝影，精緻下午茶服務，沿途高原風光壯麗，約10.5小時的移動盛宴。注意：僅週一、週四、週六發車。</div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://www.perurail.com/" target="_blank">🔗 PeruRail官網</a>
+          </div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">傍晚抵達庫斯科 · 自由探索</div>
+          <div class="tl-desc">私人接機前往 Casa San Blas 精品旅館。若精力尚好，可漫步 Plaza de Armas 廣場或 San Blas 藝術街區，感受印加帝都的夜晚氛圍。</div>
+        </div></div>
+      </div>
+      <div class="hotel-row">
+        <div class="hotel-name">🏨 Casa San Blas Boutique — 蜜月套房，San Blas藝術區</div>
+        <a class="hotel-link" href="https://www.casasanblas.com/" target="_blank">官網</a>
+      </div>
+      <div class="tip-box"><p>💡 庫斯科海拔3399公尺，剛抵達前兩天避免劇烈活動。可可茶（Mate de Coca）是當地傳統應對高山症的方法，飯店通常免費提供。</p></div>
+    </div>
+  </div>
+
+  <!-- Day 9 -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span class="dn">9</span><span class="dl">Day</span></div>
+      <div class="day-title-wrap">
+        <div class="day-date">Sep 13 · 週日</div>
+        <div class="day-title">庫斯科私人半日遊 + 巧克力工坊</div>
+        <div class="day-subtitle">薩克塞瓦曼 · 太陽神廟 · 聖佩德羅市場</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算：含巧克力工坊 · 市場購物另計</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">🏛️ 薩克塞瓦曼印加堡壘</div>
+          <div class="tl-desc">巨石城牆，單塊石頭重達360噸，如何搬運至今是謎。私人導遊帶領進入遺址，俯瞰整個庫斯科市區，角度震撼。之後步行穿越 San Blas 街區前往廣場。</div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://maps.google.com/?q=Sacsayhuaman+Cusco+Peru" target="_blank">📍 Google地圖</a>
+          </div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">☀️ Qoricancha 太陽神廟</div>
+          <div class="tl-desc">印加帝國最神聖的殿堂，內牆據說曾貼滿黃金，西班牙征服者拆除黃金後在其上建造天主教堂，形成印加與西班牙文化奇特並存的建築。注意：週日上午關閉。</div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://maps.google.com/?q=Qoricancha+Temple+Sun+Cusco" target="_blank">📍 Google地圖</a>
+          </div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">🍫 Bean to Bar 巧克力工坊（2小時）</div>
+          <div class="tl-desc">在 ChocoMuseo 從可可豆到巧克力全程動手製作，了解秘魯可可文化與歷史，帶走親手製作的巧克力作為蜜月紀念品，含飲品試飲。</div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://www.chocomuseo.com/" target="_blank">🔗 ChocoMuseo官網</a>
+          </div>
+        </div></div>
+      </div>
+      <div class="hotel-row">
+        <div class="hotel-name">🏨 Casa San Blas Boutique</div>
+        <a class="hotel-link" href="https://www.casasanblas.com/" target="_blank">官網</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 10 -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span class="dn">10</span><span class="dl">Day</span></div>
+      <div class="day-title-wrap">
+        <div class="day-date">Sep 14 · 週一</div>
+        <div class="day-title">印加聖谷 + Pisac 市場</div>
+        <div class="day-subtitle">私人行程 · 美洲駝牧場 · 印加遺址 · 紡織市場</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算：含行程 · 市場購物另計$20–50 USD</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">🦙 美洲駝牧場</div>
+          <div class="tl-desc">進入聖谷第一站，與駱馬、羊駝近距離接觸，觀看傳統紡織示範，了解安地斯羊毛文化。觀景台俯瞰整個聖谷全景，景色壯觀。</div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">🏺 Pisac 印加遺址</div>
+          <div class="tl-desc">聖谷最重要的印加考古遺址之一，梯田農業、墓葬群、灌溉系統、天文觀測中心一應俱全，印加文明的農業與宗教智慧在此一覽無遺。</div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://maps.google.com/?q=Pisac+Inca+Ruins+Sacred+Valley+Peru" target="_blank">📍 Google地圖</a>
+          </div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">🧶 Pisac 紡織市場</div>
+          <div class="tl-desc">Pisac 鎮上色彩繽紛的露天市場，手工織品、彩色紡織品、陶藝品應有盡有，品質遠超庫斯科觀光區，是採購伴手禮的最佳地點。</div>
+        </div></div>
+      </div>
+      <div class="hotel-row">
+        <div class="hotel-name">🏨 La Casona de Yucay — 殖民莊園，聖谷絕景</div>
+        <a class="hotel-link" href="https://www.casona-yucay.com/" target="_blank">官網</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 11 -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span class="dn">11</span><span class="dl">Day</span></div>
+      <div class="day-title-wrap">
+        <div class="day-date">Sep 15 · 週二</div>
+        <div class="day-title">莫拉伊梯田 + 馬拉斯鹽田 + 野餐</div>
+        <div class="day-subtitle">含早餐、午餐 · 私人行程 · 駱馬野餐</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算：含早午餐 · 全部行程費用已包含</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">⭕ 莫拉伊圓形印加梯田</div>
+          <div class="tl-desc">神秘的同心圓梯田，宛如外星降落場，學者認為這是印加人的農業實驗室，利用不同高度創造不同微氣候，測試各種作物。獨特的幾何美感令人嘆服。</div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://maps.google.com/?q=Moray+Terraces+Cusco+Peru" target="_blank">📍 Google地圖</a>
+          </div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">🧂 馬拉斯鹽田</div>
+          <div class="tl-desc">山腰上數百個粉紅鹽池層層疊疊，至今仍由當地家庭傳統採鹽，使用印加時代的古老方法。金色陽光下的鹽田色彩變化萬千，是聖谷最上鏡的景點之一。</div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://maps.google.com/?q=Maras+Salt+Mines+Sacred+Valley+Peru" target="_blank">📍 Google地圖</a>
+          </div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">🦙 駱馬陪伴三道式野餐</div>
+          <div class="tl-desc">在聖谷絕美自然中，與友善駱馬互動後，享用精心準備的三道式野餐，配 Intipalka 紅酒，安地斯山景環繞，是此行最浪漫的蜜月時刻之一。</div>
+        </div></div>
+      </div>
+      <div class="hotel-row">
+        <div class="hotel-name">🏨 La Casona de Yucay</div>
+        <a class="hotel-link" href="https://www.casona-yucay.com/" target="_blank">官網</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 12 -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span class="dn">12</span><span class="dl">Day</span></div>
+      <div class="day-title-wrap">
+        <div class="day-date">Sep 16 · 週三</div>
+        <div class="day-title">短印加古道健行 Day 1 🥾</div>
+        <div class="day-subtitle">含午餐 · 10.79公里 · 約7小時 · 雲霧森林</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算：含午餐 · 行程費用已包含 · 印加古道許可證不可更改退款</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">早上 火車 Ollantaytambo → km104</div>
+          <div class="tl-desc">從 Ollantaytambo 火車站出發，在 km104 下車開始短印加古道健行。古道沿峽谷而上，穿越雲霧森林，景色由乾燥高原逐漸轉為熱帶雨林。</div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">Chachabamba 遺址 → Wiñay Wayna</div>
+          <div class="tl-desc">第一個考古遺址 Chachabamba 是馬丘比丘入口的守衛站點，之後爬升3小時抵達海拔2732公尺的 Wiñay Wayna，吃打包午餐，俯瞰山谷與蘭花叢生的古道。</div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://maps.google.com/?q=Winay+Wayna+Inca+Trail+Peru" target="_blank">📍 Wiñay Wayna</a>
+          </div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">🌅 Intipunku 太陽門 · 馬丘比丘初見</div>
+          <div class="tl-desc">穿越雲霧森林抵達 Intipunku（太陽門），人生中第一次眼前出現馬丘比丘全景，那個瞬間是許多旅人一生中最震撼的時刻。下行至遺址短暫參觀後，搭巴士下到 Aguas Calientes。</div>
+        </div></div>
+      </div>
+      <div class="hotel-row">
+        <div class="hotel-name">🏨 Tierra Viva Machu Picchu — Aguas Calientes，Urubamba河畔</div>
+        <a class="hotel-link" href="https://www.tierravivahoteles.com/" target="_blank">官網</a>
+      </div>
+      <div class="tip-box"><p>💡 印加古道許可證不可轉讓、不可退款、不可改日期，必須事先持護照申請。行李主體留在聖谷飯店，只帶必需品上路，自行攜帶午餐和飲水。</p></div>
+    </div>
+  </div>
+
+  <!-- Day 13 -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span class="dn">13</span><span class="dl">Day</span></div>
+      <div class="day-title-wrap">
+        <div class="day-date">Sep 17 · 週四</div>
+        <div class="day-title">馬丘比丘 → 返庫斯科</div>
+        <div class="day-subtitle">含早餐 · 導覽遊覽 · 火車返程</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算：含早餐 · 午餐自理約$15–25 USD</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">🌄 清晨搭巴士上馬丘比丘</div>
+          <div class="tl-desc">早起搭25分鐘巴士上山，趕在人潮前抵達，晨霧繚繞中的馬丘比丘最為夢幻。導遊帶領遊覽15世紀印加古城，了解印加建築、天文、農業的精妙設計。聯合國教科文組織世界遺產、世界新七大奇蹟之一。</div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://maps.google.com/?q=Machu+Picchu+Peru" target="_blank">📍 馬丘比丘</a>
+          </div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">自由時間 + 午餐（自理）</div>
+          <div class="tl-desc">導覽結束後自行探索，之後搭巴士返回 Aguas Calientes 鎮，在可愛小鎮享用午餐，搭乘火車返回 Ollantaytambo，再轉乘2小時巴士回庫斯科。途中順道在聖谷飯店取回寄存行李。</div>
+        </div></div>
+      </div>
+      <div class="hotel-row">
+        <div class="hotel-name">🏨 Casa San Blas Boutique — 最後一晚，蜜月套房</div>
+        <a class="hotel-link" href="https://www.casasanblas.com/" target="_blank">官網</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 14 -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span class="dn">14</span><span class="dl">Day</span></div>
+      <div class="day-title-wrap">
+        <div class="day-date">Sep 18 · 週五</div>
+        <div class="day-title">飛回利馬 · 離境</div>
+        <div class="day-subtitle">庫斯科機場 → 利馬 · 行程結束</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算：購物、機場餐廳自理</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">接機前往庫斯科機場</div>
+          <div class="tl-desc">辦完退房後可寄存行李繼續購物，接送服務會於指定時間接往機場，搭乘國內線飛回利馬。</div>
+        </div></div>
+        <div class="tl-item"><div class="tl-dot"></div><div class="tl-content">
+          <div class="tl-title">利馬機場 · 搭乘國際航班返台</div>
+          <div class="tl-desc">利馬機場 Jorge Chávez International Airport，建議提前3小時抵達。免稅店可採購秘魯特產：巧克力、Pisco酒、咖啡豆、陶藝品。</div>
+        </div></div>
+      </div>
+      <div class="tip-box"><p>💡 出境秘魯沒有特別的農產品管制問題，但Pisco酒類有數量限制，請確認航空公司規定。利馬機場有寬裕的免稅購物區。</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- 住宿 -->
+<div id="hotels" class="section">
+  <div class="section-title">住宿推薦</div>
+  <div class="section-sub">9間精品旅館 · 從海岸到安地斯高原</div>
+  <div class="hotel-grid">
+    <div class="hotel-card"><div class="hc-name">nhow Lima</div><div class="hc-loc">📍 利馬 Miraflores · Day 1, 3</div><div class="hc-desc">古代遺產與現代奢華完美融合，位於 Miraflores 精華地段，設計感強烈，慶祝秘魯豐富文化藝術。</div><div class="hc-bottom"><div class="hc-nights">2晚</div><a class="hc-link" href="https://www.nhow-hotels.com/lima/" target="_blank">官網訂房</a></div></div>
+    <div class="hotel-card"><div class="hc-name">La Hacienda Bahía Paracas</div><div class="hc-loc">📍 帕拉卡斯 · Day 2</div><div class="hc-desc">熱帶花園與優雅建築，海灣景觀，是帕拉卡斯最有氣質的海灣精品旅館，游泳池正對太平洋。</div><div class="hc-bottom"><div class="hc-nights">1晚</div><a class="hc-link" href="https://www.lahaciendabayhiaparacas.com/" target="_blank">官網訂房</a></div></div>
+    <div class="hotel-card"><div class="hc-name">Katari Hotel</div><div class="hc-loc">📍 阿雷基帕 Plaza de Armas · Day 4</div><div class="hc-desc">廣場正對面，殖民時期建築改建的精品旅館，象徵性露台俯瞰 Misti 火山，個人化服務，UNESCO遺產城市核心。</div><div class="hc-bottom"><div class="hc-nights">1晚</div><a class="hc-link" href="https://hotelkatari.com/" target="_blank">官網訂房</a></div></div>
+    <div class="hotel-card"><div class="hc-name">Colca Lodge</div><div class="hc-loc">📍 科爾卡峽谷 · Day 5</div><div class="hc-desc">溫泉渡假村，3個美食餐廳，每間客房都有花園景觀，距阿雷基帕3小時，是科爾卡最豪華的住宿選擇。</div><div class="hc-bottom"><div class="hc-nights">1晚</div><a class="hc-link" href="https://colca-lodge.com/" target="_blank">官網訂房</a></div></div>
+    <div class="hotel-card"><div class="hc-name">Hotel Jose Antonio Puno</div><div class="hc-loc">📍 普諾 · Day 6–7</div><div class="hc-desc">提提卡卡湖畔，含早餐，每間客房有湖景陽台，是普諾市區最舒適的中高端住宿。</div><div class="hc-bottom"><div class="hc-nights">2晚</div><a class="hc-link" href="https://www.hotelesjoseantonio.com/" target="_blank">官網訂房</a></div></div>
+    <div class="hotel-card" style="border-left:3px solid var(--gold)"><div class="hc-name">Casa San Blas Boutique ⭐</div><div class="hc-loc">📍 庫斯科 San Blas藝術區 · Day 8–9, 13</div><div class="hc-desc">印加帝都中心的精品旅館，蜜月套房，石砌老屋改建，推開窗是石板街道，俯瞰整個庫斯科。行程含蜜月套房升級。</div><div class="hc-bottom"><div class="hc-nights">3晚 · 蜜月套房</div><a class="hc-link" href="https://www.casasanblas.com/" target="_blank">官網訂房</a></div></div>
+    <div class="hotel-card"><div class="hc-name">La Casona de Yucay</div><div class="hc-loc">📍 聖谷 Yucay · Day 10–11</div><div class="hc-desc">16世紀西班牙殖民莊園改建，花園中有鮮豔花卉和山景，聖谷最具歷史感的住宿，曾是西班牙總督的居所。</div><div class="hc-bottom"><div class="hc-nights">2晚</div><a class="hc-link" href="https://www.casona-yucay.com/" target="_blank">官網訂房</a></div></div>
+    <div class="hotel-card"><div class="hc-name">Tierra Viva Machu Picchu</div><div class="hc-loc">📍 Aguas Calientes · Day 12</div><div class="hc-desc">Aguas Calientes 最安靜地段，正對 Urubamba 河，雲霧森林環繞，是前往馬丘比丘前的最佳落腳點。</div><div class="hc-bottom"><div class="hc-nights">1晚</div><a class="hc-link" href="https://www.tierravivahoteles.com/" target="_blank">官網訂房</a></div></div>
+  </div>
+</div>
+
+<!-- 美食 -->
+<div id="food" class="section">
+  <div class="section-title">美食指南</div>
+  <div class="section-sub">拉美美食之都 · 必吃清單</div>
+  <div class="food-section">
+    <div class="food-section-title">🥩 秘魯必吃料理</div>
+    <div class="food-grid">
+      <div class="food-item"><div class="food-name">Ceviche 生醃海鮮</div><div class="food-desc">秘魯國菜，新鮮白肉魚用萊姆汁醃製，搭配洋蔥、辣椒、玉米，利馬海邊餐廳最正宗</div></div>
+      <div class="food-item"><div class="food-name">Lomo Saltado 炒牛柳</div><div class="food-desc">中式炒法融合秘魯食材，牛柳條炒番茄、洋蔥，搭配薯條和白飯，秘中融合料理代表作</div></div>
+      <div class="food-item"><div class="food-name">Cuy 烤天竺鼠</div><div class="food-desc">安地斯傳統料理，香酥整隻上桌，是當地人節慶必吃，庫斯科必嚐一次的冒險體驗</div></div>
+      <div class="food-item"><div class="food-name">Alpaca 駝馬肉排</div><div class="food-desc">安地斯高原特有，肉質細嫩、低脂肪、高蛋白，比牛肉更鮮嫩，庫斯科餐廳常見</div></div>
+      <div class="food-item"><div class="food-name">Rocoto Relleno</div><div class="food-desc">阿雷基帕名菜，填塞肉末的辣椒，烤至香酥，是白城最代表性的傳統家常料理</div></div>
+      <div class="food-item"><div class="food-name">Chicharrón 炸豬皮</div><div class="food-desc">脆皮炸豬肉，通常搭配白玉米和薄荷醬，早餐或午餐的秘魯傳統小吃，利馬最道地</div></div>
+    </div>
+  </div>
+  <div class="food-section">
+    <div class="food-section-title">🍹 飲品與甜點</div>
+    <div class="food-grid">
+      <div class="food-item"><div class="food-name">Pisco Sour</div><div class="food-desc">秘魯國飲，Pisco葡萄白蘭地+萊姆汁+糖+蛋白，泡沫綿密，是來秘魯第一杯必點</div></div>
+      <div class="food-item"><div class="food-name">Chicha Morada</div><div class="food-desc">紫玉米熬製的傳統飲料，甜而不膩，加肉桂、丁香，是安地斯最古老的飲品之一</div></div>
+      <div class="food-item"><div class="food-name">Mate de Coca 可可茶</div><div class="food-desc">高原必備，用古柯葉泡製的傳統茶，幫助適應高海拔，飯店免費提供，清淡微苦</div></div>
+      <div class="food-item"><div class="food-name">Picarones 炸甜甜圈</div><div class="food-desc">南瓜地瓜製作的甜圈，淋上蜂蜜，利馬街頭小吃，甜而不油，是秘魯最受歡迎的甜點</div></div>
+      <div class="food-item"><div class="food-name">秘魯精品咖啡</div><div class="food-desc">秘魯是咖啡產國，高原日夜溫差大，風味豐富，庫斯科咖啡廳有很多精品單品，必試</div></div>
+      <div class="food-item"><div class="food-name">秘魯黑巧克力</div><div class="food-desc">亞馬遜河流域高品質可可，日本評比全球前三，巧克力工坊自製版可帶回台灣當伴手禮</div></div>
+    </div>
+  </div>
+  <div class="food-section">
+    <div class="food-section-title">🍽️ 推薦餐廳</div>
+    <div style="display:grid;gap:10px">
+      <div style="background:#fff;border-radius:3px;padding:12px 14px;border:1px solid var(--warm)"><div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;margin-bottom:3px">Central</div><div style="font-size:11px;color:var(--muted);margin-bottom:6px">📍 利馬 Miraflores · 全球最佳餐廳前五名</div><div style="font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:7px">主廚 Virgilio Martínez 以海拔分層秘魯食材設計菜單，從太平洋到安地斯山頂，體驗秘魯垂直地貌，必須提前數週訂位。</div><div style="font-size:11px;color:var(--terracotta);font-weight:500">必訂：至少4–6週前 · 人均$120–180 USD</div></div>
+      <div style="background:#fff;border-radius:3px;padding:12px 14px;border:1px solid var(--warm)"><div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;margin-bottom:3px">Maido</div><div style="font-size:11px;color:var(--muted);margin-bottom:6px">📍 利馬 · 日秘融合料理全球排名前十</div><div style="font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:7px">主廚 Mitsuharu Tsumura 將日本技術與秘魯食材完美結合，Nikkei料理的最高殿堂，壽司+Ceviche的驚人融合。</div><div style="font-size:11px;color:var(--terracotta);font-weight:500">必訂：至少4週前 · 人均$100–150 USD</div></div>
+      <div style="background:#fff;border-radius:3px;padding:12px 14px;border:1px solid var(--warm)"><div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;margin-bottom:3px">Astrid y Gastón</div><div style="font-size:11px;color:var(--muted);margin-bottom:6px">📍 利馬 · 秘魯現代料理先驅</div><div style="font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:7px">主廚 Gastón Acurio 是帶領秘魯料理走向世界的傳奇人物，優雅殖民建築中享用創意秘魯料理。</div><div style="font-size:11px;color:var(--terracotta);font-weight:500">必訂：2–3週前 · 人均$80–120 USD</div></div>
+      <div style="background:#fff;border-radius:3px;padding:12px 14px;border:1px solid var(--warm)"><div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;margin-bottom:3px">庫斯科傳統安地斯料理</div><div style="font-size:11px;color:var(--muted);margin-bottom:6px">📍 庫斯科 Plaza de Armas 周邊</div><div style="font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:7px">推薦 Cicciolina、Marcelo Batata 或 MAP Café，品嚐 Alpaca 排、Cuy、安地斯燉肉，配本地 Chicha de Jora 玉米酒。</div><div style="font-size:11px;color:var(--terracotta);font-weight:500">人均$15–40 USD · 廣場周邊步行可達</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 預訂清單 -->
+<div id="booking" class="section">
+  <div class="section-title">預訂清單</div>
+  <div class="section-sub">紅色＝最緊急，出發前務必完成</div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">印加古道許可證</div><div class="booking-when">Day 12–13 · 需持護照申請 · 不可退款改期</div><div class="booking-url">透過旅行社（KimKim）申請，需提前數月</div></div><div class="urg">最緊急！立即確認</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">馬丘比丘入場門票</div><div class="booking-when">Day 13 · 每日限制人數，旺季秒殺</div><a class="booking-url" href="https://www.machupicchu.gob.pe/" target="_blank">machupicchu.gob.pe</a></div><div class="urg">最緊急！提前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">Central 利馬</div><div class="booking-when">Day 1 或 Day 3 晚餐 · 全球前五名餐廳</div><a class="booking-url" href="https://centralrestaurante.com.pe/" target="_blank">centralrestaurante.com.pe</a></div><div class="urg">4–6週前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">Maido 利馬</div><div class="booking-when">Day 1 或 Day 3 晚餐 · 日秘融合</div><a class="booking-url" href="https://maido.pe/" target="_blank">maido.pe</a></div><div class="urg">4週前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">PeruRail Titicaca 火車</div><div class="booking-when">Day 8 · 僅週一、週四、週六發車</div><a class="booking-url" href="https://www.perurail.com/" target="_blank">perurail.com</a></div><div class="urg urg-med">2個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">Casa San Blas Boutique 蜜月套房</div><div class="booking-when">Day 8–9, 13 · 指定蜜月套房 · 備註蜜月</div><a class="booking-url" href="https://www.casasanblas.com/" target="_blank">casasanblas.com</a></div><div class="urg urg-med">1–2個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">La Hacienda Bahía Paracas</div><div class="booking-when">Day 2 · 1晚</div><a class="booking-url" href="https://www.lahaciendabayhiaparacas.com/" target="_blank">官網</a></div><div class="urg urg-med">1個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">Colca Lodge 溫泉渡假村</div><div class="booking-when">Day 5 · 1晚</div><a class="booking-url" href="https://colca-lodge.com/" target="_blank">colca-lodge.com</a></div><div class="urg urg-med">1個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">Astrid y Gastón 利馬</div><div class="booking-when">Day 1 或 Day 3 晚餐</div><a class="booking-url" href="http://en.astridygaston.com/" target="_blank">astridygaston.com</a></div><div class="urg urg-med">2–3週前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">台灣至利馬國際機票</div><div class="booking-when">台北→利馬，需轉機，約30–36小時</div><div class="booking-url">推薦：美國聯合航空（UA）或美國航空（AA）轉機</div></div><div class="urg urg-med">3–6個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">ChocoMuseo 巧克力工坊</div><div class="booking-when">Day 9 下午 · 2小時</div><a class="booking-url" href="https://www.chocomuseo.com/" target="_blank">chocomuseo.com</a></div><div class="urg urg-med">1–2週前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">旅遊保險</div><div class="booking-when">出發前購買 · 須含冒險活動（健行、沙漠越野車）</div><div class="booking-url">AXA、Allianz、World Nomads 等均可</div></div><div class="urg urg-med">出發前1–2個月</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">秘魯入境要求確認</div><div class="booking-when">台灣護照免簽，但需確認最新規定</div><div class="booking-url">確認護照效期6個月以上 · 回程機票備妥</div></div><div class="urg urg-med">出發前確認</div></div>
+</div>
+
+<!-- 預算 -->
+<div id="budget" class="section">
+  <div class="section-title">預算規劃</div>
+  <div class="section-sub">兩人合計估算（台幣）· 不含國際機票</div>
+  <div class="budget-card">
+    <div class="budget-row"><span>國際機票（台北↔利馬，兩人）</span><span class="amt">約10–14萬</span></div>
+    <div class="budget-row"><span>KimKim旅行社行程費用（含住宿、國內交通、活動）</span><span class="amt">依報價另計</span></div>
+    <div class="budget-row"><span>利馬米其林餐廳（2–3頓）</span><span class="amt">約2–4萬</span></div>
+    <div class="budget-row"><span>庫斯科、聖谷餐食（自理部分）</span><span class="amt">約1–2萬</span></div>
+    <div class="budget-row"><span>馬丘比丘門票（另付）</span><span class="amt">約3,000–5,000元</span></div>
+    <div class="budget-row"><span>購物、紀念品（Pisac市場等）</span><span class="amt">約1–3萬</span></div>
+    <div class="budget-row"><span>旅遊保險（含冒險活動）</span><span class="amt">約3,000–6,000元</span></div>
+    <div class="budget-row total"><span>合計（兩人，不含KimKim報價）</span><span class="amt">約13–23萬+</span></div>
+  </div>
+  <div class="tips-block">
+    <div class="tips-title">重要提醒</div>
+    <div class="tip"><div class="tip-dot"></div><p>印加古道許可證需持護照申請，發行數量有限，旺季（6–9月）搶手，需透過旅行社提前數月確認</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>全程多個城市超過3000公尺海拔（普諾3860m、庫斯科3399m），高山症是最大風險，出發前與醫師討論是否需要乙醯唑胺</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>利馬米其林級餐廳（Central、Maido）提前4–6週訂位，蜜月行程中最值得花費的一頓正式晚餐</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>PeruRail火車僅週一、週四、週六運行，9月12日恰好是週六，時間完美，提前在官網預訂</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>秘魯入境台灣護照免簽，但需確認回程機票及足夠資金證明，部分入境官員會查驗</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>9月是秘魯旱季，天氣最好，馬丘比丘晴天機率高，但早晨仍有雲霧，建議備防風外套</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>Pisac、庫斯科市場購物以美元現金或索爾付款為主，少用信用卡，建議換美元現金備用</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>台灣至利馬通常需在美國城市轉機，注意美國轉機需申請ESTA（電子旅遊許可），費用$21 USD</p></div>
+  </div>
+</div>
+
+<!-- 地圖 -->
+<div id="mapview" class="section">
+  <div id="map-container" style="width:100%;height:calc(100dvh - 120px);position:relative;">
+    <div id="perumap" style="width:100%;height:100%"></div>
+    <div id="map-card" style="display:none;position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:88%;max-width:360px;background:#fff;border-radius:4px;box-shadow:0 8px 32px rgba(0,0,0,0.2);overflow:hidden;z-index:1000;">
+      <div id="map-card-img" style="width:100%;height:130px;background:#e8d9c0;background-size:cover;background-position:center;position:relative;">
+        <div id="map-card-day" style="position:absolute;top:10px;left:12px;background:rgba(26,18,8,0.85);color:var(--gold);font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;border-radius:2px;backdrop-filter:blur(4px)"></div>
+        <button onclick="closeCard()" style="position:absolute;top:8px;right:10px;background:rgba(0,0,0,0.5);border:none;color:#fff;width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:15px">×</button>
+      </div>
+      <div style="padding:12px 14px 14px">
+        <div id="map-card-name" style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--ink);margin-bottom:4px"></div>
+        <div id="map-card-desc" style="font-size:12px;color:var(--muted);line-height:1.6"></div>
+      </div>
+    </div>
+    <div style="position:absolute;top:12px;left:12px;right:12px;z-index:999;display:flex;gap:6px;flex-wrap:wrap;">
+      <button class="mf active" onclick="peruFilter('all',this)">全部</button>
+      <button class="mf" onclick="peruFilter('coast',this)">🌊 海岸</button>
+      <button class="mf" onclick="peruFilter('andes',this)">🏔️ 安地斯</button>
+      <button class="mf" onclick="peruFilter('inca',this)">🏺 印加</button>
+      <button class="mf" onclick="peruFilter('hotel',this)">🏨 住宿</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='mapview' && !window._peruMapInit) initPeruMap();
+}
+
+const peruPlaces = [
+  {id:'lima',day:'Day 1–3',region:'coast',type:'activity',name:'利馬 Miraflores',lat:-12.1219,lng:-77.0298,emoji:'🌊',desc:'秘魯首都，海崖上的現代城市，全球美食之都，Ceviche、Pisco Sour、米其林餐廳的發源地。',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Lima_montage.jpg/640px-Lima_montage.jpg'},
+  {id:'lovepark',day:'Day 3',region:'coast',type:'activity',name:'Miraflores Love Park',lat:-12.1310,lng:-77.0310,emoji:'💕',desc:'海崖上的戀人公園，巨型接吻雕塑配上太平洋日落，利馬最浪漫的蜜月打卡點。',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Parque_del_Amor_Miraflores.jpg/640px-Parque_del_Amor_Miraflores.jpg'},
+  {id:'ballestas',day:'Day 3',region:'coast',type:'activity',name:'巴勒斯塔斯群島 🐧',lat:-13.7426,lng:-76.3897,emoji:'🐧',desc:'「小加拉巴哥」，海獅、秘魯企鵝、海鳥群集，神秘三叉戟地面圖案，快艇遊覽約2小時。',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Ballestas_Islands_Paracas_Peru.jpg/640px-Ballestas_Islands_Paracas_Peru.jpg'},
+  {id:'paracas',day:'Day 2',region:'coast',type:'hotel',name:'帕拉卡斯',lat:-13.8370,lng:-76.2502,emoji:'🏖️',desc:'太平洋海灣小城，La Hacienda Bahía Paracas飯店，熱帶花園配上海灣景觀。',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Paracas_peninsula.jpg/640px-Paracas_peninsula.jpg'},
+  {id:'huacachina',day:'Day 2',region:'coast',type:'activity',name:'瓦卡奇納沙漠綠洲 🏜️',lat:-14.0876,lng:-75.9640,emoji:'🏜️',desc:'秘魯最著名沙漠綠洲，沙丘越野車衝破百米沙丘，砂板滑沙，腎上腺素爆衝的冒險體驗。',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Huacachina_Oasis.jpg/640px-Huacachina_Oasis.jpg'},
+  {id:'arequipa',day:'Day 4',region:'andes',type:'activity',name:'阿雷基帕 白城 🌋',lat:-16.4090,lng:-71.5375,emoji:'🌋',desc:'UNESCO世界遺產城市，白色火山石建築，聖卡塔琳娜修道院，三座火山環抱的「白城」。',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Arequipa_Peru.jpg/640px-Arequipa_Peru.jpg'},
+  {id:'colca',day:'Day 5–6',region:'andes',type:'activity',name:'科爾卡大峽谷 🦅',lat:-15.6344,lng:-71.9795,emoji:'🦅',desc:'世界最深峽谷之一，安地斯神鷹展翅翱翔，Cruz del Cóndor觀景台是全行程最震撼的時刻。',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Colca_Canyon_Peru.jpg/640px-Colca_Canyon_Peru.jpg'},
+  {id:'puno',day:'Day 6–7',region:'andes',type:'hotel',name:'普諾 提提卡卡湖',lat:-15.8402,lng:-70.0219,emoji:'🚤',desc:'海拔3860公尺的湖畔城市，烏羅斯蘆葦浮島、Llachón半島，世界最高可航行淡水湖。',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Lake_Titicaca.jpg/640px-Lake_Titicaca.jpg'},
+  {id:'titicaca',day:'Day 7',region:'andes',type:'activity',name:'提提卡卡湖 浮島',lat:-15.9218,lng:-69.8354,emoji:'🏝️',desc:'世界最高可航行淡水湖，烏羅斯族用蘆葦建造的人工浮島，幾千年的傳統生活方式延續至今。',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Uros_Island_Lake_Titicaca_Peru.jpg/640px-Uros_Island_Lake_Titicaca_Peru.jpg'},
+  {id:'cusco',day:'Day 8–9',region:'inca',type:'activity',name:'庫斯科 印加帝都',lat:-13.5320,lng:-71.9675,emoji:'🏺',desc:'印加帝國首都，石板街道、廣場、教堂與印加石牆完美交融，海拔3399公尺的活歷史之城。',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Cusco_Main_Square.jpg/640px-Cusco_Main_Square.jpg'},
+  {id:'sacsayhuaman',day:'Day 9',region:'inca',type:'activity',name:'薩克塞瓦曼印加堡壘',lat:-13.5089,lng:-71.9819,emoji:'🏛️',desc:'單塊石頭重達360噸的印加巨石城牆，如何搬運至今是謎，俯瞰庫斯科的絕佳制高點。',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Sacsayhuaman_Cusco_Peru.jpg/640px-Sacsayhuaman_Cusco_Peru.jpg'},
+  {id:'sacredvalley',day:'Day 10–11',region:'inca',type:'activity',name:'印加聖谷',lat:-13.3229,lng:-72.0892,emoji:'🌄',desc:'印加帝國的農業與精神聖地，Pisac遺址、莫拉伊圓形梯田、馬拉斯鹽田，安地斯文明的精華。',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Sacred_Valley_Peru.jpg/640px-Sacred_Valley_Peru.jpg'},
+  {id:'moray',day:'Day 11',region:'inca',type:'activity',name:'莫拉伊圓形梯田 ⭕',lat:-13.3427,lng:-72.1891,emoji:'⭕',desc:'神秘同心圓印加梯田，疑為印加農業實驗室，完美幾何造型從空中看像外星降落場。',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Moray_Peru.jpg/640px-Moray_Peru.jpg'},
+  {id:'maras',day:'Day 11',region:'inca',type:'activity',name:'馬拉斯鹽田 🧂',lat:-13.3371,lng:-72.1580,emoji:'🧂',desc:'山腰上數百個粉紅鹽池，至今仍由當地家庭傳統採鹽，金色陽光下色彩萬變，聖谷最上鏡景點。',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Salineras_de_Maras.jpg/640px-Salineras_de_Maras.jpg'},
+  {id:'machupicchu',day:'Day 12–13',region:'inca',type:'activity',name:'馬丘比丘 🌄',lat:-13.1631,lng:-72.5450,emoji:'🏔️',desc:'世界新七大奇蹟、UNESCO世界遺產，15世紀印加古城，晨霧中的神秘印加建築，人生必訪。',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Machu_Picchu%2C_Peru.jpg/640px-Machu_Picchu%2C_Peru.jpg'},
+  {id:'aguascalientes',day:'Day 12',region:'inca',type:'hotel',name:'Aguas Calientes 溫泉鎮',lat:-13.1528,lng:-72.5266,emoji:'♨️',desc:'馬丘比丘山腳下的溫泉小鎮，Urubamba河畔，雲霧森林環繞，是進入馬丘比丘前的前哨站。',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Aguas_Calientes_Machu_Picchu.jpg/640px-Aguas_Calientes_Machu_Picchu.jpg'},
+];
+
+const regionColor = {coast:'#2a6b8a', andes:'#5c3d1e', inca:'#c4622d', hotel:'#3d6b3d'};
+let peruMarkers = [];
+
+function initPeruMap() {
+  window._peruMapInit = true;
+  const lcs = document.createElement('link');
+  lcs.rel = 'stylesheet';
+  lcs.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';
+  document.head.appendChild(lcs);
+  const ls = document.createElement('script');
+  ls.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
+  ls.onload = buildPeruMap;
+  document.head.appendChild(ls);
+}
+
+function buildPeruMap() {
+  const map = L.map('perumap', {center:[-14.5, -72.5], zoom:6, zoomControl:true, attributionControl:false});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+  L.polyline(peruPlaces.map(p=>[p.lat,p.lng]),{color:'rgba(196,98,45,0.4)',weight:2,dashArray:'5,8'}).addTo(map);
+  peruPlaces.forEach(p => {
+    const color = regionColor[p.region] || '#c4622d';
+    const icon = L.divIcon({
+      html:`<div style="width:36px;height:36px;border-radius:50%;background:${color};border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.35);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer">${p.emoji}</div>`,
+      className:'', iconSize:[36,36], iconAnchor:[18,18]
+    });
+    const m = L.marker([p.lat,p.lng],{icon}).addTo(map);
+    m._place = p;
+    m.on('click', () => showPeruCard(p));
+    peruMarkers.push(m);
+  });
+  window._perumap = map;
+}
+
+function showPeruCard(p) {
+  const card = document.getElementById('map-card');
+  document.getElementById('map-card-day').textContent = p.day;
+  document.getElementById('map-card-name').textContent = p.name;
+  document.getElementById('map-card-desc').textContent = p.desc;
+  document.getElementById('map-card-img').style.backgroundImage = `url(${p.img})`;
+  card.style.display = 'block';
+}
+
+function closeCard() { document.getElementById('map-card').style.display='none'; }
+
+function peruFilter(type, btn) {
+  document.querySelectorAll('.mf').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(!window._perumap) return;
+  peruMarkers.forEach(m => {
+    const p = m._place;
+    const show = type==='all' || type===p.region || type===p.type;
+    if(show) m.addTo(window._perumap);
+    else window._perumap.removeLayer(m);
+  });
+}
+</script>
+</body>
+</html>

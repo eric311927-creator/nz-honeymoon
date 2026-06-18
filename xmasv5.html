@@ -1,0 +1,2682 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>紐西蘭蜜月 🇳🇿</title>
+
+<!-- PWA / 加入主畫面設定 -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="紐西蘭蜜月">
+<meta name="theme-color" content="#1a3a2a">
+<meta name="description" content="紐西蘭15天聖誕跨年蜜月行程">
+
+<!-- iOS 主畫面圖示（SVG生成） -->
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%231a3a2a'/%3E%3Ctext x='90' y='115' font-size='90' text-anchor='middle'%3E🇳🇿%3C/text%3E%3C/svg%3E">
+
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCHTnLkw-bL5mrM0Mtcx3C6BtoCBPuWoX0",
+    authDomain: "nz-honeymoon-7b76f.firebaseapp.com",
+    databaseURL: "https://nz-honeymoon-7b76f-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "nz-honeymoon-7b76f",
+    storageBucket: "nz-honeymoon-7b76f.firebasestorage.app",
+    messagingSenderId: "59414312738",
+    appId: "1:59414312738:web:b79248bf6a104a9b89177b"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  /* ── 筆記讀寫 ── */
+  window._fbDb = db;
+  window._fbRef = ref;
+  window._fbSet = set;
+  window._fbOnValue = onValue;
+
+  /* 頁面載入後監聽所有筆記 */
+  window.addEventListener('load', function(){
+    onValue(ref(db, 'notes'), function(snapshot){
+      var data = snapshot.val() || {};
+      Object.keys(data).forEach(function(dayKey){
+        var ta = document.getElementById('note-' + dayKey);
+        if(ta && data[dayKey]) ta.value = data[dayKey];
+      });
+    });
+  });
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--forest:#1a3a2a;--sage:#3d6b4f;--mint:#7ab892;--cream:#f5f0e8;--warm:#e8dcc8;--gold:#c9a84c;--text:#1a2420;--muted:#5a6b62;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+.hero{background:var(--forest);min-height:480px;display:flex;flex-direction:column;justify-content:flex-end;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(122,184,146,0.15) 0%,transparent 60%)}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.4);color:var(--gold);font-size:0.77rem;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:20px;margin-bottom:1.5rem;width:fit-content}
+.hero h1{font-family:'Playfair Display',serif;font-size:2.94rem;font-weight:700;color:#fff;line-height:1.15;margin-bottom:1rem}
+.hero h1 span{color:var(--mint)}
+.hero-sub{color:rgba(255,255,255,0.6);font-size:0.98rem;font-weight:300;letter-spacing:0.5px;margin-bottom:2rem}
+.hero-stats{display:flex;gap:2rem}
+.hero-stat{text-align:center}
+.hero-stat .num{font-family:'Playfair Display',serif;font-size:1.96rem;color:var(--gold);font-weight:600}
+.hero-stat .label{font-size:0.77rem;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+.hero-divider{width:1px;background:rgba(255,255,255,0.15);align-self:stretch}
+.tabs{display:flex;background:#fff;border-bottom:1px solid var(--warm);position:sticky;top:0;z-index:100;overflow-x:auto}
+.tab{padding:14px 20px;font-size:0.91rem;font-weight:500;color:var(--muted);cursor:pointer;border:none;background:none;white-space:nowrap;border-bottom:2px solid transparent;transition:all 0.2s}
+.tab.active{color:var(--sage);border-bottom-color:var(--sage)}
+.tab:hover{color:var(--sage)}
+.section{display:none;padding:2rem 1.5rem;max-width:800px;margin:0 auto}
+.section.active{display:block}
+.section-title{font-family:'Playfair Display',serif;font-size:1.68rem;font-weight:600;margin-bottom:0.4rem}
+.section-sub{font-size:0.91rem;color:var(--muted);margin-bottom:1.5rem}
+.island-header{background:var(--sage);color:#fff;padding:8px 16px;border-radius:8px;font-size:0.84rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;display:inline-block}
+.day-block{background:#fff;border-radius:16px;border:1px solid var(--warm);margin-bottom:20px;overflow:hidden}
+.day-block.nye{border:2px solid var(--gold);box-shadow:0 0 0 4px rgba(201,168,76,0.08)}
+.day-block.xmas{border:2px solid #cc3333;box-shadow:0 0 0 4px rgba(204,51,51,0.06)}
+.day-header{display:flex;gap:16px;align-items:flex-start;padding:1.25rem 1.25rem 1rem}
+.day-num{min-width:52px;height:52px;background:var(--forest);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:0.7rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;flex-shrink:0;color:var(--mint)}
+.day-num span{font-family:'Playfair Display',serif;font-size:1.4rem;color:#fff;font-weight:600;line-height:1}
+.day-title-wrap{flex:1}
+.day-title{font-weight:500;font-size:1.12rem;margin-bottom:4px}
+.day-subtitle{font-size:0.84rem;color:var(--muted)}
+.badge{display:inline-block;background:rgba(201,168,76,0.15);color:#8a6a1a;font-size:0.7rem;padding:2px 8px;border-radius:10px;font-weight:500;margin-left:6px;border:1px solid rgba(201,168,76,0.3)}
+.badge-xmas{display:inline-block;background:rgba(180,30,30,0.12);color:#8a1a1a;font-size:0.7rem;padding:2px 8px;border-radius:10px;font-weight:500;margin-left:6px;border:1px solid rgba(180,30,30,0.25)}
+.badge-ny{display:inline-block;background:rgba(201,168,76,0.25);color:#6b4a00;font-size:0.7rem;padding:2px 8px;border-radius:10px;font-weight:600;margin-left:6px;border:1px solid rgba(201,168,76,0.5)}
+.day-body{padding:0 1.25rem 1.25rem;border-top:1px solid var(--warm)}
+.timeline{margin-top:1rem}
+.tl-item{display:flex;gap:12px;margin-bottom:14px}
+.tl-item.new-item{background:rgba(192,90,26,0.06);border-left:3px solid #c05a1a;border-radius:0 8px 8px 0;padding:8px 10px 8px 12px;margin-left:-3px}
+.tl-item.new-item .tl-time{color:#c05a1a}
+.tl-item.new-item .tl-title::after{content:'✨ 新增';font-size:0.63rem;font-weight:600;color:#c05a1a;background:rgba(192,90,26,0.12);border:1px solid rgba(192,90,26,0.3);border-radius:8px;padding:1px 6px;margin-left:7px;vertical-align:middle;letter-spacing:0.5px}
+.day-refbox{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.note-box{margin-top:12px;border-radius:10px;overflow:hidden;border:1px solid rgba(201,168,76,0.3)}
+.note-box-header{background:rgba(201,168,76,0.12);padding:8px 12px;font-size:11px;font-weight:700;color:#8a6a00;letter-spacing:0.5px;display:flex;justify-content:space-between;align-items:center}
+.note-box-header span{opacity:0.7;font-weight:400}
+.note-textarea{width:100%;min-height:72px;padding:10px 12px;font-size:0.84rem;font-family:'DM Sans',sans-serif;border:none;resize:vertical;background:#fffef5;color:var(--text);line-height:1.6;outline:none}
+.note-save-btn{display:block;width:100%;padding:8px;background:var(--sage);color:#fff;border:none;font-size:0.784rem;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;letter-spacing:0.5px}
+.note-save-btn:active{background:var(--forest)}
+.note-saved{background:#e8f5e9;color:#2e7d32;text-align:center;font-size:0.728rem;padding:5px;display:none}
+.refbox-supply{background:rgba(42,90,138,0.06);border-left:3px solid #2a5a8a;border-radius:0 8px 8px 0;padding:9px 12px}
+.refbox-supply .refbox-title{font-size:0.77rem;font-weight:700;color:#2a5a8a;letter-spacing:0.5px;margin-bottom:4px}
+.refbox-supply .refbox-body{font-size:0.805rem;color:var(--muted);line-height:1.8}
+.refbox-sight{background:rgba(107,74,138,0.06);border-left:3px solid #6b4a8a;border-radius:0 8px 8px 0;padding:9px 12px}
+.refbox-sight .refbox-title{font-size:0.77rem;font-weight:700;color:#6b4a8a;letter-spacing:0.5px;margin-bottom:4px}
+.refbox-sight .refbox-body{font-size:0.805rem;color:var(--muted);line-height:1.8}
+.tl-time{font-size:0.77rem;font-weight:500;color:var(--sage);min-width:72px;padding-top:2px;letter-spacing:0.5px}
+.tl-content{flex:1}
+.tl-title{font-size:0.91rem;font-weight:500;margin-bottom:3px}
+.tl-desc{font-size:0.84rem;color:var(--muted);line-height:1.7}
+.tl-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+.tl-link{font-size:0.77rem;color:var(--sage);text-decoration:none;background:rgba(61,107,79,0.08);padding:4px 10px;border-radius:12px;border:1px solid rgba(61,107,79,0.2);display:inline-flex;align-items:center;gap:4px}
+.day-hotel-row{display:flex;align-items:center;justify-content:space-between;background:rgba(122,184,146,0.08);border-radius:10px;padding:10px 14px;margin-top:14px;border:1px solid rgba(122,184,146,0.2)}
+.day-hotel-name{font-size:0.91rem;font-weight:500;color:var(--forest)}
+.day-cost{display:inline-flex;align-items:center;gap:5px;background:#fef9ee;border:1px solid rgba(201,168,76,0.35);border-radius:10px;padding:4px 10px;margin-top:8px;font-size:0.77rem;color:#8a6a1a;font-weight:500}
+.day-hotel-link{font-size:0.77rem;color:var(--sage);text-decoration:none;border:1px solid var(--sage);padding:4px 10px;border-radius:12px}
+.tips-inline{background:#fef9ee;border-left:3px solid var(--gold);padding:10px 14px;border-radius:0 8px 8px 0;margin-top:12px}
+.tips-inline p{font-size:0.84rem;color:#6b5000;line-height:1.7}
+.tips-xmas{background:#fff5f5;border-left:3px solid #cc3333;padding:10px 14px;border-radius:0 8px 8px 0;margin-top:12px}
+.tips-xmas p{font-size:0.84rem;color:#8a1a1a;line-height:1.7}
+.hotel-grid{display:grid;gap:16px}
+.hotel-card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--warm)}
+.hotel-body{padding:1rem 1.25rem}
+.hotel-name{font-family:'Playfair Display',serif;font-size:1.12rem;font-weight:600;margin-bottom:4px}
+.hotel-loc{font-size:0.84rem;color:var(--muted);margin-bottom:8px}
+.hotel-desc{font-size:0.91rem;color:var(--muted);line-height:1.6;margin-bottom:10px}
+.hotel-meta{display:flex;align-items:center;justify-content:space-between}
+.stars{color:var(--gold);font-size:0.91rem}
+.hotel-link{font-size:0.84rem;color:var(--sage);font-weight:500;text-decoration:none;border:1px solid var(--sage);padding:5px 12px;border-radius:20px}
+.upgrade-tag{background:var(--gold);color:#fff;font-size:0.7rem;padding:3px 8px;border-radius:10px;font-weight:500}
+.food-section{margin-bottom:2rem}
+.food-section-title{font-size:0.98rem;font-weight:500;color:var(--sage);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--warm)}
+.food-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.food-item{background:#fff;border-radius:12px;padding:12px;border:1px solid var(--warm)}
+.food-name{font-weight:500;font-size:0.91rem;margin-bottom:4px}
+.food-desc{font-size:0.84rem;color:var(--muted);line-height:1.5}
+.restaurant-card{background:#fff;border-radius:14px;padding:1rem 1.25rem;border:1px solid var(--warm);margin-bottom:10px}
+.restaurant-name{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;margin-bottom:3px}
+.restaurant-loc{font-size:0.84rem;color:var(--muted);margin-bottom:6px}
+.restaurant-desc{font-size:0.91rem;color:var(--muted);line-height:1.5;margin-bottom:8px}
+.restaurant-must{font-size:0.84rem;color:var(--sage);font-weight:500}
+.booking-item{background:#fff;border-radius:14px;padding:1rem 1.25rem;border:1px solid var(--warm);margin-bottom:10px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.booking-info{flex:1}
+.booking-name{font-weight:500;font-size:0.98rem;margin-bottom:3px}
+.booking-when{font-size:0.84rem;color:var(--muted);margin-bottom:4px}
+.booking-url{font-size:0.84rem;color:var(--sage);font-weight:500;text-decoration:none}
+.booking-urgency{font-size:0.77rem;background:#fef3e2;color:#8a5a00;padding:4px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;border:1px solid rgba(138,90,0,0.2)}
+.urgency-high{background:#fde8e8;color:#8a0000;border-color:rgba(138,0,0,0.2)}
+.budget-card{background:#fff;border-radius:16px;padding:1.5rem;border:1px solid var(--warm);margin-bottom:1rem}
+.budget-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--warm);font-size:0.98rem}
+.budget-row:last-child{border-bottom:none;font-family:'Playfair Display',serif;font-size:1.26rem;padding-top:14px}
+.budget-row .amount{color:var(--sage);font-weight:500}
+.budget-row.total .amount{color:var(--forest);font-size:1.54rem}
+.tips-block{background:var(--forest);border-radius:16px;padding:1.5rem}
+.tips-title{color:var(--mint);font-size:0.91rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem}
+.tip{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+.tip-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:6px}
+.tip p{font-size:0.91rem;color:rgba(255,255,255,0.7);line-height:1.6}
+#mapview.section.active{display:block;padding:0;max-width:100%}
+.cwh{font-size:0.63rem;font-weight:600;color:var(--muted);text-align:center;letter-spacing:1px;text-transform:uppercase;padding:2px 0}
+.cday{border-radius:8px;padding:5px 4px 4px;cursor:pointer;border:1px solid var(--warm);background:#fff;min-height:72px;display:flex;flex-direction:column;gap:2px;transition:all 0.15s;overflow:hidden}
+.cday:hover{border-color:var(--sage);box-shadow:0 2px 8px rgba(61,107,79,0.12);transform:translateY(-1px)}
+.cday.active{border-color:var(--sage);background:rgba(61,107,79,0.05)}
+.cday.xmas{border-color:#cc3333;background:rgba(204,51,51,0.04)}
+.cday.nye{border-color:var(--gold);background:rgba(201,168,76,0.08)}
+.cday.branch{border-style:dashed;border-color:#7ab892}
+.cday.empty{background:transparent;border-color:transparent;cursor:default;min-height:72px}
+.cd-top{display:flex;align-items:center;justify-content:space-between}
+.cd-num{font-size:0.91rem;font-weight:700;color:var(--forest);line-height:1}
+.cd-emoji{font-size:0.91rem;line-height:1}
+.cd-day{font-size:0.63rem;color:var(--muted);text-align:center;margin-top:1px}
+.cd-loc{font-size:0.63rem;font-weight:600;color:var(--sage);line-height:1.3;margin-top:2px}
+.cd-note{font-size:0.56rem;color:var(--muted);line-height:1.3;margin-top:1px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+@media(max-width:600px){.hero h1{font-size:2.24rem}.hero-stats{gap:1rem}.food-grid{grid-template-columns:1fr}.tl-time{min-width:50px}.cday{min-height:62px}.cd-loc{font-size:0.56rem}.cd-note{display:none}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">✦ 蜜月精選行程 · 聖誕跨年限定版</div>
+  <h1>紐西蘭<br><span>15天南島x北島</span><br>聖誕跨年蜜月</h1>
+  <div class="hero-sub">12/20 抵達基督城 Christchurch · 1/3 從奧克蘭 Auckland返台 · 凱庫拉 Kaikoura賞鯨 · Franz Josef直升機冰川 · 皇后鎮 Queenstown · 但尼丁 Dunedin · 奧瑪魯 Oamaru · 蒂卡波 Tekapo湖 Lake Tekapo星空 · 奧克蘭 Auckland跨年煙火</div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">15</div><div class="label">天數</div></div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat"><div class="num">🎆</div><div class="label">奧克蘭 Auckland跨年</div></div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat"><div class="num">🚁</div><div class="label">直升機冰川</div></div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat"><div class="num">⛴️</div><div class="label">蒸汽船BBQ</div></div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('itinerary',this)">行程總覽</button>
+  <button class="tab" onclick="showTab('hotels',this)">住宿推薦</button>
+  <button class="tab" onclick="showTab('food',this)">美食指南</button>
+  <button class="tab" onclick="showTab('booking',this)">預訂清單</button>
+  <button class="tab" onclick="showTab('budget',this)">預算規劃</button>
+  <button class="tab" onclick="showTab('driving',this)">🚗 駕車須知</button>
+  <button class="tab" onclick="showTab('routes',this)">📍 每日路線</button>
+  <button class="tab" onclick="showTab('mapview',this)">🗺️ 地圖</button>
+</div>
+
+<!-- ===== 行程總覽 ===== -->
+<div id="itinerary" class="section active">
+  <div class="section-title">完整行程</div>
+  <div class="section-sub">12/20 抵達基督城 Christchurch · 1/3 奧克蘭 Auckland返台 · 自駕為主 · 聖誕節 🎄 Franz Josef · 跨年煙火 🎆 奧克蘭 Auckland · 蒂卡波 Tekapo星空 🌌</div>
+
+  <!-- 行事曆 -->
+  <div style="margin-bottom:24px">
+    <div style="font-family:'Playfair Display',serif;font-size:1.12rem;font-weight:600;margin-bottom:4px">行程總覽日曆</div>
+    <div style="font-size:0.77rem;color:var(--muted);margin-bottom:10px">點擊任一天查看詳情 · <span style="background:rgba(204,51,51,0.1);color:#8a1a1a;padding:1px 6px;border-radius:4px;font-size:0.7rem">🎄 聖誕</span> <span style="background:rgba(201,168,76,0.15);color:#6b4a00;padding:1px 6px;border-radius:4px;font-size:0.7rem">🎆 跨年</span> <span style="background:rgba(61,107,79,0.08);color:#2a6a40;padding:1px 6px;border-radius:4px;font-size:0.7rem">🔀 分支/選項</span></div>
+
+    <!-- 週標題 -->
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:3px">
+      <div class="cwh">日</div><div class="cwh">一</div><div class="cwh">二</div>
+      <div class="cwh">三</div><div class="cwh">四</div><div class="cwh">五</div><div class="cwh">六</div>
+    </div>
+    <!-- 日曆格子容器 -->
+    <div id="cal-grid2" style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px"></div>
+
+    <!-- 詳情面板 -->
+    <div id="cal-detail2" style="display:none;background:#fff;border-radius:14px;border:1px solid var(--warm);padding:1rem 1.25rem;margin-top:10px">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px">
+        <div>
+          <div id="cd2-date" style="font-size:0.77rem;color:var(--sage);font-weight:600;letter-spacing:0.5px"></div>
+          <div id="cd2-title" style="font-family:'Playfair Display',serif;font-size:1.12rem;font-weight:600;color:var(--forest);margin-top:2px"></div>
+        </div>
+        <button onclick="document.getElementById('cal-detail2').style.display='none'" style="border:none;background:none;font-size:1.26rem;color:var(--muted);cursor:pointer;flex-shrink:0">✕</button>
+      </div>
+      <div id="cd2-items" style="font-size:0.84rem;color:var(--muted);line-height:1.9;margin-bottom:8px"></div>
+      <div id="cd2-hotel" style="font-size:0.84rem;color:var(--forest);background:rgba(122,184,146,0.08);border-radius:8px;padding:7px 10px;border:1px solid rgba(122,184,146,0.2)"></div>
+    </div>
+  </div>
+
+  <div class="island-header">南島 · Day 1–11 · 12/20–12/30</div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>1</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">抵達基督城 Christchurch · 取車</div>
+        <div class="day-subtitle">12/20（日）· 台北→奧克蘭 Auckland轉機→基督城 Christchurch · 14:25落地</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算（兩人）：NZD $160–240</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">12/19 18:45</div>
+          <div class="tl-content">
+            <div class="tl-title">台北出發</div>
+            <div class="tl-desc">桃園機場T2起飛，飛行約14h40m，於奧克蘭 Auckland機場I入境轉機（轉機時間2h35m，不同航廈，行李不可直掛，需重新提領托運再辦理國內線）。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">14:25 落地</div>
+          <div class="tl-content">
+            <div class="tl-title">抵達基督城 Christchurch · Go Rentals取車</div>
+            <div class="tl-desc">奧克蘭 Auckland轉機後13:00起飛，14:25抵達基督城 Christchurch。前往Go Rentals取車，確認保險含擋風玻璃與輪胎，在機場周邊先練習左駕，適應後再上路。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午</div>
+          <div class="tl-content">
+            <div class="tl-title">基督城 Christchurch植物園 Botanic Gardens</div>
+            <div class="tl-desc">75公頃城市之肺，玫瑰園、日式庭園，下午光線柔和，完全免費入場。長途飛行後在草地上走走，調整時差最自然的方式。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">傍晚</div>
+          <div class="tl-content">
+            <div class="tl-title">New Regent Street + 🚋 Christchurch Tram</div>
+            <div class="tl-desc">彩色西班牙式建築全紐最上鏡，搭復古路面電車環城一圈約1小時，途經大教堂廣場、植物園 Botanic Gardens、藝術區，NZD $35/人。順便前往New World超市採購補給。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.christchurchtrams.co.nz/" target="_blank">🔗 電車官網</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上</div>
+          <div class="tl-content">
+            <div class="tl-title">5th Street 晚餐 🍽️</div>
+            <div class="tl-desc">評分4.8，主廚桌體驗邊看廚師現場料理邊用餐，肉類精彩。蜜月第一頓正式晚餐，好好享受。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.5thstreet.co.nz/" target="_blank">🔗 訂位</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-refbox">
+        <div class="refbox-supply">
+          <div class="refbox-title">🔵 附近補給</div>
+          <div class="refbox-body">New World Riccarton（超市，距植物園5分鐘車程）· BP基督城機場加油站（取車後順路）· 植物園內免費公廁 · 機場航站內ATM/匯兌</div>
+        </div>
+        <div class="refbox-sight">
+          <div class="refbox-title">🟣 周邊景點參考</div>
+          <div class="refbox-body">The Arts Centre Te Matatiki Toi Ora（哥德石砌建築，緊鄰植物園，免費）· Christchurch Cathedral大教堂廣場（電車必經站）· Riverside Market河畔市集（輕食、咖啡）</div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 建議住宿區域：基督城 Christchurch</div>
+        
+      </div>
+      <div class="tips-inline"><p>💡 長途飛行後不要安排太硬的行程，植物園 Botanic Gardens+電車節奏輕鬆，是調整時差的好開場。The Arts Centre Te Matatiki Toi Ora（哥德式石砌建築，免費入場）若時間充裕也可順遊，緊鄰植物園 Botanic Gardens。</p></div>
+      <div style="margin-top:12px;border-radius:12px;overflow:hidden;border:1px solid rgba(192,90,26,0.3)">
+        <div style="background:rgba(192,90,26,0.08);padding:8px 14px;font-size:0.77rem;font-weight:600;color:#c05a1a;letter-spacing:1px">🔀 備選加碼（若體力允許）</div>
+        <div style="padding:12px 14px;font-size:0.84rem;color:var(--muted);line-height:1.8">
+          <b style="color:#c05a1a">🦙 阿卡羅阿 Akaroa Shamarra Alpacas</b>（距基督城 Christchurch約80km，1h20m）<br>
+          法式小鎮+草泥馬農場二合一，但Day 1 14:25才落地，只趕得上4pm最後一場導覽，時間非常緊。若想去建議改排Day 2早上出發前，或評估體力後決定。導覽$60/人，班次11am/1pm/4pm。
+          <div style="margin-top:6px"><a class="tl-link" href="https://www.shamarra-alpacas.co.nz/" target="_blank">🔗 Shamarra Alpacas官網</a></div>
+        </div>
+      </div>
+
+      <div class="note-box">
+        <div class="note-box-header">📝 旅行筆記 · Day 1 <span>兩人共用，即時同步</span></div>
+        <textarea class="note-textarea" id="note-day1" placeholder="在這裡記錄任何想法、訂位確認碼、臨時決定..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(1)">儲存筆記</button>
+        <div class="note-saved" id="note-saved-day1">✓ 已儲存！方瑄也能看到了</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>2</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">凱庫拉 Kaikoura賞鯨 🐋</div>
+        <div class="day-subtitle">12/21（一）· 自駕約2.5小時 · 下午賞鯨</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算（兩人）：NZD $350–430</div>
+      <div class="timeline">
+        <div class="tl-item" style="background:rgba(192,90,26,0.06);border-left:3px solid #c05a1a;border-radius:0 8px 8px 0;padding:8px 10px 8px 12px;margin-left:-3px">
+          <div class="tl-time" style="color:#c05a1a">備選早上</div>
+          <div class="tl-content">
+            <div class="tl-title" style="color:#c05a1a">🦙 Silverstream Alpaca Farm <span style="font-size:0.7rem;background:rgba(192,90,26,0.12);border:1px solid rgba(192,90,26,0.3);border-radius:8px;padding:1px 6px;margin-left:6px;font-weight:600">選做・加1h・順路</span></div>
+            <div class="tl-desc">距基督城 Christchurch僅15分鐘、機場10分鐘，往凱庫拉 Kaikoura方向完全順路。可餵食、撫摸、抱草泥馬，季節對的話還有小寶寶。約$24/人，玩1小時後繼續北上凱庫拉 Kaikoura，選15:30賞鯨船仍來得及。七天開放。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.silverstreamalpaca.com/" target="_blank">🔗 Silverstream官網</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">早上 8:00</div>
+          <div class="tl-content">
+            <div class="tl-title">基督城 Christchurch出發 沿海岸線北上</div>
+            <div class="tl-desc">沿SH1北上，全程約2.5小時，沿途沿海岸線行駛，右邊太平洋、左邊雪山，紐西蘭最美公路之一。中途可在小鎮稍作休息。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 12:45</div>
+          <div class="tl-content">
+            <div class="tl-title">🐋 Whale Watch Kaikoura 賞鯨船</div>
+            <div class="tl-desc">全球少數可全年看到抹香鯨的地方，95%機率可見到鯨魚，不滿意可獲80%退款保證。鯨魚潛水前搖尾巴出水的瞬間極為震撼，同時還可能看到海豚、信天翁，船程約3.5小時（2小時在海上）。班次為7:15、10:00、12:45，11月到3月加開15:30班次，依抵達時間選擇。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.whalewatch.co.nz/" target="_blank">🔗 官網購票（2–3個月前訂）</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">傍晚</div>
+          <div class="tl-content">
+            <div class="tl-title">Point Kean 海狗岩</div>
+            <div class="tl-desc">步行5分鐘可達，數十隻毛皮海狗懶洋洋曬太陽，完全免費。保持2公尺距離，勿觸碰。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上</div>
+          <div class="tl-content">
+            <div class="tl-title">🦞 路邊龍蝦攤 + 旅館晚餐</div>
+            <div class="tl-desc">凱庫拉 Kaikoura名物，自營攤販現煮岩龍蝦NZD $30–50/隻，太平洋旁席地而吃別有風味，記得帶現金。也可直接在Kaikoura Boutique Hotel餐廳用餐。</div>
+          </div>
+        </div>
+      </div>
+      <div class="day-refbox">
+        <div class="refbox-supply">
+          <div class="refbox-title">🔵 附近補給</div>
+          <div class="refbox-body">New World Kaikoura（124-128 Beach Road，8am–8pm，海鮮選擇豐富）· Z或BP加油站（市區West End）· 賞鯨碼頭旁公廁與遊客中心 · 多家ATM分布市區</div>
+        </div>
+        <div class="refbox-sight">
+          <div class="refbox-title">🟣 周邊景點參考</div>
+          <div class="refbox-body">Kaikoura Peninsula Walkway（海岸線健行步道，免費）· Hapuku Track 觀景步道 · South Bay 漁港小碼頭（拍照）</div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 建議住宿區域：凱庫拉 Kaikoura</div>
+        
+      </div>
+      <div class="tips-inline"><p>💡 賞鯨船需提前2–3個月訂票，依當天班次調整出發時間：早上8點出發剛好趕12:45班次，較保險。</p></div>
+
+      <div class="note-box">
+        <div class="note-box-header">📝 旅行筆記 · Day 2 <span>兩人共用，即時同步</span></div>
+        <textarea class="note-textarea" id="note-day2" placeholder="在這裡記錄任何想法、訂位確認碼、臨時決定..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(2)">儲存筆記</button>
+        <div class="note-saved" id="note-saved-day2">✓ 已儲存！方瑄也能看到了</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>3</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">穿越南島 → Franz Josef Franz Josef Village</div>
+        <div class="day-subtitle">12/22（二）· 自駕約7.5小時（含風景休息站）· Arthur's Pass穿越南阿爾卑斯山</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算（兩人）：NZD $100–150（路途費用）</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上 7:30</div>
+          <div class="tl-content">
+            <div class="tl-title">凱庫拉 Kaikoura出發 沿SH1南下</div>
+            <div class="tl-desc">沿SH1南下返回基督城 Christchurch方向，約2.5小時。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">約 10:00</div>
+          <div class="tl-content">
+            <div class="tl-title">基督城 Christchurch補給</div>
+            <div class="tl-desc">加油、補給午餐，路過不久留，準備接下來的西岸長途。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">約 12:30</div>
+          <div class="tl-content">
+            <div class="tl-title">Arthur's Pass 觀景點</div>
+            <div class="tl-desc">走SH73西進，這裡是全程視野最開闊的地方，南阿爾卑斯山脈 Southern Alps與高山植物環繞，下車拍全景照、呼吸新鮮空氣。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">約 14:00</div>
+          <div class="tl-content">
+            <div class="tl-title">Otira Viaduct 高架橋觀景台</div>
+            <div class="tl-desc">壯觀的公路工程景觀，可以看到道路如何蜿蜒穿過峽谷下坡進入西岸，公路迷必拍角度。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">約 15:30</div>
+          <div class="tl-content">
+            <div class="tl-title">Hokitika 海灘</div>
+            <div class="tl-desc">標誌性的漂流木堆疊海灘，太平洋夕陽，西岸氛圍最濃的休息點，適合拍照留念。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">約 17:30</div>
+          <div class="tl-content">
+            <div class="tl-title">抵達 Franz Josef · check-in · 確認明天直升機</div>
+            <div class="tl-desc">抵達Franz Josef Villagecheck-in，立即聯絡 Franz Josef Glacier Guides 確認明天 12/23 的班次天氣狀況。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.franzjosefglacier.com/" target="_blank">🔗 Franz Josef Glacier Guides</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">傍晚</div>
+          <div class="tl-content">
+            <div class="tl-title">Glacier Valley Walk 預習</div>
+            <div class="tl-desc">免費步道，來回1.7公里約30分鐘，終點可遠望冰川全貌，作為明天直升機冰川的預習與期待。</div>
+          </div>
+        </div>
+      </div>
+      <div class="day-refbox">
+        <div class="refbox-supply">
+          <div class="refbox-title">🔵 附近補給</div>
+          <div class="refbox-body">基督城市區New World/Pak'nSave（出發前最後大型超市，建議在此補齊聖誕節前食材）· Z加油站（沿SH73多處）· Arthur's Pass村內小商店與公廁 · Franz Josef村內4 Square超市與公廁（抵達後）</div>
+        </div>
+        <div class="refbox-sight">
+          <div class="refbox-title">🟣 周邊景點參考</div>
+          <div class="refbox-body">Avalanche Country Café（Arthur's Pass村內，咖啡簡餐）· Hokitika Gorge（若時間充裕，藍綠色峽谷，距路線約40分鐘）· Hokitika 玉石店（西岸特產pounamu greenstone）</div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 建議住宿區域：Franz Josef</div>
+        
+      </div>
+      <div class="tips-inline"><p>💡 全程約7.5小時駕車，拆成多段風景休息站，體感負擔輕很多。住兩晚（12/22–12/23），冰川嘗試有12/23、12/24兩次機會，12/24中午後出發Wānaka。</p></div>
+
+      <div class="note-box">
+        <div class="note-box-header">📝 旅行筆記 · Day 3 <span>兩人共用，即時同步</span></div>
+        <textarea class="note-textarea" id="note-day3" placeholder="在這裡記錄任何想法、訂位確認碼、臨時決定..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(3)">儲存筆記</button>
+        <div class="note-saved" id="note-saved-day3">✓ 已儲存！方瑄也能看到了</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>4</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">🚁 直升機冰川健行（第一次嘗試）<span class="badge">看天氣</span></div>
+        <div class="day-subtitle">12/23（三）· 此生最震撼的體驗 · 全程約4小時</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算（兩人）：NZD $1,600（若起飛）/ NZD $0–100（若取消）</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上報到</div>
+          <div class="tl-content">
+            <div class="tl-title">Franz Josef Glacier Guides 報到</div>
+            <div class="tl-desc">領取登山靴、冰爪、防水外套、登山杖（全部提供）。量體重安排座位後步行至停機坪。出發前2–3小時收到天氣確認通知。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.franzjosefglacier.com/" target="_blank">🔗 Franz Josef Glacier Guides</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">直升機起飛</div>
+          <div class="tl-content">
+            <div class="tl-title">🚁 飛越熱帶雨林 · 5分鐘降落冰川</div>
+            <div class="tl-desc">從停機坪起飛，俯瞰熱帶雨林突然轉為冰雪世界，僅需5分鐘即降落冰川。從夏天直接跳進冬天的視覺衝擊，是紐西蘭獨有的地理奇蹟。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">冰川上 2.5小時</div>
+          <div class="tl-content">
+            <div class="tl-title">穿冰爪探索冰洞、冰塔、深藍藍冰</div>
+            <div class="tl-desc">專業導遊現場鑿出冰梯帶領前進，探索深藍色冰洞、巨大冰塔、裂縫地形。每次路線都不同，因為冰川每天都在移動。全球暖化下冰川已退縮77%，趁現在還在，一定要體驗。</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px;border-radius:12px;overflow:hidden;border:1px solid var(--warm)">
+        <div style="background:var(--forest);padding:10px 14px;font-size:0.84rem;font-weight:600;color:var(--mint);letter-spacing:1px">⛅ 若今天天氣取消 → 備案活動</div>
+        <div style="background:#fff8f0;padding:14px">
+          <div style="font-size:0.84rem;color:var(--muted);line-height:1.9">
+            <b>🥾 Roberts Point Track</b>（約3小時來回）— 穿越熱帶雨林、吊橋，終點可眺望冰川，最佳備案健行<br>
+            <b>🌿 Glacier Valley Eco Tours</b>（約2小時）— 導遊帶你了解冰川地質、雨林生態，雨天也能走<br>
+            <b>☕ 小鎮漫步</b> — Franz Josef 小鎮雖然只有一條街，咖啡廳、酒吧、藝術品小店卻頗有質感<br>
+            <b>♨️ Hot Tubs Glacier Country</b> — 雨林中的私人泡湯，雨天泡湯別有滋味
+          </div>
+        </div>
+      </div>
+
+      <div class="day-refbox">
+        <div class="refbox-supply">
+          <div class="refbox-title">🔵 附近補給</div>
+          <div class="refbox-body">Franz Josef村4 Square超市（村內唯一超市，補給食材+飲水）· 村內加油站（Z或BP）· Franz Josef Glacier Guides報到處公廁 · DOC遊客中心（步道資訊+公廁）</div>
+        </div>
+        <div class="refbox-sight">
+          <div class="refbox-title">🟣 周邊景點參考</div>
+          <div class="refbox-body">Glacier Hot Pools（村內溫泉，付費）· West Coast Wildlife Centre（奇異鳥孵育中心，付費）· Sentinel Rock Walk（村內免費短步道）</div>
+        </div>
+      </div>
+
+      <div class="day-hotel-row" style="margin-top:12px">
+        <div class="day-hotel-name">🏨 建議住宿區域：Franz Josef</div>
+        
+      </div>
+      <div class="tips-inline"><p>💡 今天沒飛成也完全不焦慮——明天12/24早上還有最後一次機會，飛完後中午出發皇后鎮 Queenstown。訂票時選可免費改期的票種，取消後系統自動移到次日班次。體重限制115kg含裝備。</p></div>
+
+      <div class="note-box">
+        <div class="note-box-header">📝 旅行筆記 · Day 4 <span>兩人共用，即時同步</span></div>
+        <textarea class="note-textarea" id="note-day4" placeholder="在這裡記錄任何想法、訂位確認碼、臨時決定..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(4)">儲存筆記</button>
+        <div class="note-saved" id="note-saved-day4">✓ 已儲存！方瑄也能看到了</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block xmas">
+    <div class="day-header">
+      <div class="day-num"><span>5</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">🚁 冰川最後嘗試 → 出發皇后鎮 Queenstown <span class="badge-xmas">🎄 Xmas Eve</span></div>
+        <div class="day-subtitle">12/24（四）· 早上冰川嘗試2（若需要）· 中午後出發 · Haast Pass → Wānaka住一晚（聖誕夜）</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算（兩人）：NZD $150–200（路途+薰衣草農場）</div>
+
+      <div style="margin-top:12px;border-radius:12px;overflow:hidden;border:1px solid var(--warm)">
+        <div style="background:var(--forest);padding:10px 14px;font-size:0.84rem;font-weight:600;color:var(--mint);letter-spacing:1px">早上兩種情況</div>
+        <div style="background:#f0faf4;padding:14px;border-bottom:1px solid var(--warm)">
+          <div style="font-size:0.91rem;font-weight:600;color:#2a6a40;margin-bottom:6px">✅ 昨天已飛成功 → 早上退房直接出發</div>
+          <div style="font-size:0.84rem;color:var(--muted);line-height:1.7">早上悠閒退房，確認行李，早點出發爭取時間，可在 Lake Matheson 多停一會兒欣賞庫克山 Aoraki/Mt Cook倒影。</div>
+        </div>
+        <div style="background:#fff8f0;padding:14px">
+          <div style="font-size:0.91rem;font-weight:600;color:#8a4a00;margin-bottom:6px">⛅ 昨天取消 → 早上最後一次嘗試</div>
+          <div style="font-size:0.84rem;color:var(--muted);line-height:1.7">早上再次嘗試冰川直升機（票已自動移到今天），飛完約中午，立即退房出發。若今天再度取消，中午同樣出發——明天12/25冰川公司公休，已無機會，帶著遺憾上路也是一種記憶。</div>
+        </div>
+      </div>
+
+      <div class="timeline" style="margin-top:14px">
+        <div class="tl-item">
+          <div class="tl-time">中午後出發</div>
+          <div class="tl-content">
+            <div class="tl-title">Franz Josef 退房 · Fox Glacier村加油</div>
+            <div class="tl-desc">Fox Glacier村是離開Franz Josef Village後第一個服務點，🚻廁所、🏪小超市、⛽加油站一應俱全，強烈建議在此加滿油，後段Haast Pass沿途服務站稀少。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">途中</div>
+          <div class="tl-content">
+            <div class="tl-title">Lake Matheson 庫克山 Aoraki/Mt Cook倒影湖</div>
+            <div class="tl-desc">無風時湖面完美倒映庫克山 Aoraki/Mt Cook與雪山，環湖步道約1小時，是這段路線最值得停留的景點之一。🚻廁所、☕ Reflection Cafe可用餐。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">途中</div>
+          <div class="tl-content">
+            <div class="tl-title">Knights Point Lookout + Haast小鎮加油</div>
+            <div class="tl-desc">Knights Point是西海岸最美海景觀景台之一，🚻廁所停車場，下車拍照休息。Haast小鎮有🏪商店、⛽加油站、🍔餐廳，是進入山區前最後補給點，確認油量充足。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">途中</div>
+          <div class="tl-content">
+            <div class="tl-title">Thunder Creek Falls</div>
+            <div class="tl-desc">步行2分鐘即可看到28公尺瀑布直衝峽谷，非常壯觀，🚻廁所停車場，適合下車伸展腿腳。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 3:00</div>
+          <div class="tl-content">
+            <div class="tl-title">🌿 Wānaka Lavender Farm 薰衣草農場</div>
+            <div class="tl-desc">Haast Pass出來後Wānaka正好順路，完全不繞路。20英畝薰衣草田、農場動物、薰衣草冰淇淋、蜂蜜試吃，12月是盛開旺季，紫色花海配南阿爾卑斯雪山背景。🚻廁所、☕茶室、🛍️伴手禮商店，停留約1小時。大人NZD $15。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.wanakalavenderfarm.com/" target="_blank">🔗 官網</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">途中</div>
+          <div class="tl-content">
+            <div class="tl-title">Wānaka市區 最後補給</div>
+            <div class="tl-desc">🏪超市、⛽加油站、🍔餐廳，皇后鎮 Queenstown前65km的最後服務點，視需要停留。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上 6:30</div>
+          <div class="tl-content">
+            <div class="tl-title">抵達 Wānaka · check-in 🎄</div>
+            <div class="tl-desc">聖誕夜在Wānaka湖邊小鎮check-in，悠閒的湖景小鎮比皇后鎮 Queenstown安靜許多，適合長途駕車後放鬆。用備好的補給食材輕鬆晚餐，明天12/25聖誕節早上悠閒，下午再開1小時到皇后鎮 Queenstown。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-refbox">
+        <div class="refbox-supply">
+          <div class="refbox-title">🔵 附近補給</div>
+          <div class="refbox-body">Fox Glacier村4 Square超市與加油站（出發後第一個補給點）· Haast小鎮商店+加油站（後段唯一加油機會，務必加滿）· Wānaka市區New World超市與多家加油站（抵達後）</div>
+        </div>
+        <div class="refbox-sight">
+          <div class="refbox-title">🟣 周邊景點參考</div>
+          <div class="refbox-body">Blue Pools（Haast Pass途中，藍綠色水潭，步行15分鐘，光線好時最美）· Wānaka湖畔That Wanaka Tree（紐西蘭最知名孤樹）· Wānaka市區Ruby's Cinema懷舊小影院</div>
+        </div>
+      </div>
+
+      <div class="day-hotel-row" style="margin-top:14px">
+        <div class="day-hotel-name">🏨 建議住宿區域：Wānaka（聖誕夜）</div>
+        
+      </div>
+      <div class="tips-xmas"><p>🎄 聖誕夜：Franz Josef超市今天仍開，出發前最後補貨。Haast Pass全程約290km，中午出發傍晚可抵達，沿途停靠點安排合理不趕。</p></div>
+
+      <div class="note-box">
+        <div class="note-box-header">📝 旅行筆記 · Day 5 <span>兩人共用，即時同步</span></div>
+        <textarea class="note-textarea" id="note-day5" placeholder="在這裡記錄任何想法、訂位確認碼、臨時決定..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(5)">儲存筆記</button>
+        <div class="note-saved" id="note-saved-day5">✓ 已儲存！方瑄也能看到了</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block xmas">
+    <div class="day-header">
+      <div class="day-num"><span>6</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">Wānaka → 皇后鎮 Queenstown · ⛴️ TSS Earnslaw 聖誕午餐 <span class="badge-xmas">🎄 聖誕節</span></div>
+        <div class="day-subtitle">12/25（五）· Wānaka出發約1小時 · TSS Earnslaw聖誕特別班</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算（兩人）：NZD $300–400</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上</div>
+          <div class="tl-content">
+            <div class="tl-title">Wānaka 出發 → 皇后鎮 Queenstown</div>
+            <div class="tl-desc">Wānaka到皇后鎮 Queenstown約65km，1小時。TSS中午班，早上悠閒出發，抵達後直接前往Steamer Wharf報到。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">中午 12:00</div>
+          <div class="tl-content">
+            <div class="tl-title">⛴️ TSS Earnslaw 聖誕節特別班</div>
+            <div class="tl-desc">聖誕節限定中午班，特別聖誕菜單取代一般BBQ Buffet，附一杯香檳慶祝。航行瓦卡蒂普湖 Lake Wakatipu至Walter Peak高原農莊，湖光山色，蜜月聖誕節最浪漫的一餐。⚠️ 注意：聖誕節無農場示範表演，但郵輪體驗完整。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.realnz.com/en/experiences/tss-earnslaw-walter-peak-experiences/" target="_blank">🔗 RealNZ 訂票</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午</div>
+          <div class="tl-content">
+            <div class="tl-title">皇后鎮 Queenstown check-in · 聖誕節悠閒</div>
+            <div class="tl-desc">回到岸上check-in，Queenstown Gardens湖畔散步，聖誕節夏日天氣絕佳，拍蜜月照留念。多數商店全關，輕鬆度過聖誕節下午。</div>
+          </div>
+        </div>
+      </div>
+      <div class="day-refbox">
+        <div class="refbox-supply">
+          <div class="refbox-title">🔵 附近補給</div>
+          <div class="refbox-body">皇后鎮市區New World超市（Camp Street）· 多家加油站市區周邊 · Steamer Wharf碼頭旁公廁 · Queenstown i-SITE遊客中心（資訊+公廁）</div>
+        </div>
+        <div class="refbox-sight">
+          <div class="refbox-title">🟣 周邊景點參考</div>
+          <div class="refbox-body">Queenstown Hill步道（免費，俯瞰全鎮景觀）· The Mall購物街（小店、咖啡廳聚集）· 瓦卡蒂普湖畔public beach（免費野餐區）</div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 建議住宿區域：皇后鎮 Queenstown</div>
+      </div>
+
+      <div class="note-box">
+        <div class="note-box-header">📝 旅行筆記 · Day 6 <span>兩人共用，即時同步</span></div>
+        <textarea class="note-textarea" id="note-day6" placeholder="在這裡記錄任何想法、訂位確認碼、臨時決定..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(6)">儲存筆記</button>
+        <div class="note-saved" id="note-saved-day6">✓ 已儲存！方瑄也能看到了</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>7</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">皇后鎮 Queenstown冒險日：Shotover Jet · Skyline+Luge · 鹿園 · 奇異鳥公園</div>
+        <div class="day-subtitle">12/26（六）· 皇后鎮 Queenstown活動最密集的一天</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算（兩人）：NZD $600–750</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上 9:00</div>
+          <div class="tl-content">
+            <div class="tl-title">🚤 Shotover Jet 沙特歐瓦噴射快艇</div>
+            <div class="tl-desc">在Shotover River峽谷中以高速360度旋轉漂移，全程25分鐘，全身濕透、腎上腺素爆發。是皇后鎮 Queenstown最具代表性的刺激體驗之一，NZD $175/人，建議早上先玩完再吃早午餐。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.shotoverjet.com/" target="_blank">🔗 購票官網</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">上午 11:00</div>
+          <div class="tl-content">
+            <div class="tl-title">🏔️ Skyline Queenstown 天際線纜車 + Luge 斜坡滑車</div>
+            <div class="tl-desc">搭纜車上鮑勃山（Bob's Peak），俯瞰整個皇后鎮 Queenstown、瓦卡蒂普湖 Lake Wakatipu與雪山，全紐最壯觀城市景觀，山上可吃早午餐。上山後務必加購 Luge 斜坡滑車——坐在小車從山頂沿軌道滑下，可自控速度，3條賽道各有難度，至少玩3–4趟才過癮，約NZD $49起（含纜車）。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.skyline.co.nz/queenstown/" target="_blank">🔗 購票</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 1:30</div>
+          <div class="tl-content">
+            <div class="tl-title">🦌 Deer Park Heights 鹿園高地自駕牧場</div>
+            <div class="tl-desc">距皇后鎮 Queenstown約20分鐘，開車進入私人牧場，近距離餵食梅花鹿、大角羊、駱馬，山頂可俯瞰皇后鎮 Queenstown與瓦卡蒂普湖 Lake Wakatipu全景，也是《魔戒》拍攝地之一。費用約NZD $30/車，約1–1.5小時。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.deerparkheights.co.nz/" target="_blank">🔗 官網</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 3:00</div>
+          <div class="tl-content">
+            <div class="tl-title">🦤 Kiwi Park Queenstown 奇異鳥生態公園</div>
+            <div class="tl-desc">在夜行館親眼看到紐西蘭國鳥奇異鳥（Kiwi）在模擬夜間環境中覓食，是很多人環島都錯過的體驗。同時有啄羊鸚鵡、沙螽等獨特物種，約1–1.5小時，NZD $52/人。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.kiwibird.co.nz/" target="_blank">🔗 官網購票</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上</div>
+          <div class="tl-content">
+            <div class="tl-title">皇后鎮 Queenstown市區晚餐</div>
+            <div class="tl-desc">玩完一整天後，回市區找餐廳輕鬆吃飯，犒賞今天的高強度行程。</div>
+          </div>
+        </div>
+      </div>
+      <div class="day-refbox">
+        <div class="refbox-supply">
+          <div class="refbox-title">🔵 附近補給</div>
+          <div class="refbox-body">Shotover Jet/Skyline附近便利商店 · 皇后鎮市區New World超市 · 各活動報到處皆有公廁與置物櫃 · 加油站市區周邊多處</div>
+        </div>
+        <div class="refbox-sight">
+          <div class="refbox-title">🟣 周邊景點參考</div>
+          <div class="refbox-body">Lake Hayes（鄰近湖泊，free walking track）· Arrowtown歷史小鎮（距皇后鎮20分鐘，金礦歷史街區）· Queenstown Skyline免費觀景平台入口（不搭纜車也可健行上山）</div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 建議住宿區域：皇后鎮 Queenstown</div>
+        
+      </div>
+
+      <div class="note-box">
+        <div class="note-box-header">📝 旅行筆記 · Day 7 <span>兩人共用，即時同步</span></div>
+        <textarea class="note-textarea" id="note-day7" placeholder="在這裡記錄任何想法、訂位確認碼、臨時決定..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(7)">儲存筆記</button>
+        <div class="note-saved" id="note-saved-day7">✓ 已儲存！方瑄也能看到了</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>8</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">皇后鎮 Queenstown · Gibbston Valley 酒莊 · 悠閒日</div>
+        <div class="day-subtitle">12/27（日）· 白天放鬆 · 明天準備神奇峽灣</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算（兩人）：NZD $100–200</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">上午</div>
+          <div class="tl-content">
+            <div class="tl-title">瓦卡蒂普湖 Lake Wakatipu 悠閒早晨</div>
+            <div class="tl-desc">Queenstown Gardens花園漫步，湖畔步道拍蜜月照，補回昨天冒險活動的體力，為明天神奇峽灣過夜船養精蓄銳。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 1:00</div>
+          <div class="tl-content">
+            <div class="tl-title">🍷 Gibbston Valley 酒莊品酒</div>
+            <div class="tl-desc">全球最南黑皮諾產區，岩洞酒窖恆溫，品酒NZD $25起。挑一瓶最喜歡的帶走。從皇后鎮 Queenstown開車約20分鐘，來回半天剛好。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.gibbstonvalley.com/" target="_blank">🔗 官網</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上</div>
+          <div class="tl-content">
+            <div class="tl-title">皇后鎮市區晚餐 · 早點休息</div>
+            <div class="tl-desc">明天12/28 早上要開車去Manapouri（2小時），12:30神奇峽灣過夜船出發，今晚早點休息準備行程。Fergburger是最後機會！</div>
+          </div>
+        </div>
+      </div>
+      <div class="day-refbox">
+        <div class="refbox-supply">
+          <div class="refbox-title">🔵 附近補給</div>
+          <div class="refbox-body">Gibbston village小商店 · 皇后鎮市區New World超市（出發神奇峽灣前最後補給）· 加油站建議今晚加滿，明早直接出發 · Gibbston Valley酒莊內公廁與品酒室</div>
+        </div>
+        <div class="refbox-sight">
+          <div class="refbox-title">🟣 周邊景點參考</div>
+          <div class="refbox-body">Kawarau Bridge 高空彈跳發源地（免費參觀橋面，付費跳橋）· Gibbston River Trail（酒莊區免費單車/健行步道）· 皇后鎮Fergburger（出發前最後一次機會）</div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 建議住宿區域：皇后鎮 Queenstown</div>
+      </div>
+
+      <div class="note-box">
+        <div class="note-box-header">📝 旅行筆記 · Day 8 <span>兩人共用，即時同步</span></div>
+        <textarea class="note-textarea" id="note-day8" placeholder="在這裡記錄任何想法、訂位確認碼、臨時決定..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(8)">儲存筆記</button>
+        <div class="note-saved" id="note-saved-day8">✓ 已儲存！方瑄也能看到了</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>9</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">🛥️ 神奇峽灣 Doubtful Sound 過夜船</div>
+        <div class="day-subtitle">12/28（一）· 早上7:30從皇后鎮出發 · 10:00 Manapouri報到 · 隔天9:30返回</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算（兩人）：NZD $1,500–2,000（過夜船含餐）</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上 7:30</div>
+          <div class="tl-content">
+            <div class="tl-title">皇后鎮 Queenstown 出發 → Manapouri</div>
+            <div class="tl-desc">從皇后鎮出發，沿SH6南下約2小時抵達Manapouri。途中經過Te Anau，沿途Fiordland國家公園景色壯觀。⚠️ 10:00需報到，7:30出發才來得及。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">早上 9:30</div>
+          <div class="tl-content">
+            <div class="tl-title">RealNZ Visitor Centre 報到</div>
+            <div class="tl-desc">Manapouri 64 Waiau Street，出發前30分鐘報到。Waiau St Café 9am–1pm，可在此吃早餐再上船。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">10:00 出發</div>
+          <div class="tl-content">
+            <div class="tl-title">🛥️ 神奇峽灣 Doubtful Sound 過夜船啟航</div>
+            <div class="tl-desc">①Lake Manapouri湖面現代雙體船橫渡45分鐘→②RealNZ巴士越越Wilmot Pass穿越亞高山雨林→③Deep Cove深灣登船——Fiordland Navigator或The Wanderer。探索峽灣各個臂灣直到Tasman Sea，可能遇到海豚、海豹、稀有企鵝。下午茶、晚間BBQ Buffet晚餐、星空觀測，峽灣內划獨木舟或搭小艇探索。NZD $749/人起。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.realnz.com/en/experiences/overnight-cruises/doubtful-sound-overnight-cruises/" target="_blank">🔗 RealNZ 訂票</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上</div>
+          <div class="tl-content">
+            <div class="tl-title">🌟 峽灣內過夜 · 星空觀測</div>
+            <div class="tl-desc">在峽灣深處下錨過夜，遠離塵囂。若天氣晴朗，站在甲板上仰望Fiordland無光害星空，是全行程最震撼的寧靜時刻。私人船艙含衛浴，毛巾床單全包。</div>
+          </div>
+        </div>
+      </div>
+      <div class="day-refbox">
+        <div class="refbox-supply">
+          <div class="refbox-title">🔵 附近補給</div>
+          <div class="refbox-body">Te Anau鎮上超市與加油站（皇后鎮往Manapouri途中最後大型補給點）· Manapouri Waiau St Café（9am–1pm，出發前早餐）· Manapouri遊客中心公廁 · 船上無現金交易，備好信用卡</div>
+        </div>
+        <div class="refbox-sight">
+          <div class="refbox-title">🟣 周邊景點參考</div>
+          <div class="refbox-body">Te Anau湖畔步道（免費，途經小鎮）· Te Anau Glowworm Caves（若有多餘時間可考慮，NZD $145/人）· Manapouri Underground Power Station（地下發電廠導覽，需另外預約）</div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🛥️ 住宿：神奇峽灣 Doubtful Sound 船上</div>
+      </div>
+      <div class="tips-inline"><p>💡 只帶一個隨身包上船，大行李留在皇后鎮旅館或停車場。攜帶防水外套、非滑底鞋、防蟲液（必備）。船上無現金，備好信用卡。隔天中午12:00返回Manapouri。</p></div>
+
+      <div class="note-box">
+        <div class="note-box-header">📝 旅行筆記 · Day 9 <span>兩人共用，即時同步</span></div>
+        <textarea class="note-textarea" id="note-day9" placeholder="在這裡記錄任何想法、訂位確認碼、臨時決定..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(9)">儲存筆記</button>
+        <div class="note-saved" id="note-saved-day9">✓ 已儲存！方瑄也能看到了</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>10</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">神奇峽灣返回 → 🐧 黃眼企鵝 + 🐣 小藍企鵝 奧瑪魯 Oamaru</div>
+        <div class="day-subtitle">12/29（二）· 中午12:00返回Manapouri · Shag Point + Katiki Point順路 · 晚上小藍企鵝</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算（兩人）：NZD $100–150</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上</div>
+          <div class="tl-content">
+            <div class="tl-title">峽灣晨間探索 · 豐盛早餐</div>
+            <div class="tl-desc">清晨在峽灣另一個臂灣繼續探索，晨霧中的Doubtful Sound是最神秘的景色。船上豐盛早餐，準備返程。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">中午 12:00</div>
+          <div class="tl-content">
+            <div class="tl-title">返回 Manapouri · 出發往奧瑪魯方向</div>
+            <div class="tl-desc">巴士+船返回Manapouri碼頭，取車後沿SH1北上往奧瑪魯 Oamaru方向，約3.5小時。沿途可停黃眼企鵝景點。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 2:00</div>
+          <div class="tl-content">
+            <div class="tl-title">🦭 Shag Point 鸕鶿角（順路）</div>
+            <div class="tl-desc">偏離SH1約3km，免費停留約30分鐘。紐西蘭海豹大量聚集在岩台曬太陽，地質奇特，曾出土7公尺蛇頸龍化石。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 3:00</div>
+          <div class="tl-content">
+            <div class="tl-title">🐧 Katiki Point 卡蒂基角（黃眼企鵝）</div>
+            <div class="tl-desc">北奧塔哥最重要的黃眼企鵝繁殖地，1878年燈塔，傍晚前黃眼企鵝準備返巢最佳觀察時機。停留約1小時，捐款NZD $5支持志工保育。完全順路，不繞到但尼丁 Dunedin。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">傍晚 5:30</div>
+          <div class="tl-content">
+            <div class="tl-title">奧瑪魯 Oamaru 抵達 · Heritage Precinct散步</div>
+            <div class="tl-desc">Oamaru Heritage Precinct維多利亞時代白石建築老街，免費散步約30分鐘，蒸汽龐克聖地，等待小藍企鵝上岸時間。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上 19:30</div>
+          <div class="tl-content">
+            <div class="tl-title">🐣 奧瑪魯 Oamaru 小藍企鵝夜間上岸</div>
+            <div class="tl-desc">全球最小企鵝身高僅30公分，每天傍晚準時列隊從海上走回巢穴，笨拙可愛，約1.5小時。嚴禁閃光燈與手機燈。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.penguins.co.nz/" target="_blank">🔗 官網購票</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-refbox">
+        <div class="refbox-supply">
+          <div class="refbox-title">🔵 附近補給</div>
+          <div class="refbox-body">奧瑪魯市區New World超市 · 多家加油站市區周邊 · 小藍企鵝中心遊客服務處公廁 · Heritage Precinct內咖啡廳與商店</div>
+        </div>
+        <div class="refbox-sight">
+          <div class="refbox-title">🟣 周邊景點參考</div>
+          <div class="refbox-body">Moeraki Boulders 摩拉基大圓石（往奧瑪魯途中順路，免費，球形巨石奇觀）· Oamaru Steampunk HQ蒸汽龐克博物館（付費，老街內）· Oamaru Public Gardens 免費花園</div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 建議住宿區域：奧瑪魯 Oamaru</div>
+      </div>
+      <div class="tips-inline"><p>💡 中午12:00從Manapouri出發，3.5小時到Shag Point約下午3:30，Katiki Point下午4:30，奧瑪魯約5:30抵達，19:30小藍企鵝完全來得及。黃眼企鵝和小藍企鵝同一天全搞定！</p></div>
+
+      <div class="note-box">
+        <div class="note-box-header">📝 旅行筆記 · Day 10 <span>兩人共用，即時同步</span></div>
+        <textarea class="note-textarea" id="note-day10" placeholder="在這裡記錄任何想法、訂位確認碼、臨時決定..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(10)">儲存筆記</button>
+        <div class="note-saved" id="note-saved-day10">✓ 已儲存！方瑄也能看到了</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>11</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">蒂卡波湖 Lake Tekapo · 善牧教堂 · 🐟 鮭魚 · 🌌 星空觀測</div>
+        <div class="day-subtitle">12/30（三）· 奧瑪魯出發約4小時 · 善牧教堂 · Lake Pukaki鮭魚 · 星空</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算（兩人）：NZD $350–450</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">早上</div>
+          <div class="tl-content">
+            <div class="tl-title">奧瑪魯 Oamaru 出發 → 蒂卡波 Tekapo</div>
+            <div class="tl-desc">沿SH1北上轉SH8西進，途經Timaru、Fairlie，約4小時抵達蒂卡波湖 Lake Tekapo。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">途中</div>
+          <div class="tl-content">
+            <div class="tl-title">🥧 Fairlie Bakehouse 蘋果派</div>
+            <div class="tl-desc">南島公路傳奇，外皮酥脆內餡飽滿，必停！多帶幾個當伴手禮。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 2:00</div>
+          <div class="tl-content">
+            <div class="tl-title">🐟 Lake Pukaki · Mt Cook Alpine Salmon Shop</div>
+            <div class="tl-desc">普卡機湖旁，庫克山 Aoraki/Mt Cook冰川融水養殖King Salmon，刺身拼盤現切現吃，完全無腥味。湖畔野餐，藍綠色湖水配庫克山全景。10am–4:30pm，不要太晚到。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.alpinesalmon.co.nz/" target="_blank">🔗 Mt Cook Alpine Salmon</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 3:30</div>
+          <div class="tl-content">
+            <div class="tl-title">⛪ 善牧教堂 Church of the Good Shepherd</div>
+            <div class="tl-desc">1935年石砌小教堂正對碧藍湖水與雪山，全紐最上鏡地點。1月魯冰花盛開，粉紫藍花海配藍湖雪山是此行最燦爛的畫面。</div>
+          </div>
+        </div>
+        <div class="tl-item" style="background:rgba(192,90,26,0.06);border-left:3px solid #c05a1a;border-radius:0 8px 8px 0;padding:8px 10px 8px 12px;margin-left:-3px">
+          <div class="tl-time" style="color:#c05a1a">備選加碼</div>
+          <div class="tl-content">
+            <div class="tl-title" style="color:#c05a1a">🥾 Hooker Valley Track <span style="font-size:0.7rem;background:rgba(192,90,26,0.12);border:1px solid rgba(192,90,26,0.3);border-radius:8px;padding:1px 6px;margin-left:6px;font-weight:600">選做・加3h</span></div>
+            <div class="tl-desc">從普卡機湖轉進庫克山 Aoraki/Mt Cook約45分鐘，來回約3小時，終點正對庫克山全景，視野震撼。若選做，TLV晚餐時間需往後調整。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/aoraki-mount-cook-national-park/things-to-do/tracks/hooker-valley-track/" target="_blank">🔗 DOC官網</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上 7:00</div>
+          <div class="tl-content">
+            <div class="tl-title">TLV Restaurant 晚餐</div>
+            <div class="tl-desc">蒂卡波 Tekapo最佳餐廳，慢燉羊肩肉入口即化，搭配南島紅酒，提前訂位。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="http://www.tlv.co.nz/" target="_blank">🔗 訂位</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">夜間 10:00</div>
+          <div class="tl-content">
+            <div class="tl-title">🌌 Earth & Sky 星空觀測</div>
+            <div class="tl-desc">全球最大星空保護區，南半球銀河清晰可見，土星環、木星衛星清晰可見，約2小時。穿最厚的衣服，高原夜間偏冷。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.earthandsky.co.nz/" target="_blank">🔗 官網購票</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-refbox">
+        <div class="refbox-supply">
+          <div class="refbox-title">🔵 附近補給</div>
+          <div class="refbox-body">蒂卡波湖村內Four Square小型超市 · 村內唯一加油站（建議加滿，後段山區較少）· 善牧教堂旁公廁 · 村內遊客中心</div>
+        </div>
+        <div class="refbox-sight">
+          <div class="refbox-title">🟣 周邊景點參考</div>
+          <div class="refbox-body">Mt John Observatory健行步道（白天可健行上山俯瞰整個蒂卡波湖，免費，約2小時來回）· 蒂卡波湖畔牧羊犬雕像（善牧教堂旁，紀念開拓先驅）· Tekapo Springs溫泉（付費，傍晚泡湯選項）</div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 建議住宿區域：蒂卡波湖 Lake Tekapo</div>
+      </div>
+      <div class="tips-inline"><p>💡 黃眼企鵝已在昨天Day 10順路看完，今天蒂卡波行程非常充裕。Fairlie蘋果派和Lake Pukaki鮭魚都在途中順路，不耽誤時間。</p></div>
+
+      <div class="note-box">
+        <div class="note-box-header">📝 旅行筆記 · Day 11 <span>兩人共用，即時同步</span></div>
+        <textarea class="note-textarea" id="note-day11" placeholder="在這裡記錄任何想法、訂位確認碼、臨時決定..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(11)">儲存筆記</button>
+        <div class="note-saved" id="note-saved-day11">✓ 已儲存！方瑄也能看到了</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block nye">
+    <div class="day-header">
+      <div class="day-num"><span>12</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">🎆 蒂卡波 → 皇后鎮還車 → 奧克蘭跨年 · Sky Tower煙火</div>
+        <div class="day-subtitle">12/31（四）· 蒂卡波→皇后鎮（3小時）· 還車→飛奧克蘭 · Sky Tower午夜煙火</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算（兩人）：NZD $378起（Orbit跨年套餐 $189/人 × 2）+ 其他</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">清晨 6:30</div>
+          <div class="tl-content">
+            <div class="tl-title">善牧教堂 Church of the Good Shepherd 最後晨光</div>
+            <div class="tl-desc">清晨再拍一次善牧教堂，晨光人少最美，好好告別蒂卡波湖 Lake Tekapo與魯冰花。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">上午</div>
+          <div class="tl-content">
+            <div class="tl-title">出發 → Fairlie蘋果派 → 皇后鎮還車</div>
+            <div class="tl-desc">Fairlie Bakehouse南島公路傳奇蘋果派，必停！抵達皇后鎮機場 Queenstown Airport前往 Go Rentals 還車，加滿油確認車況，12/20基督城取車到12/31皇后鎮還車共11天。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午</div>
+          <div class="tl-content">
+            <div class="tl-title">皇后鎮機場 → 奧克蘭 Auckland 國內線</div>
+            <div class="tl-desc">皇后鎮機場 Queenstown Airport搭國內線飛往奧克蘭 Auckland，飛行約1.5小時，傍晚抵達。前往飯店check-in，準備跨年夜。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上 7:00</div>
+          <div class="tl-content">
+            <div class="tl-title">🌃 Sky Tower Orbit 旋轉餐廳跨年晚餐</div>
+            <div class="tl-desc">328公尺地標，三道式套餐$189/人含迎賓香檳Mumm Marlborough Rosé。旋轉餐廳俯瞰全奧克蘭夜景，跨年夜氣氛絕佳。不保證窗邊座位（旋轉餐廳每個座位都會轉到窗邊）。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://skycityauckland.co.nz/restaurants/orbit/" target="_blank">🔗 Orbit訂位</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上 9:00</div>
+          <div class="tl-content">
+            <div class="tl-title">Sky Tower 投影秀 + Auckland Harbour Bridge 燈光</div>
+            <div class="tl-desc">晚上9點起Sky Tower播放「特別時刻」投影，民眾投稿生活紀錄輪流投影在塔上。Auckland Harbour Bridge同步啟動Vector Lights動態燈光秀。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">午夜 12:00</div>
+          <div class="tl-content">
+            <div class="tl-title">🎆 Sky Tower 跨年煙火</div>
+            <div class="tl-desc">從塔的三個樓層360度發射約3,500發煙火，高度達塔頂上方80公尺，超過500公斤煙火，南半球最高規格跨年。紐西蘭是全球最早跨年的主要國家之一。</div>
+          </div>
+        </div>
+      </div>
+      <div class="day-refbox">
+        <div class="refbox-supply">
+          <div class="refbox-title">🔵 附近補給</div>
+          <div class="refbox-body">皇后鎮機場航站內咖啡廳與商店（還車後候機）· 奧克蘭CBD Countdown/New World超市（多處）· Sky Tower內公廁與置物服務 · 機場到市區計程車/Uber排隊處</div>
+        </div>
+        <div class="refbox-sight">
+          <div class="refbox-title">🟣 周邊景點參考</div>
+          <div class="refbox-body">Auckland Domain奧克蘭最大公園（免費，跨年人潮可避開的散步去處）· Wynyard Quarter海濱步道（Viaduct Harbour延伸，免費）· Britomart火車站歷史建築（CBD地標）</div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 建議住宿區域：奧克蘭 Auckland CBD（住四晚 12/31–1/3）</div>
+      </div>
+      <div class="tips-inline"><p>💡 Orbit跨年晚餐現在就訂！皇后鎮機場國內線聖誕跨年班次熱門，提前1–2個月訂。還車前加滿油。</p></div>
+
+      <div class="note-box">
+        <div class="note-box-header">📝 旅行筆記 · Day 12 <span>兩人共用，即時同步</span></div>
+        <textarea class="note-textarea" id="note-day12" placeholder="在這裡記錄任何想法、訂位確認碼、臨時決定..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(12)">儲存筆記</button>
+        <div class="note-saved" id="note-saved-day12">✓ 已儲存！方瑄也能看到了</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>13</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">羅托魯阿 Rotorua · 溫泉 + Mitai 毛利晚宴 🌡️</div>
+        <div class="day-subtitle">1/1（五）· 元旦 · 奧克蘭出發自駕約3小時 · 晚上9點結束返回</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算（兩人）：NZD $350–450（含Mitai套票+溫泉）</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">上午</div>
+          <div class="tl-content">
+            <div class="tl-title">跨年後補眠 · 慢慢出發</div>
+            <div class="tl-desc">昨晚跨年到深夜，上午不安排行程，慢慢吃早餐。約10點出發往羅托魯阿 Rotorua，車程約3小時，沿途Waikato農場景色。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 1:30</div>
+          <div class="tl-content">
+            <div class="tl-title">抵達羅托魯阿 Rotorua · 午餐</div>
+            <div class="tl-desc">羅托魯阿市區午餐，感受到濃烈的地熱硫磺味——這是羅托魯阿的「名片」，很多人第一次聞到會嚇一跳，習慣後反而覺得有趣。</div>
+          </div>
+        </div>
+
+        <div class="tl-item" style="background:rgba(192,90,26,0.06);border-left:3px solid #c05a1a;border-radius:0 8px 8px 0;padding:8px 10px 8px 12px;margin-left:-3px">
+          <div class="tl-time" style="color:#c05a1a">下午 2:30 備選</div>
+          <div class="tl-content">
+            <div class="tl-title" style="color:#c05a1a">🌡️ 溫泉泡湯 <span style="font-size:0.7rem;background:rgba(192,90,26,0.12);border:1px solid rgba(192,90,26,0.3);border-radius:8px;padding:1px 6px;margin-left:6px;font-weight:600">二選一</span></div>
+            <div class="tl-desc">
+              <b>選項A：Kerosene Creek</b>（免費）距市區35分鐘，天然溫泉瀑布，叢林環境，可泡澡跳瀑布，⚠️ 停車場注意貴重物品勿留車上<br>
+              <b>選項B：Polynesian Spa</b>（NZD $35起）市區內，設施完整，泡完直接去Mitai最方便，Lake View Pools可俯瞰羅托魯阿湖
+            </div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.polynesianspa.co.nz/" target="_blank">🔗 Polynesian Spa官網</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">下午 5:15</div>
+          <div class="tl-content">
+            <div class="tl-title">Mitai Maori Village 報到</div>
+            <div class="tl-desc">196 Fairy Springs Road，夏季pickup約5:45–6:15pm，或自駕前往。換好乾淨衣物，準備迎接毛利文化之夜。</div>
+            <div class="tl-links">
+              <a class="tl-link" href="https://www.mitai.co.nz/" target="_blank">🔗 Mitai官網</a>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上 6:00</div>
+          <div class="tl-content">
+            <div class="tl-title">🎭 Mitai Maori Village 夜間行程（約3小時）</div>
+            <div class="tl-desc">①毛利勇士身著傳統服飾划獨木舟（Waka）破水而來②哈卡戰舞（Haka）+ Poi舞蹈 + 傳統歌謠③Hangi地坑料理晚餐——雞肉、羊肉、地瓜、馬鈴薯，地熱石蒸烤獨特香氣④叢林螢火蟲夜間步道（Glowworm Walk）。全程約3小時，NZD $99/人。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上 9:00</div>
+          <div class="tl-content">
+            <div class="tl-title">出發返回奧克蘭 Auckland</div>
+            <div class="tl-desc">車程約3小時，凌晨12點抵達奧克蘭。高速公路路況良好，注意疲勞駕駛，中途可在Hamilton服務站休息。</div>
+          </div>
+        </div>
+      </div>
+      <div class="day-refbox">
+        <div class="refbox-supply">
+          <div class="refbox-title">🔵 附近補給</div>
+          <div class="refbox-body">羅托魯阿市區Countdown/New World超市 · 多家加油站市區周邊 · Mitai Maori Village場地內公廁與置物 · Hamilton服務站（回奧克蘭途中中途休息點）</div>
+        </div>
+        <div class="refbox-sight">
+          <div class="refbox-title">🟣 周邊景點參考</div>
+          <div class="refbox-body">Kuirau Park免費地熱公園（市區內，泥漿池+免費足浴池）· 羅托魯阿湖畔Government Gardens（免費玫瑰園）· Redwoods Treewalk紅木森林步道（白天版可順遊，付費高空步道）</div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 建議住宿區域：奧克蘭 Auckland</div>
+      </div>
+
+      <div class="note-box">
+        <div class="note-box-header">📝 旅行筆記 · Day 13 <span>兩人共用，即時同步</span></div>
+        <textarea class="note-textarea" id="note-day13" placeholder="在這裡記錄任何想法、訂位確認碼、臨時決定..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(13)">儲存筆記</button>
+        <div class="note-saved" id="note-saved-day13">✓ 已儲存！方瑄也能看到了</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>14</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">奧克蘭 Auckland 市區 · One Tree Hill · 購物</div>
+        <div class="day-subtitle">1/2（六）· 步行為主 · 蜜月最後悠閒日</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算（兩人）：NZD $200–500（依購物金額）</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">上午</div>
+          <div class="tl-content">
+            <div class="tl-title">補眠 · 慢慢起床</div>
+            <div class="tl-desc">昨晚凌晨才回奧克蘭，今天上午不安排行程，讓身體自然醒，享受蜜月最後一個早晨。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">上午 11:00</div>
+          <div class="tl-content">
+            <div class="tl-title">One Tree Hill 伊甸山 Maungawhau</div>
+            <div class="tl-desc">奧克蘭 Auckland最高點，360度俯瞰城市與海灣及懷特瑪塔港，公園內有大片草地與綿羊，拍蜜月照絕佳，完全免費。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 1:00</div>
+          <div class="tl-content">
+            <div class="tl-title">Viaduct Harbour 港邊午餐</div>
+            <div class="tl-desc">奧克蘭 Auckland帆船之都核心，港邊餐廳午餐，最後一次享受紐西蘭海鮮，日落時分海面金光閃爍。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 2:30</div>
+          <div class="tl-content">
+            <div class="tl-title">🛍️ 購物：Commercial Bay + Britomart + Queen Street</div>
+            <div class="tl-desc">
+              <b>Commercial Bay</b>（港邊新商場）：Zara、Cotton On、Mecca美妝、Smith &amp; Caughey's百貨，地下美食街可順便吃下午茶<br>
+              <b>Britomart</b>（步行5分鐘）：紐西蘭本地設計師品牌Karen Walker、Kate Sylvester、Deadly Ponies包包，質感伴手禮首選<br>
+              <b>Queen Street</b>：Pharmacy藥妝（曼秀雷敦、Antipodes保養品）、紀念品店、Duty Free香水酒類<br>
+              <b>伴手禮清單</b>：麥奴卡蜂蜜（MGO 300+，超市或機場免稅店）、奧塔哥黑皮諾紅酒、UGG羊毛靴/拖鞋、紐西蘭牛羊乳製品（Whittaker's巧克力也很受歡迎）
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上 6:30</div>
+          <div class="tl-content">
+            <div class="tl-title">Ponsonby Road 蜜月最後晚餐 🍽️</div>
+            <div class="tl-desc">奧克蘭 Auckland最有氣質的美食街，Flat White發源地之一，各國料理齊全，慢慢吃、好好回味這15天的蜜月旅程。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">晚上</div>
+          <div class="tl-content">
+            <div class="tl-title">回飯店打包行李</div>
+            <div class="tl-desc">確認所有伴手禮申報清單，蜂蜜、水果、肉類必須申報，明天12:20飛機建議早上9點前到機場。</div>
+          </div>
+        </div>
+      </div>
+      <div class="day-refbox">
+        <div class="refbox-supply">
+          <div class="refbox-title">🔵 附近補給</div>
+          <div class="refbox-body">Commercial Bay地下美食街與超市 · CBD多家Countdown超市 · One Tree Hill公園內公廁 · Ponsonby Road周邊便利商店</div>
+        </div>
+        <div class="refbox-sight">
+          <div class="refbox-title">🟣 周邊景點參考</div>
+          <div class="refbox-body">Cornwall Park（One Tree Hill所在大公園，免費野餐區）· Auckland Art Gallery奧克蘭美術館（免費常設展）· Ponsonby Central小型美食市集（多攤位選擇）</div>
+        </div>
+      </div>
+      <div class="day-hotel-row">
+        <div class="day-hotel-name">🏨 建議住宿區域：奧克蘭 Auckland</div>
+      </div>
+
+      <div class="note-box">
+        <div class="note-box-header">📝 旅行筆記 · Day 14 <span>兩人共用，即時同步</span></div>
+        <textarea class="note-textarea" id="note-day14" placeholder="在這裡記錄任何想法、訂位確認碼、臨時決定..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(14)">儲存筆記</button>
+        <div class="note-saved" id="note-saved-day14">✓ 已儲存！方瑄也能看到了</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-num"><span>15</span>Day</div>
+      <div class="day-title-wrap">
+        <div class="day-title">飛回台北 ✈️</div>
+        <div class="day-subtitle">1/3（日）· NZ077 · 12:20奧克蘭 Auckland起飛 → 18:35抵達台北</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <div class="day-cost">💰 當日估算（兩人）：無額外費用</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">上午</div>
+          <div class="tl-content">
+            <div class="tl-title">飯店退房 · 最後採購</div>
+            <div class="tl-desc">退房後若時間允許，可在機場免稅店採購麥奴卡蜂蜜（MGO 300以上）、奧塔哥紅酒。蜂蜜必須申報，不申報被查罰款NZD $400以上。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">12:20</div>
+          <div class="tl-content">
+            <div class="tl-title">奧克蘭 Auckland機場I → 台北桃園機場T2</div>
+            <div class="tl-desc">NZ077紐西蘭航空波音777經濟艙，飛行約11h15m，18:35抵達台北，提前3小時到機場辦理。帶著滿滿的回憶結束15天紐西蘭蜜月之旅。</div>
+          </div>
+        </div>
+      </div>
+      <div class="day-refbox">
+        <div class="refbox-supply">
+          <div class="refbox-title">🔵 附近補給</div>
+          <div class="refbox-body">奧克蘭機場國際航站免稅店（蜂蜜、紅酒、巧克力最後採購點）· 航站內多家咖啡廳與餐廳 · 機場內ATM與匯兌（用剩紐幣可在此換回）</div>
+        </div>
+        <div class="refbox-sight">
+          <div class="refbox-title">🟣 周邊景點參考</div>
+          <div class="refbox-body">機場內紐西蘭原住民藝術裝置（候機時可順道參觀）· 機場觀景台（部分航站設有飛機觀景區）</div>
+        </div>
+      </div>
+      <div class="tips-inline"><p>💡 出境申報：蜂蜜、水果、肉類必須申報，確認行李前清空所有食物，避免被罰款。</p></div>
+
+      <div class="note-box">
+        <div class="note-box-header">📝 旅行筆記 · Day 15 <span>兩人共用，即時同步</span></div>
+        <textarea class="note-textarea" id="note-day15" placeholder="在這裡記錄任何想法、訂位確認碼、臨時決定..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(15)">儲存筆記</button>
+        <div class="note-saved" id="note-saved-day15">✓ 已儲存！方瑄也能看到了</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 住宿 ===== -->
+<div id="hotels" class="section">
+  <div class="section-title">住宿區域</div>
+  <div class="section-sub">聖誕跨年旺季 · 請自行依喜好訂房 · 建議提前2–3個月</div>
+  <div class="hotel-grid">
+    <div class="hotel-card"><div class="hotel-body"><div class="hotel-name">📍 基督城 Christchurch</div><div class="hotel-loc">Day 1 · 12/20（1晚）</div><div class="hotel-desc">建議選植物園 Botanic Gardens或市中心周邊，取車後步行可達主要景點</div></div></div>
+    <div class="hotel-card"><div class="hotel-body"><div class="hotel-name">📍 凱庫拉 Kaikoura</div><div class="hotel-loc">Day 2 · 12/21（1晚）</div><div class="hotel-desc">建議選海景旅館，步行可達賞鯨碼頭與Point Kean海狗岩</div></div></div>
+    <div class="hotel-card"><div class="hotel-body"><div class="hotel-name">📍 Franz Josef Franz Josef Village</div><div class="hotel-loc">Day 3–4 · 12/22–12/23（2晚）</div><div class="hotel-desc">小鎮選擇不多，建議提早訂。12/24中午出發，需要退房靈活的房型</div></div></div>
+    <div class="hotel-card"><div class="hotel-body"><div class="hotel-name">📍 Wānaka</div><div class="hotel-loc">Day 5 · 12/24 聖誕夜（1晚）</div><div class="hotel-desc">聖誕夜從Franz Josef長途開車後在此休息，12/25早上悠閒再出發皇后鎮 Queenstown趕TSS中午班</div></div></div>
+    <div class="hotel-card"><div class="hotel-body"><div class="hotel-name">📍 皇后鎮 Queenstown</div><div class="hotel-loc">Day 6–8 · 12/25–12/27（3晚，含聖誕節）</div><div class="hotel-desc">聖誕跨年旺季皇后鎮 Queenstown最搶手，越早訂越好。12/28早上出發Manapouri，不需要住第4晚</div></div></div>
+    <div class="hotel-card"><div class="hotel-body"><div class="hotel-name">🛥️ 神奇峽灣 Doubtful Sound 船上</div><div class="hotel-loc">Day 9 · 12/28（1晚）</div><div class="hotel-desc">Fiordland Navigator或The Wanderer，私人船艙含衛浴，毛巾床單全包，含餐</div></div></div>
+    <div class="hotel-card"><div class="hotel-body"><div class="hotel-name">📍 奧瑪魯 Oamaru</div><div class="hotel-loc">Day 10 · 12/29（1晚）</div><div class="hotel-desc">選市區即可，步行距離至小藍企鵝保護區為佳，晚上看完企鵝回房方便</div></div></div>
+    <div class="hotel-card"><div class="hotel-body"><div class="hotel-name">📍 蒂卡波湖 Lake Tekapo</div><div class="hotel-loc">Day 11 · 12/30（1晚）</div><div class="hotel-desc">建議選湖景房型，部分旅館有天窗可躺著看星星，1月魯冰花盛開加持</div></div></div>
+    <div class="hotel-card"><div class="hotel-body"><div class="hotel-name">📍 奧克蘭 Auckland</div><div class="hotel-loc">Day 12–14 · 12/31–1/2（3晚，含跨年夜）</div><div class="hotel-desc">建議選CBD市中心，步行可達Sky Tower跨年煙火會場。跨年夜是全年最搶手，現在就訂</div></div></div>
+  </div>
+</div>
+
+<!-- ===== 美食 ===== -->
+<div id="food" class="section">
+  <div class="section-title">美食指南</div>
+  <div class="section-sub">各區域特色必吃 · 按行程順序排列</div>
+
+  <div class="food-section">
+    <div class="food-section-title">📍 基督城 Christchurch Day 1</div>
+    <div class="food-grid">
+      <div class="food-item"><div class="food-name">5th Street 🍽️</div><div class="food-desc">評分4.8，主廚桌體驗，邊看廚師現場料理邊用餐，肉類精彩。蜜月第一頓正式晚餐，提前訂位備註蜜月。</div></div>
+      <div class="food-item"><div class="food-name">Riverside Market</div><div class="food-desc">雅芳河畔室內市集，早午餐選擇多，各國料理都有，適合抵達當天的輕鬆第一餐。</div></div>
+    </div>
+  </div>
+
+  <div class="food-section">
+    <div class="food-section-title">📍 凱庫拉 Kaikoura Day 2</div>
+    <div class="food-grid">
+      <div class="food-item"><div class="food-name">🦞 Nin's Bin 龍蝦車（必吃）</div><div class="food-desc">凱庫拉 Kaikoura最傳奇的路邊攤，1977年開業至今，自選活龍蝦現烤，從$45起/隻，在太平洋旁席地而吃。帶現金！「Kaikoura」毛利語就是「吃龍蝦」的意思。</div></div>
+      <div class="food-item"><div class="food-name">Kaikoura Seafood BBQ Kiosk</div><div class="food-desc">Point Kean海狗岩旁，海鮮燒烤攤，龍蝦、扇貝、海鮮雜燴、白魚條任選，Lonely Planet推薦，10am–4pm，比Nin's Bin近很多。</div></div>
+      <div class="food-item"><div class="food-name">海鮮雜燴 Seafood Chowder</div><div class="food-desc">凱庫拉 Kaikoura的在地濃湯，鮮度極高，多家餐廳都有，點前先確認是否新鮮現煮。小心海鷗搶食！</div></div>
+    </div>
+  </div>
+
+  <div class="food-section">
+    <div class="food-section-title">📍 Haast Pass 轉場途中 Day 5</div>
+    <div class="food-grid">
+      <div class="food-item"><div class="food-name">Lake Matheson Café</div><div class="food-desc">倒影湖畔咖啡廳，景觀絕佳，適合早出發後的早午餐補給，提供三明治、鬆餅、咖啡，環境超值。</div></div>
+      <div class="food-item"><div class="food-name">Hard Antler Bar & Grill（Haast小鎮）</div><div class="food-desc">Haast Pass上幾乎唯一的像樣餐廳，鹿肉漢堡、鹿肉派是招牌，加滿油順便解決午餐。</div></div>
+    </div>
+  </div>
+
+  <div class="food-section">
+    <div class="food-section-title">📍 Wānaka Day 5（聖誕夜）</div>
+    <div class="food-grid">
+      <div class="food-item"><div class="food-name">Francesca's Italian Kitchen</div><div class="food-desc">Wānaka最受歡迎的義式餐廳，手工義大利麵、燉牛肉，聖誕夜氣氛溫暖，提前訂位。</div></div>
+      <div class="food-item"><div class="food-name">Wānaka Brow Horn</div><div class="food-desc">在地人最愛咖啡廳，早餐/早午餐頂級，搭配湖景慢慢喝，是Wānaka早晨最幸福的體驗。</div></div>
+    </div>
+  </div>
+
+  <div class="food-section">
+    <div class="food-section-title">📍 皇后鎮 Queenstown Day 6–8</div>
+    <div class="food-grid">
+      <div class="food-item"><div class="food-name">🍔 Fergburger（必吃）</div><div class="food-desc">全球最知名漢堡之一，每天7am–11pm，排隊15–45分鐘是日常，強烈推薦「Mrs Ferg」藍紋起司羊肉漢堡，大到快脫臼，肉汁四溢。避開晚餐尖峰，下午3–5點去最快。</div></div>
+      <div class="food-item"><div class="food-name">Fergbaker（隔壁）</div><div class="food-desc">Fergburger同家的麵包店，肉派、牛角麵包、現烤麵包，早餐最佳選擇，不用排漢堡的長龍。</div></div>
+      <div class="food-item"><div class="food-name">⛴️ TSS Earnslaw BBQ吃到飽（必吃）</div><div class="food-desc">Day 8晚上，百年蒸汽船+Walter Peak農莊BBQ Buffet，含本地羊肉、牛肉、海鮮、甜點，夕陽湖景，蜜月最難忘的一餐。選Evening Dining Cruise，約NZD $200/人。</div></div>
+      <div class="food-item"><div class="food-name">Gibbston Valley Winery</div><div class="food-desc">Day 8下午，全球最南黑皮諾產區，岩洞酒窖品酒NZD $25起，挑一瓶帶走配TSS晚餐。</div></div>
+    </div>
+  </div>
+
+  <div class="food-section">
+    <div class="food-section-title">📍 奧瑪魯 Oamaru Day 9</div>
+    <div class="food-grid">
+      <div class="food-item"><div class="food-name">Whitestone Cheese Factory</div><div class="food-desc">奧瑪魯 Oamaru知名起司廠，試吃各種熟成起司，伴手禮首選，買一塊配紅酒，是最有在地感的零食。</div></div>
+      <div class="food-item"><div class="food-name">Steam Victorian Café</div><div class="food-desc">蒸汽龐克風格咖啡廳，在維多利亞老街內，看企鵝前的晚餐好去處，氣氛特別。</div></div>
+    </div>
+  </div>
+
+  <div class="food-section">
+    <div class="food-section-title">📍 蒂卡波 Tekapo湖 Day 10</div>
+    <div class="food-grid">
+      <div class="food-item"><div class="food-name">🐟 Mt Cook Alpine Salmon Shop（必停）</div><div class="food-desc">普卡機湖 Lake Pukaki旁SH8遊客中心內，庫克山 Aoraki/Mt Cook冰川融水養殖的King Salmon，水質純淨魚肉入口即化完全無腥味。必點新鮮刺身拼盤（配芥末醬油）、燻鮭魚、鮭魚卵醬。可買真空包裝帶走，店外有長椅可坐著俯瞰藍綠色普卡機湖 Lake Pukaki野餐。10am–4:30pm準時關門。</div></div>
+      <div class="food-item"><div class="food-name">TLV Restaurant（必訂）</div><div class="food-desc">蒂卡波 Tekapo最佳餐廳，評分4.6，慢燉羊肩肉入口即化，搭配南島紅酒，星空觀測前的浪漫晚餐，務必提前訂位。</div></div>
+      <div class="food-item"><div class="food-name">Fairlie Bakehouse（轉場途中）</div><div class="food-desc">Day 11回基督城 Christchurch途中必停，南島公路傳奇的蘋果派，外皮酥脆內餡飽滿，多帶幾個當伴手禮。</div></div>
+    </div>
+  </div>
+
+  <div class="food-section">
+    <div class="food-section-title">📍 奧克蘭 Auckland Day 12–14</div>
+    <div class="food-grid">
+      <div class="food-item"><div class="food-name">🥂 Orbit 360° 跨年套餐（必訂）</div><div class="food-desc">Day 12（12/31）Sky Tower 52樓旋轉餐廳，三道式套餐$189/人含迎賓香檳Mumm Marlborough Rosé，旺季極早售罄，現在就訂。不保證窗邊座位但整圈都會轉到。</div></div>
+      <div class="food-item"><div class="food-name">Ponsonby Road</div><div class="food-desc">奧克蘭 Auckland最有氣質的美食街，Flat White發源地之一，Day 13元旦悠閒吃晚餐，各國料理齊全，適合邊走邊吃。</div></div>
+      <div class="food-item"><div class="food-name">MASU by Nic Watt</div><div class="food-desc">SkyCity內當代日式餐廳，招牌東京拼盤用牡蠣殼盛裝生魚片，和牛燒烤水準極高，若想吃一頓精緻的可排Day 14。</div></div>
+    </div>
+  </div>
+
+  <div class="food-section">
+    <div class="food-section-title">📍 羅托魯阿 Rotorua Day 13（1/1）</div>
+    <div class="food-grid">
+      <div class="food-item"><div class="food-name">🎭 Mitai Hangi 地坑料理（晚宴版選項）</div><div class="food-desc">毛利傳統烹調，天然火山熱氣蒸烤雞肉、豬肉、地瓜，煙燻香氣獨特，文化體驗與美食合一，含在毛利晚宴套票內。</div></div>
+      <div class="food-item"><div class="food-name">Te Puia 附近咖啡廳</div><div class="food-desc">白天版行程的午餐，地熱參觀完順便解決，Rotorua市區有多家選擇。</div></div>
+    </div>
+  </div>
+
+  <div class="food-section">
+    <div class="food-section-title">🛍️ 帶回台灣的伴手禮</div>
+    <div class="food-grid">
+      <div class="food-item"><div class="food-name">麥奴卡蜂蜜 Manuka Honey</div><div class="food-desc">選MGO 300+以上等級，在奧克蘭 Auckland機場免稅店買最方便。⚠️入台必須申報，不申報罰款NZD $400起。</div></div>
+      <div class="food-item"><div class="food-name">奧塔哥黑皮諾 Pinot Noir</div><div class="food-desc">Gibbston Valley或Central Otago產區，在皇后鎮 Queenstown酒莊選一瓶最喜歡的帶回，是最有記憶點的伴手禮。</div></div>
+      <div class="food-item"><div class="food-name">Whitestone 起司</div><div class="food-desc">奧瑪魯 Oamaru起司廠，真空包裝可帶回，申報後通常可放行，南島最具代表性的在地風味。</div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== 預訂清單 ===== -->
+<div id="booking" class="section">
+  <div class="section-title">預訂清單</div>
+  <div class="section-sub">紅色＝最容易客滿，聖誕跨年旺季務必立即處理</div>
+
+  <!-- Klook Pass 區塊 -->
+  <div style="background:linear-gradient(135deg,#1a3a2a,#2d5a3d);border-radius:14px;padding:16px;margin-bottom:20px;color:#fff">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div style="font-size:1.4rem">🎫</div>
+      <div>
+        <div style="font-size:0.98rem;font-weight:700;letter-spacing:0.5px">Klook 紐西蘭景點通票 NZ Icons Pass</div>
+        <div style="font-size:0.77rem;opacity:0.75;margin-top:2px">最高8折 · 2–5個活動打包 · 60天內開通 · 開通後90天使用</div>
+      </div>
+      <a href="https://www.klook.com/zh-TW/activity/70710-klook-new-zealand-icons-pass/" target="_blank"
+        style="margin-left:auto;background:var(--gold);color:#1a1208;font-size:0.77rem;font-weight:700;padding:6px 14px;border-radius:20px;text-decoration:none;white-space:nowrap;flex-shrink:0">前往購買</a>
+    </div>
+
+    <!-- 符合你行程的活動 -->
+    <div style="font-size:0.77rem;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:1px;margin-bottom:8px">✅ 符合你行程的活動</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+      <div style="background:rgba(255,255,255,0.12);border-radius:8px;padding:8px 12px;font-size:0.84rem">
+        <div style="font-weight:600">🐋 Whale Watch Cruise in Kaikoura</div>
+        <div style="opacity:0.75;font-size:0.77rem;margin-top:2px">Day 2（12/21）· 下午賞鯨</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.12);border-radius:8px;padding:8px 12px;font-size:0.84rem">
+        <div style="font-weight:600">🚤 Shotover Jet Boat Ride in Queenstown</div>
+        <div style="opacity:0.75;font-size:0.77rem;margin-top:2px">Day 7（12/26）· 早上9:00</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.12);border-radius:8px;padding:8px 12px;font-size:0.84rem">
+        <div style="font-weight:600">🏛️ Christchurch Combos - Double or Triple Pass</div>
+        <div style="opacity:0.75;font-size:0.77rem;margin-top:2px">Day 1（12/20）· 基督城市區景點</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.12);border-radius:8px;padding:8px 12px;font-size:0.84rem">
+        <div style="font-weight:600">🌋 Te Puia Ticket</div>
+        <div style="opacity:0.75;font-size:0.77rem;margin-top:2px">Day 13（1/1）· 羅托魯阿地熱+毛利文化（若選白天版）</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.12);border-radius:8px;padding:8px 12px;font-size:0.84rem">
+        <div style="font-weight:600">♨️ Wai Ariki Hot Springs</div>
+        <div style="opacity:0.75;font-size:0.77rem;margin-top:2px">Day 13（1/1）· 羅托魯阿溫泉備選</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:8px 12px;font-size:0.84rem;border:1px dashed rgba(255,255,255,0.2)">
+        <div style="font-weight:600;opacity:0.8">🚙 Lake Tekapo Guided 4WD Tour <span style="font-size:0.7rem;opacity:0.6">（備選）</span></div>
+        <div style="opacity:0.6;font-size:0.77rem;margin-top:2px">Day 10（12/29）· 蒂卡波四驅車之旅</div>
+      </div>
+    </div>
+
+    <!-- 不在行程的活動 -->
+    <div style="font-size:0.77rem;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:1px;margin-bottom:8px">❌ 不在你行程的其他通票活動</div>
+    <div style="font-size:0.77rem;color:rgba(255,255,255,0.5);line-height:2;padding:0 4px">
+      Hobbiton Movie Set Tour · Hobbiton + Waitomo Caves Tour · Hell's Gate Mud Spa ·
+      Queenstown Thunder Jet · Akaroa Dolphins Cruise · Doubtful Sound Cruise ·
+      Glenorchy Paradise Tour · Zipline Rotorua Canopy Tours · Stewart Island Ferry ·
+      Glow Worm Kayak Tour · Kereru Zipline Queenstown · Auckland Harbour Bridge Climb ·
+      Glass Bottom Boat Cathedral Cove · Kaikoura Zip-line · Wild Kiwi Encounter ·
+      Akaroa Wildlife Cruise
+    </div>
+
+    <!-- 建議方案 -->
+    <div style="margin-top:14px;background:rgba(201,168,76,0.2);border:1px solid rgba(201,168,76,0.4);border-radius:10px;padding:10px 12px">
+      <div style="font-size:0.84rem;font-weight:700;color:var(--gold);margin-bottom:6px">💡 建議方案：4景點通票</div>
+      <div style="font-size:0.77rem;color:rgba(255,255,255,0.85);line-height:1.9">
+        ① 凱庫拉賞鯨 ② Shotover Jet ③ Christchurch Combos ④ Te Puia 或 Wai Ariki Hot Springs<br>
+        原價約 NZD $700–800（兩人），通票8折可省 NZD $140–160<br>
+        <span style="opacity:0.7">⚠️ TSS Earnslaw BBQ 不在通票內，需另外在 RealNZ 官網單獨訂</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#fde8e8;border:1px solid rgba(138,0,0,0.2);border-radius:12px;padding:12px 16px;margin-bottom:16px">
+    <div style="font-size:0.84rem;font-weight:600;color:#8a0000;margin-bottom:4px">⚠️ 聖誕跨年旺季警告</div>
+    <div style="font-size:0.84rem;color:#8a0000;line-height:1.7">12月下旬–1月初是紐西蘭全年最旺季，住宿、活動、餐廳同時爆滿。以下所有項目請盡快預訂。</div>
+  </div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">🥂 Sky Tower 跨年晚餐 Orbit</div><div class="booking-when">12/31 · 晚上7:00 · 窗邊座位 · 備註蜜月+跨年</div><a class="booking-url" href="https://www.skycityauckland.co.nz" target="_blank">skycityauckland.co.nz</a></div><div class="booking-urgency urgency-high">🔥 最優先！立即訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">🏨 皇后鎮 Queenstown住宿</div><div class="booking-when">12/25–12/27 · 3晚（含聖誕節）· 備註蜜月</div></div><div class="booking-urgency urgency-high">🔥 最優先！立即訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">🚁 直升機冰川健行 Franz Josef</div><div class="booking-when">12/23 或 12/24 · 依天氣 · Franz Josef Glacier Guides</div><a class="booking-url" href="https://www.franzjosefglacier.com/" target="_blank">franzjosefglacier.com</a></div><div class="booking-urgency urgency-high">2–3個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">⛴️ TSS Earnslaw 蒸汽船晚餐</div><div class="booking-when">12/27 · 傍晚6:00班次 · Evening Dining Cruise（晚餐版）</div><a class="booking-url" href="https://www.realnz.com/en/experiences/day-cruises/tss-earnslaw-lake-cruises/" target="_blank">realnz.com</a></div><div class="booking-urgency urgency-high">1–2個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">凱庫拉 Kaikoura賞鯨</div><div class="booking-when">12/21 · 下午12:45 · 抵達當天即賞鯨</div><a class="booking-url" href="https://www.whalewatch.co.nz" target="_blank">whalewatch.co.nz</a></div><div class="booking-urgency urgency-high">2–3個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">🚤 Shotover Jet</div><div class="booking-when">12/26 · 早上9:00 · NZD $175/人</div><a class="booking-url" href="https://www.shotoverjet.com/" target="_blank">shotoverjet.com</a></div><div class="booking-urgency urgency-high">1個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">🏔️ Skyline + Luge</div><div class="booking-when">12/26 · 上午11:00</div><a class="booking-url" href="https://www.skyline.co.nz/queenstown/" target="_blank">skyline.co.nz</a></div><div class="booking-urgency">1個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">黃眼企鵝導覽 The OPERA（方案A）</div><div class="booking-when">12/28 · 下午2:30 · 約2小時 · 視聖誕節營運狀況</div><a class="booking-url" href="https://www.wildlife.co.nz" target="_blank">wildlife.co.nz</a></div><div class="booking-urgency">1個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">小藍企鵝夜間觀賞</div><div class="booking-when">12/28 · 傍晚7:30 · 約1.5小時</div><a class="booking-url" href="https://www.penguins.co.nz" target="_blank">penguins.co.nz</a></div><div class="booking-urgency">1個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">🌌 Earth &amp; Sky 星空觀測</div><div class="booking-when">12/29 · 夜間約10:00 · 約2小時 · 蒂卡波 Tekapo湖 Lake Tekapo</div><a class="booking-url" href="https://www.earthandsky.co.nz" target="_blank">earthandsky.co.nz</a></div><div class="booking-urgency">1個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">TLV Restaurant 蒂卡波 Tekapo晚餐</div><div class="booking-when">12/29 · 晚上7:00</div><a class="booking-url" href="http://www.tlv.co.nz/" target="_blank">tlv.co.nz</a></div><div class="booking-urgency">1個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">Grand Suites Lake Tekapo</div><div class="booking-when">12/29 · 1晚 · 指定湖景房型</div><a class="booking-url" href="https://grandsuitestekapo.co.nz/" target="_blank">grandsuitestekapo.co.nz</a></div><div class="booking-urgency">1個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">SO/ Auckland</div><div class="booking-when">12/30–1/3 · 4晚（含跨年夜）</div><a class="booking-url" href="https://so-hotels.com/en/auckland/" target="_blank">so-hotels.com</a></div><div class="booking-urgency urgency-high">🔥 跨年旺季優先訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">基督城 Christchurch → 奧克蘭 Auckland 國內線</div><div class="booking-when">12/30 · 下午班次 · 跨年假期班次熱門</div><div class="booking-url">建議提前1–2個月訂</div></div><div class="booking-urgency">1–2個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">租車南島（Go Rentals）</div><div class="booking-when">12/20基督城 Christchurch取車 · 12/30基督城 Christchurch機場還車 · 共11天 · 推薦SUV</div><a class="booking-url" href="https://www.gorentals.co.nz" target="_blank">gorentals.co.nz</a></div><div class="booking-urgency">1–2個月前訂</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">國際駕照</div><div class="booking-when">出發前辦理 · 各地監理所</div><div class="booking-url">費用台幣200元，帶身分證+護照+駕照正本+2吋照片</div></div><div class="booking-urgency">出發前1個月</div></div>
+</div>
+
+<!-- ===== 預算 ===== -->
+<div id="budget" class="section">
+  <div class="section-title">預算規劃</div>
+  <div class="section-sub">兩人合計估算（台幣）· 聖誕跨年旺季版 · 15天</div>
+  <div class="budget-card">
+    <div class="budget-row"><span>國際機票（經濟艙，兩人來回）</span><span class="amount">7–10萬（旺季加成）</span></div>
+    <div class="budget-row"><span>租車11天（含油費、保險）</span><span class="amount">2–3萬</span></div>
+    <div class="budget-row"><span>國內線（基督城 Christchurch→奧克蘭 Auckland，兩人）</span><span class="amount">約3,000–5,000</span></div>
+    <div class="budget-row"><span>住宿14晚（含跨年升級、蒂卡波 Tekapo湖 Lake Tekapo升級）</span><span class="amount">11–16萬（旺季溢價）</span></div>
+    <div class="budget-row"><span>🚁 直升機冰川健行（兩人）</span><span class="amount">約3萬</span></div>
+    <div class="budget-row"><span>⛴️ TSS蒸汽船BBQ晚餐（兩人）</span><span class="amount">約8,000</span></div>
+    <div class="budget-row"><span>🌌 Earth &amp; Sky 星空觀測（兩人）</span><span class="amount">約4,000</span></div>
+    <div class="budget-row"><span>其他活動（賞鯨、企鵝×2、Shotover/Skyline/鹿園/Kiwi Park、酒莊）</span><span class="amount">6–8萬</span></div>
+    <div class="budget-row"><span>餐食（含跨年晚餐、聖誕補給）</span><span class="amount">5–7萬</span></div>
+    <div class="budget-row"><span>伴手禮與購物</span><span class="amount">1–2萬</span></div>
+    <div class="budget-row total"><span>合計（一人）</span><span class="amount">約21–28萬</span></div>
+  </div>
+  <div class="tips-block">
+    <div class="tips-title">聖誕跨年旺季重要提醒</div>
+    <div class="tip"><div class="tip-dot"></div><p>12/25 幾乎所有商店、超市全關，務必12/24在Franz Josef出發前補齊所有補給，Wānaka聖誕夜備好食材</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>SO/ Auckland跨年夜住宿與皇后鎮 Queenstown住宿現在就訂，旺季是全年最搶手的住宿</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>直升機冰川健行在Franz Josef住兩晚，12/23、12/24兩天嘗試機會，12/24飛完中午出發，聖誕夜住Wānaka，12/25再到皇后鎮 Queenstown</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>TSS蒸汽船一定選 Evening Dining Cruise（晚餐版），可看夕陽且含海鮮</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>跨年煙火最佳觀賞位置：Queen Street或downtown waterfront，提早一小時占位，注意當地禁止攜帶酒類與煙火</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>所有餐廳訂位備註「蜜月旅行 Honeymoon」，紐西蘭服務人員通常有驚喜安排</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>12月下旬紐西蘭是夏天，南島白天溫暖15–25°C，Franz Josef 仍偏冷，需帶防風外套</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>出境申報：蜂蜜、水果、肉類必須申報，不申報被查罰款 NZD $400 以上</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>12月底蒂卡波 Tekapo湖 Lake Tekapo正值魯冰花盛開季，紫色花海配雪山是此行最燦爛的畫面</p></div>
+  </div>
+</div>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+
+<!-- ===== 駕車須知 ===== -->
+<div id="driving" class="section">
+  <div class="section-title">🚗 紐西蘭駕車須知</div>
+  <div class="section-sub">出發前必讀 · 整理自紐西蘭交通局官方手冊（NZTA 2024）</div>
+
+  <div style="background:#fde8e8;border:1px solid rgba(138,0,0,0.2);border-radius:12px;padding:12px 16px;margin-bottom:16px">
+    <div style="font-size:0.91rem;font-weight:600;color:#8a0000;margin-bottom:4px">⚠️ 最重要的三件事</div>
+    <div style="font-size:0.84rem;color:#8a0000;line-height:1.9">
+      1. <b>靠左駕駛</b> — 台灣靠右，紐西蘭靠左，每次上路和路口都要提醒自己<br>
+      2. <b>開車絕對不用手機</b> — 違法，須使用免持設備<br>
+      3. <b>不要酒後駕車</b> — 紐西蘭嚴格執法，20歲以上血液酒精濃度上限極低，最好完全不喝
+    </div>
+  </div>
+
+  <div class="food-section">
+    <div class="food-section-title">🛣️ 基本行車規則</div>
+    <div class="food-grid">
+      <div class="food-item">
+        <div class="food-name">靠左行駛 Keep Left</div>
+        <div class="food-desc">一律靠左。部分狹窄道路無中線標記。每個路口、每次上路都要提醒自己靠左，尤其剛下車時最容易忘記。</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">速限 Speed Limits</div>
+        <div class="food-desc">鄉間公路一般限速100km/h，市區50km/h。全國設有測速照相機。惡劣天氣需低於速限行駛。超過3,500kg車輛最高限速90km/h。</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">方向燈 Indicators</div>
+        <div class="food-desc">轉彎、變換車道、進出車道前，至少提前3秒打方向燈。轉彎時一律要讓直行車輛先行。</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">安全帶 Seatbelts</div>
+        <div class="food-desc">法律規定車內每人無論前後座都必須繫安全帶。7歲以下兒童須使用合格兒童安全座椅。</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">超車 Overtaking</div>
+        <div class="food-desc">大多數道路每側只有一條車道。右側黃色實線表示超車危險，雙黃實線兩側均不得超車。超車時前方100m內不能有車輛。絕對不要在彎道超車。</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">停車 Parking</div>
+        <div class="food-desc">車頭必須朝行駛方向停車，否則可能被罰款或拖走。單行道可兩側停車。不要停在黃色虛線上。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="food-section">
+    <div class="food-section-title">🌉 特殊路況</div>
+    <div class="food-grid">
+      <div class="food-item">
+        <div class="food-name">單線橋 One-Lane Bridges</div>
+        <div class="food-desc">紐西蘭常見！看到標誌就減速確認對向來車。小紅箭頭指向的方向必須讓路。若需讓路就完全停車。Haast Pass、Arthur's Pass途中會遇到多處。</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">碎石路 Gravel Roads</div>
+        <div class="food-desc">山區常有未鋪柏油的碎石路，容易打滑。減速靠左，對向來車時進一步減速，塵土影響視線，飛石可能擊破擋風玻璃。租車保險確認是否含擋風玻璃。</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">圓環 Roundabouts</div>
+        <div class="food-desc">必須順時針繞行，並讓路給右側來車。台灣不常見，進圓環前要特別注意右側。</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">鐵路平交道 Railway Crossings</div>
+        <div class="food-desc">紅燈閃爍必須停車，等燈號停止閃爍才可通行。看到STOP標誌要完全停下，確認兩側無火車才能通過。</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">路上動物 Animals on Road</div>
+        <div class="food-desc">鄉間道路常遇羊群、牛群，要減速，千萬不要按喇叭（會嚇到動物）。停車等動物離開或跟在後面慢慢開，聽從牧人指示。</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">欣賞風景 Scenic Stops</div>
+        <div class="food-desc">想拍照一定要找安全的停車場或觀景台才能停車。不要在沒有停車標誌或黃色虛線的地方停車。駕駛時視線專注路況。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="food-section">
+    <div class="food-section-title">😴 疲勞駕駛</div>
+    <div class="food-grid">
+      <div class="food-item">
+        <div class="food-name">每2小時休息一次</div>
+        <div class="food-desc">長途飛行後第一天特別容易疲勞，Day 1抵達基督城 Christchurch後不要安排太多開車。每次駕駛超過2小時就找安全地方休息。感到困倦時立即靠邊小睡15–30分鐘。</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">行車時間比想像長</div>
+        <div class="food-desc">地圖距離看起來近，但山區道路蜿蜒、坡度大，實際行車時間往往比估算多30–50%。我們行程的長途駕車日（Day 3、Day 5）已預留充裕時間，不要提早出發又在路上停太多次。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="food-section">
+    <div class="food-section-title">📋 出發前準備清單</div>
+    <div class="food-grid">
+      <div class="food-item">
+        <div class="food-name">✅ 國際駕照</div>
+        <div class="food-desc">台灣監理所申辦，費用200元，需身分證+護照+駕照+2吋照片。開車時需同時攜帶台灣駕照+國際駕照，缺一不可。</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">✅ 租車保險確認</div>
+        <div class="food-desc">Go Rentals取車時確認保險是否含：擋風玻璃、輪胎、碎石路損傷。南島碎石路多，強烈建議加購全險。</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">✅ Google Maps離線地圖</div>
+        <div class="food-desc">山區和西岸部分路段收訊差，出發前下載紐西蘭南島離線地圖。Arthur's Pass、Haast Pass、Franz Josef一帶收訊不穩定。</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">✅ 油料管理</div>
+        <div class="food-desc">Haast Pass前在Fox Glacier或Haast小鎮加滿油，後段沒有加油站。還車前加滿油，否則租車公司會以高價計費。</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">✅ 天氣與路況查詢</div>
+        <div class="food-desc">天氣：metservice.com · 路況：nzta.govt.nz/traffic · 山區天氣變化快，Haast Pass、Arthur's Pass冬季可能結冰。12月雖是夏天，高山路段仍需注意。</div>
+      </div>
+      <div class="food-item">
+        <div class="food-name">✅ 手機固定架</div>
+        <div class="food-desc">開車不能手持手機，租車時確認是否有手機支架，或自備。導航音量調大，不需要低頭看螢幕。</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#f0faf4;border:1px solid rgba(61,107,79,0.2);border-radius:12px;padding:14px 16px;margin-top:4px">
+    <div style="font-size:0.84rem;font-weight:600;color:#2a6a40;margin-bottom:8px">🔗 官方資源</div>
+    <div style="font-size:0.84rem;color:var(--muted);line-height:2">
+      紐西蘭交通局官網：<a href="https://www.nzta.govt.nz/new-residents-and-visitors" target="_blank" style="color:var(--sage)">nzta.govt.nz/new-residents-and-visitors</a><br>
+      路況查詢：<a href="https://www.nzta.govt.nz/traffic" target="_blank" style="color:var(--sage)">nzta.govt.nz/traffic</a><br>
+      天氣預報：<a href="https://www.metservice.com" target="_blank" style="color:var(--sage)">metservice.com</a><br>
+      行程規劃器：<a href="https://journeys.nzta.govt.nz/journey-planner" target="_blank" style="color:var(--sage)">journeys.nzta.govt.nz/journey-planner</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 每日路線 ===== -->
+<div id="routes" class="section">
+  <div class="section-title">📍 每日行車路線</div>
+  <div class="section-sub">點擊日期查看當天地圖路線 · 右上角可開啟 Google Maps 導航</div>
+
+  <div id="route-day-selector" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"></div>
+
+  <div id="route-info" style="background:#f0faf4;border-radius:10px;padding:10px 14px;margin-bottom:10px;font-size:0.84rem;color:var(--muted);line-height:1.8;display:none">
+  </div>
+
+  <div id="route-leaflet-map" style="width:100%;height:72vw;max-height:500px;min-height:320px;border-radius:12px;overflow:hidden;border:1px solid var(--warm);display:none;z-index:1"></div>
+
+  <div style="margin-top:12px;background:#fff8f0;border-radius:10px;padding:10px 14px;font-size:0.77rem;color:var(--muted);line-height:1.9">
+    ⚠️ 山區路段（Arthur's Pass、Haast Pass）收訊不穩，出發前請下載離線地圖
+  </div>
+</div>
+
+<!-- ===== 地圖 ===== -->
+<div id="mapview" class="section">
+
+  <!-- Header -->
+  <div style="padding:14px 16px;background:var(--forest);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.12rem;color:#fff;font-weight:600">行程路線地圖</div>
+      <div style="font-size:0.77rem;color:rgba(255,255,255,0.5);margin-top:2px">可縮放拖動 · 點擊景點圖示查看詳情</div>
+    </div>
+    <a href="https://www.google.com/maps/dir/-43.5307,172.6232/-42.3959,173.6807/-42.9436,171.5631/-42.8856,171.5333/-42.7167,170.9667/-43.3876,170.1817/-43.8800,169.0500/-45.0247,168.6761/-45.0304,168.6608/-45.4833,170.8167/-45.2833,170.85/-45.1103,170.9799/-44.0034,170.4825/-43.4866,172.5469/-36.8484,174.7622/-36.9049,174.7896/-36.7873,175.0531" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#1a1208;font-weight:600;font-size:0.84rem;padding:8px 16px;border-radius:8px;text-decoration:none;font-family:'DM Sans',sans-serif;flex-shrink:0">
+      🗺️ Google Maps 完整路線
+    </a>
+  </div>
+
+  <!-- Filter chips -->
+  <div style="padding:10px 16px;background:#fff;border-bottom:1px solid var(--warm);display:flex;gap:8px;overflow-x:auto">
+    <button onclick="filterMarkers('all',this)" class="mchip active">全部</button>
+    <button onclick="filterMarkers('north',this)" class="mchip">🌿 北島</button>
+    <button onclick="filterMarkers('south',this)" class="mchip">🏔️ 南島</button>
+    <button onclick="filterMarkers('xmas',this)" class="mchip">🎄 聖誕節</button>
+    <button onclick="filterMarkers('nye',this)" class="mchip">🎆 跨年</button>
+  </div>
+  <div style="padding:8px 16px;background:#f9f7f4;border-bottom:1px solid var(--warm);display:flex;gap:6px;overflow-x:auto;align-items:center">
+    <span style="font-size:0.7rem;color:var(--muted);white-space:nowrap;font-weight:600;letter-spacing:0.5px">每日路線：</span>
+    <button onclick="filterDay(1,this)"  class="mchip" style="font-size:0.7rem;padding:3px 9px">Day1</button>
+    <button onclick="filterDay(2,this)"  class="mchip" style="font-size:0.7rem;padding:3px 9px">Day2</button>
+    <button onclick="filterDay(3,this)"  class="mchip" style="font-size:0.7rem;padding:3px 9px">Day3</button>
+    <button onclick="filterDay(4,this)"  class="mchip" style="font-size:0.7rem;padding:3px 9px">Day4</button>
+    <button onclick="filterDay(5,this)"  class="mchip" style="font-size:0.7rem;padding:3px 9px">Day5</button>
+    <button onclick="filterDay(6,this)"  class="mchip" style="font-size:0.7rem;padding:3px 9px">Day6</button>
+    <button onclick="filterDay(7,this)"  class="mchip" style="font-size:0.7rem;padding:3px 9px">Day7</button>
+    <button onclick="filterDay(8,this)"  class="mchip" style="font-size:0.7rem;padding:3px 9px">Day8</button>
+    <button onclick="filterDay(9,this)"  class="mchip" style="font-size:0.7rem;padding:3px 9px">Day9</button>
+    <button onclick="filterDay(10,this)" class="mchip" style="font-size:0.7rem;padding:3px 9px">Day10</button>
+    <button onclick="filterDay(11,this)" class="mchip" style="font-size:0.7rem;padding:3px 9px">Day11</button>
+    <button onclick="filterDay(12,this)" class="mchip" style="font-size:0.7rem;padding:3px 9px">Day12</button>
+    <button onclick="filterDay(13,this)" class="mchip" style="font-size:0.7rem;padding:3px 9px">Day13</button>
+    <button onclick="filterDay(14,this)" class="mchip" style="font-size:0.7rem;padding:3px 9px">Day14</button>
+    <button onclick="filterDay(15,this)" class="mchip" style="font-size:0.7rem;padding:3px 9px">Day15</button>
+  </div>
+
+  <!-- Leaflet map container -->
+  <div id="leaflet-map" style="width:100%;height:72vw;max-height:560px;min-height:340px;z-index:1"></div>
+
+  <!-- Legend -->
+  <div style="padding:10px 16px;background:#fff;border-bottom:1px solid var(--warm);display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+    <div style="display:flex;align-items:center;gap:5px;font-size:0.77rem;color:var(--muted)"><div style="width:14px;height:14px;border-radius:50%;background:#3d6b4f;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.2)"></div>景點/活動</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:0.77rem;color:var(--muted)"><div style="width:14px;height:14px;border-radius:50%;background:#c05a1a;border:2px solid #ffd0a8;box-shadow:0 1px 4px rgba(0,0,0,0.2)"></div>✨ 新增景點</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:0.77rem;color:var(--muted)"><div style="width:14px;height:14px;border-radius:50%;background:#c9a84c;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.2)"></div>住宿</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:0.77rem;color:var(--muted)"><div style="width:14px;height:14px;border-radius:50%;background:#8a1a1a;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.2)"></div>🎄 聖誕節</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:0.77rem;color:var(--muted)"><div style="width:14px;height:14px;border-radius:50%;background:#b8860b;border:2px solid var(--gold);box-shadow:0 1px 4px rgba(0,0,0,0.2)"></div>🎆 跨年</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:0.77rem;color:var(--muted)"><div style="font-size:0.91rem;color:#3d6b4f">➤</div>行程路線（含方向箭頭）</div>
+  </div>
+
+  <!-- Place list -->
+  <div style="padding:16px;max-width:800px;margin:0 auto">
+    <div style="font-family:'Playfair Display',serif;font-size:1.19rem;font-weight:600;margin-bottom:4px;color:var(--text)">所有景點一覽</div>
+    <div style="font-size:0.84rem;color:var(--muted);margin-bottom:14px">共 29 個景點 · 點擊任一在 Google Maps 查看</div>
+    <div id="place-list"></div>
+  </div>
+</div>
+
+<style>
+.mchip{padding:5px 12px;border-radius:20px;border:1px solid var(--warm);background:#fff;color:var(--muted);font-size:0.77rem;font-family:'DM Sans',sans-serif;cursor:pointer;white-space:nowrap;transition:all 0.15s}
+.mchip.active{background:var(--sage);color:#fff;border-color:var(--sage)}
+.leaflet-popup-content-wrapper{border-radius:12px!important;box-shadow:0 4px 20px rgba(0,0,0,0.15)!important;font-family:'DM Sans',sans-serif!important}
+.leaflet-popup-content{margin:12px 14px!important;font-family:'DM Sans',sans-serif!important}
+.nz-popup-day{font-size:0.7rem;color:#3d6b4f;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.nz-popup-name{font-size:0.98rem;font-weight:600;color:#1a3a2a;margin-bottom:5px}
+.nz-popup-desc{font-size:0.84rem;color:#5a6b62;line-height:1.6;margin-bottom:8px}
+.nz-popup-link{font-size:0.77rem;color:#3d6b4f;font-weight:500;text-decoration:none;border:1px solid #3d6b4f;padding:4px 10px;border-radius:20px;display:inline-block}
+</style>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+
+<!-- Leaflet JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+function showTab(id,btn){
+  document.querySelectorAll('.section').forEach(function(s){
+    s.classList.remove('active');
+    s.style.display='none';
+  });
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+  var el=document.getElementById(id);
+  el.style.display='block';
+  el.classList.add('active');
+  if(id==='mapview'){el.style.padding='0';el.style.maxWidth='100%';}
+  else{el.style.padding='';el.style.maxWidth='';}
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='mapview'){setTimeout(initLeafletMap,120);}
+}
+
+var CDAYS=[
+  {date:'12/20',m:12,d:20,day:1, emoji:'✈️',loc:'基督城 Christchurch',note:'14:25落地取車',cls:''},
+  {date:'12/21',m:12,d:21,day:2, emoji:'🐋',loc:'凱庫拉 Kaikoura',note:'下午賞鯨',cls:''},
+  {date:'12/22',m:12,d:22,day:3, emoji:'🚗',loc:'→Franz Josef',note:"Arthur's Pass風景線",cls:''},
+  {date:'12/23',m:12,d:23,day:4, emoji:'🚁',loc:'Franz Josef',note:'冰川嘗試1',cls:'branch'},
+  {date:'12/24',m:12,d:24,day:5, emoji:'🎄',loc:'→Wānaka',note:'冰川嘗試2→聖誕夜住Wānaka',cls:'xmas branch'},
+  {date:'12/25',m:12,d:25,day:6, emoji:'🎄',loc:'→皇后鎮 Queenstown',note:'⛴️ TSS聖誕午餐',cls:'xmas'},
+  {date:'12/26',m:12,d:26,day:7, emoji:'🤿',loc:'皇后鎮 Queenstown',note:'Shotover/Skyline等',cls:''},
+  {date:'12/27',m:12,d:27,day:8, emoji:'🍷',loc:'皇后鎮 Queenstown',note:'Gibbston酒莊',cls:''},
+  {date:'12/28',m:12,d:28,day:9, emoji:'🛥️',loc:'神奇峽灣 Doubtful Sound',note:'7:30出發·10:00過夜船啟航·隔天12:00返回',cls:''},
+  {date:'12/29',m:12,d:29,day:10,emoji:'🐧',loc:'→奧瑪魯 Oamaru',note:'9:30返回·黃眼企鵝·小藍企鵝',cls:''},
+  {date:'12/30',m:12,d:30,day:11,emoji:'🌌',loc:'→蒂卡波 Tekapo',note:'鮭魚·善牧教堂·星空觀測',cls:''},
+  {date:'12/31',m:12,d:31,day:12,emoji:'🎆',loc:'→奧克蘭 Auckland',note:'皇后鎮還車·Sky Tower跨年',cls:'nye'},
+  {date:'1/1',  m:1, d:1, day:13,emoji:'🌋',loc:'羅托魯阿 Rotorua',note:'Mitai毛利夜間行程',cls:''},
+  {date:'1/2',  m:1, d:2, day:14,emoji:'🛍️',loc:'奧克蘭 Auckland',note:'One Tree Hill·購物',cls:''},
+  {date:'1/3',  m:1, d:3, day:15,emoji:'✈️',loc:'→台北',note:'12:20起飛',cls:''},
+];
+
+var CDETAIL=[
+  {title:'抵達基督城 Christchurch · 取車',items:'14:25落地 · Go Rentals取車 · 植物園 Botanic Gardens · 電車+New Regent Street · 5th Street晚餐',hotel:'🏨 基督城 Christchurch'},
+  {title:'凱庫拉 Kaikoura賞鯨 🐋',items:'8:00出發（2.5小時）· 12:45賞鯨船（95%見抹香鯨）· Point Kean海狗岩 · 路邊龍蝦攤晚餐',hotel:'🏨 凱庫拉 Kaikoura'},
+  {title:'穿越南島 → Franz Josef',items:"7:30出發 · 基督城補給 · Arthur's Pass觀景點 · Otira Viaduct · Hokitika海灘 · 17:30抵達Franz Josef Village",hotel:'🏨 Franz Josef'},
+  {title:'🚁 直升機冰川健行（第一次嘗試）',items:'報到→5分鐘飛抵冰川→2.5小時冰爪探索冰洞冰塔 · 若取消→備案：Roberts Point Track / Hot Tubs',hotel:'🏨 Franz Josef'},
+  {title:'🚁 冰川最後嘗試 · 聖誕夜住Wānaka',items:'早上冰川最後嘗試→中午後出發→Fox Glacier加油→Lake Matheson→Knights Point→Haast加油→Thunder Creek Falls→🌿薰衣草農場→Wānaka聖誕夜',hotel:'🏨 Wānaka'},
+  {title:'⛴️ TSS Earnslaw聖誕午餐 → 皇后鎮 Queenstown',items:'Wānaka出發1小時→皇后鎮→TSS Earnslaw聖誕特別班（中午，特別菜單+香檳，無農場示範）→check-in→Queenstown Gardens散步',hotel:'🏨 皇后鎮 Queenstown'},
+  {title:'皇后鎮 Queenstown冒險日',items:'9:00 Shotover Jet噴射快艇 · 11:00 Skyline+Luge斜坡滑車 · Deer Park Heights鹿園 · Kiwi Park奇異鳥公園',hotel:'🏨 皇后鎮 Queenstown'},
+  {title:'🍷 Gibbston Valley酒莊 · 悠閒日',items:'Queenstown Gardens晨間散步 · Gibbston Valley酒莊品酒（全球最南黑皮諾）· 市區晚餐 · 早點休息準備神奇峽灣',hotel:'🏨 皇后鎮 Queenstown'},
+  {title:'🛥️ 神奇峽灣 Doubtful Sound 過夜船',items:'7:30皇后鎮出發→Manapouri（2小時）· 10:00過夜船啟航 · Lake Manapouri→Wilmot Pass→Deep Cove · 峽灣探索·海豚海豹·晚餐·星空·船上過夜',hotel:'🛥️ 神奇峽灣 Doubtful Sound船上'},
+  {title:'神奇峽灣返回 → 🐧黃眼企鵝 + 🐣小藍企鵝',items:'中午12:00返回Manapouri · Shag Point鸕鶿角（順路·海豹）· Katiki Point卡蒂基角（黃眼企鵝·燈塔）· 奧瑪魯Heritage Precinct · 19:30小藍企鵝上岸',hotel:'🏨 奧瑪魯 Oamaru'},
+  {title:'蒂卡波 Tekapo · 鮭魚 · 善牧教堂 · 🌌星空',items:'奧瑪魯出發（4小時）· Fairlie蘋果派 · Lake Pukaki鮭魚刺身野餐 · 善牧教堂Church of the Good Shepherd · TLV晚餐 · Earth&Sky星空觀測',hotel:'🏨 蒂卡波 Tekapo'},
+  {title:'🎆 蒂卡波→皇后鎮還車→飛奧克蘭→跨年',items:'善牧教堂晨光 · Fairlie蘋果派 · 皇后鎮機場Go Rentals還車（11天）· 國內線飛奧克蘭 · Orbit 360°跨年晚餐 · 午夜3500發煙火',hotel:'🏨 奧克蘭 Auckland'},
+  {title:'羅托魯阿 Rotorua · Mitai毛利夜間',items:'下午出發羅托魯阿（3小時）· 溫泉備選 · Mitai Maori Village：獨木舟+哈卡+Hangi+螢火蟲 · 凌晨回奧克蘭',hotel:'🏨 奧克蘭 Auckland'},
+  {title:'奧克蘭 Auckland市區 + 購物',items:'補眠 · One Tree Hill伊甸山 · Viaduct Harbour午餐 · Commercial Bay/Britomart/Queen Street購物 · Ponsonby Road最後晚餐',hotel:'🏨 奧克蘭 Auckland'},
+  {title:'飛回台北 ✈️',items:'退房 · 機場免稅店採購（蜂蜜需申報）· 12:20 NZ077起飛 → 18:35抵達台北',hotel:'🏨 — 返台'},
+];
+
+function buildCal2(){
+  var g=document.getElementById('cal-grid2');
+  if(!g||g.children.length>0)return;
+  for(var i=0;i<6;i++){var e=document.createElement('div');e.className='cday empty';g.appendChild(e);}
+  CDAYS.forEach(function(d,idx){
+    var el=document.createElement('div');
+    el.className='cday'+(d.cls?' '+d.cls:'');
+    el.dataset.idx=idx;
+    el.innerHTML='<div class="cd-top"><div class="cd-num">'+d.d+'</div><div class="cd-emoji">'+d.emoji+'</div></div><div class="cd-day">Day '+d.day+'</div><div class="cd-loc">'+d.loc+'</div><div class="cd-note">'+d.note+'</div>';
+    el.onclick=function(){showCal2(this);};
+    g.appendChild(el);
+  });
+  var total=5+CDAYS.length;var rem=(7-total%7)%7;
+  for(var j=0;j<rem;j++){var e2=document.createElement('div');e2.className='cday empty';g.appendChild(e2);}
+}
+
+function showCal2(el){
+  document.querySelectorAll('.cday').forEach(function(c){c.classList.remove('active');});
+  el.classList.add('active');
+  var idx=parseInt(el.dataset.idx);
+  var d=CDAYS[idx];var det=CDETAIL[idx];
+  var panel=document.getElementById('cal-detail2');
+  var dows=['日','一','二','三','四','五','六'];
+  document.getElementById('cd2-date').textContent=d.date+'（'+dows[new Date(2026,d.m-1,d.d).getDay()]+'）· Day '+d.day;
+  document.getElementById('cd2-title').textContent=d.emoji+' '+det.title;
+  document.getElementById('cd2-items').innerHTML=det.items.split(' · ').join('<br>· ');
+  document.getElementById('cd2-hotel').textContent=det.hotel;
+  panel.style.display='block';
+  panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+window.addEventListener('load',function(){buildCal2();});
+
+/* ── PLACES DATA ── */
+var PLACES=[
+  {id:0,  day:'Day 1 · 12/20（六）',              emoji:'🚋', name:'基督城 Christchurch 電車＋藝術中心',          desc:'14:25落地取車 · 復古路面電車環城 · 植物園 Botanic Gardens',          lat:-43.5307,lng:172.6232, type:'act',  island:'south', mapq:'Christchurch Botanic Gardens New Zealand'},
+  {id:1,  day:'Day 2 · 12/21（日）',              emoji:'🐋', name:'凱庫拉 Kaikoura 賞鯨',                   desc:'下午賞鯨船，95% 機率見抹香鯨 · 海狗岩 · 龍蝦攤',     lat:-42.3959,lng:173.6807, type:'act',  island:'south', mapq:'Whale Watch Kaikoura New Zealand'},
+  {id:2,  day:'Day 3 · 12/22（一）',              emoji:'🏔️', name:"Arthur's Pass 觀景點",          desc:'南阿爾卑斯山脈 Southern Alps最開闊視野 · 風景休息站',              lat:-42.9436,lng:171.5631, type:'new',  island:'south', mapq:"Arthur's Pass Village New Zealand"},
+  {id:3,  day:'Day 3 · 12/22（一）',              emoji:'🌉', name:'Otira Viaduct 高架橋',           desc:'壯觀公路工程景觀，俯瞰峽谷',                        lat:-42.8856,lng:171.5333, type:'new',  island:'south', mapq:'Otira Viaduct New Zealand'},
+  {id:4,  day:'Day 3 · 12/22（一）',              emoji:'🏖️', name:'Hokitika 海灘',                  desc:'標誌性漂流木海灘，太平洋夕陽',                       lat:-42.7167,lng:170.9667, type:'new',  island:'south', mapq:'Hokitika Beach New Zealand'},
+  {id:5,  day:'Day 4 · 12/23（二）',              emoji:'🚁', name:'Franz Josef 直升機冰川（嘗試1）',         desc:'直升機5分鐘降落冰川，探索冰洞冰塔2.5小時',            lat:-43.3876,lng:170.1817, type:'act',  island:'south', mapq:'Franz Josef Glacier Guides New Zealand'},
+  {id:6,  day:'Day 5 · 12/24（三）🎄',            emoji:'🌿', name:'Wānaka Lavender Farm 薰衣草農場', desc:'Haast Pass出來順路 · 12月薰衣草盛開 · 紫色花海配雪山 · NZD $15', lat:-44.6842,lng:169.1114, type:'new',  island:'south', mapq:'Wanaka Lavender Farm New Zealand'},
+  {id:7,  day:'Day 6 · 12/25（四）🎄',            emoji:'⛴️', name:'TSS Earnslaw 聖誕午餐班',        desc:'聖誕節限定中午班，特別菜單+香檳，Walter Peak農莊',     lat:-45.0304,lng:168.6608, type:'xmas', island:'south', mapq:'TSS Earnslaw Queenstown New Zealand'},
+  {id:8,  day:'Day 7 · 12/26（五）',              emoji:'🤿', name:'Shotover Jet 噴射快艇',          desc:'峽谷中360度高速旋轉，全身濕透，NZD $175/人',          lat:-45.0247,lng:168.6761, type:'act',  island:'south', mapq:'Shotover Jet Queenstown New Zealand'},
+  {id:9,  day:'Day 7 · 12/26（五）',              emoji:'🏔️', name:'Skyline + Luge 纜車斜坡滑車',   desc:'俯瞰皇后鎮 Queenstown全景 + 山頂斜坡滑車，至少玩3趟',           lat:-45.0246,lng:168.6523, type:'act',  island:'south', mapq:'Skyline Queenstown New Zealand'},
+  {id:10, day:'Day 7 · 12/26（五）',              emoji:'🦌', name:'Deer Park Heights 鹿園高地',     desc:'自駕牧場餵鹿大角羊，俯瞰皇后鎮 Queenstown，魔戒拍攝地',         lat:-45.0667,lng:168.5833, type:'act',  island:'south', mapq:'Deer Park Heights Queenstown New Zealand'},
+  {id:11, day:'Day 7 · 12/26（五）',              emoji:'🦤', name:'Kiwi Park 奇異鳥生態公園',       desc:'夜行館親眼看到紐西蘭國鳥Kiwi覓食',                   lat:-45.0281,lng:168.6593, type:'act',  island:'south', mapq:'Kiwi Birdlife Park Queenstown New Zealand'},
+  {id:12, day:'Day 8 · 12/27（六）',              emoji:'🍷', name:'Gibbston Valley 酒莊',            desc:'全球最南黑皮諾產區，岩洞酒窖品酒',                   lat:-45.0333,lng:168.9333, type:'act',  island:'south', mapq:'Gibbston Valley Winery Queenstown New Zealand'},
+  {id:13, day:'Day 9 · 12/28（日）',              emoji:'🛥️', name:'Manapouri · 神奇峽灣出發點',       desc:'7:30皇后鎮出發·10:00過夜船啟航·船上過夜',            lat:-45.5667,lng:167.5667, type:'act',  island:'south', mapq:'Manapouri New Zealand'},
+  {id:14, day:'Day 9 · 12/28（日）',              emoji:'🌊', name:'神奇峽灣 Doubtful Sound',         desc:'Deep Cove · 海豚海豹 · 峽灣星空 · 全行程最寧靜時刻',  lat:-45.2667,lng:166.9667, type:'act',  island:'south', mapq:'Doubtful Sound New Zealand'},
+  {id:15, day:'Day 10 · 12/29（一）',             emoji:'🦭', name:'Shag Point 鸕鶿角',             desc:'海豹聚集岩台 · 億年地質 · 蛇頸龍化石發現地',         lat:-45.4833,lng:170.8167, type:'act',  island:'south', mapq:'Shag Point Palmerston Otago New Zealand'},
+  {id:16, day:'Day 10 · 12/29（一）',             emoji:'🐧', name:'Katiki Point 卡蒂基角',          desc:'北奧塔哥最重要黃眼企鵝繁殖地 · 1878年燈塔',          lat:-45.2833,lng:170.85,   type:'act',  island:'south', mapq:'Katiki Point Lighthouse Moeraki New Zealand'},
+  {id:17, day:'Day 10 · 12/29（一）',             emoji:'🏛️', name:'Oamaru Heritage Precinct',      desc:'維多利亞時代白石建築老街，蒸汽龐克聖地',             lat:-45.0978,lng:170.9714, type:'act',  island:'south', mapq:'Oamaru Victorian Precinct New Zealand'},
+  {id:18, day:'Day 10 · 12/29（一）',             emoji:'🐣', name:'小藍企鵝 奧瑪魯 Oamaru',               desc:'全球最小企鵝30公分，傍晚7:30列隊上岸',                lat:-45.1103,lng:170.9799, type:'act',  island:'south', mapq:'Oamaru Blue Penguin Colony New Zealand'},
+  {id:19, day:'Day 11 · 12/30（二）',             emoji:'🐟', name:'Lake Pukaki · Mt Cook Alpine Salmon', desc:'庫克山冰川融水養殖鮭魚 · 刺身野餐 · 庫克山倒影',     lat:-44.0197,lng:170.1753, type:'act',  island:'south', mapq:'Lake Pukaki Mt Cook New Zealand'},
+  {id:20, day:'Day 11 · 12/30（二）',             emoji:'⛪', name:'善牧教堂 Church of the Good Shepherd',              desc:'1935年石砌教堂，1月魯冰花花海配雪山',                 lat:-44.0034,lng:170.4825, type:'act',  island:'south', mapq:'Church of the Good Shepherd Lake Tekapo New Zealand'},
+  {id:21, day:'Day 11 · 12/30（二）',             emoji:'🌌', name:'Earth & Sky 星空觀測',            desc:'全球最大星空保護區，土星環清晰可見',                  lat:-44.0033,lng:170.4772, type:'act',  island:'south', mapq:'Earth and Sky Observatory Lake Tekapo New Zealand'},
+  {id:22, day:'Day 12 · 12/31（三）🎆',           emoji:'✈️', name:'皇后鎮機場 Queenstown Airport還車',      desc:'Fairlie蘋果派 · 還車（共11天）· 國內線飛奧克蘭',      lat:-45.0211,lng:168.7392, type:'act',  island:'south', mapq:'Queenstown Airport New Zealand'},
+  {id:23, day:'Day 12 · 12/31（三）🎆',           emoji:'🗼', name:'Sky Tower 跨年煙火',             desc:'午夜3500發煙火，全南半球最高規格跨年',               lat:-36.8484,lng:174.7622, type:'nye',  island:'north', mapq:'Sky Tower Auckland New Zealand'},
+  {id:24, day:'Day 13 · 1/1（四）',               emoji:'🎭', name:'Mitai Maori Village 羅托魯阿 Rotorua',  desc:'獨木舟+哈卡戰舞+Hangi晚餐+螢火蟲步道 · NZD $99/人', lat:-38.1066,lng:176.2208, type:'act',  island:'north', mapq:'Mitai Maori Village Rotorua New Zealand'},
+  {id:25, day:'Day 14 · 1/2（五）',               emoji:'🌿', name:'One Tree Hill 伊甸山',           desc:'360度俯瞰奧克蘭 Auckland城市與海灣，免費入場',                 lat:-36.9049,lng:174.7896, type:'act',  island:'north', mapq:'One Tree Hill Auckland New Zealand'},
+  {id:26, day:'Day 14 · 1/2（五）',               emoji:'⛵', name:'Viaduct Harbour',               desc:'奧克蘭 Auckland帆船之都核心，日落金光閃爍',                   lat:-36.8444,lng:174.7633, type:'act',  island:'north', mapq:'Viaduct Harbour Auckland New Zealand'},
+  {id:27, day:'Day 14 · 1/2（五）',               emoji:'🛍️', name:'Commercial Bay + Britomart 購物',  desc:'港邊新商場 · 紐西蘭本地設計師品牌 · 伴手禮',          lat:-36.8440,lng:174.7660, type:'act',  island:'north', mapq:'Commercial Bay Auckland New Zealand'},
+  {id:28, day:'Day 14 · 1/2（五）',               emoji:'🍽️', name:'Ponsonby Road',                  desc:'奧克蘭最有氣質的美食街 · 蜜月最後晚餐',               lat:-36.8571,lng:174.7427, type:'act',  island:'north', mapq:'Ponsonby Road Auckland New Zealand'},
+];
+
+/* 主幹路線順序：基督城→凱庫拉→Franz Josef→皇后鎮→TSS→冒險→酒莊→神奇峽灣→企鵝→蒂卡波→還車→奧克蘭→羅托魯阿→購物 */
+var ROUTE_ORDER=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28];
+
+function markerColor(p){
+  if(p.type==='nye')  return '#b8860b';
+  if(p.type==='xmas') return '#8a1a1a';
+  if(p.type==='hotel')return '#c9a84c';
+  if(p.type==='new')  return '#c05a1a';
+  return '#3d6b4f';
+}
+
+/* ── LEAFLET MAP ── */
+var _map=null, _markers=[], _routeLine=null, _mapInited=false;
+
+function makeIcon(p){
+  var bg=markerColor(p);
+  var border=(p.type==='nye')?'2px solid #c9a84c':(p.type==='new')?'2px solid #ffd0a8':'2px solid #fff';
+  var html='<div style="width:34px;height:34px;border-radius:50%;background:'+bg+';border:'+border+
+    ';box-shadow:0 2px 8px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;font-size:1.19rem;line-height:1">'+p.emoji+'</div>';
+  return L.divIcon({html:html,className:'',iconSize:[34,34],iconAnchor:[17,17],popupAnchor:[0,-20]});
+}
+
+function popupHtml(p){
+  return '<div class="nz-popup-day">'+p.day+'</div>'+
+    '<div class="nz-popup-name">'+p.emoji+' '+p.name+'</div>'+
+    '<div class="nz-popup-desc">'+p.desc+'</div>'+
+    '<a class="nz-popup-link" href="https://www.google.com/maps/search/'+encodeURIComponent(p.mapq||p.name+' New Zealand')+'" target="_blank">📍 Google Maps</a>';
+}
+
+function initLeafletMap(){
+  if(_mapInited){_map&&_map.invalidateSize();return;}
+  var container=document.getElementById('leaflet-map');
+  if(!container)return;
+  _mapInited=true;
+
+  _map=L.map('leaflet-map',{center:[-41.5,172.5],zoom:5,zoomControl:true});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'© OpenStreetMap contributors',maxZoom:18
+  }).addTo(_map);
+
+  /* Route polyline with arrows */
+  drawRoute(ROUTE_ORDER);
+
+  /* Markers */
+  PLACES.forEach(function(p){
+    var m=L.marker([p.lat,p.lng],{icon:makeIcon(p)})
+      .bindPopup(popupHtml(p),{maxWidth:260,minWidth:200})
+      .addTo(_map);
+    m._placeData=p;
+    _markers.push(m);
+  });
+
+  setTimeout(function(){_map.invalidateSize();},200);
+}
+
+function drawRoute(order){
+  if(_routeLine){
+    if(Array.isArray(_routeLine)){_routeLine.forEach(function(l){_map.removeLayer(l);});}
+    else{_map.removeLayer(_routeLine);}
+  }
+  _routeLine=[];
+  var coords=order.map(function(i){return[PLACES[i].lat,PLACES[i].lng];});
+  /* Main line */
+  var line=L.polyline(coords,{color:'#3d6b4f',weight:2.5,opacity:0.75}).addTo(_map);
+  _routeLine.push(line);
+  /* Arrow markers at midpoints of each segment */
+  for(var i=0;i<coords.length-1;i++){
+    var p1=coords[i], p2=coords[i+1];
+    var midLat=(p1[0]+p2[0])/2, midLng=(p1[1]+p2[1])/2;
+    /* atan2(dy, dx) in screen space: lng = x (right+), lat = y (up+, but screen y is down-)
+       So screen angle = atan2(-(lat2-lat1), lng2-lng1) */
+    var dx=p2[1]-p1[1];   /* lng diff = screen x */
+    var dy=-(p2[0]-p1[0]);/* lat diff inverted = screen y */
+    var angle=Math.atan2(dy,dx)*(180/Math.PI);
+    /* ➤ naturally points right (0°), rotate accordingly */
+    var arrowHtml='<div style="transform:rotate('+angle+'deg);font-size:0.98rem;color:#3d6b4f;line-height:1;text-shadow:0 0 3px #fff,0 0 3px #fff">➤</div>';
+    var arrow=L.marker([midLat,midLng],{
+      icon:L.divIcon({html:arrowHtml,className:'',iconSize:[16,16],iconAnchor:[8,8]}),
+      interactive:false, zIndexOffset:-100
+    }).addTo(_map);
+    _routeLine.push(arrow);
+  }
+}
+
+function filterMarkers(f,btn){
+  document.querySelectorAll('.mchip').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  if(!_map)return;
+  _markers.forEach(function(m){
+    var p=m._placeData;
+    var show=(f==='all')||(f==='north'&&p.island==='north')||(f==='south'&&p.island==='south')||
+             (f==='xmas'&&p.type==='xmas')||(f==='nye'&&p.type==='nye');
+    if(show){_map.addLayer(m);}else{_map.removeLayer(m);}
+  });
+  var visIdx=ROUTE_ORDER.filter(function(i){
+    var p=PLACES[i];
+    return (f==='all')||(f==='north'&&p.island==='north')||(f==='south'&&p.island==='south')||
+           (f==='xmas'&&p.type==='xmas')||(f==='nye'&&p.type==='nye');
+  });
+  drawRoute(visIdx);
+  var vis=_markers.filter(function(m){return _map.hasLayer(m);});
+  if(vis.length>0){
+    var grp=L.featureGroup(vis);
+    _map.fitBounds(grp.getBounds().pad(0.15));
+  }
+}
+
+function filterDay(dayNum,btn){
+  document.querySelectorAll('.mchip').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  if(!_map)return;
+  /* Show only places matching this day number */
+  var dayStr='Day '+dayNum;
+  _markers.forEach(function(m){
+    var p=m._placeData;
+    var show=p.day.indexOf(dayStr)>=0;
+    if(show){_map.addLayer(m);}else{_map.removeLayer(m);}
+  });
+  /* Draw route: connect all visible places in ROUTE_ORDER sequence */
+  var visIdx=ROUTE_ORDER.filter(function(i){
+    return PLACES[i].day.indexOf(dayStr)>=0;
+  });
+  /* Also include the previous day's last point and next day's first point as route context */
+  var prevIdx=ROUTE_ORDER.filter(function(i){
+    return PLACES[i].day.indexOf('Day '+(dayNum-1))>=0;
+  });
+  var nextIdx=ROUTE_ORDER.filter(function(i){
+    return PLACES[i].day.indexOf('Day '+(dayNum+1))>=0;
+  });
+  var routeCtx=[];
+  if(prevIdx.length>0)routeCtx.push(prevIdx[prevIdx.length-1]);
+  routeCtx=routeCtx.concat(visIdx);
+  if(nextIdx.length>0)routeCtx.push(nextIdx[0]);
+  drawRoute(routeCtx.length>1?routeCtx:visIdx);
+  /* Fit map to visible markers */
+  var vis=_markers.filter(function(m){return _map.hasLayer(m);});
+  if(vis.length>0){
+    var grp=L.featureGroup(vis);
+    _map.fitBounds(grp.getBounds().pad(0.3));
+  }
+}
+
+/* ── PLACE LIST ── */
+function buildPlaceList(){
+  var cont=document.getElementById('place-list');
+  if(!cont||cont.children.length>0)return;
+  PLACES.forEach(function(p){
+    var col=markerColor(p);
+    cont.innerHTML+='<a href="https://www.google.com/maps/search/'+encodeURIComponent(p.mapq||p.name+' New Zealand')+'" target="_blank" '
+      +'style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:#fff;border-radius:10px;border:1px solid var(--warm);margin-bottom:8px;text-decoration:none;color:var(--text)">'
+      +'<div style="width:36px;height:36px;border-radius:50%;background:'+col+';border:2px solid #fff;box-shadow:0 1px 6px rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;font-size:1.26rem;flex-shrink:0">'+p.emoji+'</div>'
+      +'<div style="flex:1">'
+        +'<div style="font-size:0.77rem;color:var(--sage);font-weight:500;margin-bottom:2px">'+p.day+'</div>'
+        +'<div style="font-size:0.91rem;font-weight:500">'+p.name+'</div>'
+        +'<div style="font-size:0.77rem;color:var(--muted);margin-top:2px">'+p.desc+'</div>'
+      +'</div>'
+      +'<div style="font-size:1.26rem;color:var(--muted)">›</div></a>';
+  });
+}
+
+function saveNote(dayNum){
+  var key = 'day' + dayNum;
+  var val = document.getElementById('note-' + key).value;
+  var savedEl = document.getElementById('note-saved-' + key);
+  if(!window._fbSet || !window._fbRef || !window._fbDb){
+    alert('Firebase 尚未初始化，請檢查網路連線');
+    return;
+  }
+  window._fbSet(window._fbRef(window._fbDb, 'notes/' + key), val)
+    .then(function(){
+      savedEl.style.display = 'block';
+      setTimeout(function(){ savedEl.style.display = 'none'; }, 2500);
+    })
+    .catch(function(err){
+      alert('儲存失敗：' + err.message);
+    });
+}
+
+window.onload=function(){buildPlaceList(); loadEdits(); loadFontSize(); buildRouteDays();};
+
+/* ── DAILY ROUTES DATA ── */
+var DAILY_ROUTES=[
+  {day:1, date:'12/20', label:'Day 1 · 基督城市區',
+   km:'市區步行，無長途駕車', desc:'機場取車 → 植物園 → New Regent Street → 5th Street',
+   url:'https://www.google.com/maps/dir/Christchurch+Airport/Christchurch+Botanic+Gardens/New+Regent+Street+Christchurch/@-43.52,172.62,14z',
+   stops:[
+     {lat:-43.4894,lng:172.5322,name:'基督城機場 · Go Rentals取車'},
+     {lat:-43.5307,lng:172.6232,name:'植物園 Botanic Gardens',note:'免費入場'},
+     {lat:-43.5320,lng:172.6387,name:'New Regent Street',note:'復古電車・彩色建築'},
+     {lat:-43.5293,lng:172.6451,name:'5th Street晚餐',note:'蜜月第一晚'},
+   ]},
+  {day:2, date:'12/21', label:'Day 2 · 基督城→凱庫拉',
+   km:'約180km · 2.5小時', desc:'基督城 → 沿SH1北上 → 凱庫拉賞鯨',
+   url:'https://www.google.com/maps/dir/Christchurch,NZ/Kaikoura,NZ/@-43.0,173.2,9z',
+   stops:[
+     {lat:-43.5307,lng:172.6232,name:'基督城 Christchurch 出發'},
+     {lat:-42.3959,lng:173.6807,name:'凱庫拉 Kaikoura',note:'賞鯨 · 海狗 · 龍蝦'},
+   ]},
+  {day:3, date:'12/22', label:"Day 3 · 凱庫拉→Franz Josef",
+   km:"約360km · 7.5小時", desc:"凱庫拉→基督城補給→Arthur's Pass→Hokitika→Franz Josef",
+   url:"https://www.google.com/maps/dir/Kaikoura,NZ/Christchurch,NZ/Arthur's+Pass,NZ/Hokitika,NZ/Franz+Josef,NZ/@-43.3,171.5,8z",
+   stops:[
+     {lat:-42.3959,lng:173.6807,name:'凱庫拉 Kaikoura 出發'},
+     {lat:-43.5307,lng:172.6232,name:'基督城補給',note:'加油・補給午餐'},
+     {lat:-42.9436,lng:171.5631,name:"Arthur's Pass 觀景點",note:'南阿爾卑斯山脈全景'},
+     {lat:-42.7167,lng:170.9667,name:'Hokitika 海灘',note:'漂流木海灘'},
+     {lat:-43.3876,lng:170.1817,name:'Franz Josef 抵達',note:'check-in · 確認冰川班次'},
+   ]},
+  {day:4, date:'12/23', label:'Day 4 · Franz Josef 冰川',
+   km:'小鎮內·直升機', desc:'Franz Josef → 停機坪 → 直升機冰川 → 備案步道',
+   url:'https://www.google.com/maps/dir/Franz+Josef+Glacier+Guides/Franz+Josef+Glacier,NZ/@-43.39,170.19,13z',
+   stops:[
+     {lat:-43.3876,lng:170.1817,name:'Franz Josef Glacier Guides',note:'報到・領裝備'},
+     {lat:-43.4489,lng:170.1761,name:'Franz Josef 冰川',note:'直升機降落・冰爪探索2.5小時'},
+   ]},
+  {day:5, date:'12/24', label:'Day 5 · Franz Josef→Wānaka（聖誕夜）',
+   km:'約290km · 6小時', desc:'Franz Josef → Fox Glacier → Lake Matheson → Haast Pass → 薰衣草農場 → Wānaka',
+   url:'https://www.google.com/maps/dir/Franz+Josef,NZ/Fox+Glacier,NZ/Lake+Matheson,NZ/Haast,NZ/Wanaka+Lavender+Farm/Wanaka,NZ/@-44.0,169.5,9z',
+   stops:[
+     {lat:-43.3876,lng:170.1817,name:'Franz Josef 出發'},
+     {lat:-43.4622,lng:170.0119,name:'Fox Glacier村',note:'加油・補給'},
+     {lat:-43.4889,lng:170.0508,name:'Lake Matheson 倒影湖',note:'庫克山倒影'},
+     {lat:-43.8800,lng:169.0500,name:'Knights Point Lookout',note:'西海岸海景'},
+     {lat:-43.8652,lng:169.0500,name:'Haast小鎮',note:'必加油'},
+     {lat:-44.1956,lng:169.3197,name:'Thunder Creek Falls',note:'28公尺瀑布・下車活動'},
+     {lat:-44.6842,lng:169.1114,name:'Wānaka薰衣草農場',note:'12月盛開・NZD $15'},
+     {lat:-44.6975,lng:169.1318,name:'Wānaka 聖誕夜住宿'},
+   ]},
+  {day:6, date:'12/25', label:'Day 6 · Wānaka→皇后鎮（聖誕節）',
+   km:'約65km · 1小時', desc:'Wānaka → 皇后鎮（SH6南下）',
+   url:'https://www.google.com/maps/dir/Wanaka,NZ/Queenstown,NZ/@-44.8,168.9,10z',
+   stops:[
+     {lat:-44.6975,lng:169.1318,name:'Wānaka 出發'},
+     {lat:-45.0312,lng:168.6626,name:'皇后鎮 Queenstown 抵達',note:'聖誕節悠閒日'},
+   ]},
+  {day:7, date:'12/26', label:'Day 7 · 皇后鎮冒險日',
+   km:'皇后鎮市區約20km', desc:'Shotover Jet → Skyline+Luge → Deer Park Heights → Kiwi Park',
+   url:'https://www.google.com/maps/dir/Shotover+Jet+Queenstown/Skyline+Queenstown/Deer+Park+Heights/Kiwi+Park+Queenstown/@-45.04,168.65,13z',
+   stops:[
+     {lat:-45.0247,lng:168.6761,name:'Shotover Jet',note:'峽谷噴射快艇 NZD $175/人'},
+     {lat:-45.0246,lng:168.6523,name:'Skyline + Luge',note:'纜車俯瞰・斜坡滑車'},
+     {lat:-45.0667,lng:168.5833,name:'Deer Park Heights 鹿園',note:'魔戒拍攝地'},
+     {lat:-45.0281,lng:168.6593,name:'Kiwi Park 奇異鳥公園'},
+   ]},
+  {day:8, date:'12/27', label:'Day 8 · 皇后鎮悠閒日',
+   km:'皇后鎮周邊約30km', desc:'Queenstown Gardens → Gibbston Valley酒莊 → TSS Earnslaw碼頭',
+   url:'https://www.google.com/maps/dir/Queenstown+Gardens/Gibbston+Valley+Winery/TSS+Earnslaw+Queenstown/@-45.05,168.85,12z',
+   stops:[
+     {lat:-45.0350,lng:168.6570,name:'Queenstown Gardens 花園'},
+     {lat:-45.0333,lng:168.9333,name:'Gibbston Valley 酒莊',note:'全球最南黑皮諾'},
+     {lat:-45.0304,lng:168.6608,name:'TSS Earnslaw 碼頭',note:'百年蒸汽船BBQ NZD $200/人'},
+   ]},
+  {day:9, date:'12/28', label:'Day 9 · 皇后鎮→奧瑪魯',
+   km:'約280km · 3.5小時', desc:'皇后鎮 → SH8 Clyde → Alexandra → 奧瑪魯 → 企鵝',
+   url:'https://www.google.com/maps/dir/Queenstown,NZ/Clyde,NZ/Oamaru,NZ/@-45.2,169.8,9z',
+   stops:[
+     {lat:-45.0312,lng:168.6626,name:'皇后鎮 Queenstown 出發'},
+     {lat:-45.1961,lng:169.3214,name:'Clyde 小鎮',note:'SH8途中'},
+     {lat:-45.4833,lng:170.8167,name:'Shag Point 鸕鶿角',note:'方案B · 海豹岩台'},
+     {lat:-45.2833,lng:170.8500,name:'Katiki Point 卡蒂基角',note:'方案B · 黃眼企鵝'},
+     {lat:-45.0978,lng:170.9714,name:'Oamaru Heritage Precinct',note:'維多利亞老街'},
+     {lat:-45.1103,lng:170.9799,name:'小藍企鵝 奧瑪魯',note:'19:30上岸'},
+   ]},
+  {day:10, date:'12/29', label:'Day 10 · 奧瑪魯→蒂卡波',
+   km:'約285km · 4小時', desc:'奧瑪魯 → Lake Pukaki鮭魚 → 善牧教堂 → 蒂卡波星空',
+   url:'https://www.google.com/maps/dir/Oamaru,NZ/Lake+Pukaki,NZ/Church+of+the+Good+Shepherd/Lake+Tekapo,NZ/@-44.2,170.5,9z',
+   stops:[
+     {lat:-45.0978,lng:170.9714,name:'奧瑪魯 Oamaru 出發'},
+     {lat:-44.0197,lng:170.1753,name:'Lake Pukaki · Mt Cook Alpine Salmon',note:'刺身野餐・庫克山倒影'},
+     {lat:-44.0034,lng:170.4825,name:'善牧教堂 Church of the Good Shepherd',note:'魯冰花花海配雪山'},
+     {lat:-44.0033,lng:170.4772,name:'Earth & Sky 星空觀測',note:'夜間10:00'},
+   ]},
+  {day:11, date:'12/30', label:'Day 11 · 蒂卡波→基督城→奧克蘭',
+   km:'約230km · 3小時（+飛行1.5小時）', desc:'蒂卡波 → Fairlie蘋果派 → 基督城還車 → 飛奧克蘭',
+   url:'https://www.google.com/maps/dir/Lake+Tekapo,NZ/Fairlie,NZ/Christchurch+Airport,NZ/@-43.8,171.5,9z',
+   stops:[
+     {lat:-44.0033,lng:170.4772,name:'蒂卡波 Tekapo 出發',note:'善牧教堂晨光'},
+     {lat:-44.0964,lng:170.8331,name:'Fairlie Bakehouse',note:'南島公路傳奇蘋果派'},
+     {lat:-43.4894,lng:172.5322,name:'基督城機場 · Go Rentals還車',note:'共10天'},
+     {lat:-36.8484,lng:174.7622,name:'奧克蘭 Auckland 抵達',note:'國內線飛行1.5小時'},
+   ]},
+  {day:12, date:'12/31', label:'Day 12 · 奧克蘭跨年🎆',
+   km:'市區步行', desc:'Viaduct Harbour → Sky Tower跨年晚餐 → 午夜煙火',
+   url:'https://www.google.com/maps/dir/Viaduct+Harbour+Auckland/Sky+Tower+Auckland/@-36.845,174.763,15z',
+   stops:[
+     {lat:-36.8444,lng:174.7633,name:'Viaduct Harbour',note:'下午散步'},
+     {lat:-36.8484,lng:174.7622,name:'Sky Tower',note:'Orbit 360°跨年晚餐・午夜3500發煙火'},
+   ]},
+  {day:13, date:'1/1', label:'Day 13 · 奧克蘭→羅托魯阿→Mitai',
+   km:'約160km×2 · 來回6小時', desc:'奧克蘭 → 羅托魯阿 → 溫泉 → Mitai毛利夜間 → 回奧克蘭',
+   url:'https://www.google.com/maps/dir/Auckland,NZ/Rotorua,NZ/Mitai+Maori+Village,Rotorua/@-38.0,175.5,9z',
+   stops:[
+     {lat:-36.8484,lng:174.7622,name:'奧克蘭 Auckland 出發',note:'上午10點'},
+     {lat:-38.1366,lng:176.2497,name:'羅托魯阿 Rotorua 抵達',note:'午餐・感受硫磺味'},
+     {lat:-38.2667,lng:176.3667,name:'Kerosene Creek / Polynesian Spa',note:'溫泉泡湯備選'},
+     {lat:-38.1066,lng:176.2208,name:'Mitai Maori Village',note:'哈卡・Hangi・螢火蟲 NZD $99/人'},
+   ]},
+  {day:14, date:'1/2', label:'Day 14 · 奧克蘭市區購物',
+   km:'市區步行', desc:'One Tree Hill → Viaduct Harbour → Commercial Bay購物 → Ponsonby Road',
+   url:'https://www.google.com/maps/dir/One+Tree+Hill+Auckland/Viaduct+Harbour+Auckland/Commercial+Bay+Auckland/Ponsonby+Road+Auckland/@-36.87,174.76,13z',
+   stops:[
+     {lat:-36.9049,lng:174.7896,name:'One Tree Hill 伊甸山',note:'360度俯瞰・免費'},
+     {lat:-36.8444,lng:174.7633,name:'Viaduct Harbour',note:'港邊午餐'},
+     {lat:-36.8440,lng:174.7660,name:'Commercial Bay · Britomart',note:'精品・本地設計・伴手禮'},
+     {lat:-36.8571,lng:174.7427,name:'Ponsonby Road',note:'蜜月最後晚餐'},
+   ]},
+  {day:15, date:'1/3', label:'Day 15 · 飛回台北✈️',
+   km:'市區→機場約25km', desc:'SO/ Auckland → 奧克蘭機場 → 台北（NZ077 12:20起飛）',
+   url:'https://www.google.com/maps/dir/SO+Auckland/Auckland+Airport,NZ/@-36.95,174.78,11z',
+   stops:[
+     {lat:-36.8484,lng:174.7622,name:'SO/ Auckland 退房'},
+     {lat:-37.0082,lng:174.7850,name:'奧克蘭國際機場',note:'NZ077 12:20起飛 → 18:35台北'},
+   ]},
+];
+
+var _routeMap=null, _routeLine2=null, _routeMarkers2=[];
+
+function buildRouteDays(){
+  var sel=document.getElementById('route-day-selector');
+  if(!sel||sel.children.length>0)return;
+  DAILY_ROUTES.forEach(function(r){
+    var btn=document.createElement('button');
+    btn.className='mchip';
+    btn.style.cssText='font-size:0.77rem;padding:4px 10px';
+    btn.innerHTML=r.date+'<br><span style="font-size:0.63rem;opacity:0.8">Day'+r.day+'</span>';
+    btn.onclick=function(){
+      document.querySelectorAll('#route-day-selector .mchip').forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+      showRoute(r);
+    };
+    sel.appendChild(btn);
+  });
+}
+
+function showRoute(r){
+  /* Info panel */
+  var info=document.getElementById('route-info');
+  info.style.display='block';
+  info.innerHTML='<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">'
+    +'<div><b style="color:var(--forest);font-size:0.91rem">'+r.label+'</b><br>'
+    +'<span style="color:var(--muted)">🚗 '+r.km+'</span><br>'
+    +'<span style="color:var(--muted);margin-top:2px;display:block">📍 '+r.desc+'</span></div>'
+    +'<a href="'+r.url+'" target="_blank" style="display:inline-flex;align-items:center;gap:5px;background:var(--sage);color:#fff;padding:7px 14px;border-radius:20px;text-decoration:none;font-size:0.77rem;font-weight:600;white-space:nowrap;flex-shrink:0">🗺️ Google Maps</a>'
+    +'</div>';
+
+  /* Show map container */
+  var container=document.getElementById('route-leaflet-map');
+  container.style.display='block';
+
+  /* Init or reuse Leaflet map */
+  if(!_routeMap){
+    _routeMap=L.map('route-leaflet-map',{center:[-41.5,172.5],zoom:6,zoomControl:true});
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+      attribution:'© OpenStreetMap',maxZoom:18
+    }).addTo(_routeMap);
+  }
+  setTimeout(function(){_routeMap.invalidateSize();},100);
+
+  /* Clear old layers */
+  if(_routeLine2){
+    if(Array.isArray(_routeLine2)){_routeLine2.forEach(function(l){_routeMap.removeLayer(l);});}
+    else{_routeMap.removeLayer(_routeLine2);}
+  }
+  _routeMarkers2.forEach(function(m){_routeMap.removeLayer(m);});
+  _routeMarkers2=[];
+  _routeLine2=[];
+
+  /* Draw stops */
+  var coords=r.stops.map(function(s){return[s.lat,s.lng];});
+
+  /* Polyline */
+  var line=L.polyline(coords,{color:'#3d6b4f',weight:3,opacity:0.8}).addTo(_routeMap);
+  _routeLine2.push(line);
+
+  /* Arrow midpoints */
+  for(var i=0;i<coords.length-1;i++){
+    var p1=coords[i],p2=coords[i+1];
+    var mx=(p1[0]+p2[0])/2, my=(p1[1]+p2[1])/2;
+    var dx=p2[1]-p1[1], dy=-(p2[0]-p1[0]);
+    var angle=Math.atan2(dy,dx)*(180/Math.PI);
+    var arr=L.marker([mx,my],{
+      icon:L.divIcon({html:'<div style="transform:rotate('+angle+'deg);font-size:0.91rem;color:#3d6b4f;text-shadow:0 0 3px #fff">➤</div>',className:'',iconSize:[14,14],iconAnchor:[7,7]}),
+      interactive:false,zIndexOffset:-100
+    }).addTo(_routeMap);
+    _routeLine2.push(arr);
+  }
+
+  /* Markers with numbers */
+  r.stops.forEach(function(s,idx){
+    var isFirst=(idx===0), isLast=(idx===r.stops.length-1);
+    var bg=isFirst?'#3d6b4f':isLast?'#8a1a1a':'#c05a1a';
+    var label=isFirst?'出發':isLast?'終點':(idx+1)+'';
+    var html='<div style="width:30px;height:30px;border-radius:50%;background:'+bg
+      +';border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.77rem;font-weight:700;font-family:DM Sans,sans-serif">'+label+'</div>';
+    var m=L.marker([s.lat,s.lng],{
+      icon:L.divIcon({html:html,className:'',iconSize:[30,30],iconAnchor:[15,15],popupAnchor:[0,-18]})
+    }).bindPopup('<div style="font-size:0.84rem;font-weight:600;color:#1a3a2a;margin-bottom:3px">'+s.name+'</div>'
+      +(s.note?'<div style="font-size:0.77rem;color:#5a6b62">'+s.note+'</div>':''))
+     .addTo(_routeMap);
+    _routeMarkers2.push(m);
+  });
+
+  /* Fit bounds */
+  if(coords.length>0){
+    _routeMap.fitBounds(L.latLngBounds(coords).pad(0.2));
+  }
+}
+</script>
+
+<!-- ===== 編輯模式 ===== -->
+<style>
+#edit-fab{position:fixed;bottom:20px;right:20px;z-index:9999;width:52px;height:52px;border-radius:50%;background:var(--forest);color:#fff;border:none;font-size:1.54rem;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:all 0.2s;display:flex;align-items:center;justify-content:center}
+#edit-fab:hover{background:var(--sage);transform:scale(1.08)}
+#edit-fab.active{background:#c9a84c;color:#1a1208}
+#edit-bar{display:none;position:fixed;bottom:82px;right:16px;z-index:9999;background:var(--forest);border-radius:14px;padding:10px 14px;box-shadow:0 4px 20px rgba(0,0,0,0.25);font-family:'DM Sans',sans-serif;min-width:200px}
+#edit-bar.show{display:block}
+#edit-bar .eb-title{font-size:0.77rem;color:var(--mint);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+#edit-bar button{display:block;width:100%;padding:8px 12px;border-radius:8px;border:none;font-family:'DM Sans',sans-serif;font-size:0.84rem;font-weight:500;cursor:pointer;margin-bottom:6px;text-align:left;transition:all 0.15s}
+#edit-bar button:last-child{margin-bottom:0}
+#btn-save{background:var(--gold);color:#1a1208}
+#btn-reset{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)}
+#btn-reset:hover{background:rgba(220,50,50,0.3);color:#fff}
+#btn-save:hover{background:#e0b84a}
+.edit-mode [contenteditable]{outline:2px dashed rgba(201,168,76,0.5);border-radius:4px;min-width:20px;cursor:text}
+.edit-mode [contenteditable]:focus{outline:2px solid var(--gold);background:rgba(201,168,76,0.06)}
+.edit-indicator{position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:9998;background:var(--gold);color:#1a1208;font-size:0.77rem;font-weight:600;padding:5px 14px;border-radius:20px;font-family:'DM Sans',sans-serif;display:none;letter-spacing:0.5px;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
+.edit-indicator.show{display:block}
+/* Font size FAB */
+#font-fab{position:fixed;bottom:82px;right:20px;z-index:9999;width:52px;height:52px;border-radius:50%;background:var(--sage);color:#fff;border:none;font-size:1.05rem;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.2);transition:all 0.2s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;font-family:'DM Sans',sans-serif;line-height:1}
+#font-fab:hover{background:var(--mint);transform:scale(1.08)}
+#font-fab .fab-label{font-size:0.56rem;letter-spacing:0.5px;opacity:0.85;margin-top:2px}
+#font-size-bar{display:none;position:fixed;bottom:144px;right:16px;z-index:9999;background:var(--forest);border-radius:14px;padding:10px 14px;box-shadow:0 4px 20px rgba(0,0,0,0.25);font-family:'DM Sans',sans-serif;min-width:160px}
+#font-size-bar.show{display:block}
+#font-size-bar .fb-title{font-size:0.77rem;color:var(--mint);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+.fs-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.fs-row:last-child{margin-bottom:0}
+.fs-btn{flex:1;padding:8px 0;border-radius:8px;border:none;font-family:'DM Sans',sans-serif;font-size:0.91rem;font-weight:600;cursor:pointer;transition:all 0.15s;background:rgba(255,255,255,0.1);color:#fff}
+.fs-btn:hover{background:rgba(255,255,255,0.2)}
+.fs-btn.active{background:var(--gold);color:#1a1208}
+#fs-indicator{font-size:0.84rem;color:rgba(255,255,255,0.6);text-align:center;margin-top:4px}
+</style>
+
+<!-- Edit indicator bar -->
+<div class="edit-indicator" id="edit-indicator">✏️ 編輯模式 · 點擊任何文字即可修改 · 改完點💾儲存</div>
+
+<!-- Font size button -->
+<button id="font-fab" onclick="toggleFontBar()" title="調整字體大小">
+  <span style="font-size:1.26rem">A</span>
+  <span class="fab-label">字體</span>
+</button>
+
+<!-- Font size bar -->
+<div id="font-size-bar">
+  <div class="fb-title">🔤 字體大小</div>
+  <div class="fs-row">
+    <button class="fs-btn" onclick="setFontSize('small',this)">小</button>
+    <button class="fs-btn active" id="fs-normal" onclick="setFontSize('normal',this)">標準</button>
+    <button class="fs-btn" onclick="setFontSize('large',this)">大</button>
+    <button class="fs-btn" onclick="setFontSize('xlarge',this)">特大</button>
+  </div>
+  <div id="fs-indicator">目前：標準</div>
+</div>
+
+<!-- Floating action button -->
+<button id="edit-fab" onclick="toggleEditBar()" title="編輯模式">✏️</button>
+
+<!-- Edit toolbar -->
+<div id="edit-bar">
+  <div class="eb-title">✏️ 編輯模式</div>
+  <button id="btn-toggle-edit" onclick="toggleEditMode()">🔓 進入編輯模式</button>
+  <button id="btn-save" onclick="saveEdits()" style="display:none">💾 儲存所有修改</button>
+  <button id="btn-reset" onclick="resetEdits()">🗑️ 清除所有修改</button>
+  <button id="btn-download" onclick="downloadHTML()" style="background:rgba(122,184,146,0.2);color:#7ab892">⬇️ 下載 HTML 檔案</button>
+</div>
+
+<script>
+var _editMode=false;
+var _barOpen=false;
+var _fontBarOpen=false;
+var EDIT_KEY='nz_honeymoon_edits';
+
+var FS_MAP={
+  small: {scale:0.88, label:'小'},
+  normal:{scale:1,    label:'標準'},
+  large: {scale:1.18, label:'大'},
+  xlarge:{scale:1.38, label:'特大'}
+};
+var _currentFs='normal';
+
+function toggleFontBar(){
+  _fontBarOpen=!_fontBarOpen;
+  document.getElementById('font-size-bar').classList.toggle('show',_fontBarOpen);
+  /* close edit bar if open */
+  if(_fontBarOpen&&_barOpen){_barOpen=false;document.getElementById('edit-bar').classList.remove('show');}
+}
+
+function setFontSize(size, btn){
+  _currentFs=size;
+  var scale=FS_MAP[size].scale;
+  document.documentElement.style.fontSize=(scale*16)+'px';
+  document.querySelectorAll('.fs-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  document.getElementById('fs-indicator').textContent='目前：'+FS_MAP[size].label;
+  /* persist */
+  try{localStorage.setItem('nz_fontsize',size);}catch(e){}
+}
+
+function loadFontSize(){
+  try{
+    var s=localStorage.getItem('nz_fontsize');
+    if(s&&FS_MAP[s]){
+      var btn=document.querySelector('.fs-btn[onclick*="\''+s+'\'"]');
+      if(btn)setFontSize(s,btn);
+    }
+  }catch(e){}
+}
+
+/* close font bar when clicking outside */
+document.addEventListener('click',function(e){
+  var fb=document.getElementById('font-size-bar');
+  var ff=document.getElementById('font-fab');
+  if(_fontBarOpen && !fb.contains(e.target) && e.target!==ff && !ff.contains(e.target)){
+    _fontBarOpen=false;
+    fb.classList.remove('show');
+  }
+});
+
+function toggleEditBar(){
+  _barOpen=!_barOpen;
+  document.getElementById('edit-bar').classList.toggle('show',_barOpen);
+}
+
+function toggleEditMode(){
+  _editMode=!_editMode;
+  var body=document.body;
+  var fab=document.getElementById('edit-fab');
+  var ind=document.getElementById('edit-indicator');
+  var btnToggle=document.getElementById('btn-toggle-edit');
+  var btnSave=document.getElementById('btn-save');
+
+  if(_editMode){
+    // Make all text elements editable
+    var selectors=[
+      '.day-title','.day-subtitle','.tl-title','.tl-desc',
+      '.tl-time','.day-hotel-name','.tips-inline p','.tips-xmas p',
+      '.day-cost','.section-title','.section-sub',
+      '.hotel-name','.hotel-loc','.hotel-desc',
+      '.restaurant-name','.restaurant-loc','.restaurant-desc','.restaurant-must',
+      '.booking-name','.booking-when',
+      '.food-name','.food-desc',
+      '.budget-row span','.tip p'
+    ];
+    selectors.forEach(function(sel){
+      document.querySelectorAll(sel).forEach(function(el){
+        el.setAttribute('contenteditable','true');
+        el.setAttribute('spellcheck','false');
+      });
+    });
+    body.classList.add('edit-mode');
+    fab.classList.add('active');
+    fab.textContent='✕';
+    ind.classList.add('show');
+    btnToggle.textContent='🔒 退出編輯模式';
+    btnSave.style.display='block';
+  } else {
+    // Remove contenteditable
+    document.querySelectorAll('[contenteditable]').forEach(function(el){
+      el.removeAttribute('contenteditable');
+    });
+    body.classList.remove('edit-mode');
+    fab.classList.remove('active');
+    fab.textContent='✏️';
+    ind.classList.remove('show');
+    btnToggle.textContent='🔓 進入編輯模式';
+    btnSave.style.display='none';
+    _barOpen=false;
+    document.getElementById('edit-bar').classList.remove('show');
+  }
+}
+
+function saveEdits(){
+  // Collect all editable content by selector + index
+  var saved={};
+  var selectors=[
+    '.day-title','.day-subtitle','.tl-title','.tl-desc',
+    '.tl-time','.day-hotel-name','.tips-inline p','.tips-xmas p',
+    '.day-cost','.section-title','.section-sub',
+    '.hotel-name','.hotel-loc','.hotel-desc',
+    '.restaurant-name','.restaurant-loc','.restaurant-desc','.restaurant-must',
+    '.booking-name','.booking-when',
+    '.food-name','.food-desc',
+    '.budget-row span','.tip p'
+  ];
+  selectors.forEach(function(sel){
+    var els=document.querySelectorAll(sel);
+    els.forEach(function(el,i){
+      var key=sel+'__'+i;
+      saved[key]=el.innerHTML;
+    });
+  });
+  try{
+    localStorage.setItem(EDIT_KEY, JSON.stringify(saved));
+    // Flash save confirmation
+    var fab=document.getElementById('edit-fab');
+    var orig=fab.textContent;
+    fab.textContent='✅';
+    setTimeout(function(){fab.textContent=orig;},1200);
+  } catch(e){
+    alert('儲存失敗，瀏覽器可能不支援 localStorage');
+  }
+}
+
+function loadEdits(){
+  try{
+    var raw=localStorage.getItem(EDIT_KEY);
+    if(!raw)return;
+    var saved=JSON.parse(raw);
+    Object.keys(saved).forEach(function(key){
+      var parts=key.split('__');
+      var sel=parts[0], idx=parseInt(parts[1]);
+      var el=document.querySelectorAll(sel)[idx];
+      if(el)el.innerHTML=saved[key];
+    });
+  } catch(e){}
+}
+
+function downloadHTML(){
+  // Apply current edits to a clone of the document
+  var clone=document.documentElement.cloneNode(true);
+
+  // Remove edit UI elements from the clone
+  ['edit-fab','edit-bar','edit-indicator'].forEach(function(id){
+    var el=clone.querySelector('#'+id);
+    if(el)el.remove();
+  });
+
+  // Remove contenteditable attributes
+  clone.querySelectorAll('[contenteditable]').forEach(function(el){
+    el.removeAttribute('contenteditable');
+  });
+
+  // Remove edit mode styles and scripts (last two script blocks are edit-related)
+  var scripts=clone.querySelectorAll('script');
+  // Remove the last script (edit mode JS)
+  if(scripts.length>0)scripts[scripts.length-1].remove();
+
+  // Remove the edit mode style block
+  clone.querySelectorAll('style').forEach(function(s){
+    if(s.innerHTML.indexOf('edit-fab')>=0)s.remove();
+  });
+
+  // Get the full HTML
+  var html='<!DOCTYPE html>\n'+clone.outerHTML;
+
+  // Download
+  var blob=new Blob([html],{type:'text/html;charset=utf-8'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');
+  a.href=url;
+  a.download='nz-honeymoon-xmas.html';
+  a.click();
+  URL.revokeObjectURL(url);
+
+  // Flash confirmation
+  var btn=document.getElementById('btn-download');
+  var orig=btn.textContent;
+  btn.textContent='✅ 下載完成！';
+  setTimeout(function(){btn.textContent=orig;},2000);
+}
+
+function resetEdits(){
+  if(!confirm('確定要清除所有手動修改嗎？網頁會回到原始版本。'))return;
+  try{localStorage.removeItem(EDIT_KEY);}catch(e){}
+  location.reload();
+}
+
+// Close edit bar when clicking outside
+document.addEventListener('click',function(e){
+  if(_barOpen && !document.getElementById('edit-bar').contains(e.target) && e.target.id!=='edit-fab'){
+    _barOpen=false;
+    document.getElementById('edit-bar').classList.remove('show');
+  }
+});
+</script>
+</body>
+</html>

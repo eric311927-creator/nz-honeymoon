@@ -3913,10 +3913,13 @@ var CDETAIL=[
   {title:'飛回台北 ✈️',items:'8:00 Snap Rentals還車（Parnell）· 退房 · 機場免稅店採購（蜂蜜需申報）· 12:20 NZ77起飛 → 18:35抵達台北',hotel:'🏨 — 返台'},
 ];
 
+function cdYear(m){return m===1?2027:2026;}
+
 function buildCal2(){
   var g=document.getElementById('cal-grid2');
   if(!g||g.children.length>0)return;
-  for(var i=0;i<6;i++){var e=document.createElement('div');e.className='cday empty';g.appendChild(e);}
+  var lead=new Date(cdYear(CDAYS[0].m),CDAYS[0].m-1,CDAYS[0].d).getDay();
+  for(var i=0;i<lead;i++){var e=document.createElement('div');e.className='cday empty';g.appendChild(e);}
   CDAYS.forEach(function(d,idx){
     var el=document.createElement('div');
     el.className='cday'+(d.cls?' '+d.cls:'');
@@ -3925,7 +3928,7 @@ function buildCal2(){
     el.onclick=function(){showCal2(this);};
     g.appendChild(el);
   });
-  var total=5+CDAYS.length;var rem=(7-total%7)%7;
+  var total=lead+CDAYS.length;var rem=(7-total%7)%7;
   for(var j=0;j<rem;j++){var e2=document.createElement('div');e2.className='cday empty';g.appendChild(e2);}
 }
 
@@ -3936,7 +3939,7 @@ function showCal2(el){
   var d=CDAYS[idx];var det=CDETAIL[idx];
   var panel=document.getElementById('cal-detail2');
   var dows=['日','一','二','三','四','五','六'];
-  document.getElementById('cd2-date').textContent=d.date+'（'+dows[new Date(2026,d.m-1,d.d).getDay()]+'）· Day '+d.day;
+  document.getElementById('cd2-date').textContent=d.date+'（'+dows[new Date(cdYear(d.m),d.m-1,d.d).getDay()]+'）· Day '+d.day;
   document.getElementById('cd2-title').textContent=d.emoji+' '+det.title;
   document.getElementById('cd2-items').innerHTML=det.items.split(' · ').join('<br>· ');
   document.getElementById('cd2-hotel').textContent=det.hotel;

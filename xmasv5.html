@@ -150,6 +150,23 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 .budget-row:last-child{border-bottom:none;font-family:'Playfair Display',serif;font-size:18px;padding-top:14px}
 .budget-row .amount{color:var(--sage);font-weight:500}
 .budget-row.total .amount{color:var(--forest);font-size:22px}
+.bcard .budget-row:last-of-type{font-family:inherit;font-size:14px;padding-top:10px}
+.bcard .budget-row span:first-child{padding-right:10px}
+.bcard .amount{white-space:nowrap}
+.bcat-title{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-weight:700;font-size:15px;color:var(--forest);padding-bottom:8px;border-bottom:2px solid var(--sage);margin-bottom:2px}
+.bcat-sum{font-size:14px;color:var(--sage);white-space:nowrap}
+.bnote{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.6}
+.ptag{display:inline-block;font-size:10.5px;font-weight:600;padding:1px 7px;border-radius:8px;margin-left:4px;vertical-align:1px;white-space:nowrap}
+.ptag-paid{background:rgba(122,184,146,0.16);color:var(--sage)}
+.ptag-due{background:rgba(201,168,76,0.18);color:#8a6a00}
+.bsum{background:linear-gradient(135deg,#1a3a2a,#2f5a42);color:#fff;border:none}
+.bsum-label{font-size:12px;opacity:.8;letter-spacing:1px}
+.bsum-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:#e8c96a;margin:2px 0 12px}
+.bsum-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bsum-item{background:rgba(255,255,255,0.08);border-radius:10px;padding:8px 10px;font-size:12px}
+.bsum-item b{display:block;font-size:15px;margin-top:2px}
+.bsum-split{margin-top:12px;font-size:12.5px;display:grid;gap:6px}.bsum-split div{display:flex;align-items:center;gap:6px}.bsum-split b{margin-left:auto;font-size:14px}.dot{width:8px;height:8px;border-radius:50%;display:inline-block}.dpaid{background:#7ab892}.ddue{background:#e8c96a}
+.bsum-foot{font-size:12px;opacity:.85;margin-top:12px}
 .tips-block{background:var(--forest);border-radius:16px;padding:1.5rem}
 .tips-title{color:var(--mint);font-size:13px;font-weight:500;letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem}
 .tip{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
@@ -791,7 +808,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
         </div>
       </div>
       <div class="day-hotel-row">
-        <div class="day-hotel-name">🔥 待訂（優先）：皇后鎮 Queenstown</div>
+        <div class="day-hotel-name">🏡 The Encounter 湖景獨棟 · 皇后鎮 ✓ 已訂（入住15:00起 · 28 Avalon Crescent, Fernhill · 連住3晚至12/28 10:00退房）</div>
       </div>
       <div class="tips-xmas"><p>🎄 聖誕節當天Skyline照常營業（Luge 14:30，14:00到纜車站），但部分餐廳會休息或縮短營業時間，晚餐建議提前打電話確認或訂位。</p></div>
 
@@ -854,7 +871,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
         </div>
       </div>
       <div class="day-hotel-row">
-        <div class="day-hotel-name">🔥 待訂（優先）：皇后鎮 Queenstown</div>
+        <div class="day-hotel-name">🏡 The Encounter 湖景獨棟 · 皇后鎮 ✓ 已訂</div>
         
       </div>
       <div class="tips-inline"><p>💡 Shotover Jet玩完會全身濕，建議帶換洗衣物。TSS Earnslaw一定要選Evening Dining Cruise（晚餐版），可看夕陽。旺季蒸汽船位置搶手，現在就訂！</p></div>
@@ -873,17 +890,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       <div class="day-num"><span>8</span>Day</div>
       <div class="day-title-wrap">
         <div class="day-title">皇后鎮 Queenstown：🪂 高空跳傘 · 悠閒市區時光</div>
-        <div class="day-subtitle">12/27（日）· 8:20報到 8:30出發跳傘 · 下午悠閒逛市區 · 早點休息備戰神奇峽灣</div>
+        <div class="day-subtitle">12/27（日）· 7:20報到 7:30出發跳傘 · 下午悠閒逛市區 · 早點休息備戰神奇峽灣</div>
       </div>
     </div>
     <div class="day-body">
       <div class="day-cost">💰 當日估算（兩人）：NZD $100–200（跳傘已付清，另計餐費；照片影片現場另購）</div>
       <div class="timeline">
         <div class="tl-item">
-          <div class="tl-time">早上 8:20</div>
+          <div class="tl-time">早上 7:20</div>
           <div class="tl-content">
             <div class="tl-title">🪂 NZONE 12,000呎雙人跳傘 ✓ 已訂</div>
-            <div class="tl-desc">✅ NZONE Ref：186364 · 2x Tandem Skydive 12,000ft · NZD $949.26（含線上訂位費$11.26，已刷卡付清）<br>⚠️ <b>8:20前到 NZONE Shop, 35 Shotover Street 報到</b>，8:30搭免費接駁車往跳傘場，全程約3.5小時，大約中午回到市區。<br>📱 業者會在出發前30分鐘傳簡訊確認天氣；出發前25分鐘還沒收到，打 +64 3 442 5867 或到店裡問。<br>👟 穿舒適衣物與包鞋，眼鏡、隱形眼鏡都可以戴；連身跳傘服、護目鏡、頭套、手套由業者提供。不能帶自己的手機、GoPro上去。<br>📸 照片影片報到時現場買：Handicam手腕攝影 NZD $220/人；Freefall跟拍攝影師、Ultimate Combo只能當天買，看有沒有名額。<br>🔄 取消改期：24小時前免費，24小時內或沒到全額收費。95公斤以上要由教練現場評估。</div>
+            <div class="tl-desc">✅ NZONE Ref：186364 · 2x Tandem Skydive 12,000ft · NZD $949.26（含線上訂位費$11.26，已刷卡付清）<br>⚠️ <b>7:20前到 NZONE Shop, 35 Shotover Street 報到</b>，7:30搭免費接駁車往跳傘場，全程約3.5小時，大約11:00回到市區。（10/15已改時段，新確認信同編號）<br>📱 業者會在出發前30分鐘傳簡訊確認天氣；出發前25分鐘還沒收到，打 +64 3 442 5867 或到店裡問。<br>👟 穿舒適衣物與包鞋，眼鏡、隱形眼鏡都可以戴；連身跳傘服、護目鏡、頭套、手套由業者提供。不能帶自己的手機、GoPro上去。<br>📸 照片影片報到時現場買：Handicam手腕攝影 NZD $220/人；Freefall跟拍攝影師、Ultimate Combo只能當天買，看有沒有名額。<br>🔄 取消改期：24小時前免費，24小時內或沒到全額收費。95公斤以上要由教練現場評估。</div>
             <div class="tl-links">
               <a class="tl-link" href="https://www.nzoneskydive.co.nz/" target="_blank">🔗 NZONE官網</a>
             </div>
@@ -922,9 +939,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
         </div>
       </div>
       <div class="day-hotel-row">
-        <div class="day-hotel-name">🔥 待訂（優先）：皇后鎮 Queenstown</div>
+        <div class="day-hotel-name">🏡 The Encounter 湖景獨棟 · 皇后鎮 ✓ 已訂</div>
       </div>
-      <div class="tips-inline"><p>💡 跳傘已訂 8:30（NZONE Ref：186364）。天氣不好會臨時取消，當天可以問業者能不能改到下午的班次；隔天一早就要去神奇峽灣，沒有備用日。</p></div>
+      <div class="tips-inline"><p>💡 跳傘已訂 7:30（7:20報到，NZONE Ref：186364）。天氣不好會臨時取消，當天可以問業者能不能改到下午的班次；隔天一早就要去神奇峽灣，沒有備用日。</p></div>
 
       <div class="note-box">
         <div class="note-box-header">📝 旅行筆記 · Day 8 <span>即時同步</span></div>
@@ -1199,7 +1216,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       </div>
     </div>
     <div class="day-body">
-      <div class="day-cost">💰 當日估算（兩人）：晚餐待訂 + 其他雜支</div>
+      <div class="day-cost">💰 當日估算（兩人）：Amano跨年晚餐 + 其他雜支</div>
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-time">清晨 6:30</div>
@@ -1258,17 +1275,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
           </div>
         </div>
         <div class="tl-item">
-          <div class="tl-time">晚上</div>
+          <div class="tl-time">晚上 7:45</div>
           <div class="tl-content">
-            <div class="tl-title">🍽️ 跨年晚餐 <span style="font-size:0.7rem;background:rgba(192,90,26,0.12);border:1px solid rgba(192,90,26,0.3);border-radius:8px;padding:1px 6px;margin-left:6px;font-weight:600">待訂</span></div>
-            <div class="tl-desc">晚餐地點待確認。</div>
+            <div class="tl-title">🍽️ Amano 跨年晚餐 <span style="font-size:0.7rem;background:rgba(122,184,146,0.15);color:var(--sage);border-radius:8px;padding:1px 8px;margin-left:6px;font-weight:600">已訂</span></div>
+            <div class="tl-desc">✅ 訂位編號：6NHVX55YSTT3 · 2位 · 19:45–21:45（用餐時間2小時）· 68 Tyler Street, Britomart（從Imagine Beach Road步行約5分鐘）· 電話 +64 9 394 1416 · 訂位名：YEN CHEN CHANG。義式料理，手工麵與窯烤麵包是招牌。21:45用餐結束後直接走去Wynyard Quarter。</div>
           </div>
         </div>
         <div class="tl-item" style="background:rgba(122,184,146,0.06);border-left:3px solid var(--sage);border-radius:0 8px 8px 0;padding:8px 10px 8px 12px;margin-left:-3px">
-          <div class="tl-time">晚上 9:00起</div>
+          <div class="tl-time">晚上 10:00</div>
           <div class="tl-content">
             <div class="tl-title">📍 Wynyard Quarter 免費觀賞點卡位</div>
-            <div class="tl-desc">從Imagine Beach Road步行約15–20分鐘抵達。官方認證的免費跨年觀賞區之一，可同時看到Sky Tower煙火與Auckland Harbour Bridge Vector Lights燈光秀，視野開闊、人潮比市中心Viaduct/Queen Street略少。晚上9點起Harbour Bridge開始燈光秀暖場，建議提早到場卡位置。⚠️ 12/31晚上10點起，市中心及Wynyard Quarter部分道路會封閉改成行人徒步區（至1/1凌晨1點），現場設有臨時公廁與醫療站。</div>
+            <div class="tl-desc">晚餐結束後從Amano步行約15–20分鐘抵達。官方認證的免費跨年觀賞區之一，可同時看到Sky Tower煙火與Auckland Harbour Bridge Vector Lights燈光秀，視野開闊、人潮比市中心Viaduct/Queen Street略少。晚上9點起Harbour Bridge開始燈光秀暖場，吃完晚餐約10點到，離午夜還有2小時，位置通常還找得到。⚠️ 12/31晚上10點起，市中心及Wynyard Quarter部分道路會封閉改成行人徒步區（至1/1凌晨1點），現場設有臨時公廁與醫療站。</div>
           </div>
         </div>
         <div class="tl-item">
@@ -1292,7 +1309,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       <div class="day-hotel-row">
         <div class="day-hotel-name">🏨 Imagine Beach Road · 奧克蘭 ✓ 已訂（12/31–1/1 · 1晚 · NZD $259）</div>
       </div>
-      <div class="tips-inline"><p>💡 跨年晚餐地點待確認，訂位越早越好（旺季餐廳極早滿）。皇后鎮機場國內線聖誕跨年班次熱門，提前1–2個月訂。國內線無供餐，記得在Mint Folk買好餐點帶上飛機。還車前加滿油。跨年夜市中心交通管制，建議提早出門走去Wynyard Quarter卡位。</p></div>
+      <div class="tips-inline"><p>💡 跨年晚餐已訂Amano 19:45（訂位編號6NHVX55YSTT3），21:45前要讓位。國內線無供餐，記得在Mint Folk買好餐點帶上飛機。還車前加滿油。跨年夜市中心交通管制，吃完晚餐直接走去Wynyard Quarter。</p></div>
 
       <div class="note-box">
         <div class="note-box-header">📝 旅行筆記 · Day 12 <span>即時同步</span></div>
@@ -1557,7 +1574,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 <!-- ===== 住宿 ===== -->
 <div id="hotels" class="section">
   <div class="section-title">住宿總覽</div>
-  <div class="section-sub">15晚住宿 · 綠色＝已訂 · 灰色＝待訂</div>
+  <div class="section-sub">15晚住宿 · 全部已訂</div>
 
   <!-- 已訂住宿 -->
   <div style="font-size:0.84rem;font-weight:700;color:var(--sage);letter-spacing:1px;margin-bottom:10px">✅ 已訂住宿</div>
@@ -1600,6 +1617,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
         <div class="hotel-name">🏡 Albert Town Studio（Airbnb）</div>
         <div class="hotel-loc">Day 5 · 12/24 聖誕夜（1晚）· Albert Town, Wānaka附近</div>
         <div class="hotel-desc">16 Kingfisher Crescent, Albert Town · 入住15:00 · 退房10:00 · 房東Megan · 確認碼：HMR84B9RX3 · 入住前48小時才顯示密碼鑰匙盒密碼 · TWD $4,399</div>
+      </div>
+    </div>
+
+    <div class="hotel-card" style="border:1.5px solid rgba(122,184,146,0.5);background:rgba(122,184,146,0.04)">
+      <div class="hotel-body">
+        <div class="hotel-name">🏡 The Encounter - Your Lake View house in Queenstown</div>
+        <div class="hotel-loc">Day 6–8 · 12/25–12/28（3晚，含聖誕節）· 皇后鎮 Queenstown</div>
+        <div class="hotel-desc">28 Avalon Crescent, Fernhill（羊齒山），距機場約13分鐘車程 · 入住12/25 15:00起 · 退房12/28 10:00前 · 整棟三臥室獨立房屋，湖景＋山景 · <b>附完整廚房</b>（爐台、烤箱、微波爐、洗碗機、咖啡機、烤麵包機）＋洗衣機 · Booking.com確認碼：5132466034 · 電話 +64 210 284 6909 · 總價 NZD $1,982.55（Booking.com自動刷卡）· 12/19 23:59前免費取消，之後取消收 NZD $1,884 · 21:00–7:00需降低音量</div>
       </div>
     </div>
 
@@ -1653,23 +1678,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 
   </div>
 
-  <!-- 待訂住宿 -->
-  <div style="font-size:0.84rem;font-weight:700;color:#8a6a00;letter-spacing:1px;margin-bottom:10px">⚠️ 待訂住宿</div>
-  <div class="hotel-grid">
-
-    <div class="hotel-card" style="border:1.5px solid rgba(192,90,26,0.4);background:rgba(192,90,26,0.04)">
-      <div class="hotel-body">
-        <div class="hotel-name">🔥 皇后鎮 Queenstown</div>
-        <div class="hotel-loc">Day 6–8 · 12/25–12/27（3晚，含聖誕節）</div>
-        <div class="hotel-desc">⚠️ 聖誕跨年旺季最搶手，立即訂！12/28早上出發Manapouri</div>
-      </div>
-    </div>
-
-  </div>
-
   <!-- 已訂但在待訂區的補充說明 -->
   <div style="font-size:0.77rem;color:var(--muted);margin-top:12px;padding:10px 14px;background:rgba(122,184,146,0.06);border-radius:8px;border:1px solid rgba(122,184,146,0.2)">
-    ✅ 其餘14晚住宿已全部訂妥，詳見上方已訂住宿區塊
+    ✅ 15晚住宿全部訂妥
   </div>
 </div>
 
@@ -1739,7 +1750,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
   <div class="food-section">
     <div class="food-section-title">📍 奧克蘭 Auckland Day 12 & 14</div>
     <div class="food-grid">
-      <div class="food-item"><div class="food-name">🥂 跨年晚餐 <span style="font-size:0.7rem;color:#c05a1a;font-weight:600">待訂</span></div><div class="food-desc">Day 12（12/31）晚餐地點待確認，跨年夜熱門餐廳需及早訂位。</div></div>
+      <div class="food-item"><div class="food-name">🥂 Amano 跨年晚餐 <span style="font-size:0.7rem;color:var(--sage);font-weight:600">已訂</span></div><div class="food-desc">Day 12（12/31）19:45–21:45，68 Tyler Street, Britomart。義式料理，手工麵與窯烤麵包是招牌，訂位編號6NHVX55YSTT3。</div></div>
       <div class="food-item"><div class="food-name">Ponsonby Road</div><div class="food-desc">奧克蘭 Auckland最有氣質的美食街，Flat White發源地之一，Day 14（1/2）購物日下午逛街順路，各國料理齊全，適合邊走邊吃小點心。</div></div>
       <div class="food-item"><div class="food-name">Moxie Restaurant</div><div class="food-desc">威靈頓知名牛排館在奧克蘭的分店，Day 14（1/2）19:00已訂位，蜜月最後一晚正式晚餐，牛排水準極高。</div></div>
       <div class="food-item"><div class="food-name">MASU by Nic Watt</div><div class="food-desc">SkyCity內當代日式餐廳，招牌東京拼盤用牡蠣殼盛裝生魚片，和牛燒烤水準極高，若想吃一頓精緻的可排Day 14。</div></div>
@@ -1790,12 +1801,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 
   <div class="booking-item"><div class="booking-info"><div class="booking-name">🛶 Kaikoura Kayaks 海豹獨木舟 <span style="color:var(--sage);font-weight:700">✓ 已訂</span></div><div class="booking-when">12/21 · 4:30pm出發 · 4:15pm報到 · 17 Killarney Street · Agent Ref：710003000 · Supplier Ref：RPC12J0 · 48小時前致電 +64 21 462 889</div><a class="booking-url" href="https://www.kaikourakayaks.nz/" target="_blank">kaikourakayaks.nz</a></div><div class="booking-urgency" style="background:rgba(122,184,146,0.15);color:var(--sage)">已完成</div></div>
   <div class="booking-item"><div class="booking-info"><div class="booking-name">🚡 Skyline 纜車 + Luge 3趟 <span style="color:var(--sage);font-weight:700">✓ 已訂</span></div><div class="booking-when">12/25 · Luge時段 14:30 · 14:00到纜車站 · Booking ID：#111903026 · NZD $267（含3天無限搭纜車）</div><a class="booking-url" href="https://queenstown.skyline.co.nz/" target="_blank">skyline.co.nz</a></div><div class="booking-urgency" style="background:rgba(122,184,146,0.15);color:var(--sage)">已完成</div></div>
-  <div class="booking-item"><div class="booking-info"><div class="booking-name">🪂 NZONE 12,000呎雙人跳傘 <span style="color:var(--sage);font-weight:700">✓ 已訂</span></div><div class="booking-when">12/27 · 8:30出發 · 8:20報到 · 35 Shotover Street · NZONE Ref：186364 · NZD $949.26</div><a class="booking-url" href="https://www.nzoneskydive.co.nz/" target="_blank">nzoneskydive.co.nz</a></div><div class="booking-urgency" style="background:rgba(122,184,146,0.15);color:var(--sage)">已完成</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">🪂 NZONE 12,000呎雙人跳傘 <span style="color:var(--sage);font-weight:700">✓ 已訂</span></div><div class="booking-when">12/27 · 7:30出發 · 7:20報到 · 35 Shotover Street · NZONE Ref：186364 · NZD $949.26</div><a class="booking-url" href="https://www.nzoneskydive.co.nz/" target="_blank">nzoneskydive.co.nz</a></div><div class="booking-urgency" style="background:rgba(122,184,146,0.15);color:var(--sage)">已完成</div></div>
   <div class="booking-item"><div class="booking-info"><div class="booking-name">♨️ Hell's Gate 地獄門泥漿浴 + Spa <span style="color:var(--sage);font-weight:700">✓ 已訂</span></div><div class="booking-when">1/1 · 2:30pm Session · 2:15pm報到 · 351 SH30 Tikitere · Agent Ref：710003002 · Supplier Ref：589083 · 48小時前致電 +64 7 345 3151</div><a class="booking-url" href="https://www.hellsgate.co.nz/" target="_blank">hellsgate.co.nz</a></div><div class="booking-urgency" style="background:rgba(122,184,146,0.15);color:var(--sage)">已完成</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">🏡 皇后鎮住宿 The Encounter <span style="color:var(--sage);font-weight:700">✓ 已訂</span></div><div class="booking-when">12/25 15:00入住 → 12/28 10:00退房 · 3晚 · 28 Avalon Crescent, Fernhill · Booking.com確認碼：5132466034 · NZD $1,982.55 · 12/19前免費取消 · 電話 +64 210 284 6909</div></div><div class="booking-urgency" style="background:rgba(122,184,146,0.15);color:var(--sage)">已完成</div></div>
+  <div class="booking-item"><div class="booking-info"><div class="booking-name">🥂 Amano 跨年晚餐 <span style="color:var(--sage);font-weight:700">✓ 已訂</span></div><div class="booking-when">12/31 · 19:45–21:45 · 2位 · 68 Tyler Street, Auckland · 訂位編號：6NHVX55YSTT3 · 電話 +64 9 394 1416</div><a class="booking-url" href="https://www.amano.nz/" target="_blank">amano.nz</a></div><div class="booking-urgency" style="background:rgba(122,184,146,0.15);color:var(--sage)">已完成</div></div>
   <!-- ⚠️ 待訂 -->
   <div style="font-size:0.84rem;font-weight:700;color:#8a6a00;letter-spacing:1px;margin:16px 0 10px">⚠️ 待訂 / 待確認</div>
-  <div class="booking-item"><div class="booking-info"><div class="booking-name">🥂 跨年晚餐</div><div class="booking-when">12/31 · 地點待確認</div></div><div class="booking-urgency urgency-high">🔥 待確認並儘速訂位</div></div>
-  <div class="booking-item"><div class="booking-info"><div class="booking-name">🏨 皇后鎮 Queenstown住宿</div><div class="booking-when">12/25–12/27 · 3晚（含聖誕節）· 備註蜜月</div></div><div class="booking-urgency urgency-high">🔥 最優先！立即訂</div></div>
   <div class="booking-item"><div class="booking-info"><div class="booking-name">🍽️ Boots and Jandals Otematata晚餐</div><div class="booking-when">12/30 · 晚上7:00</div><a class="booking-url" href="https://maps.app.goo.gl/sKuVvvo7KH6maLWB8" target="_blank">Google Maps</a></div><div class="booking-urgency">建議訂位</div></div>
   <div class="booking-item"><div class="booking-info"><div class="booking-name">🥩 Moxie Restaurant 奧克蘭晚餐 ✓ 已訂</div><div class="booking-when">1/2 · 晚上19:00 · 威靈頓牛排名店奧克蘭分店</div></div><div class="booking-urgency" style="background:rgba(122,184,146,0.15);color:var(--sage)">已完成</div></div>
   <div class="booking-item"><div class="booking-info"><div class="booking-name">國際駕照</div><div class="booking-when">出發前辦理 · 各地監理所</div><div class="booking-url">費用台幣200元，帶身分證+護照+駕照正本+2吋照片</div></div><div class="booking-urgency">出發前1個月</div></div>
@@ -1804,50 +1815,76 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 <!-- ===== 預算 ===== -->
 <div id="budget" class="section">
   <div class="section-title">預算規劃</div>
-  <div class="section-sub">兩人合計估算（台幣）· 聖誕跨年旺季版 · 15天</div>
-  <div class="budget-card">
-    <div style="font-size:0.77rem;font-weight:700;color:var(--sage);letter-spacing:1px;margin-bottom:12px">✅ 已確認金額（台幣）</div>
-    <div class="budget-row"><span>✈️ 國際機票（兩人，DCF3RH）</span><span class="amount">93,636</span></div>
-    <div class="budget-row"><span>🛥️ 神奇峽灣過夜船（兩人）</span><span class="amount">34,462</span></div>
-    <div class="budget-row"><span>🚁 冰川直升機健行（兩人）</span><span class="amount">29,567</span></div>
-    <div class="budget-row"><span>⛴️ TSS 蒸汽船晚餐（兩人）</span><span class="amount">7,127</span></div>
-    <div class="budget-row"><span>🚤 Shotover Jet 噴射船（兩人）</span><span class="amount">6,673</span></div>
-    <div class="budget-row"><span>🎭 Mitai 毛利文化夜間（兩人）</span><span class="amount">5,814</span></div>
-    <div class="budget-row"><span>🐋 凱庫拉賞鯨（兩人）</span><span class="amount">5,684</span></div>
-    <div class="budget-row"><span>🐧 小藍企鵝門票（兩人）</span><span class="amount">2,558</span></div>
-    <div class="budget-row"><span>🚗 租車 RaD Car Hire（11天，Booking #CHC565547）</span><span class="amount">NZD $2,274</span></div>
-    <div class="budget-row"><span>🚗 奧克蘭租車 Snap Rentals（3天，Ref：550333）</span><span class="amount">NZD $372</span></div>
-    <div class="budget-row"><span>🏨 Focus Motel（Christchurch · 1晚）</span><span class="amount">NZD $187</span></div>
-    <div class="budget-row"><span>🏨 Mondello Motels（Kaikoura · 1晚）</span><span class="amount">NZD $243</span></div>
-    <div class="budget-row"><span>🏨 58昂克羅恩汽車旅館（Franz Josef · 1晚）</span><span class="amount">5,382</span></div>
-    <div class="budget-row"><span>🏨 Mt Cook View Motel（Fox Glacier · 1晚）</span><span class="amount">6,914</span></div>
-    <div class="budget-row"><span>🏡 Albert Town Studio（聖誕夜 · 1晚）</span><span class="amount">4,399</span></div>
-    <div class="budget-row"><span>🏨 The Vicarage Boutique B&amp;B（奧瑪魯 · 1晚）</span><span class="amount">4,821</span></div>
-    <div class="budget-row"><span>🏡 Otematata Retreat B6（1晚）</span><span class="amount">5,190</span></div>
-    <div class="budget-row"><span>🏨 Imagine Beach Road（跨年夜 · 1晚）</span><span class="amount">NZD $259</span></div>
-    <div class="budget-row"><span>🏨 Rotorua Thermal Oak Motel（1晚）</span><span class="amount">NZD $239</span></div>
-    <div class="budget-row"><span>🚡 Skyline 纜車+Luge+3天纜車（兩人，#111903026）</span><span class="amount">NZD $267</span></div>
-    <div class="budget-row"><span>🪂 NZONE 12,000呎跳傘（兩人，Ref：186364）</span><span class="amount">NZD $949</span></div>
-    <div class="budget-row"><span>🛶 凱庫拉海豹獨木舟（兩人，訂單6591380）</span><span class="amount">已付清</span></div>
-    <div class="budget-row"><span>♨️ 地獄門泥漿浴+Spa（兩人，訂單6591383）</span><span class="amount">已付清</span></div>
-    <div class="budget-row" style="font-weight:600;color:var(--forest)"><span>已確認小計（台幣項目）</span><span class="amount">約 212,227</span></div>
-    <div class="budget-row" style="font-weight:600;color:#8a6a00;background:rgba(201,168,76,0.06);border-radius:8px;padding:8px 10px;margin:4px 0"><span>💱 已確認小計（NZD項目）</span><span class="amount">NZD $4,790</span></div>
-    <div style="font-size:0.72rem;color:var(--muted);margin-top:4px">💡 NZD項目請用上方💱匯率工具換算，避免固定匯率造成誤差</div>
+  <div class="section-sub">兩人合計 · 依類別整理 · 紐幣以 1 NZD ≈ 18.0 TWD 估算</div>
 
-    <div style="font-size:0.77rem;font-weight:700;color:#8a6a00;letter-spacing:1px;margin:16px 0 12px">⚠️ 估算金額</div>
-    <div class="budget-row"><span>🏨 TRIBE Auckland Fort Street（1晚，價格待確認）</span><span class="amount">估計約 3,000–5,000</span></div>
-    <div class="budget-row"><span>✈️ 國內線 NZ630（兩人）</span><span class="amount">已含機票訂單</span></div>
-    <div class="budget-row"><span>餐食 15天（兩人）</span><span class="amount">約 4–6萬</span></div>
-    <div class="budget-row"><span>其他活動、伴手禮、雜支</span><span class="amount">約 3–5萬</span></div>
-    <div class="budget-row total"><span>兩人總計估算</span><span class="amount">約 39–44萬</span></div>
+  <div class="budget-card bsum">
+    <div class="bsum-total"><div class="bsum-label">已訂項目合計</div><div class="bsum-num">≈ TWD 342,000</div></div>
+    <div class="bsum-grid">
+      <div class="bsum-item"><div>✈️ 機票</div><b>93,636</b></div>
+      <div class="bsum-item"><div>🎟️ 行程活動</div><b>≈ 122,340</b></div>
+      <div class="bsum-item"><div>🏨 住宿</div><b>≈ 79,100</b></div>
+      <div class="bsum-item"><div>🚗 租車</div><b>≈ 46,900</b></div>
+    </div>
+    <div class="bsum-split"><div><span class="dot dpaid"></span>已付（機票＋行程）<b>≈ 215,970</b></div><div><span class="dot ddue"></span>未付（住宿＋租車）<b>≈ 126,010</b></div></div>
+    <div class="bsum-foot">加上餐飲、油錢、雜支預估，整趟約 <b>TWD 42–46 萬</b></div>
+  </div>
+
+  <div class="budget-card bcard">
+    <div class="bcat-title"><span>✈️ 機票</span><span class="bcat-sum">TWD 93,636</span></div>
+    <div class="budget-row"><span>國際線＋NZ630 國內線（DCF3RH） <span class="ptag ptag-paid">已付</span></span><span class="amount">93,636</span></div>
+  </div>
+  <div class="budget-card bcard">
+    <div class="bcat-title"><span>🎟️ 行程活動</span><span class="bcat-sum">≈ TWD 122,340</span></div>
+    <div class="budget-row"><span>🛥️ 神奇峽灣過夜船 <span class="ptag ptag-paid">已付</span></span><span class="amount">34,462</span></div>
+    <div class="budget-row"><span>🚁 冰川直升機健行 <span class="ptag ptag-paid">已付</span></span><span class="amount">29,567</span></div>
+    <div class="budget-row"><span>🪂 NZONE 跳傘（NZD 949.26） <span class="ptag ptag-paid">已付</span></span><span class="amount">≈ 17,090</span></div>
+    <div class="budget-row"><span>⛴️ TSS 蒸汽船晚餐 <span class="ptag ptag-paid">已付</span></span><span class="amount">7,277</span></div>
+    <div class="budget-row"><span>🚤 Shotover Jet <span class="ptag ptag-paid">已付</span></span><span class="amount">6,673</span></div>
+    <div class="budget-row"><span>🎭 Mitai 毛利文化 <span class="ptag ptag-paid">已付</span></span><span class="amount">5,814</span></div>
+    <div class="budget-row"><span>🐋 凱庫拉賞鯨 <span class="ptag ptag-paid">已付</span></span><span class="amount">5,684</span></div>
+    <div class="budget-row"><span>🛶 凱庫拉海豹獨木舟 <span class="ptag ptag-paid">已付</span></span><span class="amount">5,445</span></div>
+    <div class="budget-row"><span>🚡 Skyline 纜車＋Luge <span class="ptag ptag-paid">已付</span></span><span class="amount">4,799</span></div>
+    <div class="budget-row"><span>♨️ Hell's Gate 泥漿浴 <span class="ptag ptag-paid">已付</span></span><span class="amount">2,971</span></div>
+    <div class="budget-row"><span>🐧 小藍企鵝 <span class="ptag ptag-paid">已付</span></span><span class="amount">2,558</span></div>
+    <div class="bnote">TSS 第一次訂單 7,127 已全額退回 7,418，重訂刷 7,568，實際花費 7,277</div>
+  </div>
+  <div class="budget-card bcard">
+    <div class="bcat-title"><span>🏨 住宿</span><span class="bcat-sum">≈ TWD 79,100</span></div>
+    <div class="budget-row"><span>Focus Motel · 基督城 <span class="ptag ptag-due">未付</span></span><span class="amount">NZD 187</span></div>
+    <div class="budget-row"><span>Mondello Motels · 凱庫拉 <span class="ptag ptag-due">未付</span></span><span class="amount">NZD 243</span></div>
+    <div class="budget-row"><span>58 on Cron · Franz Josef <span class="ptag ptag-due">未付</span></span><span class="amount">5,382</span></div>
+    <div class="budget-row"><span>Mt Cook View · Fox Glacier <span class="ptag ptag-due">未付</span></span><span class="amount">6,914</span></div>
+    <div class="budget-row"><span>Albert Town Studio · 聖誕夜 <span class="ptag ptag-due">未付</span></span><span class="amount">4,399</span></div>
+    <div class="budget-row"><span>The Encounter · 皇后鎮 3 晚 <span class="ptag ptag-due">未付 · 自動扣款</span></span><span class="amount">NZD 1,982.55</span></div>
+    <div class="budget-row"><span>MV Tutoko II 船上 <span class="ptag ptag-paid">已付</span></span><span class="amount">含在船票</span></div>
+    <div class="budget-row"><span>The Vicarage · 奧瑪魯 <span class="ptag ptag-due">未付</span></span><span class="amount">4,821</span></div>
+    <div class="budget-row"><span>Otematata Retreat B6 <span class="ptag ptag-due">未付</span></span><span class="amount">5,190</span></div>
+    <div class="budget-row"><span>Imagine Beach Road · 跨年夜 <span class="ptag ptag-due">未付</span></span><span class="amount">NZD 259</span></div>
+    <div class="budget-row"><span>Thermal Oak · 羅托魯阿 <span class="ptag ptag-due">未付</span></span><span class="amount">NZD 239</span></div>
+    <div class="budget-row"><span>TRIBE Auckland <span class="ptag ptag-due">待確認</span></span><span class="amount">待確認</span></div>
+    <div class="bnote">台幣 26,706 ＋ 紐幣 NZD 2,910.55（≈ 52,390）</div>
+  </div>
+  <div class="budget-card bcard">
+    <div class="bcat-title"><span>🚗 租車</span><span class="bcat-sum">≈ TWD 46,900</span></div>
+    <div class="budget-row"><span>RaD Car Hire 南島 11 天 <span class="ptag ptag-due">未付 · 取車前一天扣</span></span><span class="amount">NZD 2,234</span></div>
+    <div class="budget-row"><span>Snap Rentals 奧克蘭 3 天 <span class="ptag ptag-due">未付 · 取車時付</span></span><span class="amount">NZD 372.08</span></div>
+    <div class="bnote">油錢另計，見下方預估</div>
+  </div>
+  <div class="budget-card bcard">
+    <div class="bcat-title"><span>📝 預估（還沒花）</span><span class="bcat-sum">≈ TWD 7.7–12 萬</span></div>
+    <div class="budget-row"><span>🍽️ 餐飲 15 天（含 Amano 跨年、Moxie） </span><span class="amount">約 4–6 萬</span></div>
+    <div class="budget-row"><span>⛽ 油錢（南島 2,000 km＋北島） </span><span class="amount">約 1–1.5 萬</span></div>
+    <div class="budget-row"><span>🛂 NZeTA＋IVL 觀光稅（2人） </span><span class="amount">約 4,300</span></div>
+    <div class="budget-row"><span>🏨 TRIBE Auckland 1 晚 </span><span class="amount">約 3,000–5,000</span></div>
+    <div class="budget-row"><span>🛍️ 伴手禮、雜支 </span><span class="amount">約 2–3.5 萬</span></div>
   </div>
   <div class="tips-block">
     <div class="tips-title">聖誕跨年旺季重要提醒</div>
     <div class="tip"><div class="tip-dot"></div><p>12/25 多數超市與部分餐廳會休息或縮短營業時間，Skyline照常營業，但晚餐務必提前訂位或確認；12/24在Franz Josef出發前先補齊隔天所需食材</p></div>
-    <div class="tip"><div class="tip-dot"></div><p>皇后鎮 Queenstown住宿現在就訂，旺季是全年最搶手的住宿</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>皇后鎮住宿已訂 The Encounter（Fernhill湖景獨棟，3晚），12/19 23:59前可免費取消，Booking.com會自動刷卡</p></div>
     <div class="tip"><div class="tip-dot"></div><p>直升機冰川健行在Franz Josef住兩晚，12/23、12/24兩天嘗試機會，12/24飛完中午出發，聖誕夜住Wānaka，12/25再到皇后鎮 Queenstown</p></div>
     <div class="tip"><div class="tip-dot"></div><p>TSS Earnslaw 已訂 12/26 5pm Gourmet BBQ Dinner（晚餐版），4:30pm前往 RealNZ Visitor Centre, 88 Beach St 報到，無現金交易</p></div>
-    <div class="tip"><div class="tip-dot"></div><p>跳傘已訂12/27 8:30，天氣不好會臨時取消，出發前30分鐘業者會傳簡訊確認</p></div>
+    <div class="tip"><div class="tip-dot"></div><p>跳傘已訂12/27 7:30（7:20報到），天氣不好會臨時取消，出發前30分鐘業者會傳簡訊確認</p></div>
     <div class="tip"><div class="tip-dot"></div><p>跨年煙火最佳觀賞位置：Queen Street或downtown waterfront，提早一小時占位，注意當地禁止攜帶酒類與煙火</p></div>
     <div class="tip"><div class="tip-dot"></div><p>所有餐廳訂位備註「蜜月旅行 Honeymoon」，紐西蘭服務人員通常有驚喜安排</p></div>
     <div class="tip"><div class="tip-dot"></div><p>12月下旬紐西蘭是夏天，南島白天溫暖15–25°C，Franz Josef 仍偏冷，需帶防風外套</p></div>
@@ -3028,11 +3065,11 @@ var BUCKETLIST = [
   },
   {
     "cat": "🏨 住宿",
-    "name": "Lake Escape Holiday Apartment",
+    "name": "Lake Escape Holiday Apartment（Otematata Retreat B6）",
     "url": "https://www.google.com/maps/place/Lake+Escape+Holiday+Apartment/data=!4m2!3m1!1s0xa82a79763b526c8d:0xb6d2a2855e41ceb0",
-    "town": "Rotorua",
-    "lat": -38.13134,
-    "lng": 176.24424
+    "town": "Otematata",
+    "lat": -44.60303,
+    "lng": 170.19552
   },
   {
     "cat": "🏨 住宿",
@@ -3049,6 +3086,14 @@ var BUCKETLIST = [
     "town": "Auckland",
     "lat": -36.8484,
     "lng": 174.75737
+  },
+  {
+    "cat": "🏨 住宿",
+    "name": "The Encounter 湖景屋（28 Avalon Crescent）",
+    "url": "https://www.google.com/maps/search/?api=1&query=28+Avalon+Crescent+Fernhill+Queenstown+9300+New+Zealand",
+    "town": "Queenstown",
+    "lat": -45.0386,
+    "lng": 168.6372
   },
   {
     "cat": "🚗 租車",
@@ -3135,8 +3180,8 @@ var BUCKETLIST = [
     "name": "Clay Cliffs",
     "url": "https://www.google.com/maps/place/Clay+Cliffs/data=!4m2!3m1!1s0x6d2ad10f27b7f025:0x90ccb8fb43211c0",
     "town": "Otematata",
-    "lat": -44.9575,
-    "lng": 170.18487
+    "lat": -44.5386,
+    "lng": 169.8161
   },
   {
     "cat": "📍 景點",
@@ -3904,13 +3949,13 @@ var CDETAIL=[
   {title:'穿越南島 → Franz Josef',items:"7:30出發 · 基督城補給 · Arthur's Pass觀景點 · Otira Viaduct · Hokitika海灘 · 17:30抵達Franz Josef Village",hotel:'🏨 58昂克羅恩汽車旅館 · Franz Josef'},
   {title:'🚁 直升機冰川健行 ✓已訂（Agent Ref：710000549）',items:'07:30 Session · Glacier Base報到（出發前30分鐘）→5分鐘飛抵冰川→2小時冰爪探索冰洞冰塔 · 出發前48h+1h需致電+64 3 752 0767確認 · 若取消→備案：Roberts Point Track / Hot Tubs',hotel:'🏨 Mt Cook View Motel · Fox Glacier'},
   {title:'🚁 冰川最後嘗試 · 聖誕夜住Wānaka',items:'早上冰川最後嘗試→中午後出發→Fox Glacier加油→Knights Point→Haast加油→Thunder Creek Falls→🌿薰衣草農場→Wānaka聖誕夜',hotel:'🏡 Albert Town獨立套房 Airbnb（Wānaka附近）'},
-  {title:'Cardrona → 皇后鎮 · Skyline+Luge',items:'Wānaka出發→Cardrona Hotel歷史酒吧拍照→10:30抵達皇后鎮午餐→14:00到纜車站→14:30 Luge 3趟（#111903026，3天無限搭纜車先到櫃台兌換）→箭鎮或皇后鎮聖誕晚餐',hotel:'🏨 皇后鎮 Queenstown'},
-  {title:'🚤 Shotover Jet快艇 → ⛴️ TSS Earnslaw蒸汽船晚餐',items:'9:00 Shotover Jet噴射快艇 · 4:30pm RealNZ報到→5pm TSS Earnslaw蒸汽船+Walter Peak Gourmet BBQ晚餐+農場示範（Agent Ref：710001285）',hotel:'🏨 皇后鎮 Queenstown'},
-  {title:'🪂 高空跳傘 → 悠閒市區時光',items:'8:20報到 8:30出發 NZONE 12,000呎跳傘（Ref：186364）· 市區午餐 · 下午悠閒漫遊皇后鎮 · Fergburger · 早點休息準備神奇峽灣',hotel:'🏨 皇后鎮 Queenstown'},
+  {title:'Cardrona → 皇后鎮 · Skyline+Luge',items:'Wānaka出發→Cardrona Hotel歷史酒吧拍照→10:30抵達皇后鎮午餐→14:00到纜車站→14:30 Luge 3趟（#111903026，3天無限搭纜車先到櫃台兌換）→箭鎮或皇后鎮聖誕晚餐',hotel:'🏡 The Encounter 湖景屋 · 皇后鎮 Fernhill'},
+  {title:'🚤 Shotover Jet快艇 → ⛴️ TSS Earnslaw蒸汽船晚餐',items:'9:00 Shotover Jet噴射快艇 · 4:30pm RealNZ報到→5pm TSS Earnslaw蒸汽船+Walter Peak Gourmet BBQ晚餐+農場示範（Agent Ref：710001285）',hotel:'🏡 The Encounter 湖景屋 · 皇后鎮 Fernhill'},
+  {title:'🪂 高空跳傘 → 悠閒市區時光',items:'7:20報到 7:30出發 NZONE 12,000呎跳傘（Ref：186364）· 市區午餐 · 下午悠閒漫遊皇后鎮 · Fergburger · 早點休息準備神奇峽灣',hotel:'🏡 The Encounter 湖景屋 · 皇后鎮 Fernhill'},
   {title:'🛥️ 神奇峽灣 Doubtful Sound 過夜船',items:'前一天7pm前致電確認 · 7:00皇后鎮出發→Manapouri · 9:15 RealNZ辦公室樓梯頂端集合（⚠️停車改View Street）· 9:45渡船啟航 · Lake Manapouri→Wilmot Pass→Deep Cove登MV Tutoko II · 峽灣探索·海豚海豹·釣魚划獨木舟·抓龍蝦晚餐·星空·船上過夜',hotel:'🛥️ MV Tutoko II 船上'},
   {title:'神奇峽灣返回 → 🐧黃眼企鵝 + 🐣小藍企鵝',items:'中午12:00返回Manapouri · Shag Point鸕鶿角（順路·海豹）· Katiki Point卡蒂基角（黃眼企鵝·燈塔）· 奧瑪魯Heritage Precinct · 20:45小藍企鵝上岸（B# 334371）',hotel:'🏨 The Vicarage Boutique B&B · 奧瑪魯'},
   {title:'奧瑪魯 Oamaru市區 · 🏜️ Clay Cliffs',items:'上午Heritage Precinct歷史街區+手工藝店 · Harbour Street Bakery午餐 · 13:00出發Otematata · 14:00 check-in · 16:00 Clay Cliffs黏土峭壁 · Boots and Jandals晚餐',hotel:'🏡 Otematata Retreat B6 Airbnb'},
-  {title:'🎆 Lake Pukaki→皇后鎮還車→飛奧克蘭→跨年',items:'6:30 Otematata出發 · 8:30 Mint Folk買機上餐（鮭魚派/煎蛋餅）· Tapataia Mahaka Peter\'s Lookout · 12:00皇后鎮機場RaD還車（11天）· NZ630飛奧克蘭 · AirportLink巴士→Puhinui→火車→Waitematā Station→步行6分抵飯店 · 晚餐待訂 · Wynyard Quarter免費觀賞點 · 午夜3500發煙火',hotel:'🏨 Imagine Beach Road · 奧克蘭'},
+  {title:'🎆 Lake Pukaki→皇后鎮還車→飛奧克蘭→跨年',items:'6:30 Otematata出發 · 8:30 Mint Folk買機上餐（鮭魚派/煎蛋餅）· Tapataia Mahaka Peter\'s Lookout · 12:00皇后鎮機場RaD還車（11天）· NZ630飛奧克蘭 · AirportLink巴士→Puhinui→火車→Waitematā Station→步行6分抵飯店 · 19:45 Amano跨年晚餐 · 22:00 Wynyard Quarter免費觀賞點 · 午夜3500發煙火',hotel:'🏨 Imagine Beach Road · 奧克蘭'},
   {title:'羅托魯阿 Rotorua · 地獄門 + Mitai毛利夜間',items:'10:00取車（Snap Rentals）→10:30奧克蘭出發（3小時）→13:30抵達午餐→14:15報到→14:30地獄門泥漿浴+Spa（Ref：710003002）→17:00先到旅館放行李梳洗→Mitai Maori Village 18:30（18:15報到，Ref：358089097）獨木舟+哈卡+Hangi+螢火蟲 · 入住Rotorua Thermal Oak Motel',hotel:'🏨 Rotorua Thermal Oak Motel · 羅托魯阿'},
   {title:'Wai-O-Tapu間歇泉 + 奧克蘭購物',items:'7:00羅托魯阿出發→9:45 Lady Knox Geyser間歇泉（10:15噴發）→主園區參觀→12:30返奧克蘭→Mount Victoria(Devonport)→Westfield Newmarket→Commercial Bay購物→19:00 Moxie Restaurant晚餐（已訂）',hotel:'🏨 TRIBE Auckland Fort Street'},
   {title:'飛回台北 ✈️',items:'8:00 Snap Rentals還車（Parnell）· 退房 · 機場免稅店採購（蜂蜜需申報）· 12:20 NZ77起飛 → 18:35抵達台北',hotel:'🏨 — 返台'},
@@ -3966,7 +4011,7 @@ var PLACES=[
   {id:7,  day:'Day 6 · 12/25（四）🎄',            emoji:'🏔️', name:'Skyline + Luge 纜車斜坡滑車',   desc:'✓已訂 14:30 Luge 3趟（14:00到纜車站）· #111903026',     lat:-45.0246,lng:168.6523, type:'xmas', island:'south', mapq:'Skyline Queenstown New Zealand'},
   {id:9,  day:'Day 7 · 12/26（五）',              emoji:'🚤', name:'Shotover Jet 噴射快艇',          desc:'峽谷中360度高速旋轉，全身濕透，NZD $175/人 · Agent Ref：710000768',          lat:-45.0247,lng:168.6761, type:'act',  island:'south', mapq:'Shotover Jet Queenstown New Zealand'},
   {id:10, day:'Day 7 · 12/26（五）',              emoji:'⛴️', name:'TSS Earnslaw 蒸汽船晚餐',        desc:'✓已訂 5pm Gourmet BBQ Dinner · 4:30pm報到 88 Beach St · Agent Ref：710001285',  lat:-45.0304,lng:168.6608, type:'act',  island:'south', mapq:'TSS Earnslaw Queenstown New Zealand'},
-  {id:11, day:'Day 8 · 12/27（六）',              emoji:'🪂', name:'NZONE Skydive 高空跳傘',          desc:'✓已訂 12,000ft · 8:20報到 8:30出發 · Ref：186364',     lat:-45.0356,lng:168.6592, type:'act',  island:'south', mapq:'NZONE Skydive Queenstown New Zealand'},
+  {id:11, day:'Day 8 · 12/27（六）',              emoji:'🪂', name:'NZONE Skydive 高空跳傘',          desc:'✓已訂 12,000ft · 7:20報到 7:30出發 · Ref：186364',     lat:-45.0356,lng:168.6592, type:'act',  island:'south', mapq:'NZONE Skydive Queenstown New Zealand'},
   {id:13, day:'Day 9 · 12/28（日）',              emoji:'🛥️', name:'Manapouri · 神奇峽灣出發點',       desc:'7:00皇后鎮出發·9:15集合·9:45啟航·船上過夜',            lat:-45.5667,lng:167.5667, type:'act',  island:'south', mapq:'Manapouri New Zealand'},
   {id:14, day:'Day 9 · 12/28（日）',              emoji:'🌊', name:'神奇峽灣 Doubtful Sound',         desc:'Deep Cove登MV Tutoko II · 海豚海豹 · 峽灣星空 · 全行程最寧靜時刻',  lat:-45.2667,lng:166.9667, type:'act',  island:'south', mapq:'Doubtful Sound New Zealand'},
   {id:15, day:'Day 10 · 12/29（一）',             emoji:'🦭', name:'Shag Point 鸕鶿角',             desc:'海豹聚集岩台 · 億年地質 · 蛇頸龍化石發現地',         lat:-45.4833,lng:170.8167, type:'act',  island:'south', mapq:'Shag Point Palmerston Otago New Zealand'},
@@ -3978,6 +4023,7 @@ var PLACES=[
   {id:22, day:'Day 12 · 12/31（三）🎆',           emoji:'✈️', name:'皇后鎮機場 Queenstown Airport還車',      desc:'Mint Folk買機上餐 · Tapataia Mahaka Peter\'s Lookout · RaD Car Hire還車（12:00前，皇后鎮機場）· 國內線飛奧克蘭',      lat:-45.0211,lng:168.7392, type:'act',  island:'south', mapq:'Queenstown Airport New Zealand'},
   {id:29, day:'Day 12 · 12/31（三）🎆',           emoji:'🥧', name:'Mint Folk & Co, Twizel',        desc:'鮭魚派、鮭魚煎蛋餅，購買國內線機上午餐',        lat:-44.2597,lng:170.0997, type:'act',  island:'south', mapq:'Mint Folk Co Twizel New Zealand'},
   {id:23, day:'Day 12 · 12/31（三）🎆',           emoji:'🗼', name:'Sky Tower 跨年煙火',             desc:'午夜3500發煙火，全南半球最高規格跨年',               lat:-36.8484,lng:174.7622, type:'nye',  island:'north', mapq:'Sky Tower Auckland New Zealand'},
+  {id:35, day:'Day 12 · 12/31（四）🎆',           emoji:'🍽️', name:'Amano 跨年晚餐',                desc:'✓已訂 19:45–21:45 · 68 Tyler Street · 訂位編號 6NHVX55YSTT3', lat:-36.8445,lng:174.7695, type:'act',  island:'north', mapq:'Amano 68 Tyler Street Auckland'},
   {id:30, day:'Day 12 · 12/31（三）🎆',           emoji:'📍', name:'Wynyard Quarter 免費觀賞點',      desc:'官方認證免費煙火觀賞區，可同時看Sky Tower+Harbour Bridge燈光秀',      lat:-36.8412,lng:174.7591, type:'nye',  island:'north', mapq:'Wynyard Quarter Auckland New Zealand'},
   {id:34, day:'Day 13 · 1/1（五）',               emoji:'♨️', name:"Hell's Gate 地獄門泥漿浴",      desc:'✓已訂 14:30 Session（14:15報到）· 351 SH30 Tikitere · Ref：710003002', lat:-38.0636,lng:176.3608, type:'act',  island:'north', mapq:"Hell's Gate Geothermal Reserve Rotorua New Zealand"},
   {id:24, day:'Day 13 · 1/1（四）',               emoji:'🎭', name:'Mitai Maori Village 羅托魯阿 Rotorua',  desc:'18:30出發（18:15報到）· 獨木舟+哈卡+Hangi晚餐+螢火蟲 · ✓已訂 Ref：358089097', lat:-38.1066,lng:176.2208, type:'act',  island:'north', mapq:'Mitai Maori Village Rotorua New Zealand'},
@@ -4269,7 +4315,7 @@ var DAILY_ROUTES=[
    km:'市區步行為主', desc:'NZONE Skydive報到處 → 跳傘場 → 市區午餐 → 悠閒漫遊皇后鎮',
    url:'https://www.google.com/maps/dir/NZONE+Skydive+Queenstown/Queenstown+Gardens/@-45.03,168.66,13z',
    stops:[
-     {lat:-45.0356,lng:168.6592,name:'NZONE Skydive 報到處',note:'8:20報到・35 Shotover Street'},
+     {lat:-45.0356,lng:168.6592,name:'NZONE Skydive 報到處',note:'7:20報到・35 Shotover Street'},
      {lat:-45.0312,lng:168.6626,name:'皇后鎮市區',note:'Fergburger・湖畔散步'},
    ]},
   {day:9, date:'12/28', label:'Day 9 · 皇后鎮→神奇峽灣過夜',
@@ -4295,18 +4341,19 @@ var DAILY_ROUTES=[
    url:'https://www.google.com/maps/dir/Oamaru,NZ/Otematata,NZ/Clay+Cliffs,NZ/@-44.7,170.5,9z',
    stops:[
      {lat:-45.0978,lng:170.9714,name:'Oamaru Heritage Precinct',note:'歷史街區+手工藝店'},
-     {lat:-44.9575,lng:170.1897,name:'Otematata Retreat B6',note:'14:00 check-in'},
+     {lat:-44.6030,lng:170.1955,name:'Otematata Retreat B6',note:'14:00 check-in'},
      {lat:-44.5386,lng:169.8161,name:'Clay Cliffs',note:'傍晚光線最佳，NZD$5/車現金'},
    ]},
   {day:12, date:'12/31', label:'Day 12 · Otematata→Lake Pukaki→皇后鎮還車→奧克蘭跨年🎆',
-   km:'約230km · 3小時（+飛行1h50m）+市區步行', desc:'Mint Folk買機上餐 → Lake Pukaki Peter\'s Lookout → 皇后鎮機場還車 → NZ630飛奧克蘭 → 跨年晚餐（待訂）→ Wynyard Quarter觀賞煙火',
+   km:'約230km · 3小時（+飛行1h50m）+市區步行', desc:'Mint Folk買機上餐 → Lake Pukaki Peter\'s Lookout → 皇后鎮機場還車 → NZ630飛奧克蘭 → Amano跨年晚餐 19:45 → Wynyard Quarter觀賞煙火',
    url:'https://www.google.com/maps/dir/Otematata,NZ/Twizel,NZ/Lake+Pukaki,NZ/Queenstown+Airport,NZ/@-44.3,169.5,9z',
    stops:[
-     {lat:-44.9575,lng:170.1897,name:'Otematata 出發'},
+     {lat:-44.6030,lng:170.1955,name:'Otematata 出發'},
      {lat:-44.2597,lng:170.0997,name:'Mint Folk & Co, Twizel',note:'買鮭魚派/煎蛋餅'},
      {lat:-44.0891,lng:170.1358,name:'Tapataia Mahaka Peter\'s Lookout',note:'Lake Pukaki最佳拍照點'},
      {lat:-45.0211,lng:168.7392,name:'皇后鎮機場 · RaD Car Hire還車',note:'共11天，12:00前'},
      {lat:-36.8484,lng:174.7622,name:'奧克蘭 Auckland 抵達',note:'NZ630飛行1h50m'},
+     {lat:-36.8445,lng:174.7695,name:'Amano 跨年晚餐',note:'19:45–21:45 已訂'},
      {lat:-36.8412,lng:174.7591,name:'Wynyard Quarter',note:'免費煙火觀賞點'},
      {lat:-36.8484,lng:174.7622,name:'Sky Tower',note:'午夜3500發煙火'},
    ]},

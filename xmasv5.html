@@ -19,7 +19,7 @@
 .pre-item:first-of-type{border-top:none}
 .pre-item input{margin-top:4px;width:17px;height:17px;flex-shrink:0;accent-color:var(--sage)}
 .pre-item b{color:var(--forest)}
-.pre-item .pre-note{display:block;color:var(--muted);font-size:0.78rem}
+.pre-item .pre-note{display:block;color:var(--muted);font-size:0.75rem}
 .pre-item.done{opacity:0.5}
 .pre-item.done b{text-decoration:line-through}
 .pre-table{width:100%;border-collapse:collapse;font-size:0.8rem}
@@ -210,6 +210,35 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
 
+<style id="day-typography">
+/* 全站字級：頁標 1.5 / 卡片標題 1 / 項目標題 .95 / 內文 .84 / 輔助 .75 / 標籤 .69 rem。日曆格例外 */
+.section .section-title{font-size:1.5rem;line-height:1.3}
+.section .section-sub{font-size:0.8rem;line-height:1.6}
+/* 卡片標題 */
+.section .day-title,.section .hotel-name,.section .food-section-title,.section .pre-h{font-size:1rem;font-weight:600;line-height:1.4}
+.section .hotel-name{font-family:inherit}
+/* 項目標題 */
+.day-body .tl-title,.section .food-name,.section .booking-name{font-size:0.95rem;font-weight:600;line-height:1.45}
+.section .amount,.section .bcat-sum{font-size:0.95rem}
+/* 內文 */
+.day-body .tl-desc,.section .food-desc,.section .hotel-desc,.section .pre-item{font-size:0.84rem;line-height:1.7}
+.section .note-textarea{font-size:0.84rem}
+/* 輔助資訊 */
+.day-body .tl-time,.section .day-subtitle,.section .hotel-loc,.section .booking-when,.section .booking-url,.section .pre-table,.section .pre-progress,.section .pre-note,.section .bnote,.section .note-save-btn,.section .note-box-header,.section .note-saved{font-size:0.75rem}
+.day-body .tl-time{line-height:1.5;padding-top:3px}
+.day-body .tl-link{font-size:0.75rem}
+.section .day-hotel-name{font-size:0.84rem}
+.day-body .tips-inline p{font-size:0.8rem;line-height:1.65}
+/* 標籤 */
+.section .badge,.section .badge-xmas,.section .ptag,.section .booking-urgency{font-size:0.69rem}
+.day-body .tl-item{margin-bottom:18px}
+/* 補給與周邊：次要資訊 */
+.day-refbox{display:grid;gap:8px;margin-top:16px;padding-top:14px;border-top:1px dashed var(--warm)}
+.refbox-supply,.refbox-sight{background:#f8f7f2;border-radius:8px;padding:10px 12px;border-left:3px solid #7f9fb5}
+.refbox-sight{border-left-color:#a593bd}
+.refbox-title{font-size:0.75rem;font-weight:600;color:var(--forest);margin-bottom:4px;letter-spacing:0.3px}
+.refbox-body{font-size:0.75rem;line-height:1.65;color:var(--muted)}
+</style>
 </head>
 <body>
 
@@ -249,7 +278,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
   <!-- 行事曆 -->
   <div style="margin-bottom:24px">
     <div style="font-family:'Playfair Display',serif;font-size:1.12rem;font-weight:600;margin-bottom:4px">行程總覽日曆</div>
-    <div style="font-size:0.77rem;color:var(--muted);margin-bottom:10px">點擊任一天查看詳情 · <span style="background:rgba(204,51,51,0.1);color:#8a1a1a;padding:1px 6px;border-radius:4px;font-size:0.7rem">🎄 聖誕</span> <span style="background:rgba(201,168,76,0.15);color:#6b4a00;padding:1px 6px;border-radius:4px;font-size:0.7rem">🎆 跨年</span> <span style="background:rgba(61,107,79,0.08);color:#2a6a40;padding:1px 6px;border-radius:4px;font-size:0.7rem">🔀 分支/選項</span></div>
+    <div style="font-size:0.75rem;color:var(--muted);margin-bottom:10px">點擊任一天查看詳情 · <span style="background:rgba(204,51,51,0.1);color:#8a1a1a;padding:1px 6px;border-radius:4px;font-size:0.75rem">🎄 聖誕</span> <span style="background:rgba(201,168,76,0.15);color:#6b4a00;padding:1px 6px;border-radius:4px;font-size:0.75rem">🎆 跨年</span> <span style="background:rgba(61,107,79,0.08);color:#2a6a40;padding:1px 6px;border-radius:4px;font-size:0.75rem">🔀 分支/選項</span></div>
 
     <!-- 週標題 -->
     <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:3px">
@@ -263,7 +292,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
     <div id="cal-detail2" style="display:none;background:#fff;border-radius:14px;border:1px solid var(--warm);padding:1rem 1.25rem;margin-top:10px">
       <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px">
         <div>
-          <div id="cd2-date" style="font-size:0.77rem;color:var(--sage);font-weight:600;letter-spacing:0.5px"></div>
+          <div id="cd2-date" style="font-size:0.75rem;color:var(--sage);font-weight:600;letter-spacing:0.5px"></div>
           <div id="cd2-title" style="font-family:'Playfair Display',serif;font-size:1.12rem;font-weight:600;color:var(--forest);margin-top:2px"></div>
         </div>
         <button onclick="document.getElementById('cal-detail2').style.display='none'" style="border:none;background:none;font-size:1.26rem;color:var(--muted);cursor:pointer;flex-shrink:0">✕</button>
@@ -284,7 +313,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       </div>
     </div>
     <div class="day-body">
-      <div class="day-cost">💰 當日估算（兩人）：NZD $160–240</div>
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-time">12/19（六）18:45</div>
@@ -366,7 +394,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       </div>
     </div>
     <div class="day-body">
-      <div class="day-cost">💰 當日估算（兩人）：NZD $150–250（賞鯨、獨木舟已付清，另計餐費與油錢）</div>
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-time">早上 7:00</div>
@@ -378,7 +405,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
         <div class="tl-item">
           <div class="tl-time">10:00 出發</div>
           <div class="tl-content">
-            <div class="tl-title">🐋 Whale Watch Kaikoura 賞鯨船 <span style="font-size:0.7rem;background:rgba(122,184,146,0.15);border:1px solid rgba(122,184,146,0.4);border-radius:8px;padding:1px 6px;margin-left:6px;font-weight:600;color:var(--sage)">✓ 已訂票</span></div>
+            <div class="tl-title">🐋 Whale Watch Kaikoura 賞鯨船 <span style="font-size:0.75rem;background:rgba(122,184,146,0.15);border:1px solid rgba(122,184,146,0.4);border-radius:8px;padding:1px 6px;margin-left:6px;font-weight:600;color:var(--sage)">✓ 已訂票</span></div>
             <div class="tl-desc">✅ Booking Ref：882384 · 10:30出發班次 · ⚠️ 請於 10:00 前抵達 1 Whaleway Station Road, Kaikoura 報到（出發前30分鐘，報到在出發前5分鐘關閉）。全程約3小時15分，水上時間約2小時。未見鯨魚退款80%。聯絡：+64 3 319 6767。</div>
             <div class="tl-links">
               <a class="tl-link" href="https://www.whalewatch.co.nz/" target="_blank">🔗 官網管理訂票</a>
@@ -444,16 +471,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       </div>
     </div>
     <div class="day-body">
-      <div class="day-cost">💰 當日估算（兩人）：NZD $100–150（路途費用）</div>
 
       <!-- 路線選擇區塊 -->
       <div style="margin:0 0 18px 0;border-radius:10px;overflow:hidden;border:1px solid rgba(90,130,100,0.25)">
-        <div style="background:rgba(90,130,100,0.12);padding:8px 14px;font-weight:700;font-size:0.85rem;color:var(--sage);letter-spacing:0.03em">🗺️ 路線選擇（二擇一）</div>
+        <div style="background:rgba(90,130,100,0.12);padding:8px 14px;font-weight:700;font-size:0.84rem;color:var(--sage);letter-spacing:0.03em">🗺️ 路線選擇（二擇一）</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
           <!-- 主路線 -->
           <div style="padding:12px 14px;border-right:1px solid rgba(90,130,100,0.2)">
-            <div style="font-weight:700;font-size:0.82rem;color:var(--sage);margin-bottom:6px">✅ 主路線（景觀優先）</div>
-            <div style="font-size:0.78rem;color:var(--text-muted);line-height:1.7">
+            <div style="font-weight:700;font-size:0.84rem;color:var(--sage);margin-bottom:6px">✅ 主路線（景觀優先）</div>
+            <div style="font-size:0.75rem;color:var(--text-muted);line-height:1.7">
               凱庫拉 → <strong>SH1南下</strong> → 基督城補給 → <strong>SH73 Arthur's Pass</strong> → Hokitika → Franz Josef<br>
               📍 約 560 km · 7.5 小時<br>
               🌄 Castle Hill · Otira Viaduct · Hokitika海灘<br>
@@ -463,8 +489,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
           </div>
           <!-- 備用路線 -->
           <div style="padding:12px 14px;background:rgba(192,90,26,0.04)">
-            <div style="font-weight:700;font-size:0.82rem;color:#c05a1a;margin-bottom:6px">⚡ 備用路線（最快捷）</div>
-            <div style="font-size:0.78rem;color:var(--text-muted);line-height:1.7">
+            <div style="font-weight:700;font-size:0.84rem;color:#c05a1a;margin-bottom:6px">⚡ 備用路線（最快捷）</div>
+            <div style="font-size:0.75rem;color:var(--text-muted);line-height:1.7">
               凱庫拉 → <strong>Inland Route 70</strong> → Waiau → Culverden → <strong>SH7 Lewis Pass</strong> → Springs Junction → <strong>SH6南下</strong> → Franz Josef<br>
               📍 約 498 km · 6.5 小時<br>
               ✂️ 不需繞回基督城，省約 1 小時<br>
@@ -563,7 +589,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       </div>
     </div>
     <div class="day-body">
-      <div class="day-cost">💰 當日估算（兩人）：NZD $1,600（若起飛）/ NZD $0–100（若取消）</div>
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-time">出發前48小時</div>
@@ -668,16 +693,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       </div>
     </div>
     <div class="day-body">
-      <div class="day-cost">💰 當日估算（兩人）：NZD $150–200（路途+薰衣草農場）</div>
 
       <div style="margin-top:12px;border-radius:12px;overflow:hidden;border:1px solid var(--warm)">
         <div style="background:var(--forest);padding:10px 14px;font-size:0.84rem;font-weight:600;color:var(--mint);letter-spacing:1px">早上兩種情況</div>
         <div style="background:#f0faf4;padding:14px;border-bottom:1px solid var(--warm)">
-          <div style="font-size:0.91rem;font-weight:600;color:#2a6a40;margin-bottom:6px">✅ 昨天已飛成功 → 早上退房直接出發</div>
+          <div style="font-size:0.95rem;font-weight:600;color:#2a6a40;margin-bottom:6px">✅ 昨天已飛成功 → 早上退房直接出發</div>
           <div style="font-size:0.84rem;color:var(--muted);line-height:1.7">早上悠閒退房，確認行李，早點出發爭取時間（Lake Matheson 已在昨天 Day 4 下午參觀）。</div>
         </div>
         <div style="background:#fff8f0;padding:14px">
-          <div style="font-size:0.91rem;font-weight:600;color:#8a4a00;margin-bottom:6px">⛅ 昨天取消 → 早上最後一次嘗試</div>
+          <div style="font-size:0.95rem;font-weight:600;color:#8a4a00;margin-bottom:6px">⛅ 昨天取消 → 早上最後一次嘗試</div>
           <div style="font-size:0.84rem;color:var(--muted);line-height:1.7">早上再次嘗試冰川直升機（票已自動移到今天），飛完約中午，立即退房出發。若今天再度取消，中午同樣出發——明天12/25冰川公司公休，已無機會，帶著遺憾上路也是一種記憶。</div>
         </div>
       </div>
@@ -765,7 +789,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       </div>
     </div>
     <div class="day-body">
-      <div class="day-cost">💰 當日估算（兩人）：NZD $150–250（Skyline已付清，另計餐費）</div>
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-time">早上 9:00</div>
@@ -842,7 +865,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       </div>
     </div>
     <div class="day-body">
-      <div class="day-cost">💰 當日估算（兩人）：NZD $550–700</div>
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-time">09:30 抵達 · 10:00 出發</div>
@@ -906,7 +928,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       </div>
     </div>
     <div class="day-body">
-      <div class="day-cost">💰 當日估算（兩人）：NZD $100–200（跳傘、腳踏車已付清，另計餐費；照片影片現場另購）</div>
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-time">早上 7:20</div>
@@ -983,7 +1004,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       </div>
     </div>
     <div class="day-body">
-      <div class="day-cost">💰 當日估算（兩人）：NZD $1,870（Premium Cabin Double已含餐）</div>
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-time">前一天</div>
@@ -1064,7 +1084,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       </div>
     </div>
     <div class="day-body">
-      <div class="day-cost">💰 當日估算（兩人）：NZD $120–180（油錢較多，企鵝已付清）</div>
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-time">早上</div>
@@ -1111,7 +1130,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
         <div class="tl-item">
           <div class="tl-time">晚上 20:45</div>
           <div class="tl-content">
-            <div class="tl-title">🐣 奧瑪魯 Oamaru 小藍企鵝夜間上岸 <span style="font-size:0.7rem;background:rgba(122,184,146,0.15);border:1px solid rgba(122,184,146,0.4);border-radius:8px;padding:1px 6px;margin-left:6px;font-weight:600;color:var(--sage)">✓ 已訂票</span></div>
+            <div class="tl-title">🐣 奧瑪魯 Oamaru 小藍企鵝夜間上岸 <span style="font-size:0.75rem;background:rgba(122,184,146,0.15);border:1px solid rgba(122,184,146,0.4);border-radius:8px;padding:1px 6px;margin-left:6px;font-weight:600;color:var(--sage)">✓ 已訂票</span></div>
             <div class="tl-desc">全球最小企鵝身高僅30公分，每天傍晚準時列隊從海上走回巢穴，笨拙可愛，約1.5小時。✅ Premium Entry門票已確認：B# 334371，2位成人，NZD $140.00。嚴禁閃光燈與手機燈。</div>
             <div class="tl-links">
               <a class="tl-link" href="https://book.penguins.co.nz" target="_blank">🔗 官網管理訂票</a>
@@ -1152,7 +1171,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       </div>
     </div>
     <div class="day-body">
-      <div class="day-cost">💰 當日估算（兩人）：NZD $100–180</div>
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-time">上午</div>
@@ -1245,7 +1263,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       </div>
     </div>
     <div class="day-body">
-      <div class="day-cost">💰 當日估算（兩人）：Amano跨年晚餐 + 其他雜支</div>
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-time">清晨 6:30</div>
@@ -1306,7 +1323,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
         <div class="tl-item">
           <div class="tl-time">晚上 7:45</div>
           <div class="tl-content">
-            <div class="tl-title">🍽️ Amano 跨年晚餐 <span style="font-size:0.7rem;background:rgba(122,184,146,0.15);color:var(--sage);border-radius:8px;padding:1px 8px;margin-left:6px;font-weight:600">已訂</span></div>
+            <div class="tl-title">🍽️ Amano 跨年晚餐 <span style="font-size:0.75rem;background:rgba(122,184,146,0.15);color:var(--sage);border-radius:8px;padding:1px 8px;margin-left:6px;font-weight:600">已訂</span></div>
             <div class="tl-desc">✅ 訂位編號：6NHVX55YSTT3 · 2位 · 19:45–21:45（用餐時間2小時）· 68 Tyler Street, Britomart（從Imagine Beach Road步行約5分鐘）· 電話 +64 9 394 1416 · 訂位名：YEN CHEN CHANG。義式料理，手工麵與窯烤麵包是招牌。21:45用餐結束後直接走去Wynyard Quarter。</div>
           </div>
         </div>
@@ -1358,7 +1375,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       </div>
     </div>
     <div class="day-body">
-      <div class="day-cost">💰 當日估算（兩人）：NZD $100–200（Mitai、地獄門已付清，另計午餐與油錢）</div>
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-time">上午 10:00</div>
@@ -1456,7 +1472,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       </div>
     </div>
     <div class="day-body">
-      <div class="day-cost">💰 當日估算（兩人）：NZD $200–500（依購物金額）</div>
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-time">早上 7:00</div>
@@ -1510,7 +1525,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
         <div class="tl-item" style="background:rgba(122,184,146,0.06);border-left:3px solid var(--sage);border-radius:0 8px 8px 0;padding:8px 10px 8px 12px;margin-left:-3px">
           <div class="tl-time">晚上 19:00</div>
           <div class="tl-content">
-            <div class="tl-title">Moxie Restaurant 蜜月最後晚餐 🥩 <span style="font-size:0.7rem;background:rgba(122,184,146,0.15);color:var(--sage);border-radius:8px;padding:1px 8px;margin-left:6px;font-weight:600">已訂</span></div>
+            <div class="tl-title">Moxie Restaurant 蜜月最後晚餐 🥩 <span style="font-size:0.75rem;background:rgba(122,184,146,0.15);color:var(--sage);border-radius:8px;padding:1px 8px;margin-left:6px;font-weight:600">已訂</span></div>
             <div class="tl-desc">威靈頓牛排名店在奧克蘭的分店，19:00已訂位。慢慢吃、好好回味這15天的蜜月旅程，用一頓好牛排畫下句點。</div>
           </div>
         </div>
@@ -1554,7 +1569,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       </div>
     </div>
     <div class="day-body">
-      <div class="day-cost">💰 當日估算（兩人）：無額外費用</div>
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-time">早上 8:00</div>
@@ -1708,7 +1722,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
   </div>
 
   <!-- 已訂但在待訂區的補充說明 -->
-  <div style="font-size:0.77rem;color:var(--muted);margin-top:12px;padding:10px 14px;background:rgba(122,184,146,0.06);border-radius:8px;border:1px solid rgba(122,184,146,0.2)">
+  <div style="font-size:0.75rem;color:var(--muted);margin-top:12px;padding:10px 14px;background:rgba(122,184,146,0.06);border-radius:8px;border:1px solid rgba(122,184,146,0.2)">
     ✅ 15晚住宿全部訂妥
   </div>
 </div>
@@ -1779,7 +1793,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
   <div class="food-section">
     <div class="food-section-title">📍 奧克蘭 Auckland Day 12 & 14</div>
     <div class="food-grid">
-      <div class="food-item"><div class="food-name">🥂 Amano 跨年晚餐 <span style="font-size:0.7rem;color:var(--sage);font-weight:600">已訂</span></div><div class="food-desc">Day 12（12/31）19:45–21:45，68 Tyler Street, Britomart。義式料理，手工麵與窯烤麵包是招牌，訂位編號6NHVX55YSTT3。</div></div>
+      <div class="food-item"><div class="food-name">🥂 Amano 跨年晚餐 <span style="font-size:0.75rem;color:var(--sage);font-weight:600">已訂</span></div><div class="food-desc">Day 12（12/31）19:45–21:45，68 Tyler Street, Britomart。義式料理，手工麵與窯烤麵包是招牌，訂位編號6NHVX55YSTT3。</div></div>
       <div class="food-item"><div class="food-name">Ponsonby Road</div><div class="food-desc">奧克蘭 Auckland最有氣質的美食街，Flat White發源地之一，Day 14（1/2）購物日下午逛街順路，各國料理齊全，適合邊走邊吃小點心。</div></div>
       <div class="food-item"><div class="food-name">Moxie Restaurant</div><div class="food-desc">威靈頓知名牛排館在奧克蘭的分店，Day 14（1/2）19:00已訂位，蜜月最後一晚正式晚餐，牛排水準極高。</div></div>
       <div class="food-item"><div class="food-name">MASU by Nic Watt</div><div class="food-desc">SkyCity內當代日式餐廳，招牌東京拼盤用牡蠣殼盛裝生魚片，和牛燒烤水準極高，若想吃一頓精緻的可排Day 14。</div></div>
@@ -1999,17 +2013,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
   <div style="background:rgba(61,107,79,0.08);border:1px solid rgba(61,107,79,0.2);border-radius:12px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:12px">
     <div>
       <div style="font-size:0.84rem;font-weight:700;color:var(--forest);margin-bottom:3px">🔗 DriveSafe.org.nz — 國際旅客專屬駕車資源</div>
-      <div style="font-size:0.77rem;color:var(--muted);line-height:1.6">紐西蘭觀光局官方推薦 · 包含路規測驗、影片教學、常見路線安全提示 · 出發前建議完整看過一遍</div>
+      <div style="font-size:0.75rem;color:var(--muted);line-height:1.6">紐西蘭觀光局官方推薦 · 包含路規測驗、影片教學、常見路線安全提示 · 出發前建議完整看過一遍</div>
     </div>
-    <a href="https://www.drivesafe.org.nz/" target="_blank" style="flex-shrink:0;background:var(--sage);color:#fff;font-size:0.77rem;font-weight:600;padding:7px 14px;border-radius:20px;text-decoration:none">前往網站</a>
+    <a href="https://www.drivesafe.org.nz/" target="_blank" style="flex-shrink:0;background:var(--sage);color:#fff;font-size:0.75rem;font-weight:600;padding:7px 14px;border-radius:20px;text-decoration:none">前往網站</a>
   </div>
 
   <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
     <div>
       <div style="font-size:0.84rem;font-weight:700;color:#8a6a00;margin-bottom:3px">⛽ Gaspy — 紐西蘭必載加油比價App</div>
-      <div style="font-size:0.77rem;color:var(--muted);line-height:1.6">全紐最多人用的加油比價App，鄉民即時回報油價，同區域站點價差常達15–20¢/L，長途自駕全程靠加油站補給，出發前務必先下載。免費，iOS/Android皆有。</div>
+      <div style="font-size:0.75rem;color:var(--muted);line-height:1.6">全紐最多人用的加油比價App，鄉民即時回報油價，同區域站點價差常達15–20¢/L，長途自駕全程靠加油站補給，出發前務必先下載。免費，iOS/Android皆有。</div>
     </div>
-    <a href="https://www.gaspy.nz/" target="_blank" style="flex-shrink:0;background:#c9a84c;color:#fff;font-size:0.77rem;font-weight:600;padding:7px 14px;border-radius:20px;text-decoration:none">前往網站</a>
+    <a href="https://www.gaspy.nz/" target="_blank" style="flex-shrink:0;background:#c9a84c;color:#fff;font-size:0.75rem;font-weight:600;padding:7px 14px;border-radius:20px;text-decoration:none">前往網站</a>
   </div>
 
   <div class="food-section">
@@ -2081,7 +2095,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 
     <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.3);border-radius:10px;padding:12px 14px;margin-top:14px">
       <div style="font-size:0.84rem;font-weight:700;color:#8a6a00;margin-bottom:6px">💡 官網特別提醒 Arrival Tips</div>
-      <div style="font-size:0.77rem;color:var(--muted);line-height:1.9">
+      <div style="font-size:0.75rem;color:var(--muted);line-height:1.9">
         長途飛行會打亂睡眠週期與反應時間，抵達後建議休息24–48小時調整再開始長途駕車，即使感覺還好，身體時差還沒調整完，疲勞駕駛非常危險。<br>
         <span style="opacity:0.7">Long-haul travel affects your sleep cycle and reaction time. Allow 24–48 hours to rest before driving — fatigue behind the wheel can be deadly even if you feel fine.</span>
       </div>
@@ -2089,7 +2103,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
   </div>
 
   <div style="background:#fde8e8;border:1px solid rgba(138,0,0,0.2);border-radius:12px;padding:12px 16px;margin-bottom:16px;margin-top:18px">
-    <div style="font-size:0.91rem;font-weight:600;color:#8a0000;margin-bottom:4px">⚠️ 最重要的三件事</div>
+    <div style="font-size:0.95rem;font-weight:600;color:#8a0000;margin-bottom:4px">⚠️ 最重要的三件事</div>
     <div style="font-size:0.84rem;color:#8a0000;line-height:1.9">
       1. <b>靠左駕駛</b> — 台灣靠右，紐西蘭靠左，每次上路和路口都要提醒自己<br>
       2. <b>開車絕對不用手機</b> — 違法，須使用免持設備<br>
@@ -2147,7 +2161,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 
   <div class="food-section">
     <div class="food-section-title">🅿️ 紐西蘭停車須知濃縮版</div>
-    <div style="font-size:0.77rem;color:var(--muted);margin-bottom:10px">先看現場標誌與地面標線、再確認付款方式與時段，公有/私人停車規則不同</div>
+    <div style="font-size:0.75rem;color:var(--muted);margin-bottom:10px">先看現場標誌與地面標線、再確認付款方式與時段，公有/私人停車規則不同</div>
 
     <div style="font-size:0.84rem;font-weight:700;color:var(--forest);margin:14px 0 8px">① 一分鐘速記</div>
     <div class="food-grid">
@@ -2211,7 +2225,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 
     <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.3);border-radius:10px;padding:12px 14px;margin-top:14px">
       <div style="font-size:0.84rem;font-weight:700;color:#8a6a00;margin-bottom:6px">💡 停車前10秒檢核口訣</div>
-      <div style="font-size:0.77rem;color:var(--muted);line-height:1.9">
+      <div style="font-size:0.75rem;color:var(--muted);line-height:1.9">
         <b>線</b>：路緣有沒有斷續黃線？· <b>牌</b>：有沒有時間限制/收費/專用標誌？· <b>距離</b>：靠近路口/公車站/消防栓/出入口嗎？· <b>權屬</b>：市政府/DOC/私人土地？· <b>付款</b>：立即繳費、離場前繳費、還是車牌辨識？<br>任一點不確定，直接換到標誌清楚、能確認付款完成的停車場最保險。
       </div>
     </div>
@@ -2222,7 +2236,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       <div class="food-section-title" style="margin-bottom:0">🚸 常見交通號誌辨識</div>
       <a href="https://en.wikipedia.org/wiki/Road_signs_in_New_Zealand" target="_blank" style="flex-shrink:0;background:var(--sage);color:#fff;font-size:0.75rem;font-weight:600;padding:6px 14px;border-radius:20px;text-decoration:none;white-space:nowrap">🔗 查看完整號誌列表</a>
     </div>
-    <div class="food-section-sub" style="font-size:0.77rem;color:var(--muted);margin-bottom:10px">紐西蘭號誌形狀與顏色國際化，資料整理自 Wikipedia：Road signs in New Zealand</div>
+    <div class="food-section-sub" style="font-size:0.75rem;color:var(--muted);margin-bottom:10px">紐西蘭號誌形狀與顏色國際化，資料整理自 Wikipedia：Road signs in New Zealand</div>
 
     <div style="font-size:0.84rem;font-weight:700;color:var(--forest);margin:14px 0 8px">① 一定要認得的（優先等級）</div>
     <div class="food-grid">
@@ -2306,7 +2320,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 
     <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.3);border-radius:10px;padding:12px 14px;margin-top:14px">
       <div style="font-size:0.84rem;font-weight:700;color:#8a6a00;margin-bottom:6px">💡 快速判斷口訣</div>
-      <div style="font-size:0.77rem;color:var(--muted);line-height:1.9">
+      <div style="font-size:0.75rem;color:var(--muted);line-height:1.9">
         <b>紅色/八角形</b> = 停車再開 · <b>紅色倒三角</b> = 讓路 · <b>紅圈白底黑字</b> = 速限或禁止 · <b>黃色菱形</b> = 警告注意（沒有強制力但務必減速）· <b>藍色圓形/方形</b> = 指示（必須遵守方向）· <b>綠色盾牌</b> = 國道編號指引
       </div>
     </div>
@@ -2388,7 +2402,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 
   <div class="food-section">
     <div class="food-section-title">📄 RaD Car Hire 租車合約重點（12/20–12/31 南島段）</div>
-    <div style="font-size:0.77rem;color:var(--muted);margin-bottom:10px">整理自確認信 #CHC-565547 及官方Terms &amp; Conditions，只列出容易忽略、影響費用的關鍵條款</div>
+    <div style="font-size:0.75rem;color:var(--muted);margin-bottom:10px">整理自確認信 #CHC-565547 及官方Terms &amp; Conditions，只列出容易忽略、影響費用的關鍵條款</div>
     <div class="food-grid">
       <div class="food-item">
         <div class="food-name">🚐 抵達機場後怎麼取車</div>
@@ -2435,7 +2449,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 
   <div class="food-section">
     <div class="food-section-title">📄 Snap Rentals 租車合約重點（1/1–1/3 奧克蘭段）</div>
-    <div style="font-size:0.77rem;color:var(--muted);margin-bottom:10px">整理自官方Terms &amp; Conditions PDF，只列出容易忽略、影響費用的關鍵條款</div>
+    <div style="font-size:0.75rem;color:var(--muted);margin-bottom:10px">整理自官方Terms &amp; Conditions PDF，只列出容易忽略、影響費用的關鍵條款</div>
     <div class="food-grid">
       <div class="food-item">
         <div class="food-name">⛽ 還車須加滿油</div>
@@ -2499,7 +2513,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 
   <div id="route-leaflet-map" style="width:100%;height:72vw;max-height:500px;min-height:320px;border-radius:12px;overflow:hidden;border:1px solid var(--warm);display:none;z-index:1"></div>
 
-  <div style="margin-top:12px;background:#fff8f0;border-radius:10px;padding:10px 14px;font-size:0.77rem;color:var(--muted);line-height:1.9">
+  <div style="margin-top:12px;background:#fff8f0;border-radius:10px;padding:10px 14px;font-size:0.75rem;color:var(--muted);line-height:1.9">
     ⚠️ 山區路段（Arthur's Pass、Haast Pass）收訊不穩，出發前請下載離線地圖
   </div>
 </div>
@@ -2511,7 +2525,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
   <div style="padding:14px 16px;background:var(--forest);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
     <div>
       <div style="font-family:'Playfair Display',serif;font-size:1.12rem;color:#fff;font-weight:600">行程路線地圖</div>
-      <div style="font-size:0.77rem;color:rgba(255,255,255,0.5);margin-top:2px">可縮放拖動 · 點擊景點圖示查看詳情</div>
+      <div style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:2px">可縮放拖動 · 點擊景點圖示查看詳情</div>
     </div>
     <a href="https://www.google.com/maps/dir/-43.5307,172.6232/-42.3959,173.6807/-42.9436,171.5631/-42.8856,171.5333/-42.7167,170.9667/-43.3876,170.1817/-43.8800,169.0500/-45.0247,168.6761/-45.0304,168.6608/-45.4833,170.8167/-45.2833,170.85/-45.1103,170.9799/-44.0034,170.4825/-43.4866,172.5469/-36.8484,174.7622/-36.9049,174.7896/-36.7873,175.0531" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:var(--gold);color:#1a1208;font-weight:600;font-size:0.84rem;padding:8px 16px;border-radius:8px;text-decoration:none;font-family:'DM Sans',sans-serif;flex-shrink:0">
       🗺️ Google Maps 完整路線
@@ -2527,22 +2541,22 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
     <button onclick="filterMarkers('nye',this)" class="mchip">🎆 跨年</button>
   </div>
   <div style="padding:8px 16px;background:#f9f7f4;border-bottom:1px solid var(--warm);display:flex;gap:6px;overflow-x:auto;align-items:center">
-    <span style="font-size:0.7rem;color:var(--muted);white-space:nowrap;font-weight:600;letter-spacing:0.5px">每日路線：</span>
-    <button onclick="filterDay(1,this)"  class="mchip" style="font-size:0.7rem;padding:3px 9px">Day1</button>
-    <button onclick="filterDay(2,this)"  class="mchip" style="font-size:0.7rem;padding:3px 9px">Day2</button>
-    <button onclick="filterDay(3,this)"  class="mchip" style="font-size:0.7rem;padding:3px 9px">Day3</button>
-    <button onclick="filterDay(4,this)"  class="mchip" style="font-size:0.7rem;padding:3px 9px">Day4</button>
-    <button onclick="filterDay(5,this)"  class="mchip" style="font-size:0.7rem;padding:3px 9px">Day5</button>
-    <button onclick="filterDay(6,this)"  class="mchip" style="font-size:0.7rem;padding:3px 9px">Day6</button>
-    <button onclick="filterDay(7,this)"  class="mchip" style="font-size:0.7rem;padding:3px 9px">Day7</button>
-    <button onclick="filterDay(8,this)"  class="mchip" style="font-size:0.7rem;padding:3px 9px">Day8</button>
-    <button onclick="filterDay(9,this)"  class="mchip" style="font-size:0.7rem;padding:3px 9px">Day9</button>
-    <button onclick="filterDay(10,this)" class="mchip" style="font-size:0.7rem;padding:3px 9px">Day10</button>
-    <button onclick="filterDay(11,this)" class="mchip" style="font-size:0.7rem;padding:3px 9px">Day11</button>
-    <button onclick="filterDay(12,this)" class="mchip" style="font-size:0.7rem;padding:3px 9px">Day12</button>
-    <button onclick="filterDay(13,this)" class="mchip" style="font-size:0.7rem;padding:3px 9px">Day13</button>
-    <button onclick="filterDay(14,this)" class="mchip" style="font-size:0.7rem;padding:3px 9px">Day14</button>
-    <button onclick="filterDay(15,this)" class="mchip" style="font-size:0.7rem;padding:3px 9px">Day15</button>
+    <span style="font-size:0.75rem;color:var(--muted);white-space:nowrap;font-weight:600;letter-spacing:0.5px">每日路線：</span>
+    <button onclick="filterDay(1,this)"  class="mchip" style="font-size:0.75rem;padding:3px 9px">Day1</button>
+    <button onclick="filterDay(2,this)"  class="mchip" style="font-size:0.75rem;padding:3px 9px">Day2</button>
+    <button onclick="filterDay(3,this)"  class="mchip" style="font-size:0.75rem;padding:3px 9px">Day3</button>
+    <button onclick="filterDay(4,this)"  class="mchip" style="font-size:0.75rem;padding:3px 9px">Day4</button>
+    <button onclick="filterDay(5,this)"  class="mchip" style="font-size:0.75rem;padding:3px 9px">Day5</button>
+    <button onclick="filterDay(6,this)"  class="mchip" style="font-size:0.75rem;padding:3px 9px">Day6</button>
+    <button onclick="filterDay(7,this)"  class="mchip" style="font-size:0.75rem;padding:3px 9px">Day7</button>
+    <button onclick="filterDay(8,this)"  class="mchip" style="font-size:0.75rem;padding:3px 9px">Day8</button>
+    <button onclick="filterDay(9,this)"  class="mchip" style="font-size:0.75rem;padding:3px 9px">Day9</button>
+    <button onclick="filterDay(10,this)" class="mchip" style="font-size:0.75rem;padding:3px 9px">Day10</button>
+    <button onclick="filterDay(11,this)" class="mchip" style="font-size:0.75rem;padding:3px 9px">Day11</button>
+    <button onclick="filterDay(12,this)" class="mchip" style="font-size:0.75rem;padding:3px 9px">Day12</button>
+    <button onclick="filterDay(13,this)" class="mchip" style="font-size:0.75rem;padding:3px 9px">Day13</button>
+    <button onclick="filterDay(14,this)" class="mchip" style="font-size:0.75rem;padding:3px 9px">Day14</button>
+    <button onclick="filterDay(15,this)" class="mchip" style="font-size:0.75rem;padding:3px 9px">Day15</button>
   </div>
 
   <!-- Leaflet map container -->
@@ -2550,12 +2564,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 
   <!-- Legend -->
   <div style="padding:10px 16px;background:#fff;border-bottom:1px solid var(--warm);display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-    <div style="display:flex;align-items:center;gap:5px;font-size:0.77rem;color:var(--muted)"><div style="width:14px;height:14px;border-radius:50%;background:#3d6b4f;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.2)"></div>景點/活動</div>
-    <div style="display:flex;align-items:center;gap:5px;font-size:0.77rem;color:var(--muted)"><div style="width:14px;height:14px;border-radius:50%;background:#c05a1a;border:2px solid #ffd0a8;box-shadow:0 1px 4px rgba(0,0,0,0.2)"></div>✨ 新增景點</div>
-    <div style="display:flex;align-items:center;gap:5px;font-size:0.77rem;color:var(--muted)"><div style="width:14px;height:14px;border-radius:50%;background:#c9a84c;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.2)"></div>住宿</div>
-    <div style="display:flex;align-items:center;gap:5px;font-size:0.77rem;color:var(--muted)"><div style="width:14px;height:14px;border-radius:50%;background:#8a1a1a;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.2)"></div>🎄 聖誕節</div>
-    <div style="display:flex;align-items:center;gap:5px;font-size:0.77rem;color:var(--muted)"><div style="width:14px;height:14px;border-radius:50%;background:#b8860b;border:2px solid var(--gold);box-shadow:0 1px 4px rgba(0,0,0,0.2)"></div>🎆 跨年</div>
-    <div style="display:flex;align-items:center;gap:5px;font-size:0.77rem;color:var(--muted)"><div style="font-size:0.91rem;color:#3d6b4f">➤</div>行程路線（含方向箭頭）</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:0.75rem;color:var(--muted)"><div style="width:14px;height:14px;border-radius:50%;background:#3d6b4f;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.2)"></div>景點/活動</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:0.75rem;color:var(--muted)"><div style="width:14px;height:14px;border-radius:50%;background:#c05a1a;border:2px solid #ffd0a8;box-shadow:0 1px 4px rgba(0,0,0,0.2)"></div>✨ 新增景點</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:0.75rem;color:var(--muted)"><div style="width:14px;height:14px;border-radius:50%;background:#c9a84c;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.2)"></div>住宿</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:0.75rem;color:var(--muted)"><div style="width:14px;height:14px;border-radius:50%;background:#8a1a1a;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.2)"></div>🎄 聖誕節</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:0.75rem;color:var(--muted)"><div style="width:14px;height:14px;border-radius:50%;background:#b8860b;border:2px solid var(--gold);box-shadow:0 1px 4px rgba(0,0,0,0.2)"></div>🎆 跨年</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:0.75rem;color:var(--muted)"><div style="font-size:0.95rem;color:#3d6b4f">➤</div>行程路線（含方向箭頭）</div>
   </div>
 
   <!-- Place list -->
@@ -2570,7 +2584,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 <div id="bucketlist" class="section">
   <div style="padding:14px 16px;background:var(--forest)">
     <div style="font-family:'Playfair Display',serif;font-size:1.12rem;color:#fff;font-weight:600">📌 口袋清單</div>
-    <div style="font-size:0.77rem;color:rgba(255,255,255,0.5);margin-top:2px">從Google Maps已儲存地點匯入 · 依城鎮分類 · 點擊卡片直接開啟Google Maps</div>
+    <div style="font-size:0.75rem;color:rgba(255,255,255,0.5);margin-top:2px">從Google Maps已儲存地點匯入 · 依城鎮分類 · 點擊卡片直接開啟Google Maps</div>
   </div>
 
   <div style="padding:10px 16px;background:#fff;border-bottom:1px solid var(--warm)">
@@ -2596,14 +2610,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 .note-save-btn:active{background:var(--forest)}
 .note-saved{background:rgba(61,107,79,0.08);color:var(--sage);text-align:center;font-size:11px;font-weight:600;padding:8px;display:none;border-top:1px solid rgba(61,107,79,0.1)}
 
-.mchip{padding:5px 12px;border-radius:20px;border:1px solid var(--warm);background:#fff;color:var(--muted);font-size:0.77rem;font-family:'DM Sans',sans-serif;cursor:pointer;white-space:nowrap;transition:all 0.15s}
+.mchip{padding:5px 12px;border-radius:20px;border:1px solid var(--warm);background:#fff;color:var(--muted);font-size:0.75rem;font-family:'DM Sans',sans-serif;cursor:pointer;white-space:nowrap;transition:all 0.15s}
 .mchip.active{background:var(--sage);color:#fff;border-color:var(--sage)}
 .leaflet-popup-content-wrapper{border-radius:12px!important;box-shadow:0 4px 20px rgba(0,0,0,0.15)!important;font-family:'DM Sans',sans-serif!important}
 .leaflet-popup-content{margin:12px 14px!important;font-family:'DM Sans',sans-serif!important}
-.nz-popup-day{font-size:0.7rem;color:#3d6b4f;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.nz-popup-day{font-size:0.75rem;color:#3d6b4f;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
 .nz-popup-name{font-size:0.98rem;font-weight:600;color:#1a3a2a;margin-bottom:5px}
 .nz-popup-desc{font-size:0.84rem;color:#5a6b62;line-height:1.6;margin-bottom:8px}
-.nz-popup-link{font-size:0.77rem;color:#3d6b4f;font-weight:500;text-decoration:none;border:1px solid #3d6b4f;padding:4px 10px;border-radius:20px;display:inline-block}
+.nz-popup-link{font-size:0.75rem;color:#3d6b4f;font-weight:500;text-decoration:none;border:1px solid #3d6b4f;padding:4px 10px;border-radius:20px;display:inline-block}
 </style>
 
 <!-- Leaflet CSS -->
@@ -4248,23 +4262,23 @@ function renderBucketlist(){
     if(BL_ACTIVE_TOWN === 'all' && item.town !== lastTown){
       var label = BL_TOWN_LABEL[item.town] || item.town;
       var count = filtered.filter(function(i){return i.town===item.town;}).length;
-      html += '<div style="font-size:0.92rem;font-weight:700;color:var(--forest);letter-spacing:0.02em;margin:'+(lastTown?'20px':'0')+' 0 10px;padding-bottom:6px;border-bottom:2px solid var(--sage);display:flex;align-items:center;justify-content:space-between"><span>📍 '+label+'</span><span style="font-size:0.72rem;color:var(--muted);font-weight:400">'+count+'個地點</span></div>';
+      html += '<div style="font-size:0.92rem;font-weight:700;color:var(--forest);letter-spacing:0.02em;margin:'+(lastTown?'20px':'0')+' 0 10px;padding-bottom:6px;border-bottom:2px solid var(--sage);display:flex;align-items:center;justify-content:space-between"><span>📍 '+label+'</span><span style="font-size:0.75rem;color:var(--muted);font-weight:400">'+count+'個地點</span></div>';
       lastTown = item.town;
     }
     if(item.cat === BL_TOILET && !(prevItem && prevItem.town === item.town && prevItem.cat === BL_TOILET)){
-      html += '<div style="font-size:0.78rem;font-weight:700;color:var(--muted);margin:14px 0 8px;padding-left:2px">🚻 廁所</div>';
+      html += '<div style="font-size:0.75rem;font-weight:700;color:var(--muted);margin:14px 0 8px;padding-left:2px">🚻 廁所</div>';
     }
     prevItem = item;
     html += '<a href="'+item.url+'" target="_blank" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;background:#fff;border:1px solid var(--warm);border-radius:10px;margin-bottom:8px;text-decoration:none;color:var(--text)">'
       + '<div style="flex:1;min-width:0">'
-      + '<div style="font-size:0.88rem;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+item.name+'</div>'
-      + '<div style="font-size:0.72rem;color:var(--muted);margin-top:2px">'+item.cat+'</div>'
+      + '<div style="font-size:0.84rem;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+item.name+'</div>'
+      + '<div style="font-size:0.75rem;color:var(--muted);margin-top:2px">'+item.cat+'</div>'
       + '</div>'
-      + '<div style="flex-shrink:0;color:var(--sage);font-size:0.77rem;font-weight:600;white-space:nowrap">📍 Maps</div>'
+      + '<div style="flex-shrink:0;color:var(--sage);font-size:0.75rem;font-weight:600;white-space:nowrap">📍 Maps</div>'
       + '</a>';
   });
   if(filtered.length === 0){
-    html = '<div style="text-align:center;padding:40px 20px;color:var(--muted);font-size:0.88rem">找不到符合的地點</div>';
+    html = '<div style="text-align:center;padding:40px 20px;color:var(--muted);font-size:0.84rem">找不到符合的地點</div>';
   }
   document.getElementById('bl-list').innerHTML = html;
 }
@@ -4550,9 +4564,9 @@ function buildPlaceList(){
       +'style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:#fff;border-radius:10px;border:1px solid var(--warm);margin-bottom:8px;text-decoration:none;color:var(--text)">'
       +'<div style="width:36px;height:36px;border-radius:50%;background:'+col+';border:2px solid #fff;box-shadow:0 1px 6px rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;font-size:1.26rem;flex-shrink:0">'+p.emoji+'</div>'
       +'<div style="flex:1">'
-        +'<div style="font-size:0.77rem;color:var(--sage);font-weight:500;margin-bottom:2px">'+p.day+'</div>'
-        +'<div style="font-size:0.91rem;font-weight:500">'+p.name+'</div>'
-        +'<div style="font-size:0.77rem;color:var(--muted);margin-top:2px">'+p.desc+'</div>'
+        +'<div style="font-size:0.75rem;color:var(--sage);font-weight:500;margin-bottom:2px">'+p.day+'</div>'
+        +'<div style="font-size:0.95rem;font-weight:500">'+p.name+'</div>'
+        +'<div style="font-size:0.75rem;color:var(--muted);margin-top:2px">'+p.desc+'</div>'
       +'</div>'
       +'<div style="font-size:1.26rem;color:var(--muted)">›</div></a>';
   });
@@ -4762,7 +4776,7 @@ function buildRouteDays(){
   DAILY_ROUTES.forEach(function(r){
     var btn=document.createElement('button');
     btn.className='mchip';
-    btn.style.cssText='font-size:0.77rem;padding:4px 10px';
+    btn.style.cssText='font-size:0.75rem;padding:4px 10px';
     btn.innerHTML=r.date+'<br><span style="font-size:0.63rem;opacity:0.8">Day'+r.day+'</span>';
     btn.onclick=function(){
       document.querySelectorAll('#route-day-selector .mchip').forEach(function(b){b.classList.remove('active');});
@@ -4778,10 +4792,10 @@ function showRoute(r){
   var info=document.getElementById('route-info');
   info.style.display='block';
   info.innerHTML='<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">'
-    +'<div><b style="color:var(--forest);font-size:0.91rem">'+r.label+'</b><br>'
+    +'<div><b style="color:var(--forest);font-size:0.95rem">'+r.label+'</b><br>'
     +'<span style="color:var(--muted)">🚗 '+r.km+'</span><br>'
     +'<span style="color:var(--muted);margin-top:2px;display:block">📍 '+r.desc+'</span></div>'
-    +'<a href="'+r.url+'" target="_blank" style="display:inline-flex;align-items:center;gap:5px;background:var(--sage);color:#fff;padding:7px 14px;border-radius:20px;text-decoration:none;font-size:0.77rem;font-weight:600;white-space:nowrap;flex-shrink:0">🗺️ Google Maps</a>'
+    +'<a href="'+r.url+'" target="_blank" style="display:inline-flex;align-items:center;gap:5px;background:var(--sage);color:#fff;padding:7px 14px;border-radius:20px;text-decoration:none;font-size:0.75rem;font-weight:600;white-space:nowrap;flex-shrink:0">🗺️ Google Maps</a>'
     +'</div>';
 
   /* Show map container */
@@ -4820,7 +4834,7 @@ function showRoute(r){
     var dx=p2[1]-p1[1], dy=-(p2[0]-p1[0]);
     var angle=Math.atan2(dy,dx)*(180/Math.PI);
     var arr=L.marker([mx,my],{
-      icon:L.divIcon({html:'<div style="transform:rotate('+angle+'deg);font-size:0.91rem;color:#3d6b4f;text-shadow:0 0 3px #fff">➤</div>',className:'',iconSize:[14,14],iconAnchor:[7,7]}),
+      icon:L.divIcon({html:'<div style="transform:rotate('+angle+'deg);font-size:0.95rem;color:#3d6b4f;text-shadow:0 0 3px #fff">➤</div>',className:'',iconSize:[14,14],iconAnchor:[7,7]}),
       interactive:false,zIndexOffset:-100
     }).addTo(_routeMap);
     _routeLine2.push(arr);
@@ -4832,11 +4846,11 @@ function showRoute(r){
     var bg=isFirst?'#3d6b4f':isLast?'#8a1a1a':'#c05a1a';
     var label=isFirst?'出發':isLast?'終點':(idx+1)+'';
     var html='<div style="width:30px;height:30px;border-radius:50%;background:'+bg
-      +';border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.77rem;font-weight:700;font-family:DM Sans,sans-serif">'+label+'</div>';
+      +';border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.75rem;font-weight:700;font-family:DM Sans,sans-serif">'+label+'</div>';
     var m=L.marker([s.lat,s.lng],{
       icon:L.divIcon({html:html,className:'',iconSize:[30,30],iconAnchor:[15,15],popupAnchor:[0,-18]})
     }).bindPopup('<div style="font-size:0.84rem;font-weight:600;color:#1a3a2a;margin-bottom:3px">'+s.name+'</div>'
-      +(s.note?'<div style="font-size:0.77rem;color:#5a6b62">'+s.note+'</div>':''))
+      +(s.note?'<div style="font-size:0.75rem;color:#5a6b62">'+s.note+'</div>':''))
      .addTo(_routeMap);
     _routeMarkers2.push(m);
   });
@@ -4857,7 +4871,7 @@ function showRoute(r){
 #top-fab:hover{background:var(--forest);transform:scale(1.08)}
 #edit-bar{display:none;position:fixed;bottom:82px;right:16px;z-index:9999;background:var(--forest);border-radius:14px;padding:10px 14px;box-shadow:0 4px 20px rgba(0,0,0,0.25);font-family:'DM Sans',sans-serif;min-width:200px}
 #edit-bar.show{display:block}
-#edit-bar .eb-title{font-size:0.77rem;color:var(--mint);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+#edit-bar .eb-title{font-size:0.75rem;color:var(--mint);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
 #edit-bar button{display:block;width:100%;padding:8px 12px;border-radius:8px;border:none;font-family:'DM Sans',sans-serif;font-size:0.84rem;font-weight:500;cursor:pointer;margin-bottom:6px;text-align:left;transition:all 0.15s}
 #edit-bar button:last-child{margin-bottom:0}
 #btn-save{background:var(--gold);color:#1a1208}
@@ -4866,7 +4880,7 @@ function showRoute(r){
 #btn-save:hover{background:#e0b84a}
 .edit-mode [contenteditable]{outline:2px dashed rgba(201,168,76,0.5);border-radius:4px;min-width:20px;cursor:text}
 .edit-mode [contenteditable]:focus{outline:2px solid var(--gold);background:rgba(201,168,76,0.06)}
-.edit-indicator{position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:9998;background:var(--gold);color:#1a1208;font-size:0.77rem;font-weight:600;padding:5px 14px;border-radius:20px;font-family:'DM Sans',sans-serif;display:none;letter-spacing:0.5px;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
+.edit-indicator{position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:9998;background:var(--gold);color:#1a1208;font-size:0.75rem;font-weight:600;padding:5px 14px;border-radius:20px;font-family:'DM Sans',sans-serif;display:none;letter-spacing:0.5px;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
 .edit-indicator.show{display:block}
 /* Font size FAB */
 #font-fab{position:fixed;bottom:82px;right:20px;z-index:9999;width:52px;height:52px;border-radius:50%;background:var(--sage);color:#fff;border:none;font-size:1.05rem;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.2);transition:all 0.2s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;font-family:'DM Sans',sans-serif;line-height:1}
@@ -4903,17 +4917,17 @@ function showRoute(r){
 #fx-rate-main{font-size:1.15rem;font-weight:700;color:#8a6a00;font-family:'Playfair Display',serif}
 .fx-convert-row{display:flex;align-items:center;gap:10px;margin-bottom:20px}
 .fx-input-group{flex:1;display:flex;flex-direction:column;gap:6px}
-.fx-input-group label{font-size:0.72rem;font-weight:700;color:var(--muted);letter-spacing:0.05em}
+.fx-input-group label{font-size:0.75rem;font-weight:700;color:var(--muted);letter-spacing:0.05em}
 .fx-input-group input{width:100%;padding:12px 14px;border:1.5px solid var(--warm);border-radius:10px;font-size:1.1rem;font-weight:600;color:var(--text);font-family:'DM Sans',sans-serif;outline:none;box-sizing:border-box;transition:border-color 0.2s}
 .fx-input-group input:focus{border-color:#c9a84c}
 .fx-swap-icon{font-size:1.3rem;color:#c9a84c;flex-shrink:0;margin-top:16px}
 #fx-quick-ref{background:#f9f7f4;border-radius:10px;padding:14px;margin-bottom:16px}
-.fx-quick-title{font-size:0.77rem;font-weight:700;color:var(--forest);letter-spacing:0.05em;margin-bottom:10px}
-.fx-quick-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:0.88rem;border-bottom:1px solid var(--warm)}
+.fx-quick-title{font-size:0.75rem;font-weight:700;color:var(--forest);letter-spacing:0.05em;margin-bottom:10px}
+.fx-quick-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:0.84rem;border-bottom:1px solid var(--warm)}
 .fx-quick-row:last-child{border-bottom:none}
 .fx-quick-row .fx-nzd-amt{color:var(--sage);font-weight:600}
 .fx-quick-row .fx-twd-amt{color:var(--muted)}
-#fx-refresh-btn{width:100%;padding:10px;background:transparent;color:#8a6a00;border:1.5px solid #c9a84c;border-radius:10px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s}
+#fx-refresh-btn{width:100%;padding:10px;background:transparent;color:#8a6a00;border:1.5px solid #c9a84c;border-radius:10px;font-size:0.84rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s}
 #fx-refresh-btn:hover{background:#c9a84c;color:#fff}
 #fx-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.3);z-index:9999;display:none;backdrop-filter:blur(2px)}
 #fx-overlay.open{display:block}
@@ -4924,20 +4938,20 @@ function showRoute(r){
 #gnote-close{background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:1.1rem;cursor:pointer;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;transition:background 0.2s}
 #gnote-close:hover{background:rgba(255,255,255,0.35)}
 #gnote-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:0}
-.gnote-section-label{font-size:0.78rem;font-weight:700;color:#3d6b4f;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:6px}
+.gnote-section-label{font-size:0.75rem;font-weight:700;color:#3d6b4f;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:6px}
 .gnote-ta{width:100%;min-height:220px;padding:12px 14px;font-size:13px;font-family:"DM Sans",sans-serif;border:1px solid rgba(61,107,79,0.2);border-radius:10px;resize:vertical;background:#fafdf9;color:#1a2420;line-height:1.7;outline:none;display:block;transition:border-color 0.2s}
 .gnote-ta:focus{border-color:#3d6b4f}
 .gnote-ta::placeholder{color:#b0bdb8;font-size:12px}
-#gnote-save-btn{margin-top:18px;width:100%;padding:11px;background:#3d6b4f;color:#fff;border:none;border-radius:10px;font-size:0.88rem;font-weight:600;cursor:pointer;font-family:"DM Sans",sans-serif;transition:background 0.2s}
+#gnote-save-btn{margin-top:18px;width:100%;padding:11px;background:#3d6b4f;color:#fff;border:none;border-radius:10px;font-size:0.84rem;font-weight:600;cursor:pointer;font-family:"DM Sans",sans-serif;transition:background 0.2s}
 #gnote-save-btn:hover{background:#1a3a2a}
 #gnote-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.3);z-index:9999;display:none;backdrop-filter:blur(2px)}
 #gnote-overlay.open{display:block}
 #font-size-bar{display:none;position:fixed;bottom:144px;right:16px;z-index:9999;background:var(--forest);border-radius:14px;padding:10px 14px;box-shadow:0 4px 20px rgba(0,0,0,0.25);font-family:'DM Sans',sans-serif;min-width:160px}
 #font-size-bar.show{display:block}
-#font-size-bar .fb-title{font-size:0.77rem;color:var(--mint);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+#font-size-bar .fb-title{font-size:0.75rem;color:var(--mint);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
 .fs-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
 .fs-row:last-child{margin-bottom:0}
-.fs-btn{flex:1;padding:8px 0;border-radius:8px;border:none;font-family:'DM Sans',sans-serif;font-size:0.91rem;font-weight:600;cursor:pointer;transition:all 0.15s;background:rgba(255,255,255,0.1);color:#fff}
+.fs-btn{flex:1;padding:8px 0;border-radius:8px;border:none;font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;transition:all 0.15s;background:rgba(255,255,255,0.1);color:#fff}
 .fs-btn:hover{background:rgba(255,255,255,0.2)}
 .fs-btn.active{background:var(--gold);color:#1a1208}
 #fs-indicator{font-size:0.84rem;color:rgba(255,255,255,0.6);text-align:center;margin-top:4px}
@@ -4985,7 +4999,7 @@ function showRoute(r){
   <div id="fx-body">
     <div id="fx-rate-info">
       <div id="fx-rate-main">載入中...</div>
-      <div id="fx-rate-updated" style="font-size:0.72rem;color:var(--muted);margin-top:4px"></div>
+      <div id="fx-rate-updated" style="font-size:0.75rem;color:var(--muted);margin-top:4px"></div>
     </div>
     <div class="fx-convert-row">
       <div class="fx-input-group">
@@ -5003,7 +5017,7 @@ function showRoute(r){
       <div id="fx-quick-table"></div>
     </div>
     <button id="fx-refresh-btn" onclick="loadFxRate(true)">🔄 重新整理匯率</button>
-    <div id="fx-error" style="display:none;font-size:0.78rem;color:#c05a1a;text-align:center;margin-top:8px">⚠️ 無法取得最新匯率，顯示上次快取資料</div>
+    <div id="fx-error" style="display:none;font-size:0.75rem;color:#c05a1a;text-align:center;margin-top:8px">⚠️ 無法取得最新匯率，顯示上次快取資料</div>
   </div>
 </div>
 <div id="fx-overlay" onclick="toggleFx()"></div>
@@ -5023,7 +5037,7 @@ function showRoute(r){
     <div class="gnote-section-label" style="margin-top:14px">🛍️ 購物清單</div>
     <textarea id="gnote-shop" class="gnote-ta" placeholder="例如：蜂蜜 2罐、羊毛製品、凱庫拉龍蝦零食..."></textarea>
     <button id="gnote-save-btn" onclick="saveGlobalNote()">💾 儲存並同步</button>
-    <div id="gnote-sync-bar" style="font-size:0.78rem;color:#7ab892;margin-top:8px;opacity:0;transition:opacity 0.3s;text-align:center">✓ 已即時同步到 Firebase，兩支手機同步更新</div>
+    <div id="gnote-sync-bar" style="font-size:0.75rem;color:#7ab892;margin-top:8px;opacity:0;transition:opacity 0.3s;text-align:center">✓ 已即時同步到 Firebase，兩支手機同步更新</div>
   </div>
 </div>
 <div id="gnote-overlay" onclick="toggleGlobalNote()"></div>
@@ -5039,7 +5053,6 @@ function showRoute(r){
 <div id="michelin-overlay" onclick="toggleMichelin()"></div>
 
 <!-- Floating action button -->
-<button id="edit-fab" onclick="toggleEditBar()" title="編輯模式">✏️</button>
 
 <!-- Edit toolbar -->
 <div id="edit-bar">

@@ -45,14 +45,15 @@
   window._fbOnValue = onValue;
 
   /* 頁面載入後監聽所有筆記 */
-  window.addEventListener('load', function(){
+  document.addEventListener('DOMContentLoaded', function(){
     onValue(ref(db, 'notes'), function(snapshot){
       var data = snapshot.val() || {};
       Object.keys(data).forEach(function(dayKey){
         var ta = document.getElementById('note-' + dayKey);
-        if(ta && data[dayKey]) ta.value = data[dayKey];
+        if(ta && data[dayKey] && ta !== document.activeElement) ta.value = data[dayKey];
       });
-    });
+      window._unlockNotes('day');
+    }, function(err){ window._noteLoadFailed(err); });
   });
 </script>
 
@@ -4267,7 +4268,7 @@ function showCal2(el){
   panel.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
-window.addEventListener('load',function(){buildCal2();});
+document.addEventListener('DOMContentLoaded',function(){buildCal2();});
 
 /* ── PLACES DATA ── */
 var PLACES=[
@@ -4469,6 +4470,7 @@ function buildPlaceList(){
 
 function saveNote(dayNum){
   var key = 'day' + dayNum;
+  if(!window._notesReady.day){alert('筆記還在載入，請稍候再儲存');return;}
   var val = document.getElementById('note-' + key).value;
   var savedEl = document.getElementById('note-saved-' + key);
   if(!window._fbSet || !window._fbRef || !window._fbDb){
@@ -4516,7 +4518,7 @@ function initCollapse(){
   });
 }
 
-window.onload=function(){buildPlaceList(); loadEdits(); loadFontSize(); buildRouteDays(); initCollapse();};
+document.addEventListener('DOMContentLoaded',function(){buildPlaceList(); loadEdits(); loadFontSize(); buildRouteDays(); initCollapse();});
 
 /* ── DAILY ROUTES DATA ── */
 var DAILY_ROUTES=[
@@ -4939,7 +4941,7 @@ function showRoute(r){
     <span>⭐ NZ Michelin Guide 2026</span>
     <button onclick="toggleMichelin()" id="michelin-close">✕</button>
   </div>
-  <iframe id="michelin-iframe" src="https://eric311927-creator.github.io/NZ-Michelin-Dashboard-2026/" frameborder="0" allow="fullscreen"></iframe>
+  <iframe id="michelin-iframe" data-src="https://eric311927-creator.github.io/NZ-Michelin-Dashboard-2026/" frameborder="0" allow="fullscreen"></iframe>
 </div>
 <div id="michelin-overlay" onclick="toggleMichelin()"></div>
 
@@ -5075,6 +5077,7 @@ function saveGlobalNote(){
   if(!window._fbSet||!window._fbRef||!window._fbDb){
     alert('Firebase 尚未初始化，請檢查網路連線');return;
   }
+  if(!window._notesReady.global){alert('筆記還在載入，請稍候再儲存');return;}
   var data={
     memo: document.getElementById('gnote-memo').value,
     shop: document.getElementById('gnote-shop').value,
@@ -5092,14 +5095,50 @@ function saveGlobalNote(){
 
 /* Global Note 即時同步監聽（每次輸入3秒後自動儲存） */
 var _gnoteTimer=null;
-window.addEventListener('load',function(){
+/* 筆記讀取完成前鎖定欄位，避免空白內容覆蓋資料庫 */
+window._notesReady={day:false,global:false};
+function _noteFields(group){
+  return group==='day'
+    ?document.querySelectorAll('.note-textarea,.note-save-btn')
+    :document.querySelectorAll('#gnote-memo,#gnote-shop,#gnote-save-btn');
+}
+function _setNoteLock(group,locked,hint){
+  _noteFields(group).forEach(function(el){
+    if(el.tagName==='TEXTAREA'){
+      if(locked){
+        if(el.dataset.ph===undefined) el.dataset.ph=el.placeholder;
+        el.readOnly=true; el.placeholder=hint;
+      }else{
+        el.readOnly=false;
+        if(el.dataset.ph!==undefined) el.placeholder=el.dataset.ph;
+      }
+    }else{ el.disabled=locked; }
+  });
+}
+window._unlockNotes=function(group){
+  window._notesReady[group]=true;
+  _setNoteLock(group,false);
+};
+window._noteLoadFailed=function(){
+  ['day','global'].forEach(function(g){
+    if(!window._notesReady[g]) _setNoteLock(g,true,'筆記載入失敗，請重新整理頁面。原有筆記不受影響。');
+  });
+};
+document.addEventListener('DOMContentLoaded',function(){
+  _setNoteLock('day',true,'筆記載入中…');
+  _setNoteLock('global',true,'筆記載入中…');
+  setTimeout(window._noteLoadFailed,20000);
+  if(!window._fbDb) window._noteLoadFailed();
   /* 讀取已有資料 */
   if(window._fbOnValue&&window._fbRef&&window._fbDb){
     window._fbOnValue(window._fbRef(window._fbDb,'global_notes'),function(snap){
       var d=snap.val()||{};
-      if(d.memo!==undefined) document.getElementById('gnote-memo').value=d.memo;
-      if(d.shop!==undefined) document.getElementById('gnote-shop').value=d.shop;
-    });
+      ['memo','shop'].forEach(function(k){
+        var ta=document.getElementById('gnote-'+k);
+        if(d[k]!==undefined && ta!==document.activeElement) ta.value=d[k];
+      });
+      window._unlockNotes('global');
+    },function(err){window._noteLoadFailed(err);});
   }
   /* 自動儲存：停止輸入3秒後觸發 */
   ['gnote-memo','gnote-shop'].forEach(function(id){
@@ -5115,6 +5154,8 @@ function toggleMichelin(){
   var drawer=document.getElementById('michelin-drawer');
   var overlay=document.getElementById('michelin-overlay');
   var isOpen=drawer.classList.contains('open');
+  var frame=document.getElementById('michelin-iframe');
+  if(!isOpen && !frame.getAttribute('src')) frame.setAttribute('src',frame.dataset.src);
   drawer.classList.toggle('open',!isOpen);
   overlay.classList.toggle('open',!isOpen);
   document.body.style.overflow=isOpen?'':'hidden';

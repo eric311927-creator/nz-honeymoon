@@ -9,7 +9,24 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="color-scheme" content="light only">
-<style>:root{color-scheme:light}html,body{background:#f5f0e8!important}</style>
+<style>:root{color-scheme:light}html,body{background:#f5f0e8!important}
+/* 行前須知 */
+.pre-card{background:#fff;border:1px solid var(--warm);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+.pre-card.urgent{background:#fdf0ee;border-color:#f0c4bc}
+.pre-h{font-size:0.95rem;font-weight:700;color:var(--forest);margin-bottom:10px}
+.pre-card.urgent .pre-h{color:#a8322a}
+.pre-item{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px dashed var(--warm);font-size:0.84rem;line-height:1.65}
+.pre-item:first-of-type{border-top:none}
+.pre-item input{margin-top:4px;width:17px;height:17px;flex-shrink:0;accent-color:var(--sage)}
+.pre-item b{color:var(--forest)}
+.pre-item .pre-note{display:block;color:var(--muted);font-size:0.78rem}
+.pre-item.done{opacity:0.5}
+.pre-item.done b{text-decoration:line-through}
+.pre-table{width:100%;border-collapse:collapse;font-size:0.8rem}
+.pre-table th{text-align:left;color:var(--muted);font-weight:600;padding:6px 4px;border-bottom:1px solid var(--warm)}
+.pre-table td{padding:7px 4px;border-bottom:1px dashed var(--warm);vertical-align:top}
+.pre-progress{font-size:0.8rem;color:var(--muted);margin:-6px 0 14px}
+</style>
 <meta name="apple-mobile-web-app-title" content="紐西蘭蜜月">
 <meta name="theme-color" content="#1a3a2a">
 <meta name="description" content="紐西蘭15天聖誕跨年蜜月行程">
@@ -216,11 +233,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
   <button class="tab" onclick="showTab('bucketlist',this)">📌 口袋清單</button>
   <button class="tab" onclick="showTab('hotels',this)">🏨 住宿</button>
   <button class="tab" onclick="showTab('food',this)">美食指南</button>
-  <button class="tab" onclick="showTab('booking',this)">預訂清單</button>
-  <button class="tab" onclick="showTab('budget',this)">預算規劃</button>
   <button class="tab" onclick="showTab('driving',this)">🚗 駕車須知</button>
   <button class="tab" onclick="showTab('routes',this)">📍 每日路線</button>
   <button class="tab" onclick="showTab('mapview',this)">🗺️ 地圖</button>
+  <button class="tab" onclick="showTab('prep',this)">✅ 行前須知</button>
+  <button class="tab" onclick="showTab('booking',this)">預訂清單</button>
+  <button class="tab" onclick="showTab('budget',this)">預算規劃</button>
 </div>
 
 <!-- ===== 行程總覽 ===== -->
@@ -1041,12 +1059,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
     <div class="day-header">
       <div class="day-num"><span>10</span>Day</div>
       <div class="day-title-wrap">
-        <div class="day-title">神奇峽灣返回 → 🐧 黃眼企鵝 + 🐣 小藍企鵝 奧瑪魯 Oamaru</div>
-        <div class="day-subtitle">12/29（二）· 中午12:00返回Manapouri · Shag Point + Katiki Point順路 · 晚上小藍企鵝</div>
+        <div class="day-title">神奇峽灣返回 → 但尼丁 → 🐧 黃眼企鵝 + 🐣 小藍企鵝 奧瑪魯 Oamaru</div>
+        <div class="day-subtitle">12/29（二）· 中午12:00返回Manapouri · 全天開車約5小時（約420km）· 但尼丁停1小時 · 晚上小藍企鵝</div>
       </div>
     </div>
     <div class="day-body">
-      <div class="day-cost">💰 當日估算（兩人）：NZD $100–150</div>
+      <div class="day-cost">💰 當日估算（兩人）：NZD $120–180（油錢較多，企鵝已付清）</div>
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-time">早上</div>
@@ -1058,29 +1076,36 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
         <div class="tl-item">
           <div class="tl-time">中午 12:00</div>
           <div class="tl-content">
-            <div class="tl-title">返回 Manapouri · 出發往奧瑪魯方向</div>
-            <div class="tl-desc">巴士+船返回Manapouri碼頭，取車後沿SH1北上往奧瑪魯 Oamaru方向，約3.5小時。沿途可停黃眼企鵝景點。</div>
+            <div class="tl-title">返回 Manapouri · 取車出發</div>
+            <div class="tl-desc">巴士+船返回Manapouri碼頭，走回View Street取車。路線：Te Anau → Lumsden → Gore → SH1 → 但尼丁，約310km、3.5小時。Gore（約14:00）可以加油、上廁所、買午餐。全天開車約5小時，兩個人輪流開。</div>
           </div>
         </div>
         <div class="tl-item">
-          <div class="tl-time">下午 2:00</div>
+          <div class="tl-time">下午 3:30</div>
+          <div class="tl-content">
+            <div class="tl-title">🏛️ 但尼丁 Dunedin 停留約1小時</div>
+            <div class="tl-desc">① 但尼丁火車站：1906年的磚石建築，被稱為全紐西蘭最上相的建築，大廳的彩繪玻璃和馬賽克地磚可以進去看，免費。② Baldwin Street：世界最陡的住宅街道之一，車程約10分鐘，在坡底停車走上去拍照。兩個點加起來約1小時，Octagon市中心有咖啡廳可以休息。⚠️ 16:30前要離開，不然後面企鵝會趕。</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">下午 5:15</div>
           <div class="tl-content">
             <div class="tl-title">🦭 Shag Point 鸕鶿角（順路）</div>
-            <div class="tl-desc">偏離SH1約3km，免費停留約30分鐘。紐西蘭海豹大量聚集在岩台曬太陽，地質奇特，曾出土7公尺蛇頸龍化石。</div>
+            <div class="tl-desc">但尼丁往北約50分鐘，偏離SH1約3km，停留約20分鐘。紐西蘭海豹聚集在岩台曬太陽，地質奇特，曾出土7公尺蛇頸龍化石。免費。</div>
           </div>
         </div>
         <div class="tl-item">
-          <div class="tl-time">下午 3:00</div>
+          <div class="tl-time">傍晚 5:45</div>
           <div class="tl-content">
             <div class="tl-title">🐧 Katiki Point 卡蒂基角（黃眼企鵝）</div>
-            <div class="tl-desc">北奧塔哥最重要的黃眼企鵝繁殖地，1878年燈塔，傍晚前黃眼企鵝準備返巢最佳觀察時機。停留約1小時，捐款NZD $5支持志工保育。完全順路，不繞到但尼丁 Dunedin。</div>
+            <div class="tl-desc">Shag Point往北約10分鐘。北奧塔哥最重要的黃眼企鵝繁殖地，1878年燈塔。黃眼企鵝傍晚才陸續上岸回巢，這個時間來剛好。停留約40分鐘，捐款NZD $5支持志工保育。保持距離，不要走下海灘。</div>
           </div>
         </div>
         <div class="tl-item">
-          <div class="tl-time">傍晚 5:30</div>
+          <div class="tl-time">晚上 7:00</div>
           <div class="tl-content">
-            <div class="tl-title">奧瑪魯 Oamaru 抵達 · Heritage Precinct散步</div>
-            <div class="tl-desc">Oamaru Heritage Precinct維多利亞時代白石建築老街，免費散步約30分鐘，蒸汽龐克聖地，等待小藍企鵝上岸時間。</div>
+            <div class="tl-title">抵達奧瑪魯 Oamaru · check-in · 晚餐</div>
+            <div class="tl-desc">Katiki Point到奧瑪魯約40分鐘。⚠️ The Vicarage入住時間是15:00–18:00，會晚到，出發前先跟房東約好19:00左右入住（+64 22 014 787）。放好行李吃晚餐，老街散步留到明天上午。</div>
           </div>
         </div>
         <div class="tl-item">
@@ -1097,17 +1122,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       <div class="day-refbox">
         <div class="refbox-supply">
           <div class="refbox-title">🔵 附近補給</div>
-          <div class="refbox-body">奧瑪魯市區New World超市 · 多家加油站市區周邊 · 小藍企鵝中心遊客服務處公廁 · Heritage Precinct內咖啡廳與商店</div>
+          <div class="refbox-body">Gore鎮上加油站、超市、速食（Manapouri出發約2小時，中途最好的補給點）· 但尼丁Octagon市中心咖啡廳與公廁 · 奧瑪魯市區New World超市 · 小藍企鵝中心遊客服務處公廁</div>
         </div>
         <div class="refbox-sight">
           <div class="refbox-title">🟣 周邊景點參考</div>
-          <div class="refbox-body">Moeraki Boulders 摩拉基大圓石（往奧瑪魯途中順路，免費，球形巨石奇觀）· Oamaru Steampunk HQ蒸汽龐克博物館（付費，老街內）· Oamaru Public Gardens 免費花園</div>
+          <div class="refbox-body">Moeraki Boulders 摩拉基大圓石（Katiki Point往北約10分鐘，免費，球形巨石；時間夠再停）· Baldwin Street 世界最陡街道（但尼丁）· Oamaru Steampunk HQ蒸汽龐克博物館（付費，老街內）· Oamaru Public Gardens 免費花園</div>
         </div>
       </div>
       <div class="day-hotel-row">
         <div class="day-hotel-name">🏨 The Vicarage Boutique B&B · 奧瑪魯 ✓ 已訂（24 Reed Street）</div>
       </div>
-      <div class="tips-inline"><p>💡 中午12:00從Manapouri出發，3.5小時到Shag Point約下午3:30，Katiki Point下午4:30，奧瑪魯約5:30抵達，晚上8:45小藍企鵝完全來得及，中間有充裕時間吃晚餐休息。黃眼企鵝和小藍企鵝同一天全搞定！⚠️ 企鵝場次時段每天隨日落調整，務必上官網查詢12/29當天實際時段。</p></div>
+      <div class="tips-inline"><p>💡 Manapouri到奧瑪魯一定會經過但尼丁，全程約420km、不停車要5小時。12:00出發 → 15:30但尼丁 → 17:15 Shag Point → 17:45 Katiki Point → 19:00奧瑪魯，20:45小藍企鵝來得及。時間不夠時先砍但尼丁，企鵝優先。記得先跟The Vicarage約晚到入住。⚠️ 企鵝場次時段每天隨日落調整，務必上官網查詢12/29當天實際時段。</p></div>
 
       <div class="note-box">
         <div class="note-box-header">📝 旅行筆記 · Day 10 <span>即時同步</span></div>
@@ -1781,6 +1806,76 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 </div>
 
 <!-- ===== 預訂清單 ===== -->
+<div id="prep" class="section">
+<div class="section-title">✅ 行前須知</div>
+<div class="section-sub">出發前要辦的事 · 打勾會記在這支手機上</div>
+<div class="pre-progress" id="pre-progress"></div>
+<div class="pre-card urgent"><div class="pre-h">🔴 還沒處理完（優先）</div>
+<label class="pre-item" data-k="tribe"><input type="checkbox"><span><b>確認 1/2 奧克蘭住宿 TRIBE Auckland</b><span class="pre-note">信箱找不到確認信，翻 Booking.com、Agoda、老婆信箱；沒訂要趕快訂</span></span></label>
+<label class="pre-item" data-k="vicarage"><input type="checkbox"><span><b>通知 The Vicarage 12/29 約 19:00 才到</b><span class="pre-note">入住時間 15:00–18:00，先打 +64 22 014 787 或平台訊息說會晚到</span></span></label>
+<label class="pre-item" data-k="waiver"><input type="checkbox"><span><b>簽 Outside Sports 腳踏車同意書（#1042）</b><span class="pre-note">兩人各簽一份，電話改成 +886 開頭</span></span></label>
+<label class="pre-item" data-k="boots"><input type="checkbox"><span><b>訂 12/30 Boots and Jandals 晚餐</b><span class="pre-note">Otematata 19:00</span></span></label>
+</div>
+<div class="pre-card"><div class="pre-h">🛂 證件與入境</div>
+<label class="pre-item" data-k="passport"><input type="checkbox"><span><b>護照效期</b><span class="pre-note">要比離開紐西蘭那天（1/3）多 3 個月以上</span></span></label>
+<label class="pre-item" data-k="nzeta"><input type="checkbox"><span><b>NZeTA 電子簽證 + IVL 觀光稅（兩人）</b><span class="pre-note">用官方 NZeTA App 申請，最晚出發前 72 小時，建議現在就辦</span></span></label>
+<label class="pre-item" data-k="nztd"><input type="checkbox"><span><b>NZTD 入境申報（兩人各一份）</b><span class="pre-note">12/18 18:45 之後才能送出（起飛前 24 小時內）；App 有中文但要用英文填；第一晚住宿填 Focus Motel 基督城、班機 NZ78</span></span></label>
+<label class="pre-item" data-k="idp"><input type="checkbox"><span><b>國際駕照 + 台灣駕照正本</b><span class="pre-note">開車時兩樣都要帶；兩人都辦才能輪流開。監理站辦，帶身分證、護照、駕照、2 吋照片</span></span></label>
+</div>
+<div class="pre-card"><div class="pre-h">🛡️ 保險</div>
+<label class="pre-item" data-k="travelins"><input type="checkbox"><span><b>旅平險 + 不便險，保 12/19–1/4</b><span class="pre-note">重點看海外突發疾病、醫療轉送；結束日多抓一天防班機延誤</span></span></label>
+<label class="pre-item" data-k="activity"><input type="checkbox"><span><b>特定活動險（富邦精彩人生 2.0 第 1 類）</b><span class="pre-note">至少保 12/27 跳傘；問看看能不能一起保 12/23 冰川</span></span></label>
+<label class="pre-item" data-k="acc"><input type="checkbox"><span><b>知道 ACC</b><span class="pre-note">紐西蘭意外受傷醫療費 ACC 會付，不用登記；看診時說是意外受傷、帶護照</span></span></label>
+</div>
+<div class="pre-card"><div class="pre-h">💳 錢與刷卡</div>
+<label class="pre-item" data-k="limit"><input type="checkbox"><span><b>信用卡額度夠</b><span class="pre-note">RaD 取車前一天扣 NZD 2,234；The Encounter 自動扣 NZD 1,982.55；Snap 取車時付 NZD 372.08；各店押金還會預授權</span></span></label>
+<label class="pre-item" data-k="cash"><input type="checkbox"><span><b>換一點紐幣現金</b><span class="pre-note">Clay Cliffs 每車 NZD 5 只收現金；其他地方幾乎都能刷卡</span></span></label>
+<label class="pre-item" data-k="dcc"><input type="checkbox"><span><b>刷卡選「紐幣」付款</b><span class="pre-note">機器問要不要用台幣結帳時選 NZD，用台幣結通常比較貴</span></span></label>
+</div>
+<div class="pre-card"><div class="pre-h">📱 網路與 App</div>
+<label class="pre-item" data-k="esim"><input type="checkbox"><span><b>eSIM 買 15 天</b><span class="pre-note">落地奧克蘭才開通；選 Spark 或 One NZ 訊號；峽灣船上沒訊號</span></span></label>
+<label class="pre-item" data-k="apps"><input type="checkbox"><span><b>下載 App</b><span class="pre-note">NZeTA、NZTD、Gaspy（油價）、CamperMate（廁所／休息站）、Google 地圖</span></span></label>
+<label class="pre-item" data-k="offline"><input type="checkbox"><span><b>離線資料</b><span class="pre-note">Google 地圖下載南島、奧克蘭、羅托魯阿離線地圖；Notion 兩頁打開 Available offline（兩支手機）</span></span></label>
+<label class="pre-item" data-k="site"><input type="checkbox"><span><b>網站最新版上傳 GitHub</b></span></label>
+</div>
+<div class="pre-card"><div class="pre-h">🧳 打包</div>
+<label class="pre-item" data-k="layers"><input type="checkbox"><span><b>洋蔥式穿搭</b><span class="pre-note">冰川要 3–4 層保暖上衣、內搭褲（不能穿牛仔褲）；南島早晚很冷</span></span></label>
+<label class="pre-item" data-k="rain"><input type="checkbox"><span><b>防水外套、好走的包鞋</b></span></label>
+<label class="pre-item" data-k="sun"><input type="checkbox"><span><b>防曬乳、太陽眼鏡、帽子</b><span class="pre-note">紐西蘭紫外線很強，夏天很容易曬傷</span></span></label>
+<label class="pre-item" data-k="sandfly"><input type="checkbox"><span><b>防蚊液</b><span class="pre-note">西岸和峽灣的沙蠅（sandfly）很多，一定要帶</span></span></label>
+<label class="pre-item" data-k="swim"><input type="checkbox"><span><b>泳衣（舊的）、毛巾</b><span class="pre-note">Hell's Gate 泥漿浴會有硫磺味</span></span></label>
+<label class="pre-item" data-k="wet"><input type="checkbox"><span><b>換洗衣物、塑膠袋</b><span class="pre-note">Shotover Jet、獨木舟會濕</span></span></label>
+<label class="pre-item" data-k="bag"><input type="checkbox"><span><b>峽灣過夜小包</b><span class="pre-note">軟包、60L 以內，大行李留車上</span></span></label>
+<label class="pre-item" data-k="plug"><input type="checkbox"><span><b>轉接頭 Type I（八字斜插）</b><span class="pre-note">電壓 230V，手機筆電充電器多半可直接用</span></span></label>
+</div>
+<div class="pre-card"><div class="pre-h">🍯 入境申報（生物安全）</div>
+<label class="pre-item" data-k="declare"><input type="checkbox"><span><b>食物、蜂蜜、肉、水果全部申報</b><span class="pre-note">不確定就申報；沒申報被查到罰 NZD 400 起</span></span></label>
+<label class="pre-item" data-k="shoes"><input type="checkbox"><span><b>登山鞋、戶外用品清乾淨</b><span class="pre-note">鞋底泥土也算，要申報</span></span></label>
+<label class="pre-item" data-k="home"><input type="checkbox"><span><b>回台灣也要注意</b><span class="pre-note">買的蜂蜜、肉類製品回台入境要照規定申報</span></span></label>
+</div>
+<div class="pre-card"><div class="pre-h">📅 住宿免費取消期限</div>
+<table class="pre-table"><tr><th>期限</th><th>住宿</th></tr>
+<tr><td>12/17</td><td>Focus Motel（基督城）</td></tr>
+<tr><td>12/19</td><td>Mondello Motels（凱庫拉）</td></tr>
+<tr><td>12/19 23:59</td><td>The Encounter（皇后鎮，之後取消收 NZD 1,884）</td></tr>
+<tr><td>12/25</td><td>Thermal Oak（羅托魯阿）</td></tr>
+<tr><td>12/29 14:00</td><td>Otematata Retreat B6</td></tr>
+<tr><td>12/30</td><td>Imagine Beach Road（奧克蘭跨年）</td></tr>
+<tr><td>12/31</td><td>TRIBE Auckland（待確認有沒有訂）</td></tr>
+</table></div>
+<div class="pre-card"><div class="pre-h">📞 旅行中要打的確認電話</div>
+<table class="pre-table"><tr><th>什麼時候</th><th>打給誰</th><th>電話</th></tr>
+<tr><td>12/19 出發前</td><td>Kaikoura Kayaks（48 小時前）</td><td>+64 21 462 889</td></tr>
+<tr><td>12/21</td><td>冰川直升機（48 小時前）</td><td>+64 3 752 0767</td></tr>
+<tr><td>12/23 06:30</td><td>冰川直升機（當天確認天氣）</td><td>+64 3 752 0767</td></tr>
+<tr><td>12/24</td><td>TSS Earnslaw（48 小時前）</td><td>+64 3 249 6000</td></tr>
+<tr><td>12/27 19:00 前</td><td>Fiordland Expeditions</td><td>0064 3 249-9005</td></tr>
+<tr><td>12/29 出發前</td><td>The Vicarage（說會晚到）</td><td>+64 22 014 787</td></tr>
+<tr><td>12/30</td><td>Hell's Gate、Mitai（48 小時前）</td><td>+64 7 345 3151 / +64 7 343 9132</td></tr>
+</table></div>
+<div class="pre-card"><div class="pre-h">🕐 時差</div><div style="font-size:0.84rem;line-height:1.7">紐西蘭比台灣<b>快 5 小時</b>（紐西蘭時間 − 5 = 台灣時間）。打電話回台灣挑紐西蘭下午 2 點到晚上 11 點。你們跨年時，台灣是 12/31 晚上 7 點。</div></div>
+</div>
+
 <div id="booking" class="section">
   <div class="section-title">預訂清單</div>
   <div class="section-sub">紅色＝最容易客滿，聖誕跨年旺季務必立即處理</div>
@@ -3226,16 +3321,16 @@ var BUCKETLIST = [
     "name": "Katiki Point",
     "url": "https://www.google.com/maps/place/Katiki+Point/data=!4m2!3m1!1s0xa8296d8c3d8b0d71:0xcb22120eadc34584",
     "town": "Oamaru",
-    "lat": -45.10717,
-    "lng": 170.96013
+    "lat": -45.3894,
+    "lng": 170.8689
   },
   {
     "cat": "📍 景點",
     "name": "Shag Point",
     "url": "https://www.google.com/maps/place/Shag+Point/data=!4m2!3m1!1s0xa82969467101e985:0x500ef868479ee00",
     "town": "Oamaru",
-    "lat": -45.0973,
-    "lng": 170.9595
+    "lat": -45.4727,
+    "lng": 170.8180
   },
   {
     "cat": "📍 景點",
@@ -4208,7 +4303,7 @@ var CDAYS=[
   {date:'12/26',m:12,d:26,day:7, emoji:'🚤',loc:'皇后鎮 Queenstown',note:'快艇+⛴️TSS蒸汽船晚餐',cls:''},
   {date:'12/27',m:12,d:27,day:8, emoji:'🪂',loc:'皇后鎮 Queenstown',note:'8:30跳傘+市區漫遊',cls:''},
   {date:'12/28',m:12,d:28,day:9, emoji:'🛥️',loc:'神奇峽灣 Doubtful Sound',note:'9:15集合·9:45過夜船啟航·隔天12:00返回',cls:''},
-  {date:'12/29',m:12,d:29,day:10,emoji:'🐧',loc:'→奧瑪魯 Oamaru',note:'9:30返回·黃眼企鵝·小藍企鵝',cls:''},
+  {date:'12/29',m:12,d:29,day:10,emoji:'🐧',loc:'→奧瑪魯 Oamaru',note:'12:00返回·但尼丁·黃眼企鵝·小藍企鵝',cls:''},
   {date:'12/30',m:12,d:30,day:11,emoji:'🏛️',loc:'奧瑪魯 Oamaru',note:'歷史街區·手工藝店·Clay Cliffs',cls:''},
   {date:'12/31',m:12,d:31,day:12,emoji:'🎆',loc:'→奧克蘭 Auckland',note:'皇后鎮還車·Sky Tower跨年',cls:'nye'},
   {date:'1/1',  m:1, d:1, day:13,emoji:'🌋',loc:'羅托魯阿 Rotorua',note:'Mitai毛利夜間行程',cls:''},
@@ -4226,7 +4321,7 @@ var CDETAIL=[
   {title:'🚤 Shotover Jet快艇 → ⛴️ TSS Earnslaw蒸汽船晚餐',items:'9:00 Shotover Jet噴射快艇 · 4:30pm RealNZ報到→5pm TSS Earnslaw蒸汽船+Walter Peak Gourmet BBQ晚餐+農場示範（Agent Ref：710001285）',hotel:'🏡 The Encounter 湖景屋 · 皇后鎮 Fernhill'},
   {title:'🪂 高空跳傘 → 🚲 湖畔騎車',items:'7:20報到 7:30出發 NZONE 12,000呎跳傘（Ref：186364）· 市區午餐 · 14:00 Outside Sports租腳踏車騎Frankton Track（Dec0018-26）· 18:00還車 · Fergburger · 早點休息準備神奇峽灣',hotel:'🏡 The Encounter 湖景屋 · 皇后鎮 Fernhill'},
   {title:'🛥️ 神奇峽灣 Doubtful Sound 過夜船',items:'前一天7pm前致電確認 · 7:00皇后鎮出發→Manapouri · 9:15 RealNZ辦公室樓梯頂端集合（⚠️停車改View Street）· 9:45渡船啟航 · Lake Manapouri→Wilmot Pass→Deep Cove登MV Tutoko II · 峽灣探索·海豚海豹·釣魚划獨木舟·抓龍蝦晚餐·星空·船上過夜',hotel:'🛥️ MV Tutoko II 船上'},
-  {title:'神奇峽灣返回 → 🐧黃眼企鵝 + 🐣小藍企鵝',items:'中午12:00返回Manapouri · Shag Point鸕鶿角（順路·海豹）· Katiki Point卡蒂基角（黃眼企鵝·燈塔）· 奧瑪魯Heritage Precinct · 20:45小藍企鵝上岸（B# 334371）',hotel:'🏨 The Vicarage Boutique B&B · 奧瑪魯'},
+  {title:'峽灣返回 → 但尼丁 → 🐧黃眼企鵝 + 🐣小藍企鵝',items:'中午12:00返回Manapouri · 開車約5小時 · 15:30但尼丁停1小時（火車站·Baldwin Street）· 17:15 Shag Point · 17:45 Katiki Point黃眼企鵝 · 19:00奧瑪魯入住 · 20:45小藍企鵝上岸（B# 334371）',hotel:'🏨 The Vicarage Boutique B&B · 奧瑪魯'},
   {title:'奧瑪魯 Oamaru市區 · 🏜️ Clay Cliffs',items:'上午Heritage Precinct歷史街區+手工藝店 · Harbour Street Bakery午餐 · 13:00出發Otematata · 14:00 check-in · 16:00 Clay Cliffs黏土峭壁 · Boots and Jandals晚餐',hotel:'🏡 Otematata Retreat B6 Airbnb'},
   {title:'🎆 Lake Pukaki→皇后鎮還車→飛奧克蘭→跨年',items:'6:30 Otematata出發 · 8:30 Mint Folk買機上餐（鮭魚派/煎蛋餅）· Tapataia Mahaka Peter\'s Lookout · 12:00皇后鎮機場RaD還車（11天）· NZ630飛奧克蘭 · AirportLink巴士→Puhinui→火車→Waitematā Station→步行6分抵飯店 · 19:45 Amano跨年晚餐 · 22:00 Wynyard Quarter免費觀賞點 · 午夜3500發煙火',hotel:'🏨 Imagine Beach Road · 奧克蘭'},
   {title:'羅托魯阿 Rotorua · 地獄門 + Mitai毛利夜間',items:'10:00取車（Snap Rentals）→10:30奧克蘭出發（3小時）→13:30抵達午餐→14:15報到→14:30地獄門泥漿浴+Spa（Ref：710003002）→17:00先到旅館放行李梳洗→Mitai Maori Village 18:30（18:15報到，Ref：358089097）獨木舟+哈卡+Hangi+螢火蟲 · 入住Rotorua Thermal Oak Motel',hotel:'🏨 Rotorua Thermal Oak Motel · 羅托魯阿'},
@@ -4287,8 +4382,9 @@ var PLACES=[
   {id:11, day:'Day 8 · 12/27（六）',              emoji:'🪂', name:'NZONE Skydive 高空跳傘',          desc:'✓已訂 12,000ft · 7:20報到 7:30出發 · Ref：186364',     lat:-45.0356,lng:168.6592, type:'act',  island:'south', mapq:'NZONE Skydive Queenstown New Zealand'},
   {id:13, day:'Day 9 · 12/28（日）',              emoji:'🛥️', name:'Manapouri · 神奇峽灣出發點',       desc:'7:00皇后鎮出發·9:15集合·9:45啟航·船上過夜',            lat:-45.5667,lng:167.5667, type:'act',  island:'south', mapq:'Manapouri New Zealand'},
   {id:14, day:'Day 9 · 12/28（日）',              emoji:'🌊', name:'神奇峽灣 Doubtful Sound',         desc:'Deep Cove登MV Tutoko II · 海豚海豹 · 峽灣星空 · 全行程最寧靜時刻',  lat:-45.2667,lng:166.9667, type:'act',  island:'south', mapq:'Doubtful Sound New Zealand'},
-  {id:15, day:'Day 10 · 12/29（一）',             emoji:'🦭', name:'Shag Point 鸕鶿角',             desc:'海豹聚集岩台 · 億年地質 · 蛇頸龍化石發現地',         lat:-45.4833,lng:170.8167, type:'act',  island:'south', mapq:'Shag Point Palmerston Otago New Zealand'},
-  {id:16, day:'Day 10 · 12/29（一）',             emoji:'🐧', name:'Katiki Point 卡蒂基角',          desc:'北奧塔哥最重要黃眼企鵝繁殖地 · 1878年燈塔',          lat:-45.2833,lng:170.85,   type:'act',  island:'south', mapq:'Katiki Point Lighthouse Moeraki New Zealand'},
+  {id:37, day:'Day 10 · 12/29（二）',             emoji:'🏛️', name:'但尼丁 Dunedin 火車站',        desc:'順路停留約1小時 · 火車站＋Baldwin Street', lat:-45.8753,lng:170.5085, type:'new',  island:'south', mapq:'Dunedin Railway Station New Zealand'},
+  {id:15, day:'Day 10 · 12/29（一）',             emoji:'🦭', name:'Shag Point 鸕鶿角',             desc:'海豹聚集岩台 · 億年地質 · 蛇頸龍化石發現地',         lat:-45.4727,lng:170.8180, type:'act',  island:'south', mapq:'Shag Point Palmerston Otago New Zealand'},
+  {id:16, day:'Day 10 · 12/29（一）',             emoji:'🐧', name:'Katiki Point 卡蒂基角',          desc:'北奧塔哥最重要黃眼企鵝繁殖地 · 1878年燈塔 · 傍晚17:45左右到',          lat:-45.3894,lng:170.8689, type:'act',  island:'south', mapq:'Katiki Point Lighthouse Moeraki New Zealand'},
   {id:17, day:'Day 10 · 12/29（一）',             emoji:'🏛️', name:'Oamaru Heritage Precinct',      desc:'維多利亞時代白石建築老街，蒸汽龐克聖地',             lat:-45.0978,lng:170.9714, type:'act',  island:'south', mapq:'Oamaru Victorian Precinct New Zealand'},
   {id:18, day:'Day 10 · 12/29（一）',             emoji:'🐣', name:'小藍企鵝 奧瑪魯 Oamaru',               desc:'全球最小企鵝30公分，傍晚7:30列隊上岸',                lat:-45.1103,lng:170.9799, type:'act',  island:'south', mapq:'Oamaru Blue Penguin Colony New Zealand'},
   {id:19, day:'Day 11 · 12/30（二）',             emoji:'🏛️', name:'Oamaru Heritage Precinct',        desc:'維多利亞石灰岩建築群 · 手工藝店巡禮',     lat:-45.0973,lng:170.9700, type:'act',  island:'south', mapq:'Oamaru Heritage Precinct New Zealand'},
@@ -4603,14 +4699,17 @@ var DAILY_ROUTES=[
      {lat:-45.4667,lng:166.9667,name:'Doubtful Sound 神奇峽灣',note:'過夜郵輪 · MV Tutoko II'},
    ]},
   {day:10, date:'12/29', label:'Day 10 · 峽灣返回→奧瑪魯',
-   km:'約280km · 3.5小時', desc:'Manapouri返回 → SH8 → Shag Point/Katiki Point → 奧瑪魯 → 企鵝',
-   url:'https://www.google.com/maps/dir/Manapouri,NZ/Oamaru,NZ/@-45.2,169.8,9z',
+   km:'約420km · 開車約5小時', desc:'Manapouri → Gore → 但尼丁（停1小時）→ Shag Point → Katiki Point → 奧瑪魯 → 小藍企鵝',
+   url:'https://www.google.com/maps/dir/Manapouri,NZ/Dunedin+Railway+Station/Shag+Point,NZ/Katiki+Point+Lighthouse/Oamaru,NZ/@-45.4,169.6,8z',
    stops:[
-     {lat:-45.5686,lng:167.5900,name:'Manapouri 返回',note:'中午12:00'},
-     {lat:-45.4833,lng:170.8167,name:'Shag Point 鸕鶿角',note:'方案B · 海豹岩台'},
-     {lat:-45.2833,lng:170.8500,name:'Katiki Point 卡蒂基角',note:'方案B · 黃眼企鵝'},
-     {lat:-45.0978,lng:170.9714,name:'Oamaru Heritage Precinct',note:'維多利亞老街'},
-     {lat:-45.1103,lng:170.9799,name:'小藍企鵝 奧瑪魯',note:'19:30上岸'},
+     {lat:-45.5686,lng:167.5900,name:'Manapouri 返回',note:'中午12:00出發'},
+     {lat:-46.0988,lng:168.9446,name:'Gore 補給',note:'約14:00 · 加油午餐'},
+     {lat:-45.8753,lng:170.5085,name:'但尼丁火車站',note:'約15:30 · 停1小時'},
+     {lat:-45.8494,lng:170.5333,name:'Baldwin Street',note:'世界最陡街道'},
+     {lat:-45.4727,lng:170.8180,name:'Shag Point 鸕鶿角',note:'約17:15 · 海豹岩台'},
+     {lat:-45.3894,lng:170.8689,name:'Katiki Point 卡蒂基角',note:'約17:45 · 黃眼企鵝'},
+     {lat:-45.0978,lng:170.9714,name:'奧瑪魯 The Vicarage',note:'約19:00 入住（先約晚到）'},
+     {lat:-45.1103,lng:170.9799,name:'小藍企鵝 奧瑪魯',note:'20:45 B# 334371'},
    ]},
   {day:11, date:'12/30', label:'Day 11 · 奧瑪魯 Oamaru市區 → Otematata',
    km:'約75km · 1小時', desc:'Oamaru Heritage Precinct → Harbour Street Bakery午餐 → Otematata → Clay Cliffs',
@@ -5355,6 +5454,27 @@ document.addEventListener('click',function(e){
     document.getElementById('edit-bar').classList.remove('show');
   }
 });
+</script>
+<script>
+(function(){
+  var KEY='nz-prep-checks';
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}}
+  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+  function refresh(){
+    var items=document.querySelectorAll('#prep .pre-item'),done=0;
+    items.forEach(function(it){var c=it.querySelector('input').checked;it.classList.toggle('done',c);if(c)done++;});
+    var pg=document.getElementById('pre-progress');if(pg)pg.textContent='已完成 '+done+' / '+items.length+' 項';
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var st=load();
+    document.querySelectorAll('#prep .pre-item').forEach(function(it){
+      var k=it.getAttribute('data-k'),cb=it.querySelector('input');
+      cb.checked=!!st[k];
+      cb.addEventListener('change',function(){var o=load();o[k]=cb.checked;save(o);refresh();});
+    });
+    refresh();
+  });
+})();
 </script>
 </body>
 </html>

@@ -238,6 +238,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 .refbox-sight{border-left-color:#a593bd}
 .refbox-title{font-size:0.75rem;font-weight:600;color:var(--forest);margin-bottom:4px;letter-spacing:0.3px}
 .refbox-body{font-size:0.75rem;line-height:1.65;color:var(--muted)}
+@media(max-width:600px){.cd-en{display:block;font-size:8px;font-weight:500;line-height:1.25;margin-top:1px}.cd-loc{font-size:9px;overflow-wrap:anywhere}}
 </style>
 </head>
 <body>
@@ -4306,7 +4307,7 @@ var CDAYS=[
   {date:'12/21',m:12,d:21,day:2, emoji:'🐋',loc:'凱庫拉 Kaikoura',note:'10:30賞鯨+16:30獨木舟',cls:''},
   {date:'12/22',m:12,d:22,day:3, emoji:'🚗',loc:'→Franz Josef',note:"Arthur's Pass風景線",cls:''},
   {date:'12/23',m:12,d:23,day:4, emoji:'🚁',loc:'Franz Josef',note:'冰川嘗試1',cls:'branch'},
-  {date:'12/24',m:12,d:24,day:5, emoji:'🎄',loc:'→Wānaka',note:'冰川嘗試2→聖誕夜住Wānaka',cls:'xmas branch'},
+  {date:'12/24',m:12,d:24,day:5, emoji:'🎄',loc:'→沃納卡 Wānaka',note:'冰川嘗試2→聖誕夜住Wānaka',cls:'xmas branch'},
   {date:'12/25',m:12,d:25,day:6, emoji:'🎄',loc:'→皇后鎮 Queenstown',note:'🚡 Skyline 14:30 Luge',cls:'xmas'},
   {date:'12/26',m:12,d:26,day:7, emoji:'🚤',loc:'皇后鎮 Queenstown',note:'快艇+⛴️TSS蒸汽船晚餐',cls:''},
   {date:'12/27',m:12,d:27,day:8, emoji:'🪂',loc:'皇后鎮 Queenstown',note:'8:30跳傘+市區漫遊',cls:''},
@@ -4348,7 +4349,7 @@ function buildCal2(){
     var el=document.createElement('div');
     el.className='cday'+(d.cls?' '+d.cls:'');
     el.dataset.idx=idx;
-    el.innerHTML='<div class="cd-top"><div class="cd-num">'+d.d+'</div><div class="cd-emoji">'+d.emoji+'</div></div><div class="cd-day">Day '+d.day+'</div><div class="cd-loc">'+d.loc+'</div><div class="cd-note">'+d.note+'</div>';
+    el.innerHTML='<div class="cd-top"><div class="cd-num">'+d.d+'</div><div class="cd-emoji">'+d.emoji+'</div></div><div class="cd-day">Day '+d.day+'</div><div class="cd-loc">'+d.loc.replace(/([\u4e00-\u9fff]) ([A-Za-zā ]+)$/,'$1<span class="cd-en"> $2</span>').replace(/Christchurch|Queenstown|Kaikoura|Auckland|Rotorua|Doubtful/g,function(w){return {Christchurch:'Christ&shy;church',Queenstown:'Queens&shy;town',Kaikoura:'Kai&shy;koura',Auckland:'Auck&shy;land',Rotorua:'Roto&shy;rua',Doubtful:'Doubt&shy;ful'}[w];})+'</div><div class="cd-note">'+d.note+'</div>';
     el.onclick=function(){showCal2(this);};
     g.appendChild(el);
   });

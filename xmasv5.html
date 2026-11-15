@@ -623,7 +623,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
           <div class="tl-time">出發前30分鐘</div>
           <div class="tl-content">
             <div class="tl-title">Glacier Base 報到</div>
-            <div class="tl-desc">地址：63 Corn Street, Franz Josef。領取登山靴、襪子、冰爪、防水外套與防水褲（全部提供）。經驗豐富的導遊全程陪同，量體重安排座位後步行至停機坪。⚠️ 攜帶：保暖上身衣物（建議3–4層）、內搭褲或輕便長褲（不可穿牛仔褲）、太陽眼鏡、防曬乳、防水外套（未帶會提供）、保暖帽與手套（可自備）。</div>
+            <div class="tl-desc">地址：63 Corn Street, Franz Josef。領取登山靴、襪子、冰爪、防水外套與防水褲（全部提供）。經驗豐富的導遊全程陪同，步行至停機坪。⚠️ 攜帶：保暖上身衣物（建議3–4層）、內搭褲或輕便長褲（不可穿牛仔褲）、太陽眼鏡、防曬乳、防水外套（未帶會提供）、保暖帽與手套（可自備）。</div>
             <div class="tl-links">
               <a class="tl-link" href="https://www.franzjosefglacier.com/" target="_blank">🔗 Franz Josef Glacier Guides</a>
             </div>
@@ -2755,7 +2755,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 </style>
 
 <!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 
 <!-- Leaflet JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
@@ -4547,7 +4546,7 @@ var PLACES=[
 ];
 
 /* 主幹路線順序：基督城→凱庫拉→Franz Josef→Fox Glacier→Wānaka→皇后鎮→神奇峽灣→企鵝→Fairlie→皇后鎮還車→奧克蘭→羅托魯阿→購物 */
-var ROUTE_ORDER=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28];
+var ROUTE_ORDER=PLACES.map(function(_,i){return i;});
 
 function markerColor(p){
   if(p.type==='nye')  return '#b8860b';
@@ -4756,7 +4755,7 @@ function initCollapse(){
   });
 }
 
-document.addEventListener('DOMContentLoaded',function(){buildPlaceList(); loadEdits(); loadFontSize(); buildRouteDays(); initCollapse();});
+document.addEventListener('DOMContentLoaded',function(){buildPlaceList(); try{localStorage.removeItem('nz_honeymoon_edits');}catch(e){} loadFontSize(); buildRouteDays(); initCollapse();});
 
 /* ── DAILY ROUTES DATA ── */
 var DAILY_ROUTES=[
@@ -5004,26 +5003,10 @@ function showRoute(r){
 }
 </script>
 
-<!-- ===== 編輯模式 ===== -->
+<!-- ===== 浮動按鈕樣式 ===== -->
 <style>
-#edit-fab{position:fixed;bottom:20px;left:20px;z-index:9999;width:52px;height:52px;border-radius:50%;background:var(--forest);color:#fff;border:none;font-size:1.54rem;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:all 0.2s;display:flex;align-items:center;justify-content:center}
-#edit-fab:hover{background:var(--sage);transform:scale(1.08)}
-#edit-fab.active{background:#c9a84c;color:#1a1208}
 #top-fab{position:fixed;bottom:20px;right:20px;z-index:9999;width:52px;height:52px;border-radius:50%;background:var(--sage);color:#fff;border:none;font-size:1.4rem;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:all 0.2s;display:none;align-items:center;justify-content:center}
 #top-fab:hover{background:var(--forest);transform:scale(1.08)}
-#edit-bar{display:none;position:fixed;bottom:82px;right:16px;z-index:9999;background:var(--forest);border-radius:14px;padding:10px 14px;box-shadow:0 4px 20px rgba(0,0,0,0.25);font-family:'DM Sans',sans-serif;min-width:200px}
-#edit-bar.show{display:block}
-#edit-bar .eb-title{font-size:0.75rem;color:var(--mint);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
-#edit-bar button{display:block;width:100%;padding:8px 12px;border-radius:8px;border:none;font-family:'DM Sans',sans-serif;font-size:0.84rem;font-weight:500;cursor:pointer;margin-bottom:6px;text-align:left;transition:all 0.15s}
-#edit-bar button:last-child{margin-bottom:0}
-#btn-save{background:var(--gold);color:#1a1208}
-#btn-reset{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7)}
-#btn-reset:hover{background:rgba(220,50,50,0.3);color:#fff}
-#btn-save:hover{background:#e0b84a}
-.edit-mode [contenteditable]{outline:2px dashed rgba(201,168,76,0.5);border-radius:4px;min-width:20px;cursor:text}
-.edit-mode [contenteditable]:focus{outline:2px solid var(--gold);background:rgba(201,168,76,0.06)}
-.edit-indicator{position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:9998;background:var(--gold);color:#1a1208;font-size:0.75rem;font-weight:600;padding:5px 14px;border-radius:20px;font-family:'DM Sans',sans-serif;display:none;letter-spacing:0.5px;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
-.edit-indicator.show{display:block}
 /* Font size FAB */
 #font-fab{position:fixed;bottom:82px;right:20px;z-index:9999;width:52px;height:52px;border-radius:50%;background:var(--sage);color:#fff;border:none;font-size:1.05rem;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.2);transition:all 0.2s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;font-family:'DM Sans',sans-serif;line-height:1}
 #font-fab:hover{background:var(--mint);transform:scale(1.08)}
@@ -5099,8 +5082,6 @@ function showRoute(r){
 #fs-indicator{font-size:0.84rem;color:rgba(255,255,255,0.6);text-align:center;margin-top:4px}
 </style>
 
-<!-- Edit indicator bar -->
-<div class="edit-indicator" id="edit-indicator">✏️ 編輯模式 · 點擊任何文字即可修改 · 改完點💾儲存</div>
 
 <!-- Font size button -->
 <button id="font-fab" onclick="toggleFontBar()" title="調整字體大小">
@@ -5196,20 +5177,9 @@ function showRoute(r){
 
 <!-- Floating action button -->
 
-<!-- Edit toolbar -->
-<div id="edit-bar">
-  <div class="eb-title">✏️ 編輯模式</div>
-  <button id="btn-toggle-edit" onclick="toggleEditMode()">🔓 進入編輯模式</button>
-  <button id="btn-save" onclick="saveEdits()" style="display:none">💾 儲存所有修改</button>
-  <button id="btn-reset" onclick="resetEdits()">🗑️ 清除所有修改</button>
-  <button id="btn-download" onclick="downloadHTML()" style="background:rgba(122,184,146,0.2);color:#7ab892">⬇️ 下載 HTML 檔案</button>
-</div>
 
 <script>
-var _editMode=false;
-var _barOpen=false;
 var _fontBarOpen=false;
-var EDIT_KEY='nz_honeymoon_edits';
 
 var FS_MAP={
   small: {scale:0.88, label:'小'},
@@ -5320,25 +5290,28 @@ function toggleGlobalNote(){
   document.body.style.overflow=isOpen?'':'hidden';
 }
 
-/* Global Note 儲存 */
+/* Global Note 儲存：備忘、購物各自寫入，只存有改過的那一格，兩人同時寫不會互蓋 */
+var _gnoteDirty={};
 function saveGlobalNote(){
   if(!window._fbSet||!window._fbRef||!window._fbDb){
     alert('Firebase 尚未初始化，請檢查網路連線');return;
   }
   if(!window._notesReady.global){alert('筆記還在載入，請稍候再儲存');return;}
-  var data={
-    memo: document.getElementById('gnote-memo').value,
-    shop: document.getElementById('gnote-shop').value,
+  var keys=['memo','shop'].filter(function(k){return _gnoteDirty[k];});
+  var done=function(){
+    var bar=document.getElementById('gnote-sync-bar');
+    var saved=document.getElementById('gnote-saved');
+    bar.style.opacity='1';
+    saved.style.opacity='1';
+    setTimeout(function(){bar.style.opacity='0';saved.style.opacity='0';},2800);
   };
-  window._fbSet(window._fbRef(window._fbDb,'global_notes'), data)
-    .then(function(){
-      var bar=document.getElementById('gnote-sync-bar');
-      var saved=document.getElementById('gnote-saved');
-      bar.style.opacity='1';
-      saved.style.opacity='1';
-      setTimeout(function(){bar.style.opacity='0';saved.style.opacity='0';},2800);
-    })
-    .catch(function(err){alert('儲存失敗：'+err.message);});
+  if(!keys.length){done();return;}
+  Promise.all(keys.map(function(k){
+    var val=document.getElementById('gnote-'+k).value;
+    return window._fbSet(window._fbRef(window._fbDb,'global_notes/'+k), val).then(function(){
+      if(document.getElementById('gnote-'+k).value===val) _gnoteDirty[k]=false;
+    });
+  })).then(done).catch(function(err){alert('儲存失敗：'+err.message);});
 }
 
 /* Global Note 即時同步監聽（每次輸入3秒後自動儲存） */
@@ -5383,7 +5356,7 @@ document.addEventListener('DOMContentLoaded',function(){
       var d=snap.val()||{};
       ['memo','shop'].forEach(function(k){
         var ta=document.getElementById('gnote-'+k);
-        if(d[k]!==undefined && ta!==document.activeElement) ta.value=d[k];
+        if(d[k]!==undefined && ta!==document.activeElement && !_gnoteDirty[k]) ta.value=d[k];
       });
       window._unlockNotes('global');
     },function(err){window._noteLoadFailed(err);});
@@ -5391,6 +5364,7 @@ document.addEventListener('DOMContentLoaded',function(){
   /* 自動儲存：停止輸入3秒後觸發 */
   ['gnote-memo','gnote-shop'].forEach(function(id){
     document.getElementById(id).addEventListener('input',function(){
+      _gnoteDirty[id.replace('gnote-','')]=true;
       clearTimeout(_gnoteTimer);
       _gnoteTimer=setTimeout(saveGlobalNote,3000);
     });
@@ -5412,8 +5386,6 @@ function toggleMichelin(){
 function toggleFontBar(){
   _fontBarOpen=!_fontBarOpen;
   document.getElementById('font-size-bar').classList.toggle('show',_fontBarOpen);
-  /* close edit bar if open */
-  if(_fontBarOpen&&_barOpen){_barOpen=false;document.getElementById('edit-bar').classList.remove('show');}
 }
 
 function setFontSize(size, btn){
@@ -5447,162 +5419,6 @@ document.addEventListener('click',function(e){
   }
 });
 
-function toggleEditBar(){
-  _barOpen=!_barOpen;
-  document.getElementById('edit-bar').classList.toggle('show',_barOpen);
-}
-
-function toggleEditMode(){
-  _editMode=!_editMode;
-  var body=document.body;
-  var fab=document.getElementById('edit-fab');
-  var ind=document.getElementById('edit-indicator');
-  var btnToggle=document.getElementById('btn-toggle-edit');
-  var btnSave=document.getElementById('btn-save');
-
-  if(_editMode){
-    // Make all text elements editable
-    var selectors=[
-      '.day-title','.day-subtitle','.tl-title','.tl-desc',
-      '.tl-time','.day-hotel-name','.tips-inline p','.tips-xmas p',
-      '.day-cost','.section-title','.section-sub',
-      '.hotel-name','.hotel-loc','.hotel-desc',
-      '.restaurant-name','.restaurant-loc','.restaurant-desc','.restaurant-must',
-      '.booking-name','.booking-when',
-      '.food-name','.food-desc',
-      '.budget-row span','.tip p'
-    ];
-    selectors.forEach(function(sel){
-      document.querySelectorAll(sel).forEach(function(el){
-        el.setAttribute('contenteditable','true');
-        el.setAttribute('spellcheck','false');
-      });
-    });
-    body.classList.add('edit-mode');
-    fab.classList.add('active');
-    fab.textContent='✕';
-    ind.classList.add('show');
-    btnToggle.textContent='🔒 退出編輯模式';
-    btnSave.style.display='block';
-  } else {
-    // Remove contenteditable
-    document.querySelectorAll('[contenteditable]').forEach(function(el){
-      el.removeAttribute('contenteditable');
-    });
-    body.classList.remove('edit-mode');
-    fab.classList.remove('active');
-    fab.textContent='✏️';
-    ind.classList.remove('show');
-    btnToggle.textContent='🔓 進入編輯模式';
-    btnSave.style.display='none';
-    _barOpen=false;
-    document.getElementById('edit-bar').classList.remove('show');
-  }
-}
-
-function saveEdits(){
-  // Collect all editable content by selector + index
-  var saved={};
-  var selectors=[
-    '.day-title','.day-subtitle','.tl-title','.tl-desc',
-    '.tl-time','.day-hotel-name','.tips-inline p','.tips-xmas p',
-    '.day-cost','.section-title','.section-sub',
-    '.hotel-name','.hotel-loc','.hotel-desc',
-    '.restaurant-name','.restaurant-loc','.restaurant-desc','.restaurant-must',
-    '.booking-name','.booking-when',
-    '.food-name','.food-desc',
-    '.budget-row span','.tip p'
-  ];
-  selectors.forEach(function(sel){
-    var els=document.querySelectorAll(sel);
-    els.forEach(function(el,i){
-      var key=sel+'__'+i;
-      saved[key]=el.innerHTML;
-    });
-  });
-  try{
-    localStorage.setItem(EDIT_KEY, JSON.stringify(saved));
-    // Flash save confirmation
-    var fab=document.getElementById('edit-fab');
-    var orig=fab.textContent;
-    fab.textContent='✅';
-    setTimeout(function(){fab.textContent=orig;},1200);
-  } catch(e){
-    alert('儲存失敗，瀏覽器可能不支援 localStorage');
-  }
-}
-
-function loadEdits(){
-  try{
-    var raw=localStorage.getItem(EDIT_KEY);
-    if(!raw)return;
-    var saved=JSON.parse(raw);
-    Object.keys(saved).forEach(function(key){
-      var parts=key.split('__');
-      var sel=parts[0], idx=parseInt(parts[1]);
-      var el=document.querySelectorAll(sel)[idx];
-      if(el)el.innerHTML=saved[key];
-    });
-  } catch(e){}
-}
-
-function downloadHTML(){
-  // Apply current edits to a clone of the document
-  var clone=document.documentElement.cloneNode(true);
-
-  // Remove edit UI elements from the clone
-  ['edit-fab','edit-bar','edit-indicator'].forEach(function(id){
-    var el=clone.querySelector('#'+id);
-    if(el)el.remove();
-  });
-
-  // Remove contenteditable attributes
-  clone.querySelectorAll('[contenteditable]').forEach(function(el){
-    el.removeAttribute('contenteditable');
-  });
-
-  // Remove edit mode styles and scripts (last two script blocks are edit-related)
-  var scripts=clone.querySelectorAll('script');
-  // Remove the last script (edit mode JS)
-  if(scripts.length>0)scripts[scripts.length-1].remove();
-
-  // Remove the edit mode style block
-  clone.querySelectorAll('style').forEach(function(s){
-    if(s.innerHTML.indexOf('edit-fab')>=0)s.remove();
-  });
-
-  // Get the full HTML
-  var html='<!DOCTYPE html>\n'+clone.outerHTML;
-
-  // Download
-  var blob=new Blob([html],{type:'text/html;charset=utf-8'});
-  var url=URL.createObjectURL(blob);
-  var a=document.createElement('a');
-  a.href=url;
-  a.download='nz-honeymoon-xmas.html';
-  a.click();
-  URL.revokeObjectURL(url);
-
-  // Flash confirmation
-  var btn=document.getElementById('btn-download');
-  var orig=btn.textContent;
-  btn.textContent='✅ 下載完成！';
-  setTimeout(function(){btn.textContent=orig;},2000);
-}
-
-function resetEdits(){
-  if(!confirm('確定要清除所有手動修改嗎？網頁會回到原始版本。'))return;
-  try{localStorage.removeItem(EDIT_KEY);}catch(e){}
-  location.reload();
-}
-
-// Close edit bar when clicking outside
-document.addEventListener('click',function(e){
-  if(_barOpen && !document.getElementById('edit-bar').contains(e.target) && e.target.id!=='edit-fab'){
-    _barOpen=false;
-    document.getElementById('edit-bar').classList.remove('show');
-  }
-});
 </script>
 <script>
 (function(){
@@ -5624,6 +5440,9 @@ document.addEventListener('click',function(e){
     refresh();
   });
 })();
+</script>
+<script>
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}
 </script>
 </body>
 </html>

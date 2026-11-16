@@ -141,6 +141,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
 .hotel-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;margin-bottom:4px}
 .hotel-loc{font-size:12px;color:var(--muted);margin-bottom:8px}
 .hotel-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:10px}
+.hotel-rows{display:flex;flex-direction:column;gap:6px;margin-top:6px;padding-top:8px;border-top:1px dashed rgba(0,0,0,0.08)}
+.hotel-row{display:flex;align-items:flex-start;gap:8px;font-size:0.84rem;line-height:1.55}
+.hotel-lbl{flex:0 0 96px;color:var(--forest);font-weight:600;font-size:0.78rem;padding-top:1px}
+.hotel-val{flex:1;color:var(--muted);word-break:break-word}
 .hotel-meta{display:flex;align-items:center;justify-content:space-between}
 .stars{color:var(--gold);font-size:13px}
 .hotel-link{font-size:12px;color:var(--sage);font-weight:500;text-decoration:none;border:1px solid var(--sage);padding:5px 12px;border-radius:20px}
@@ -1760,7 +1764,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       <div class="hotel-body">
         <div class="hotel-name">🏨 Focus Motel 福克斯汽車旅館</div>
         <div class="hotel-loc">Day 1 · 12/20（1晚）· 基督城 Christchurch</div>
-        <div class="hotel-desc">入住14:00後 · 退房10:00前 · NZD $187 · 12/16 23:59前免費取消（Agoda）</div>
+        <div class="hotel-rows">
+          <div class="hotel-row"><span class="hotel-lbl">⏰ 入退時間</span><span class="hotel-val">入住 14:00 後 · 退房 10:00 前</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">🔑 訂房／確認碼</span><span class="hotel-val">Agoda 確認碼：1741626214</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">💰 費用／取消</span><span class="hotel-val">NZD $187 · 12/16 23:59 前免費取消</span></div>
+        </div>
       </div>
     </div>
 
@@ -1768,7 +1776,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       <div class="hotel-body">
         <div class="hotel-name">🏨 Mondello Motels 蒙德羅汽車旅館</div>
         <div class="hotel-loc">Day 2 · 12/21（1晚）· 凱庫拉 Kaikoura</div>
-        <div class="hotel-desc">入住14:00後 · 退房10:00前 · NZD $243 · 12/18 23:59前免費取消（Agoda）</div>
+        <div class="hotel-rows">
+          <div class="hotel-row"><span class="hotel-lbl">⏰ 入退時間</span><span class="hotel-val">入住 14:00 後 · 退房 10:00 前</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">🔑 訂房／確認碼</span><span class="hotel-val">Agoda 確認碼：1741619018</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">💰 費用／取消</span><span class="hotel-val">NZD $243 · 12/18 23:59 前免費取消</span></div>
+        </div>
       </div>
     </div>
 
@@ -1776,7 +1788,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       <div class="hotel-body">
         <div class="hotel-name">🏨 58昂克羅恩汽車旅館</div>
         <div class="hotel-loc">Day 3 · 12/22（1晚）· Franz Josef</div>
-        <div class="hotel-desc">58 Cron Street, Franz Josef · 入住14:00–18:00（櫃台回信說開到20:00，超過再通知）· 退房08:00–10:00 · 電話 +64 3 752 0627 · <b>附完整廚房用具</b>（可自炊） · TWD $5,382</div>
+        <div class="hotel-rows">
+          <div class="hotel-row"><span class="hotel-lbl">📍 地址</span><span class="hotel-val">58 Cron Street, Franz Josef</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">⏰ 入退時間</span><span class="hotel-val">入住 14:00–18:00（櫃台回信說開到 20:00，超過再通知）· 退房 08:00–10:00</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">🔑 訂房／確認碼</span><span class="hotel-val">Booking.com 確認碼：6914932914</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">💰 費用／取消</span><span class="hotel-val">TWD $5,382</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">📞 聯絡電話</span><span class="hotel-val">+64 3 752 0627</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">📝 備註</span><span class="hotel-val"><b>附完整廚房用具</b>（可自炊）</span></div>
+        </div>
       </div>
     </div>
 
@@ -1784,7 +1803,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       <div class="hotel-body">
         <div class="hotel-name">🏨 Mt Cook View Motel - Fox Glacier</div>
         <div class="hotel-loc">Day 4 · 12/23（1晚）· Fox Glacier</div>
-        <div class="hotel-desc">203 Cook Flat Road, Fox Glacier · 入住14:00–18:00 · 退房10:00前 · 單臥室小屋 · 距Franz Josef約20分鐘 · <b>附完整廚房</b>（爐台、熱水壺、烤麵包機、冰箱、微波爐、全套餐具鍋具） · TWD $6,914</div>
+        <div class="hotel-rows">
+          <div class="hotel-row"><span class="hotel-lbl">📍 地址</span><span class="hotel-val">203 Cook Flat Road, Fox Glacier</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">⏰ 入退時間</span><span class="hotel-val">入住 14:00–18:00 · 退房 10:00 前</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">🔑 訂房／確認碼</span><span class="hotel-val">Booking.com 確認碼：6078799009</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">💰 費用／取消</span><span class="hotel-val">TWD $6,914</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">📝 備註</span><span class="hotel-val">單臥室小屋 · 距 Franz Josef 約 20 分鐘 · <b>附完整廚房</b>（爐台、熱水壺、烤麵包機、冰箱、微波爐、全套餐具鍋具）</span></div>
+        </div>
       </div>
     </div>
 
@@ -1792,7 +1817,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       <div class="hotel-body">
         <div class="hotel-name">🏡 Albert Town Studio（Airbnb）</div>
         <div class="hotel-loc">Day 5 · 12/24 聖誕夜（1晚）· Albert Town, Wānaka附近</div>
-        <div class="hotel-desc">16 Kingfisher Crescent, Albert Town · 入住15:00 · 退房10:00 · 房東Megan · 確認碼：HMR84B9RX3 · 入住前48小時才顯示密碼鑰匙盒密碼 · TWD $4,399</div>
+        <div class="hotel-rows">
+          <div class="hotel-row"><span class="hotel-lbl">📍 地址</span><span class="hotel-val">16 Kingfisher Crescent, Albert Town</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">⏰ 入退時間</span><span class="hotel-val">入住 15:00 · 退房 10:00</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">🔑 訂房／確認碼</span><span class="hotel-val">Airbnb 確認碼：HMR84B9RX3</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">💰 費用／取消</span><span class="hotel-val">TWD $4,399</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">📝 備註</span><span class="hotel-val">房東 Megan · 入住前 48 小時才顯示密碼鑰匙盒密碼</span></div>
+        </div>
       </div>
     </div>
 
@@ -1800,7 +1831,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       <div class="hotel-body">
         <div class="hotel-name">🏡 The Encounter - Your Lake View house in Queenstown</div>
         <div class="hotel-loc">Day 6–8 · 12/25–12/28（3晚，含聖誕節）· 皇后鎮 Queenstown</div>
-        <div class="hotel-desc">28 Avalon Crescent, Fernhill（羊齒山），距機場約13分鐘車程 · 入住12/25 15:00起 · 退房12/28 10:00前 · 整棟三臥室獨立房屋，湖景＋山景 · <b>附完整廚房</b>（爐台、烤箱、微波爐、洗碗機、咖啡機、烤麵包機）＋洗衣機 · Booking.com確認碼：5132466034 · 電話 +64 210 284 6909 · 總價 NZD $1,982.55（Booking.com自動刷卡）· 12/19 23:59前免費取消，之後取消收 NZD $1,884 · 21:00–7:00需降低音量</div>
+        <div class="hotel-rows">
+          <div class="hotel-row"><span class="hotel-lbl">📍 地址</span><span class="hotel-val">28 Avalon Crescent, Fernhill（羊齒山），距機場約 13 分鐘車程</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">⏰ 入退時間</span><span class="hotel-val">入住 12/25 15:00 起 · 退房 12/28 10:00 前</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">🔑 訂房／確認碼</span><span class="hotel-val">Booking.com 確認碼：5132466034</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">💰 費用／取消</span><span class="hotel-val">總價 NZD $1,982.55（Booking.com 自動刷卡）· 12/19 23:59 前免費取消，之後取消收 NZD $1,884</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">📞 聯絡電話</span><span class="hotel-val">+64 210 284 6909</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">📝 備註</span><span class="hotel-val">整棟三臥室獨立房屋，湖景＋山景 · <b>附完整廚房</b>（爐台、烤箱、微波爐、洗碗機、咖啡機、烤麵包機）＋洗衣機 · 21:00–7:00 需降低音量</span></div>
+        </div>
       </div>
     </div>
 
@@ -1808,7 +1846,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       <div class="hotel-body">
         <div class="hotel-name">🛥️ 神奇峽灣 Doubtful Sound 船上</div>
         <div class="hotel-loc">Day 9 · 12/28（1晚）</div>
-        <div class="hotel-desc">MV Tutoko II（Fiordland Expeditions）· 12/28 9:15 Manapouri集合 · 12/29約12:00靠岸 · Premium Cabin Double · 含餐 · 僅載客約12人的精緻小型船</div>
+        <div class="hotel-rows">
+          <div class="hotel-row"><span class="hotel-lbl">📍 集合地點</span><span class="hotel-val">Manapouri 集合</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">⏰ 入退時間</span><span class="hotel-val">12/28 9:15 集合 · 12/29 約 12:00 靠岸</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">🔑 訂房／確認碼</span><span class="hotel-val">Fiordland Expeditions · Agent Ref：710000492 · Supplier Ref：355785606</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">📝 備註</span><span class="hotel-val">MV Tutoko II · Premium Cabin Double · 含餐 · 僅載客約 12 人的精緻小型船</span></div>
+        </div>
       </div>
     </div>
 
@@ -1816,7 +1859,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       <div class="hotel-body">
         <div class="hotel-name">🏨 The Vicarage Boutique B&amp;B</div>
         <div class="hotel-loc">Day 10 · 12/29（1晚）· 奧瑪魯 Oamaru</div>
-        <div class="hotel-desc">24 Reed Street, Oamaru · 入住15:00–18:00（12/29會晚到，要先通知）· 退房06:00–10:00 · <b>含早餐</b> 8:00–9:30 · 房東 Shanti 電話/WhatsApp +64 22 014 7872 · 房子前可停車 · TWD $4,821</div>
+        <div class="hotel-rows">
+          <div class="hotel-row"><span class="hotel-lbl">📍 地址</span><span class="hotel-val">24 Reed Street, Oamaru</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">⏰ 入退時間</span><span class="hotel-val">入住 15:00–18:00（12/29 會晚到，要先通知）· 退房 06:00–10:00</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">🔑 訂房／確認碼</span><span class="hotel-val">Booking.com 確認碼：5743713155</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">💰 費用／取消</span><span class="hotel-val">TWD $4,821</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">📞 聯絡電話</span><span class="hotel-val">房東 Shanti +64 22 014 7872（電話／WhatsApp）</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">📝 備註</span><span class="hotel-val"><b>含早餐</b> 8:00–9:30 · 房子前可停車</span></div>
+        </div>
       </div>
     </div>
 
@@ -1824,7 +1874,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       <div class="hotel-body">
         <div class="hotel-name">🏡 Otematata Retreat B6（Airbnb）</div>
         <div class="hotel-loc">Day 11 · 12/30（1晚）· Otematata</div>
-        <div class="hotel-desc">b6/2736 Otematata-Kurow Road, Otematata · 入住14:00 · 退房10:00 · 房東Carla · 確認碼：HMC8NXCAAK · 12/29下午2:00前免費取消 · 密碼鑰匙盒入住 · <b>附完整廚房用具</b>（可自炊） · TWD $5,190</div>
+        <div class="hotel-rows">
+          <div class="hotel-row"><span class="hotel-lbl">📍 地址</span><span class="hotel-val">b6/2736 Otematata-Kurow Road, Otematata</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">⏰ 入退時間</span><span class="hotel-val">入住 14:00 · 退房 10:00</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">🔑 訂房／確認碼</span><span class="hotel-val">Airbnb 確認碼：HMC8NXCAAK</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">💰 費用／取消</span><span class="hotel-val">TWD $5,190 · 12/29 下午 2:00 前免費取消</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">📝 備註</span><span class="hotel-val">房東 Carla · 密碼鑰匙盒入住 · <b>附完整廚房用具</b>（可自炊）</span></div>
+        </div>
       </div>
     </div>
 
@@ -1832,7 +1888,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       <div class="hotel-body">
         <div class="hotel-name">🏨 Imagine Beach Road</div>
         <div class="hotel-loc">Day 12 · 12/31–1/1（1晚）· 奧克蘭 Auckland</div>
-        <div class="hotel-desc">入住14:00後 · 退房10:00前 · NZD $259 · 12/29 23:59前免費取消（Agoda）· 跨年夜住宿</div>
+        <div class="hotel-rows">
+          <div class="hotel-row"><span class="hotel-lbl">⏰ 入退時間</span><span class="hotel-val">入住 14:00 後 · 退房 10:00 前</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">🔑 訂房／確認碼</span><span class="hotel-val">Agoda 確認碼：1738546832</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">💰 費用／取消</span><span class="hotel-val">NZD $259 · 12/29 23:59 前免費取消</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">📝 備註</span><span class="hotel-val">跨年夜住宿</span></div>
+        </div>
       </div>
     </div>
 
@@ -1840,7 +1901,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       <div class="hotel-body">
         <div class="hotel-name">🏨 Rotorua Thermal Oak Motel</div>
         <div class="hotel-loc">Day 13 · 1/1–1/2（1晚）· 羅托魯阿 Rotorua</div>
-        <div class="hotel-desc">入住14:00後 · 退房10:00前 · NZD $239 · 12/24 23:59前免費取消（Agoda）· Mitai結束後直接入住，隔天早上開車回奧克蘭（3小時）</div>
+        <div class="hotel-rows">
+          <div class="hotel-row"><span class="hotel-lbl">⏰ 入退時間</span><span class="hotel-val">入住 14:00 後 · 退房 10:00 前</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">🔑 訂房／確認碼</span><span class="hotel-val">Agoda 確認碼：1738929117</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">💰 費用／取消</span><span class="hotel-val">NZD $239 · 12/24 23:59 前免費取消</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">📝 備註</span><span class="hotel-val">Mitai 結束後直接入住，隔天早上開車回奧克蘭（3 小時）</span></div>
+        </div>
       </div>
     </div>
 
@@ -1848,7 +1914,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
       <div class="hotel-body">
         <div class="hotel-name">🏨 TRIBE Auckland Fort Street</div>
         <div class="hotel-loc">Day 14 · 1/2–1/3（1晚）· 奧克蘭 Auckland</div>
-        <div class="hotel-desc">入住15:00起 · 退房11:00前 · NZD $215.10 · 12/31 23:59前免費取消（Booking.com）· CBD市中心 Fort Street · 早餐另付一人 NZD 42</div>
+        <div class="hotel-rows">
+          <div class="hotel-row"><span class="hotel-lbl">📍 地址</span><span class="hotel-val">CBD 市中心 Fort Street</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">⏰ 入退時間</span><span class="hotel-val">入住 15:00 起 · 退房 11:00 前</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">🔑 訂房／確認碼</span><span class="hotel-val">Booking.com 確認碼：5666040001</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">💰 費用／取消</span><span class="hotel-val">NZD $215.10 · 12/31 23:59 前免費取消</span></div>
+          <div class="hotel-row"><span class="hotel-lbl">📝 備註</span><span class="hotel-val">早餐另付一人 NZD 42</span></div>
+        </div>
       </div>
     </div>
 
